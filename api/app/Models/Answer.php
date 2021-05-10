@@ -13,4 +13,12 @@ class Answer extends Model
         'question_id',
         'goodAnswer'
     ];
+
+     /**
+     * Get the question that owns the answer.
+     */
+    public function question()
+    {
+        return $this->belongsTo(Question::class, 'foreign_key');
+    }
 }
