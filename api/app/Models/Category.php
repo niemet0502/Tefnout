@@ -12,4 +12,12 @@ class Category extends Model
         'label', 
         'description'
     ];
+
+     /**
+     * Get the course for the category.
+     */
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
 }
