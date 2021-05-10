@@ -47,4 +47,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the user that owns the phone.
+     */
+    public function profil()
+    {
+        return $this->belongsTo(Profil::class, 'foreign_key');
+    }
+
 }
