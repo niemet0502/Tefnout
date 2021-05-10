@@ -9,4 +9,12 @@ class Profil extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+     /**
+     * Get the users for the profil.
+     */
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }
