@@ -15,4 +15,12 @@ class Chapter extends Model
         'video',
         'section_id'
     ];
+
+    /**
+     * Get the section that owns the phone.
+     */
+    public function section()
+    {
+        return $this->belongsTo(Section::class, 'foreign_key');
+    }
 }
