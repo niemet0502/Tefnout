@@ -16,9 +16,9 @@ class CreateChaptersTable extends Migration
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->longText('textContent');
-            $table->string('video');
+            $table->text('description')->nullable()->default(null);
+            $table->longText('textContent')->nullable()->default(null);
+            $table->string('video')->nullable()->default(null);
             $table->timestamps();
         });
     }
