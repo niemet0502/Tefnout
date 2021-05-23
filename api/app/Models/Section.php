@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Laravel\Sanctum\HasApiTokens;
 class Section extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
     protected $fillable = ['title', 'description', 'course_id'];
     
      /**
