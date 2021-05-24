@@ -13,7 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $users = User::select('users.*', 'profils.name as profil_name')
+                ->join('profils', 'profils.id', '=', 'users.profil_id')->get();
+        return $users;
     }
 
     /**
@@ -68,9 +70,21 @@ class UserController extends Controller
 
         return response([
             'status' => 'success',
-            'message' => 'Categorie supprimée avec succès !'
+            'message' => 'Utilisateur supprimée avec succès !'
         ], 200);
 
         // [TODO] delete all informations related to user before deletion
+    }
+
+    // methods metier 
+
+    public function getUserByProfil(int $id)
+    {
+        $users = User::select('users.*', 'profils.name as profil_name')
+        ->join('profils', 'profils.id', '=', 'users.profil_id')
+        ->where('profils.id', '=', $id)
+        ->get();
+
+        return $users;
     }
 }
