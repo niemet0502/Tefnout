@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/users', [UserController::class, 'index']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::get('/users/profil/{id}', [UserController::class, 'getUserByProfil']);
 
 
     Route::get('/courses', [CourseController::class, 'index']);
