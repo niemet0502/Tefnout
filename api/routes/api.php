@@ -27,7 +27,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Category's routes
     Route::resource('categories', CategoryController::class);
 
+    //user's routes 
     Route::get('/users', [UserController::class, 'index']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+
+
     Route::get('/courses', [CourseController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
