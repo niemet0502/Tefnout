@@ -35,7 +35,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return User::find($id);
     }
 
     /**
@@ -47,7 +47,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->update($request->all());
+
+        return response([
+            'status' => 'success',
+            'message' => 'Utilisateur mise a jour avec succès !'
+        ], 200);
     }
 
     /**
@@ -58,6 +64,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+
+        return response([
+            'status' => 'success',
+            'message' => 'Categorie supprimée avec succès !'
+        ], 200);
+
+        // [TODO] delete all informations related to user before deletion
     }
 }
