@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -24,7 +25,23 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'value' => 'required|integer|min:1|max:5',
+            'course_id' => 'required|integer|min:1|',
+            'user_id' => 'required|integer|min:1|',
+        ]);
+
+        $note = new Note();
+        $note->value =  $request->value;
+        $note->course_id =  $request->course_id;
+        $note->user_id =  $request->user_id;
+        $note->save();
+
+        
+        return response([
+            'status' => 'success',
+            'message' => 'Note ajouté avec succès !'
+        ], 200);
     }
 
     /**
