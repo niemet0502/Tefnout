@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Comment's routes 
     Route::post('/comments',[CommentController::class, 'store']);
+
+    //Note's routes
+    Route::post('/notes',[NoteController::class, 'store']);
 
     Route::get('/courses', [CourseController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
