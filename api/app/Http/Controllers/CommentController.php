@@ -27,8 +27,8 @@ class CommentController extends Controller
     {
         $request->validate([
             'content' => 'required',
-            'course_id' => 'required|integer',
-            'user_id' => 'required|integer',
+            'course_id' => 'required|integer|min:1|',
+            'user_id' => 'required|integer|min:1|',
         ]);
 
         $comment = new Comments();
