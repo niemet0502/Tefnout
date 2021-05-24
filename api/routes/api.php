@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -33,6 +34,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::get('/users/profil/{id}', [UserController::class, 'getUserByProfil']);
 
+
+    // Comment's routes 
+    Route::post('/comments',[CommentController::class, 'store']);
 
     Route::get('/courses', [CourseController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
