@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comments;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -24,7 +25,24 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'content' => 'required',
+            'course_id' => 'required|integer',
+            'user_id' => 'required|integer',
+        ]);
+
+        $comment = new Comments();
+        $comment->content =  $request->content;
+        $comment->course_id =  $request->course_id;
+        $comment->user_id =  $request->user_id;
+        $comment->save();
+
+        
+        return response([
+            'status' => 'success',
+            'message' => 'Commentaire ajouté avec succès !'
+        ], 200);
+
     }
 
     /**
