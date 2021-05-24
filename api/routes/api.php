@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -22,6 +23,10 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    // Category's routes
+    Route::resource('categories', CategoryController::class);
+
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/courses', [CourseController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
