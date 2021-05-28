@@ -14,7 +14,14 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return Course::all();
+        $users = Course::all();
+
+        $response = [
+            'users' => $users,
+            'status' => 200
+        ];
+
+        return $response;
     }
 
     /**
