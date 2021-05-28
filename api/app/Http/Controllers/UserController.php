@@ -37,7 +37,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::find($id);
+        $user =  User::find($id);
+
+        return response([
+            'user', $user,
+            'status' => 'success',
+        ], 200);
     }
 
     /**
@@ -53,6 +58,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         return response([
+            'user', $user,
             'status' => 'success',
             'message' => 'Utilisateur mise a jour avec succès !'
         ], 200);
