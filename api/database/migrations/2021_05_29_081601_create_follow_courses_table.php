@@ -15,6 +15,9 @@ class CreateFollowCoursesTable extends Migration
     {
         Schema::create('follow_courses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->references('id')->on('users');
+            $table->foreignId('course_id')->references('id')->on('courses');
+            $table->text('status');
             $table->timestamps();
         });
     }
