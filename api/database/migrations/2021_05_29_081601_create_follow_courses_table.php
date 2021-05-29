@@ -18,6 +18,9 @@ class CreateFollowCoursesTable extends Migration
             $table->foreignId('student_id')->references('id')->on('users');
             $table->foreignId('course_id')->references('id')->on('courses');
             $table->text('status');
+            $table->integer('chapterValidated');
+            $table->integer('chapterCount');
+            $table->integer('lastChapterValidated');
             $table->timestamps();
         });
     }
