@@ -42,6 +42,24 @@ class CourseController extends Controller
             'category_id' => 'required|integer|min:1|',
             'topics' => 'nullable'
         ]);
+
+        $course = new Course();
+        $course->title = $request->title;
+        $course->description = $request->description;
+        $course->video = $request->video;
+        $course->hours = $request->hours;
+        $course->level = $request->level;
+        $course->teacher_id = $request->teacher_id;
+        $course->category_id = $request->category_id;
+        $course->topics = $request->topics;
+
+        $course->save();
+
+        
+        return response([
+            'status' => 'success',
+            'message' => 'Cours ajouté avec succès !'
+        ], 200);
     }
 
     /**
