@@ -32,7 +32,16 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable',
+            'video' => 'nullable',
+            'hours' => 'required',
+            'level'=> 'required',
+            'teacher_id' => 'required|integer|min:1|',
+            'category_id' => 'required|integer|min:1|',
+            'topics' => 'nullable'
+        ]);
     }
 
     /**
