@@ -14,7 +14,7 @@ class AddCourseIdToCommentsTable extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->foreignId('course_id')->references('id')->on('courses');
+            
         });
     }
 

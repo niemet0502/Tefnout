@@ -14,8 +14,7 @@ class AddUserIdToNotesTable extends Migration
     public function up()
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('course_id')->references('id')->on('courses');
+           
         });
     }
 
