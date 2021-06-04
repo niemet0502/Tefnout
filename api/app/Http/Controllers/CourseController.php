@@ -35,6 +35,7 @@ class CourseController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'nullable',
+            'image' => 'nullable',
             'video' => 'nullable',
             'hours' => 'required',
             'level'=> 'required',
