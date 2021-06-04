@@ -60,7 +60,9 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'nullable'
         ]);
 
         $category = Category::find($id);
