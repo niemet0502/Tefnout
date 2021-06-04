@@ -27,14 +27,12 @@ class NoteController extends Controller
     {
         $request->validate([
             'value' => 'required|integer|min:1|max:5',
-            'course_id' => 'required|integer|min:1|',
-            'user_id' => 'required|integer|min:1|',
+            'formation_id' => 'required|integer|min:1|',
         ]);
 
         $note = new Note();
         $note->value =  $request->value;
-        $note->course_id =  $request->course_id;
-        $note->user_id =  $request->user_id;
+        $note->formation_id =  $request->formation_id;
         $note->save();
 
         
