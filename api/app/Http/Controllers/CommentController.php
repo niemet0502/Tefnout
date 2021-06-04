@@ -27,14 +27,12 @@ class CommentController extends Controller
     {
         $request->validate([
             'content' => 'required',
-            'course_id' => 'required|integer|min:1|',
-            'user_id' => 'required|integer|min:1|',
+            'formation_id' => 'required|integer|min:1|',
         ]);
 
         $comment = new Comments();
         $comment->content =  $request->content;
-        $comment->course_id =  $request->course_id;
-        $comment->user_id =  $request->user_id;
+        $comment->formation_id =  $request->formation_id;
         $comment->save();
 
         
