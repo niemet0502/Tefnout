@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Profil;
 use Illuminate\Http\Request;
 
 class ProfilController extends Controller
@@ -24,7 +24,19 @@ class ProfilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $profil = new Profil();
+        $profil->name = $request->name;
+        $profil->save();
+        
+        return response([
+            'status' => 'success',
+            'message' => 'Profil ajouté avec succès !'
+        ], 200);
+
     }
 
     /**
