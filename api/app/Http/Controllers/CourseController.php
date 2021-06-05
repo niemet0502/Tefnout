@@ -47,6 +47,7 @@ class CourseController extends Controller
         $course = new Course();
         $course->title = $request->title;
         $course->description = $request->description;
+        $course->image = $request->image;
         $course->video = $request->video;
         $course->hours = $request->hours;
         $course->level = $request->level;
