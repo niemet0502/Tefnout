@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+//course's route {list and show}
+Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/courses/{id}', [CourseController::class, 'show']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
@@ -41,8 +45,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Note's routes
     Route::post('/notes',[NoteController::class, 'store']);
+  
+    //course's route {store}
+    Route::post('/courses/{id}', [CourseController::class, 'store']);
 
-    Route::get('/courses', [CourseController::class, 'index']);
+
+    // profil's routes 
+    Route::post('/profils', [ProfilController::class, 'store']);
+
+    //logout's route
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
