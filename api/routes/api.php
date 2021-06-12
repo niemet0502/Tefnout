@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FormationController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
@@ -47,14 +48,17 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/notes',[NoteController::class, 'store']);
   
     //course's route {store}
-    Route::post('/courses/{id}', [CourseController::class, 'store']);
-
+    Route::post('/courses', [CourseController::class, 'store']);
+    
 
     // profil's routes 
     Route::post('/profils', [ProfilController::class, 'store']);
 
     //logout's route
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    //Formation routes
+    Route::post('/formations', [FormationController::class, 'store']);
 });
 
 
