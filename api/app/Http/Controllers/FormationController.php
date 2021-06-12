@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\FollowCourse;
 class FormationController extends Controller
 {
     /**
@@ -24,7 +24,22 @@ class FormationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'student_id' => 'required|integer|min:1|',
+            'course_id' => 'required|integer|min:1|',
+        ]);
+
+        $formation = new FollowCourse();
+
+        $formation->student_id = $request->student_id;
+        $formation->course_id = $request->course_id;
+        $formation->status = "invalid";
+
+        $formation->save();
+        return response([
+            'formation' => 'success',
+            'message' => 'Formation ajouté avec succès !'
+        ], 200);
     }
 
     /**

@@ -14,10 +14,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $users = Course::all();
+        $courses = Course::select('courses.*', 'users.avatar as teacher_image')
+                ->join('users', 'users.id', '=', 'courses.teacher_id')->get();
 
         $response = [
-            'users' => $users,
+            'courses' => $courses,
             'status' => 200
         ];
 
@@ -54,6 +55,7 @@ class CourseController extends Controller
         $course->teacher_id = $request->teacher_id;
         $course->category_id = $request->category_id;
         $course->topics = $request->topics;
+        $course->status = "draft";
 
         $course->save();
 
