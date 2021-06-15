@@ -34,7 +34,6 @@ class NoteController extends Controller
         $note->value =  $request->value;
         $note->formation_id =  $request->formation_id;
         $note->save();
-
         
         return response([
             'status' => 'success',
