@@ -49,6 +49,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   
     //course's route {store}
     Route::post('/courses', [CourseController::class, 'store']);
+    Route::get('/topics/{id}',  [CategoryController::class, 'show']);
+
+
+
+    //teacher's courses
+    Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
     
 
     // profil's routes 
