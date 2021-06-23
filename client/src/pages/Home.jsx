@@ -2,10 +2,11 @@ import React from 'react'
 import hero_icon from "../assets/img/hero_icon.png"
 import hero_img from "../assets/img/hero_img.png"
 import styled from "styled-components"
+import Topbar from "../components/Marketplace/Topbar"
 function Home() {
   return (
     <HomePage>
-
+    <Topbar/>
     <div>
       <section class="hero_area">
                 <div class="hero_wrap hero_height">
