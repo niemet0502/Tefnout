@@ -1,43 +1,37 @@
 import React from 'react'
-import img_01 from "../../assets/img/img_01.jpg"
-import c_author from "../../assets/img/c_author.png"
+import logo from "../../assets/img/logo.png"
 function Topbar() {
   return (
     <div>
-      <div class="col-lg-4 col-md-6">
-          <div class="course_single mb-30">
-              <div class="c_thumb">
-                <img src={img_01} alt=""/>
-              </div>
-              <div class="course_content">
-                  <div class="c_head">
-                      <span class="cat">Architecture</span>
-                      <span class="price">$246</span>
-                  </div>
-                  <h3 class="title"><a href="course-details.html">The Power of Podcast for Story telling Process</a></h3>
-                  <div class="rating_wrap ul_li">
-                      <span>13 votes</span>
-                      <ul class="rating_star ul_li">
-                          <li><i class="fas fa-star"></i></li>
-                          <li><i class="fas fa-star"></i></li>
-                          <li><i class="fas fa-star"></i></li>
-                          <li><i class="fal fa-star"></i></li>
-                          <li><i class="fal fa-star"></i></li>
-                      </ul>
-                  </div>
-                  <ul class="c_bottom ul_li">
-                      <li><i class="fal fa-file-alt"></i>180</li>
-                      <li><i class="fal fa-user"></i>28k</li>
-                      <li><i class="fal fa-eye"></i>57k</li>
-                      <li>
-                          <div class="author">
-                              <img src={c_author} alt=""/>
-                          </div>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
+      <header class="header_area">
+        <div id="sticky-header" class="header_bottom white_bg pl-130 pr-130" 
+        style={{paddingLeft: '140px', paddingRight: '140px'}}>
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-lg-2 col-6">
+                        <div class="logo">
+                            <a href="index.html"><img src={logo} alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-8 d-none d-lg-block">
+                        <nav class="main_menu">
+                          <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#">Courses</a></li>
+                          </ul>
+                        </nav>
+                    </div>
+                    <div class="col-xl-3 col-lg-2 col-6">
+                        <div class="header_right">
+                            <div class="account">
+                                <a href="account.html"><i class="fal fa-key"></i>account</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </header>
     </div>
   )
 }
