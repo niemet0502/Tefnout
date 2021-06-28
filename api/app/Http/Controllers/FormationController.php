@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\FollowChapter;
 use Illuminate\Http\Request;
 use App\Models\FollowCourse;
 class FormationController extends Controller
@@ -93,5 +94,26 @@ class FormationController extends Controller
         ;
 
         return $courses;
+    }
+
+    public function valideChapter(Request $request){
+        $request->validate([
+            'formation_id' => 'required|integer|min:1|',
+            'chapter_id' => 'required|integer|min:1|',
+        ]);
+
+        $chapter = new FollowChapter();
+        $chapter->is_validated = true;
+        $chapter->chapter_id = $request->chapter_id;
+        $chapter->formation_id = $request->formation_id;
+        $chapter->follow_course_id = $request->formation_id;
+
+        $chapter->save();
+        
+        return response([
+            'chapitre' => 'success',
+            'message' => 'Et un chapitre de terminé, bravo !'
+        ], 200);
+        
     }
 }
