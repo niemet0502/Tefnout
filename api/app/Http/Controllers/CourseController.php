@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\FollowChapter;
+use App\Models\FollowCourse;
 
 class CourseController extends Controller
 {
@@ -125,4 +127,5 @@ class CourseController extends Controller
             ->orWhere('users.name', 'like', '%'.$name.'%')   
             ->get();
     }
+
 }

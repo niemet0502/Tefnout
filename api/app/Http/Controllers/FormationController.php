@@ -125,4 +125,18 @@ class FormationController extends Controller
             'message' => 'Ce chapitre n’est plus marqué comme étant terminé.'
         ], 200);
     }
+
+    public function cancelFormation($id){
+
+        FollowChapter::where('follow_course_id', $id)->delete();
+        FollowCourse::destroy($id);
+
+        $response = [
+            'message' => 'Vous ne suivez plus ce cours',
+            'status' => 200
+        ];
+
+        return $response;
+
+    }
 }
