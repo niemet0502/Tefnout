@@ -37,6 +37,23 @@ function Home() {
                 </div>
             </section>
     </div>
+    <section class="courses_area pt-120 pb-90">
+      <div class="container">
+        <div class="row align-items-center mb-15">
+            <div class="col-lg-8 col-md-8">
+                <div class="sec_title">
+                    <h2>Find the right course for you</h2>
+                    <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="crs_btn text-md-end mb-20">
+                    <a class="thm_btn" href="courses.html">View all<i class="fal fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
     </HomePage>
 
   )
