@@ -116,4 +116,13 @@ class FormationController extends Controller
         ], 200);
         
     }
+
+    public function unvalideChapter($id){
+        FollowChapter::destroy($id);
+
+        return response([
+            'chapitre' => 'success',
+            'message' => 'Ce chapitre n’est plus marqué comme étant terminé.'
+        ], 200);
+    }
 }
