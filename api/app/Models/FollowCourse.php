@@ -13,4 +13,12 @@ class FollowCourse extends Model
         'course_id',
         'status'
     ];
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function followChapters()
+    {
+        return $this->hasMany(FollowChapter::class);
+    }
 }
