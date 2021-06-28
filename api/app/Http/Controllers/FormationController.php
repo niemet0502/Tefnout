@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\FollowCourse;
 class FormationController extends Controller
@@ -33,7 +34,7 @@ class FormationController extends Controller
 
         $formation->student_id = $request->student_id;
         $formation->course_id = $request->course_id;
-        $formation->status = "invalid";
+        $formation->status = "en cours";
 
         $formation->save();
         return response([
@@ -74,5 +75,21 @@ class FormationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function studentsCourse(int $id){
+        $courses = FollowCourse::select('follow_courses.status as formation_status',
+                'follow_courses.created_at as inscription_date',
+                'courses.title as course_title', 
+                'users.name as teacher_name', 
+                'categories.name as category_name')
+                ->where('follow_courses.student_id', '=', $id)
+                ->join('courses', 'courses.id', '=', 'follow_courses.course_id')
+                ->join('categories', 'categories.id', '=', 'courses.category_id')
+                ->join('users', 'users.id', '=', 'courses.teacher_id')
+                ->get();
+        ;
+
+        return $courses;
     }
 }
