@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //Formation routes
     Route::post('/formations', [FormationController::class, 'store']); // start learning course 
     Route::post('/formation/chapter', [FormationController::class, 'valideChapter']); // validated chapter
+    Route::delete('/formation/chapter/{id}', [FormationController::class, 'unvalideChapter']); // validated chapter
 
     //student's course 
     Route::get('/student/courses/{id}', [FormationController::class, 'studentsCourse']);
