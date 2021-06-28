@@ -81,6 +81,7 @@ class FormationController extends Controller
         $courses = FollowCourse::select('follow_courses.status as formation_status',
                 'follow_courses.created_at as inscription_date',
                 'courses.title as course_title', 
+                'courses.chapter_count as total_chapter_count',
                 'users.name as teacher_name', 
                 'categories.name as category_name')
                 ->where('follow_courses.student_id', '=', $id)
