@@ -87,6 +87,7 @@ class FormationController extends Controller
                 ->join('courses', 'courses.id', '=', 'follow_courses.course_id')
                 ->join('categories', 'categories.id', '=', 'courses.category_id')
                 ->join('users', 'users.id', '=', 'courses.teacher_id')
+                ->withCount('followChapters')
                 ->get();
         ;
 
