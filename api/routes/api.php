@@ -8,6 +8,7 @@ use App\Http\Controllers\FormationController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Formation routes
     Route::post('/formations', [FormationController::class, 'store']);
+
+    //student's course 
+    Route::get('/student/courses/{id}', [FormationController::class, 'studentsCourse']);
 });
 
 
