@@ -50,7 +50,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   
     //course's route {store}
     Route::post('/courses', [CourseController::class, 'store']);
-    Route::get('/topics/{id}',  [CategoryController::class, 'show']);
+    Route::get('/topics/{id}',  [CategoryController::class, 'show']); // show course
+    Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 
 
 
@@ -67,7 +68,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //Formation routes
     Route::post('/formations', [FormationController::class, 'store']); // start learning course 
     Route::post('/formation/chapter', [FormationController::class, 'valideChapter']); // validated chapter
-    Route::delete('/formation/chapter/{id}', [FormationController::class, 'unvalideChapter']); // validated chapter
+    Route::delete('/formation/chapter/{id}', [FormationController::class, 'unvalideChapter']); // unvalidated chapter
 
     //student's course 
     Route::get('/student/courses/{id}', [FormationController::class, 'studentsCourse']);
