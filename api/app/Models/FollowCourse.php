@@ -21,4 +21,12 @@ class FollowCourse extends Model
     {
         return $this->hasMany(FollowChapter::class);
     }
+
+    /**
+     * Get the notes for the blog post.
+     */
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }
