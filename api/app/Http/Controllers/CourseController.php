@@ -21,7 +21,9 @@ class CourseController extends Controller
                 ->join('categories', 'categories.id', '=', 'courses.category_id')
                 ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
                 ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
-                ->select('courses.*', 
+                ->select('courses.title', 
+                'courses.image',
+                'courses.level',
                 'users.avatar as teacher_image', 
                 'categories.name as category_name',
                 DB::raw('SUM(notes.value) as total_note'),
