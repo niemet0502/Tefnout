@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/courses', [CourseController::class, 'store']);
     Route::get('/topics/{id}',  [CategoryController::class, 'show']); // show course
     Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
+    Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 
 
 
