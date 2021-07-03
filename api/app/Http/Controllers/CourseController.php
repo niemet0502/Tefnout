@@ -99,7 +99,17 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Course::where('courses.id', $id)
+            ->join('sections', 'sections.course_id', '=', 'courses.id')
+            ->join('chapters', 'chapters.section_id', '=', 'sections.id')
+            ->delete();
+
+            $response = [
+                'message' => 'Cours supprimé avec succès !',
+                'status' => 200
+            ];
+    
+            return $response;
     }
 
     public function getCoursesByTeacher(int $id){
