@@ -26,9 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-//course's route {list and show}
+//course's route {list, search and show}
 Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/courses/{id}', [CourseController::class, 'show']);
+Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
@@ -51,7 +52,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //course's route {store}
     Route::post('/courses', [CourseController::class, 'store']);
     Route::get('/topics/{id}',  [CategoryController::class, 'show']); // show course
-    Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
     Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 
 
