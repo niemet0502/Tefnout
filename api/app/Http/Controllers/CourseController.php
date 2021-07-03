@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\FollowChapter;
 use App\Models\FollowCourse;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -16,8 +17,19 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::select('courses.*', 'users.avatar as teacher_image')
-                ->join('users', 'users.id', '=', 'courses.teacher_id')->get();
+        $courses = Course::join('users', 'users.id', '=', 'courses.teacher_id')
+                ->join('categories', 'categories.id', '=', 'courses.category_id')
+                ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+                ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
+                ->select('courses.*', 
+                'users.avatar as teacher_image', 
+                'categories.name as category_name',
+                DB::raw('SUM(notes.value) as total_note'),
+                DB::raw('COUNT(notes.value) as notes_count'))
+                ->withCount('followCourses')
+                ->groupBy('courses.id')
+                ->get();
+
 
         $response = [
             'courses' => $courses,
