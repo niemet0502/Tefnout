@@ -59,4 +59,12 @@ class Course extends Model
     {
         return $this->belongsTo(Category::class, 'foreign_key');
     }
+
+       /**
+     * Get the formations for the course.
+     */
+    public function followCourses()
+    {
+        return $this->hasMany(FollowCourse::class);
+    }
 }
