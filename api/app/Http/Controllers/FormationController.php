@@ -82,14 +82,14 @@ class FormationController extends Controller
         $courses = FollowCourse::select('follow_courses.status as formation_status',
                 'follow_courses.created_at as inscription_date',
                 'courses.title as course_title', 
-                'courses.chapter_count as total_chapter_count',
+                'courses.chapter_count as total_chapter_count', // afficher le pourcentage des chapitres valider
                 'users.name as teacher_name', 
                 'categories.name as category_name')
                 ->where('follow_courses.student_id', '=', $id)
                 ->join('courses', 'courses.id', '=', 'follow_courses.course_id')
                 ->join('categories', 'categories.id', '=', 'courses.category_id')
                 ->join('users', 'users.id', '=', 'courses.teacher_id')
-                ->withCount('followChapters')
+                ->withCount('followChapters') // afficher le pourcentage des chapitres valider
                 ->get();
         ;
 
