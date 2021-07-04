@@ -127,7 +127,9 @@ class CourseController extends Controller
     }
 
     public function getCoursesByTeacher(int $id){
-        $courses = Course::where('teacher_id', '=', $id)->get();
+        $courses = Course::where('teacher_id', '=', $id)
+                ->withCount('followCourses')
+                ->get();
 
         $response = [
             'courses' => $courses,
