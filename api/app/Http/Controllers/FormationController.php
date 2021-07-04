@@ -6,6 +6,8 @@ use App\Models\Course;
 use App\Models\FollowChapter;
 use Illuminate\Http\Request;
 use App\Models\FollowCourse;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 class FormationController extends Controller
 {
 
@@ -112,6 +114,37 @@ class FormationController extends Controller
 
         $response = [
             'message' => 'Vous ne suivez plus ce cours',
+            'status' => 200
+        ];
+
+        return $response;
+    }
+
+    public function studentReviews($id){
+        
+        $comments = User::join('follow_courses', 'follow_courses.student_id', '=', 'users.id')
+                    ->join('comments', 'comments.formation_id', '=', 'follow_courses.id')
+                    ->join('courses', 'courses.id', '=', 'follow_courses.course_id')
+                    ->where('users.id', $id)
+                    ->select('courses.title as course_title',
+                    'comments.content as comment',
+                    'users.name as student_name',
+                    'users.firstname as student_firstname',
+                    'courses.created_at as comment_date',
+                    'users.avatar as student_avatar')
+                    ->get();
+
+        $notes = User::join('follow_courses', 'follow_courses.student_id', '=', 'users.id')
+                    ->join('notes', 'notes.formation_id', '=', 'follow_courses.id')
+                    ->where('users.id', $id)
+                    ->select(DB::raw('SUM(notes.value) as total_note'),
+                    DB::raw('COUNT(notes.value) as notes_count'))
+                    ->groupBy('users.id')
+                    ->get();     
+        
+        $response = [
+            'comments' =>  $comments,
+            'notes' =>  $notes,
             'status' => 200
         ];
 
