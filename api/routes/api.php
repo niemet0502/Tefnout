@@ -74,6 +74,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //student's course 
     Route::get('/student/courses/{id}', [FormationController::class, 'studentsCourse']);
+
+    // get student's review 
+    Route::get('/students/reviews/{id}', [FormationController::class, 'studentReviews']);
 });
 
 
