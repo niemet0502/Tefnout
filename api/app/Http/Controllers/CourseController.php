@@ -93,7 +93,7 @@ class CourseController extends Controller
     public function show($id)
     {
         //get course's infos and count, sum notes
-
+        
         $courses = Course::where('courses.id', '=', $id)
                 ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
                 ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
@@ -103,12 +103,21 @@ class CourseController extends Controller
                 ->groupBy('courses.id')
                 ->get();   
 
-      
+        // get Reviews 
+        $reviews = FollowCourse::where('follow_courses.course_id', $id)
+                ->join('comments', 'comments.formation_id', '=', 'follow_courses.id')
+                ->join('users', 'users.id', '=', 'follow_courses.student_id')
+                ->select('comments.*', 
+                'users.name as user_name',
+                'users.firstname as user_firstname',
+                'users.avatar as user_avatar')
+                ->groupBy('comments.id')
+                ->get();
         
         
         return response([
             'course' => $courses,
-            //'reviews' => $reviews,
+            'reviews' => $reviews,
             'message' => 'Cours ajouté avec succès !'
         ], 200);
     }
