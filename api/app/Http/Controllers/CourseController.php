@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\FollowChapter;
 use App\Models\FollowCourse;
 use Illuminate\Support\Facades\DB;
+use App\Models\Section;
 
 class CourseController extends Controller
 {
@@ -90,7 +92,25 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        //get course's infos and count, sum notes
+
+        $courses = Course::where('courses.id', '=', $id)
+                ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+                ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
+                ->select('courses.*',
+                DB::raw('SUM(notes.value) as total_notes'),
+                DB::raw('COUNT(notes.value) as notes_count'))
+                ->groupBy('courses.id')
+                ->get();   
+
+      
+        
+        
+        return response([
+            'course' => $courses,
+            //'reviews' => $reviews,
+            'message' => 'Cours ajouté avec succès !'
+        ], 200);
     }
 
     /**
@@ -113,13 +133,18 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        Course::where('courses.id', $id)
-            ->join('sections', 'sections.course_id', '=', 'courses.id')
-            ->join('chapters', 'chapters.section_id', '=', 'sections.id')
-            ->delete();
+        $course = Course::find($id);
+         
+
+        // get sections of current course 
+        $sections = Section::where('course_id', $id)->get();
+
+        foreach($sections as $section){
+            $chapter = Chapter::where('section_id', $section->id);
+        }
 
             $response = [
-                'message' => 'Cours supprimé avec succès !',
+                'course' => $chapter,
                 'status' => 200
             ];
     
