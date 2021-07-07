@@ -9,6 +9,7 @@ use App\Models\FollowChapter;
 use App\Models\FollowCourse;
 use Illuminate\Support\Facades\DB;
 use App\Models\Section;
+use App\Models\User;
 
 class CourseController extends Controller
 {
@@ -93,7 +94,6 @@ class CourseController extends Controller
     public function show($id)
     {
         //get course's infos and count, sum notes
-        
         $courses = Course::where('courses.id', '=', $id)
                 ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
                 ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
@@ -114,10 +114,25 @@ class CourseController extends Controller
                 ->groupBy('comments.id')
                 ->get();
         
-        
+        // get teacher's infos 
+
+        $instructor = User::where('users.id', $courses[0]['teacher_id'])
+            ->leftJoin('courses', 'courses.teacher_id', '=', 'users.id')
+            ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+            ->select('users.name',
+            'users.firstname',
+            'users.avatar',
+            'users.function',
+            'users.bio',
+            DB::raw('COUNT(courses.id) as courses_count'),
+            DB::raw('COUNT(follow_courses.id) as students_count'))
+            ->groupBy('users.id')  
+            ->get();
+
         return response([
             'course' => $courses,
             'reviews' => $reviews,
+            'instructor' => $instructor,
             'message' => 'Cours ajouté avec succès !'
         ], 200);
     }
