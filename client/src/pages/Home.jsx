@@ -38,9 +38,9 @@ function Home() {
           </div>
       </section>
     </div>
-    <section class="courses_area pt-120 pb-90">
+    <section class="courses_area pt-5 pb-5 category-section">
       <div class="container">
-        <div class="row align-items-center mb-15">
+        <div class="row align-items-center mb-5">
             <div class="col-lg-8 col-md-8">
                 <div class="sec_title">
                     <h2>Find the right course for you</h2>
@@ -53,7 +53,7 @@ function Home() {
                 </div>
             </div>
         </div>
-        <div class="row d-flex">
+        <div class="row ">
           <CategoryCard/>
           <CategoryCard/>
           <CategoryCard/>
@@ -72,7 +72,13 @@ function Home() {
 
 const HomePage = styled.div`
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
+ 
+  //margin-top: var(--bs-gutter-y);
+
+  .category-section{
+    background-color: #f7f7f7;
+  }
 
   .hero_area {
     background: #fff;
