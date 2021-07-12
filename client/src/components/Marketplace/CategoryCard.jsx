@@ -5,27 +5,26 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 function CategoryCard() {
   return (
     <CategoryCardComponent>
-      <div>
-      <div class="col-lg-3 col-md-6">
-        <div class="ct_single">
-            <div class="ser_thumb mb-4">
-                <img src={s_01} alt=""/>
-            </div>
-            <h3><a href="courses.html">Computer Science</a></h3>
-            <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, seddo eiusmod tempor.</p>
-            <div class="ser_icon pt-25">
-                <a href="courses.html">
-                  <ArrowRightAltIcon/>
-                </a>
-            </div>
-        </div>
-    </div>
+      <div class="ct_single">
+          <div class="ser_thumb mb-4">
+              <img src={s_01} alt=""/>
+          </div>
+          <h3><a href="courses.html">Computer Science</a></h3>
+          <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, seddo eiusmod tempor.</p>
+          <div class="ser_icon pt-25">
+              <a href="courses.html">
+                <ArrowRightAltIcon/>
+              </a>
+          </div>
       </div>
     </CategoryCardComponent>
   )
 }
 
 const CategoryCardComponent = styled.div`
+    flex: 0 0 auto;
+    width: 25%;
+
   .ct_single {
     background: #fff;
     padding: 45px 30px;
