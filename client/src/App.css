@@ -3541,3 +3541,9 @@ blockquote .post_author_info span{
 	padding: 60px 50px;
 	background: #ffff;
 }
+
+.row{
+margin-top: 0px !important;
+margin-right: 0px !important; 
+margin-left: 0px !important;
+}
