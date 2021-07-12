@@ -1,9 +1,14 @@
 import React from 'react'
-import hero_icon from "../assets/img/hero_icon.png"
-import hero_img from "../assets/img/hero_img.png"
 import styled from "styled-components"
+
+// components 
 import Topbar from "../components/Marketplace/Topbar"
 import CategoryCard from "../components/Marketplace/CategoryCard"
+import CourseCard from '../components/Marketplace/CourseCard'
+
+// images 
+import hero_icon from "../assets/img/hero_icon.png"
+import hero_img from "../assets/img/hero_img.png"
 function Home() {
   return (
     <HomePage>
@@ -62,6 +67,33 @@ function Home() {
           <CategoryCard/>
           <CategoryCard/>
           <CategoryCard/>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="courses_area pt-5 pb-5 category-section">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-8 col-md-8">
+                <div class="sec_title">
+                    <h2>Find the right course for you</h2>
+                    <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="crs_btn text-md-end mb-20">
+                    <a class="thm_btn" href="courses.html">View all<i class="fal fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between ">
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
         </div>
       </div>
     </section>
