@@ -3,39 +3,40 @@ import hero_icon from "../assets/img/hero_icon.png"
 import hero_img from "../assets/img/hero_img.png"
 import styled from "styled-components"
 import Topbar from "../components/Marketplace/Topbar"
+import CategoryCard from "../components/Marketplace/CategoryCard"
 function Home() {
   return (
     <HomePage>
     <Topbar/>
     <div>
       <section class="hero_area">
-                <div class="hero_wrap hero_height">
-                    <div class="container-fluid">
-                        <div class="row flex-row-reverse align-items-center">
-                            <div class="col-xl-7 col-lg-6 col-md-12">
-                                <div class="hero_img f-right">
-                                    <img src={hero_img} alt=""/>
-                                </div>
-                            </div>
-                            <div class="col-xl-5 col-lg-6 col-md-12">
-                                <div class="hero_content">
-                                    <div class="icon">
-                                        <img src={hero_icon} alt=""/>
-                                    </div>
-                                    <span># Learn Anything, Anytime, Anywhere</span>
-                                    <h2>Best Online Learning For your future.</h2>
-                                    <p>We believe everyone has the capacity to be creative. Turitor is a place where
-                                        people develop their own potential.</p>
-                                    <div class="hero_btn mt-15">
-                                        <a class="thm_btn" href="courses.html">View Courses<i class="fal fa-long-arrow-right"></i></a>
-                                        <a class="thm_btn thm_btn-2" href="about.html">Start Trial<i class="fal fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+          <div class="hero_wrap hero_height">
+              <div class="container-fluid">
+                  <div class="row flex-row-reverse align-items-center">
+                      <div class="col-xl-7 col-lg-6 col-md-12">
+                          <div class="hero_img f-right">
+                              <img src={hero_img} alt=""/>
+                          </div>
+                      </div>
+                      <div class="col-xl-5 col-lg-6 col-md-12">
+                          <div class="hero_content">
+                              <div class="icon">
+                                  <img src={hero_icon} alt=""/>
+                              </div>
+                              <span># Learn Anything, Anytime, Anywhere</span>
+                              <h2>Best Online Learning For your future.</h2>
+                              <p>We believe everyone has the capacity to be creative. Turitor is a place where
+                                  people develop their own potential.</p>
+                              <div class="hero_btn mt-15">
+                                  <a class="thm_btn" href="courses.html">View Courses<i class="fal fa-long-arrow-right"></i></a>
+                                  <a class="thm_btn thm_btn-2" href="about.html">Start Trial<i class="fal fa-long-arrow-right"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
     </div>
     <section class="courses_area pt-120 pb-90">
       <div class="container">
@@ -51,6 +52,16 @@ function Home() {
                     <a class="thm_btn" href="courses.html">View all<i class="fal fa-long-arrow-right"></i></a>
                 </div>
             </div>
+        </div>
+        <div class="row d-flex">
+          <CategoryCard/>
+          <CategoryCard/>
+          <CategoryCard/>
+          <CategoryCard/>
+          <CategoryCard/>
+          <CategoryCard/>
+          <CategoryCard/>
+          <CategoryCard/>
         </div>
       </div>
     </section>
