@@ -43,7 +43,7 @@ function Home() {
         <div class="row align-items-center mb-5">
             <div class="col-lg-8 col-md-8">
                 <div class="sec_title">
-                    <h2>Find the right course for you</h2>
+                    <h2>Recent Popular Subjects</h2>
                     <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
                 </div>
             </div>
