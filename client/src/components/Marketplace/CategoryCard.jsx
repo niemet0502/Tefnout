@@ -24,6 +24,8 @@ function CategoryCard() {
 const CategoryCardComponent = styled.div`
     flex: 0 0 auto;
     width: 25%;
+    padding-right: 0px !important; 
+    padding-left: 0px !important;
 
   .ct_single {
     background: #fff;
