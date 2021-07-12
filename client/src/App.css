@@ -851,9 +851,6 @@ input:focus, textarea:focus {
 	line-height: 32px;
 	margin-bottom: 13px;
 }
-.rating_wrap {
-    margin-bottom: 20px;
-}
 .rating_wrap span {
 	font-size: 18px;
 	color: #979797;
