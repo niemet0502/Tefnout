@@ -51,8 +51,9 @@ function CourseCard() {
 }
 
 const CourseComponent = styled.div`
+    margin-top: 20px;
     flex: 0 0 auto;
-    width: 33.3333333333%;
+    width: 32.3333333333%;
     background-color: white;
     padding: 15px;
 

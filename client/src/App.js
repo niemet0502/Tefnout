@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <div className="row justify-content-md-center" style={{backgroundColor: '#f7f7f7'}}>
         <h3>The Nothing</h3>
-        <CourseCard/>
+        <Home/>
       </div>
     </div>
   );
