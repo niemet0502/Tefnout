@@ -27,6 +27,7 @@ class CourseController extends Controller
                 ->select('courses.title', 
                 'courses.image',
                 'courses.level',
+                'courses.views',
                 'users.avatar as teacher_image', 
                 'categories.name as category_name',
                 DB::raw('SUM(notes.value) as total_note'),
@@ -115,7 +116,6 @@ class CourseController extends Controller
                 ->get();
         
         // get teacher's infos 
-
         $instructor = User::where('users.id', $courses[0]['teacher_id'])
             ->leftJoin('courses', 'courses.teacher_id', '=', 'users.id')
             ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
@@ -129,10 +129,18 @@ class CourseController extends Controller
             ->groupBy('users.id')  
             ->get();
 
+        //get course's program 
+
+        $program = Section::where("course_id", $id)
+                ->select('sections.title',
+                'sections.id')
+                ->get();
+
         return response([
             'course' => $courses,
             'reviews' => $reviews,
             'instructor' => $instructor,
+            'program' => $program,
             'message' => 'Cours ajouté avec succès !'
         ], 200);
     }
