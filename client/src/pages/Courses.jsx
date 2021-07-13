@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 // components 
   import Button from '../components/Marketplace/Button'
@@ -10,7 +11,7 @@ import bg_image from "../assets/img/counter_bg.jpg"
 function Courses() {
   return (
     <CoursePage>
-     <section class="page_title_area course_page_banner mb-4" data-overlay="6">
+     <section class="page_title_area course_page_banner" data-overlay="6">
         <div class="containe">
           <div class="row">
               <div class="col-l2">
@@ -19,7 +20,9 @@ function Courses() {
                       <nav aria-label="breadcrumb">
                           <ol class="breadcrumb justify-content-center">
                               <li class="breadcrumb-item">
-                                  <a href="index.html">Home</a>
+                                <Link to="/">
+                                  Home
+                                </Link>
                               </li>
                               <li class="breadcrumb-item active" aria-current="page">Courses</li>
                           </ol>
@@ -30,18 +33,47 @@ function Courses() {
         </div>
       </section>
 
-      <section class="courses_area pt-5 pb-5">
+      <section class="courses_area pt-5 pb-5" style={{background: '#f7f7f7'}}>
         <div class="container">
           <div class="row">
               <div class="col-12">
-                  <div class="masonry_active mb-40 d-flex">
+                  <div class="mb-40 d-flex">
                   <Button 
-                    text="Views courses" />
+                    text="All categories"
+                    bgColorHover="#0073ff" />
 
                   <Button 
-                    text="Start trial" 
-                    bgColor="#0073ff"
+                    text="data science" 
+                    bgColor="#ffff"
                     bgColorHover="#0073ff"/>
+
+                  <Button 
+                    text="web developpement" 
+                    bgColor="#ffff"
+                    bgColorHover="#0073ff"/>
+
+                  <Button 
+                    text="Frontend" 
+                    bgColor="#ffff"
+                    bgColorHover="#0073ff"/>
+
+                  <Button 
+                    text="Backend" 
+                    bgColor="#ffff"
+                    bgColorHover="#0073ff"/>
+
+
+
+                  <Button 
+                    text="Integration" 
+                    bgColor="#ffff"
+                    bgColorHover="#0073ff"/>
+
+                  <Button 
+                    text="Design" 
+                    bgColor="#ffff"
+                    bgColorHover="#0073ff"/>
+
 
                   </div>
               </div>
