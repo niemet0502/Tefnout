@@ -13,7 +13,7 @@ function Topbar() {
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-2 col-6">
                         <div class="logo">
-                            <a href="index.html"><img src={logo} alt="" /></a>
+                        <Link to="/"><img src={logo} alt="" /></Link> 
                         </div>
                     </div>
                     <div class="col-xl-7 col-lg-8 d-none d-lg-block">

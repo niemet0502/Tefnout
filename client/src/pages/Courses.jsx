@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 // components 
-  import Button from '../components/Marketplace/Button'
-
+import Button from '../components/Marketplace/Button'
+import CourseCard from '../components/Marketplace/CourseCard'
 
 // images 
 import bg_image from "../assets/img/counter_bg.jpg"
@@ -78,7 +78,17 @@ function Courses() {
                   </div>
               </div>
           </div>
+
+          <div class="row justify-content-between ">
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
         </div>
+        </div>
+        
       </section> 
     </CoursePage>
   )
