@@ -1,4 +1,7 @@
 import React from 'react'
+import {Link} from "react-router-dom"
+
+// images 
 import logo from "../../assets/img/logo.png"
 function Topbar() {
   return (
@@ -16,8 +19,10 @@ function Topbar() {
                     <div class="col-xl-7 col-lg-8 d-none d-lg-block">
                         <nav class="main_menu">
                           <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="#">Courses</a></li>
+                            <li><Link to="/">Home</Link></li>
+                            <li>
+                              <Link to="/courses">Courses</Link>
+                            </li>
                           </ul>
                         </nav>
                     </div>
