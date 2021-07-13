@@ -5,10 +5,14 @@ import styled from "styled-components"
 import Topbar from "../components/Marketplace/Topbar"
 import CategoryCard from "../components/Marketplace/CategoryCard"
 import CourseCard from '../components/Marketplace/CourseCard'
+import Button from '../components/Marketplace/Button'
 
 // images 
 import hero_icon from "../assets/img/hero_icon.png"
 import hero_img from "../assets/img/hero_img.png"
+
+//icon 
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 function Home() {
   return (
     <HomePage>
@@ -32,9 +36,16 @@ function Home() {
                               <h2>Best Online Learning For your future.</h2>
                               <p>We believe everyone has the capacity to be creative. Turitor is a place where
                                   people develop their own potential.</p>
-                              <div class="hero_btn mt-15">
-                                  <a class="thm_btn" href="courses.html">View Courses<i class="fal fa-long-arrow-right"></i></a>
-                                  <a class="thm_btn thm_btn-2" href="about.html">Start Trial<i class="fal fa-long-arrow-right"></i></a>
+                              <div class="hero_btn mt-15 d-flex">
+                              <Button 
+                                text="Views courses"
+                                Icon={ArrowRightAltIcon}  />
+
+                               <Button 
+                                text="Start trial" 
+                                bgColor="#e5175c"
+                                bgColorHover="#0073ff"
+                                Icon={ArrowRightAltIcon} />
                               </div>
                           </div>
                       </div>
@@ -53,8 +64,10 @@ function Home() {
                 </div>
             </div>
             <div class="col-lg-4 col-md-4">
-                <div class="crs_btn text-md-end mb-20">
-                    <a class="thm_btn" href="courses.html">View all<i class="fal fa-long-arrow-right"></i></a>
+                <div class="crs_btn d-flex justify-content-end mb-20">
+                <Button 
+                  text="View all"
+                  Icon={ArrowRightAltIcon}  />
                 </div>
             </div>
         </div>
@@ -82,8 +95,10 @@ function Home() {
                 </div>
             </div>
             <div class="col-lg-4 col-md-4">
-                <div class="crs_btn text-md-end mb-20">
-                    <a class="thm_btn" href="courses.html">View all<i class="fal fa-long-arrow-right"></i></a>
+              <div class="crs_btn d-flex justify-content-end mb-20">
+                <Button 
+                  text="View all"
+                  Icon={ArrowRightAltIcon}  />
                 </div>
             </div>
         </div>

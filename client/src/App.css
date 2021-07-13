@@ -417,7 +417,7 @@ input:focus, textarea:focus {
 }
 .header_top .left li, .footer_bottom .left li {
 	display: inline-block;
-	float: left;
+	
 	color: #8c8c8c;
 	margin-right: 30px;
 	padding-right: 30px;

@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-// icons 
-import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 function Button({
   variant, 
   text, 
@@ -11,7 +9,8 @@ function Button({
   bgColorHover,}) {
   return (
     <ButtonComponent bgColor={bgColor} bgColorHover={bgColorHover}>
-      {text} <ArrowRightAltIcon />
+      {text} 
+      {Icon && <Icon />}
     </ButtonComponent>
   )
 }
