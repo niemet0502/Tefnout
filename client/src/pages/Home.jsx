@@ -2,7 +2,6 @@ import React from 'react'
 import styled from "styled-components"
 
 // components 
-import Topbar from "../components/Marketplace/Topbar"
 import CategoryCard from "../components/Marketplace/CategoryCard"
 import CourseCard from '../components/Marketplace/CourseCard'
 import Button from '../components/Marketplace/Button'
@@ -16,7 +15,6 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 function Home() {
   return (
     <HomePage>
-    <Topbar/>
     <div>
       <section class="hero_area">
           <div class="hero_wrap hero_height">
