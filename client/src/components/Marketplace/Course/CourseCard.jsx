@@ -3,8 +3,8 @@ import styled from "styled-components"
 import { Link } from 'react-router-dom'
 
 // import images 
-import img_01 from "../../assets/img/img_01.jpg"
-import c_author from "../../assets/img/c_author.png"
+import img_01 from "../../../assets/img/img_01.jpg"
+import c_author from "../../../assets/img/c_author.png"
 
 // import icons 
 import PeopleIcon from '@material-ui/icons/People';

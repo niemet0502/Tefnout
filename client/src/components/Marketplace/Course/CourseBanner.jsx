@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Link } from 'react-router-dom';
 
 // images 
-import bg_image from "../../assets/img/counter_bg.jpg"
+import bg_image from "../../../assets/img/counter_bg.jpg"
 function CourseBanner() {
   return (
     <CourseBannerComponent>
