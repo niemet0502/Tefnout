@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 // components 
 import Button from '../components/Marketplace/Button'
-import CourseCard from '../components/Marketplace/CourseCard'
-import CourseBanner from '../components/Marketplace/CourseBanner'
+import CourseCard from '../components/Marketplace/Course/CourseCard'
+import CourseBanner from '../components/Marketplace/Course/CourseBanner'
 
 // images 
 import bg_image from "../assets/img/counter_bg.jpg"

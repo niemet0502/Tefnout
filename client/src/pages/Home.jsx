@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 // components 
 import CategoryCard from "../components/Marketplace/CategoryCard"
-import CourseCard from '../components/Marketplace/CourseCard'
+import CourseCard from '../components/Marketplace/Course/CourseCard'
 import Button from '../components/Marketplace/Button'
 
 // images 
