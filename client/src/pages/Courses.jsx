@@ -5,34 +5,16 @@ import { Link } from 'react-router-dom'
 // components 
 import Button from '../components/Marketplace/Button'
 import CourseCard from '../components/Marketplace/CourseCard'
+import CourseBanner from '../components/Marketplace/CourseBanner'
 
 // images 
 import bg_image from "../assets/img/counter_bg.jpg"
 function Courses() {
   return (
     <CoursePage>
-     <section class="page_title_area course_page_banner" data-overlay="6">
-        <div class="containe">
-          <div class="row">
-              <div class="col-l2">
-                  <div class="page_title text-center">
-                      <h2>Our Courses</h2>
-                      <nav aria-label="breadcrumb">
-                          <ol class="breadcrumb justify-content-center">
-                              <li class="breadcrumb-item">
-                                <Link to="/">
-                                  Home
-                                </Link>
-                              </li>
-                              <li class="breadcrumb-item active" aria-current="page">Courses</li>
-                          </ol>
-                      </nav>
-                  </div>
-              </div>
-          </div>
-        </div>
-      </section>
-
+      
+      <CourseBanner/>
+      
       <section class="courses_area pt-5 pb-5" style={{background: '#f7f7f7'}}>
         <div class="container">
           <div class="row">
