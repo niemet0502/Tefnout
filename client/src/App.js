@@ -14,6 +14,8 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import Home from "./pages/Home"
 import Topbar from "./components/Marketplace/Topbar";
 import Courses from "./pages/Courses";
+import CourseDetails from "./pages/CourseDetails";
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
       <Switch>
         <Route  component={Home} path="/" exact />
         <Route  component={Courses} path="/courses" exact />
+        <Route  component={CourseDetails} path="/course-details" exact />
       </Switch>
   </Router>
   );
