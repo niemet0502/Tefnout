@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
+import { Link } from 'react-router-dom'
 
 // import images 
 import img_01 from "../../assets/img/img_01.jpg"
@@ -22,7 +23,11 @@ function CourseCard() {
                   <span class="cat">Architecture</span>
                   <span class="price">Debutant</span>
               </div>
-              <h3 class="title"><a href="course-details.html">The Power of Podcast for Story telling Process</a></h3>
+              <h3 class="title">
+                <Link to="/course-details">
+                  The Power of Podcast for Story telling Process
+                </Link>
+              </h3>
               <div class="rating_wrap ul_li d-flex">
                   <span>13 votes</span>
                   <ul class="rating_star ul_li d-flex">
