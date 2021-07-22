@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 
 // images 
 import bg_image from "../../../assets/img/counter_bg.jpg"
-function CourseBanner() {
+function CourseBanner({title,page}) {
   return (
     <CourseBannerComponent>
       <div class="containe">
           <div class="row">
               <div class="col-l2">
                   <div class="page_title text-center">
-                      <h2>Course Details</h2>
+                      <h2>{title}</h2>
                       <nav aria-label="breadcrumb">
                           <ol class="breadcrumb justify-content-center">
                               <li class="breadcrumb-item">
@@ -19,7 +19,7 @@ function CourseBanner() {
                                   Home
                                 </Link>
                               </li>
-                              <li class="breadcrumb-item active" aria-current="page">Details</li>
+                              <li class="breadcrumb-item active" aria-current="page">{page}</li>
                           </ol>
                       </nav>
                   </div>
