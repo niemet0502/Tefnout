@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
 
+
 //components 
 import CourseBanner from '../components/Marketplace/Course/CourseBanner';
 import Button from '../components/Marketplace/Button';
@@ -14,6 +15,7 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 function CourseDetails() {
+  const [value, setValue] = React.useState(2);
   return (
     <CourseDetailsComponent>
       <CourseBanner />
@@ -56,6 +58,9 @@ function CourseDetails() {
                         
                     </div>
                 </div>
+              <div class="cdl_bottom"> 
+                Tabs container
+              </div>
             </div>
             </div>
 
