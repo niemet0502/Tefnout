@@ -18,7 +18,9 @@ function CourseDetails() {
   const [value, setValue] = React.useState(2);
   return (
     <CourseDetailsComponent>
-      <CourseBanner />
+      <CourseBanner
+      title="Course Single"
+      page="DETAILS" />
 
 
       <section class="course_details_area pt-5 pb-5">

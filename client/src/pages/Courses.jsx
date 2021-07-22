@@ -12,7 +12,9 @@ function Courses() {
   return (
     <CoursePage>
       
-      <CourseBanner/>
+      <CourseBanner
+      title="Our Courses"
+      page="COURSES"/>
       
       <section class="courses_area pt-5 pb-5" style={{background: '#f7f7f7'}}>
         <div class="container">
