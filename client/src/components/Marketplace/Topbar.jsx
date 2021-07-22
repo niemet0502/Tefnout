@@ -29,7 +29,7 @@ function Topbar() {
                     <div class="col-xl-3 col-lg-2 col-6">
                         <div class="header_right">
                             <div class="account">
-                                <a href="account.html"><i class="fal fa-key"></i>account</a>
+                                <Link to="/login">account</Link>
                             </div>
                         </div>
                     </div>
