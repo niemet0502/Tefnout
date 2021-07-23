@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 //components 
 import CourseBanner from '../components/Marketplace/Course/CourseBanner';
 import Button from '../components/Marketplace/Button';
+import Tabs from '../components/Marketplace/Tabs/Tabs';
 
 //images 
 import cd_thumb from "../assets/img/cd_thumb.jpg"
@@ -61,7 +62,20 @@ function CourseDetails() {
                     </div>
                 </div>
               <div class="cdl_bottom"> 
-                Tabs container
+              <div>
+                <h1>Tabs Demo</h1>
+                <Tabs> 
+                  <div label="Gator"> 
+                    See ya later, <em>Alligator</em>! 
+                  </div> 
+                  <div label="Croc"> 
+                    After 'while, <em>Crocodile</em>! 
+                  </div> 
+                  <div label="Sarcosuchus"> 
+                    Nothing to see here, this tab is <em>extinct</em>! 
+                  </div> 
+                </Tabs> 
+                </div>
               </div>
             </div>
             </div>
