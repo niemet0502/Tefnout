@@ -2295,45 +2295,7 @@ blockquote .post_author_info span{
 	color: #d00a2b;
 	text-transform: uppercase;
 }
-/* 10. bai */
-.bai_bootom_space {
-	margin-bottom: -150px;
-}
-.bai_wrap {
-	padding: 85px 70px;
-	position: relative;
-	z-index: 2;
-	overflow: hidden;
-}
-.bai_shape {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -1;
-	background-size: cover;
-	width: 100%;
-	height: 100%;
-}
-.bai_shape img {
-	width: 100%;
-	height: 100%;
-}
-.bai_wrap > span {
-	color: #fff;
-	font-size: 18px;
-	margin-bottom: 15px;
-}
-.bai_wrap > h3 {
-	color: #fff;
-	font-size: 40px;
-	margin-bottom: 30px;
-}
-.bai_right > span {
-	color: #e5175c;
-}
-.bai_right > h3 {
-	color: #000;
-}
+
 /* 11. footer */
 .footer_space {
 	padding-top: 250px;
@@ -2565,12 +2527,4 @@ blockquote .post_author_info span{
 }
 .breadcrumb-item + .breadcrumb-item::before {
 	color: #fff;
-}
-/* 14. video */
-.video_thumb {
-	padding: 10px;
-	background: #fff;
-}
-.video_thumb img {
-	width: 100%;
 }
