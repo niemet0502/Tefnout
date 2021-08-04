@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
 function Button({
   text, 
@@ -13,6 +14,13 @@ function Button({
     </ButtonComponent>
   )
 }
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  Icon: PropTypes.node.isRequired,
+  bgColor: PropTypes.string.isRequired,
+  bgColorHover: PropTypes.string.isRequired,
+};
 
 const ButtonComponent = styled.button`
   
