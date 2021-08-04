@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from "styled-components"
+import PropTypes from 'prop-types';
 import team_01 from "../../assets/img/team_01.jpg"
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-function Instructor() {
+
+function Instructor({image, name, poste}) {
   return (
     <InstructorComponent>
-      <div class="col-lg-4 col-md-6">
+    
         <div class="team_single text-center mb-30">
             <div class="team_thumb">
                 <img src={team_01} alt=""/>
@@ -24,12 +26,23 @@ function Instructor() {
                 <p>Web Developer</p>
             </div>
         </div>
-    </div>
     </InstructorComponent>
   )
 }
 
+Instructor.propTypes = {
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  poste: PropTypes.string.isRequired,
+};
+
 const InstructorComponent = styled.div`
+
+@media (min-width: 992px){
+	flex: 0 0 auto;
+	width: 33.3333333333%;
+
+}
   /* 7. team */
 .team_single {
 	background: #fff;
