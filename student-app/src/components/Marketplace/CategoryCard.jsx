@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from "styled-components"
-import s_01 from "../../assets/img/s_01.png"
+import PropTypes from 'prop-types';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
-function CategoryCard() {
+function CategoryCard({image, title, description}) {
   return (
     <CategoryCardComponent>
       <div class="ct_single">
           <div class="ser_thumb mb-4">
-              <img src={s_01} alt=""/>
+              <img src={image} alt=""/>
           </div>
-          <h3><a href="courses.html">Computer Science</a></h3>
-          <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, seddo eiusmod tempor.</p>
+          <h3><a href="courses.html">{title}</a></h3>
+          <p>{description}</p>
           <div class="ser_icon pt-25">
               <a href="courses.html">
                 <ArrowRightAltIcon/>
@@ -20,6 +20,12 @@ function CategoryCard() {
     </CategoryCardComponent>
   )
 }
+
+CategoryCard.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
 
 const CategoryCardComponent = styled.div`
     flex: 0 0 auto;
