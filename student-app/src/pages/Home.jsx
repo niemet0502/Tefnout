@@ -5,6 +5,7 @@ import styled from "styled-components"
 import CategoryCard from "../components/Marketplace/CategoryCard"
 import CourseCard from '../components/Marketplace/Course/CourseCard'
 import Button from '../components/Marketplace/Button'
+import Instructor from '../components/Marketplace/Instructor'
 
 // images 
 import hero_icon from "../assets/img/hero_icon.png"
@@ -107,6 +108,31 @@ function Home() {
           <CourseCard />
           <CourseCard />
           <CourseCard />
+        </div>
+      </div>
+    </section>
+
+    <section class="courses_area pt-5 pb-5 category-section">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-8 col-md-8">
+                <div class="sec_title">
+                    <h2>Featured Instructors</h2>
+                    <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="crs_btn d-flex justify-content-end mb-20">
+                <Button 
+                  text="View all"
+                  Icon={ArrowRightAltIcon}  />
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-between ">
+          <Instructor/>
+          <Instructor/>
+          <Instructor/>
         </div>
       </div>
     </section>
