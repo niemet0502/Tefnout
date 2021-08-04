@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 // images 
 import bg_image from "../../../assets/img/counter_bg.jpg"
 function CourseBanner({title,page}) {
@@ -29,6 +29,11 @@ function CourseBanner({title,page}) {
     </CourseBannerComponent>
   )
 }
+
+CourseBanner.propTypes = {
+  page: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 const CourseBannerComponent = styled.section`
   background-image: url(${bg_image});
