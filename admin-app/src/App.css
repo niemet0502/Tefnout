@@ -18,3 +18,114 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+::-moz-selection { /* Code for Firefox */
+	background-color: #cce2ff;
+    color: rgba(0,0,0,.87);
+}
+
+::selection {
+	background-color: #cce2ff;
+    color: rgba(0,0,0,.87);
+}
+
+ol, ul {
+	list-style: none;
+	margin-bottom: 0 !important;
+}
+a:hover {
+	color: inherit !important;
+	text-decoration: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+button {
+outline: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+* {
+	margin:0;
+	padding: 0;
+}
+a:focus {
+	text-decoration: none;
+	outline: none;
+}
+a:hover {
+	text-decoration: none !important;
+}
+button {
+	outline: none;
+}
+
+button:focus {
+	outline: none !important;
+}
+
+input {
+	outline: none;
+}
+textarea {
+	outline: none;
+}
+
+p {
+	font-size: 14px;
+	line-height: 26px;
+	color: #686f7a;
+}
+
+/* ================ Typography Css =============== */
+h1 {
+	font-size: 2em;
+	/* 2x body copy size = 32px */
+	line-height: 1.25;
+	/* 45px / 36px */
+}
+h2 {
+	font-size: 1.625em;
+	/* 1.625x body copy size = 26px */
+	line-height: 1.15384615;
+	/* 30px / 26px */
+}
+h3 {
+	font-size: 1.375em;
+	/* 1.375x body copy size = 22px */
+	line-height: 1.13636364;
+	/* 25px / 22px */
+}
+h4 {
+	font-size: 1.125em;
+	/* 1.125x body copy size = 18px */
+	line-height: 1.11111111;
+}
+h5 {
+	font-size: 1.10em;
+	/* 1.125x body copy size = 18px */
+	line-height: 1.10;
+}
+h6 {
+	font-size: 1em;
+	/* 1.125x body copy size = 18px */
+	line-height: 1.050;
+}
+blockquote {
+	font-size: 1.25em;
+	/* 20px / 16px */
+	line-height: 1.25;
+	/* 25px / 20px */
+}
