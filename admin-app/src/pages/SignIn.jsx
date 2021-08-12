@@ -38,7 +38,7 @@ function SignIn() {
 							<button className="login-btn" type="submit">Sign In</button>
 						</form>
 						<p className="sgntrm145">Or <a href="forgot_password.html">Forgot Password</a>.</p>
-						<p className="mb-0 mt-30">Dont have an account? <a href="sign_up.html">Sign Up</a></p>
+						
 					</div>
 					<div className="sign_footer"> 2020 <strong>Cursus</strong>. All Rights Reserved.</div>
 				</div>				
