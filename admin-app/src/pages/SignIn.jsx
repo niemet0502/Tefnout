@@ -3,8 +3,7 @@ import styled from "styled-components"
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
-import sign from "../assets/img/sign.svg"
-import sign_logo from "../assets/img/sign_logo.png"
+import logo from "../assets/img/logo.svg"
 
 function SignIn() {
   return (
@@ -13,7 +12,7 @@ function SignIn() {
 			<div className="row justify-content-lg-center justify-content-md-center">
 				<div className="col-lg-12">
 					<div className="main_logo25" id="logo">
-						<a href="index.html"></a>
+						<a href="index.html"> <img src={logo} alt="" /></a>
 						<a href="index.html"></a>
 					</div>
 				</div>
