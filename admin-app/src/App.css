@@ -19,6 +19,10 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
+.App{
+  background-color: grey !important;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -630,4 +634,62 @@ i.icon1 {
     margin-top: 0 !important;
     border-top: 1px solid #fff !important;
     border-radius: 3px !important;
+}
+
+
+/* SideBar */
+.left_section {
+  border-bottom: 1px solid #e5e5e5;
+}
+.menu_left::-webkit-scrollbar {
+  width:4px;
+}
+.menu_left::-webkit-scrollbar-thumb {
+  height: 50px;
+  background: hsla(0, 0%, 53.3%, 0.4);
+}
+.vertical_nav {
+  /*position: fixed; */
+  top: 60px;
+  bottom: 0;
+  background: #fff;
+  overflow: hidden;
+  width: 240px;
+  height: 100vh;
+  z-index: 995;
+}
+
+.menu--item {
+  position: relative;
+  min-height: 42px;
+  line-height: 42px;
+}
+
+.menu--link {
+  display: block;
+  overflow: hidden;
+  font-size: 14px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+}
+
+.menu--icon {
+  display: block;
+  float: left;
+  width: 60px;
+  height: 45px;
+  line-height: 43px;
+  font-size: 20px;
+  text-align: center;
+  margin-right: 12px;
+}
+
+.menu--label {
+  display: block;
+  height: 45px;
+  line-height: 43px;
 }
