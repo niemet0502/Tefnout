@@ -1,5 +1,12 @@
 import React from 'react'
 
+//images 
+import user_profil from "../../assets/img/user_profil.jpg";
+
+//icon 
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
+import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 function TopBar() {
   return (
     <header className="header clearfix">
@@ -28,114 +35,21 @@ function TopBar() {
 					<a href="create_new_course.html" className="upload_btn" title="Create New Course">Create New Course</a>
 				</li>
 				<li>
-					<a href="shopping_cart.html" className="option_links" title="cart"><i className='uil uil-shopping-cart-alt'></i><span className="noti_count">2</span></a>
+					<a href="shopping_cart.html" className="option_links" title="cart"><ShoppingCartOutlinedIcon /><span className="noti_count">2</span></a>
 				</li>
 				<li className="ui dropdown">
-					<a href="#" className="option_links" title="Messages"><i className='uil uil-envelope-alt'></i><span className="noti_count">3</span></a>
-					<div className="menu dropdown_ms">
-						<a href="#" className="channel_my item">
-							<div className="profile_link">
-								
-								<div className="pd_content">
-									<h6>Zoena Singh</h6>
-									<p>Hi! Sir, How are you. I ask you one thing please explain it this video price.</p>
-									<span className="nm_time">2 min ago</span>
-								</div>							
-							</div>							
-						</a>
-						<a href="#" className="channel_my item">
-							<div className="profile_link">
-								
-								<div className="pd_content">
-									<h6>Joy Dua</h6>
-									<p>Hello, I paid you video tutorial but did not play error 404.</p>
-									<span className="nm_time">10 min ago</span>
-								</div>							
-							</div>							
-						</a>
-						<a href="#" className="channel_my item">
-							<div className="profile_link">
-								
-								<div className="pd_content">
-									<h6>Jass</h6>
-									<p>Thanks Sir, Such a nice video.</p>
-									<span className="nm_time">25 min ago</span>
-								</div>							
-							</div>							
-						</a>
-						<a className="vbm_btn" href="instructor_messages.html">View All <i className='uil uil-arrow-right'></i></a>
-					</div>
+					<a href="#" className="option_links" title="Messages"><MailOutlineOutlinedIcon /><span className="noti_count">3</span></a>
+					
 				</li>
 				<li className="ui dropdown">
-					<a href="#" className="option_links" title="Notifications"><i className='uil uil-bell'></i><span className="noti_count">3</span></a>
-					<div className="menu dropdown_mn">
-						<a href="#" className="channel_my item">
-							<div className="profile_link">
-								
-								<div className="pd_content">
-									<h6>Rock William</h6>
-									<p>Like Your Comment On Video <strong>How to create sidebar menu</strong>.</p>
-									<span className="nm_time">2 min ago</span>
-								</div>							
-							</div>							
-						</a>
-						<a href="#" className="channel_my item">
-							<div className="profile_link">
-								
-								<div className="pd_content">
-									<h6>Jassica Smith</h6>
-									<p>Added New Review In Video <strong>Full Stack PHP Developer</strong>.</p>
-									<span className="nm_time">12 min ago</span>
-								</div>							
-							</div>							
-						</a>
-						<a href="#" className="channel_my item">
-							<div className="profile_link">
-							
-								<div className="pd_content">
-									<p> Your Membership Approved <strong>Upload Video</strong>.</p>
-									<span className="nm_time">20 min ago</span>
-								</div>							
-							</div>							
-						</a>
-						<a className="vbm_btn" href="instructor_notifications.html">View All <i className='uil uil-arrow-right'></i></a>
-					</div>
+					<a href="#" className="option_links" title="Notifications"><NotificationsActiveOutlinedIcon /> <span className="noti_count">3</span></a>
+					 
 				</li>
 				<li className="ui dropdown">
 					<a href="#" className="opts_account" title="Account">
-					
+					<img src={user_profil} alt="user_profil" />
 					</a>
-					<div className="menu dropdown_account">
-						<div className="channel_my">
-							<div className="profile_link">
-								
-								<div className="pd_content">
-									<div className="rhte85">
-										<h6>Joginder Singh</h6>
-										<div className="mef78" title="Verify">
-											<i className='uil uil-check-circle'></i>
-										</div>
-									</div>
-									<span>gambol943@gmail.com</span>
-								</div>							
-							</div>
-							<a href="my_instructor_profile_view.html" className="dp_link_12">View Instructor Profile</a>						
-						</div>
-						<div className="night_mode_switch__btn">
-							<a href="#" id="night-mode" className="btn-night-mode">
-								<i className="uil uil-moon"></i> Night mode
-								<span className="btn-night-mode-switch">
-									<span className="uk-switch-button"></span>
-								</span>
-							</a>
-						</div>
-						<a href="instructor_dashboard.html" className="item channel_item">Cursus dashboard</a>						
-						<a href="membership.html" className="item channel_item">Paid Memberships</a>
-						<a href="setting.html" className="item channel_item">Setting</a>
-						<a href="help.html" className="item channel_item">Help</a>
-						<a href="feedback.html" className="item channel_item">Send Feedback</a>
-						<a href="sign_in.html" className="item channel_item">Sign Out</a>
-					</div>
+					
 				</li>
 			</ul>
 		</div>
