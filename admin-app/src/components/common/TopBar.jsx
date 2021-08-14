@@ -7,15 +7,12 @@ import user_profil from "../../assets/img/user_profil.jpg";
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
+import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 function TopBar() {
   return (
     <header className="header clearfix">
-		<button type="button" id="toggleMenu" className="toggle_menu">
-		  <i className='uil uil-bars'></i>
-		</button>
-		<button id="collapse_menu" className="collapse_menu">
-			<i className="uil uil-bars collapse_menu--icon "></i>
-			<span className="collapse_menu--label"></span>
+		<button id="collapse_menu" className="collapse_menu d-flex align-items-center justify-content-center">
+		 	<MenuOutlinedIcon />
 		</button>
 		<div className="main_logo" id="logo">
 			<a href="index.html"></a>
