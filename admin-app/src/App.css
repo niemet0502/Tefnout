@@ -675,6 +675,16 @@ i.icon1 {
   white-space: nowrap;
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
+  padding-left: 30px;
+}
+.menu--link:hover {
+  background: #ffecec;
+  color: #ed2a26 !important;
+}
+
+.left_section ul {
+  padding-left: 0px;
+  
 }
 
 .menu--icon {
