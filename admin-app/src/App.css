@@ -335,6 +335,20 @@ box-shadow: none !important;
 }
 
 /* Header */
+.collapse_menu {
+  width: 60px;
+  text-align: center;
+  display: block;
+  height: 60px;
+  padding: 0;
+  border: 0;
+  background: #ed2a26;
+  color: #fff;
+  font-size: 30px;
+  margin: 0;
+  cursor: pointer;
+  float: left;
+}
 header {
 	position: fixed;
 	z-index: 999;
