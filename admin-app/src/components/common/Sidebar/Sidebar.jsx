@@ -9,6 +9,7 @@ import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsAct
 import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
 import VerifiedUserOutlinedIcon from '@material-ui/icons/VerifiedUserOutlined';
+
 function Sidebar() {
   return (
     <nav className="vertical_nav">
