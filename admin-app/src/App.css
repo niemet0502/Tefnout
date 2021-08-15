@@ -804,7 +804,7 @@ i.icon1 {
   background: hsla(0, 0%, 53.3%, 0.4);
 }
 .vertical_nav {
-  /*position: fixed; */
+  position: fixed;
   top: 60px;
   bottom: 0;
   background: #fff;
@@ -812,6 +812,7 @@ i.icon1 {
   width: 240px;
   height: 100vh;
   z-index: 995;
+  padding-top: 20px;
 }
 
 .menu--item {
@@ -857,4 +858,52 @@ i.icon1 {
   display: block;
   height: 45px;
   line-height: 43px;
+}
+
+/* Dashboard */
+
+.wrapper {
+  margin-left: 240px;
+  padding: 90px 20px 20px 20px;
+}
+
+/* Card */
+.card_dash {
+  background: #fff;
+  margin-top: 30px;
+  float: left;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #efefef;
+  padding: 20px;
+}
+.card_dash_right img {
+  width: 70px;
+}
+.card_dash_left h5 {
+  font-size: 16px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  margin-bottom: 15px;
+  text-align: left;
+}
+.card_dash_left h2 {
+  font-size: 24px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  margin-bottom: 15px;
+  text-align: left;
+  margin-top: 0;
+}
+.card_dash_left span {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  background: #efefef;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: #fff;
+  background: #ffa052 !important;
 }
