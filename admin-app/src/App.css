@@ -335,6 +335,30 @@ box-shadow: none !important;
 }
 
 /* Header */
+.ui[class*="left icon"].swdh10.input>input {
+  padding-left: 3.2em!important;
+  padding-right: 1em!important;
+  font-size: 13px;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+.ui.swdh10 {
+  font-size: 14px !important;
+  width: 350px;
+}
+
+.uil-search-alt{
+  color: grey;
+  margin-bottom: -10px;
+  z-index: 2;
+}
+
+.srch10.prompt{
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  z-index: 1;
+}
 .collapse_menu {
   width: 60px;
   text-align: center;

@@ -2,12 +2,15 @@ import React from 'react'
 
 //images 
 import user_profil from "../../assets/img/user_profil.jpg";
+import logo from "../../assets/img/logo.svg"
 
 //icon 
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
+import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 function TopBar() {
   return (
     <header className="header clearfix">
@@ -15,14 +18,21 @@ function TopBar() {
 		 	<MenuOutlinedIcon />
 		</button>
 		<div className="main_logo" id="logo">
-			<a href="index.html"></a>
+			<a href="index.html"> <img src={logo} alt="logo" /> </a>
 			<a href="index.html"></a>
     </div>
+		<div className="top-category" style={{marginLeft: '16px'}}>
+			<div className="ui compact menu cate-dpdwn">
+				<div className="ui simple dropdown item">
+					<a href="#" className="option_links p-0 ml-5" title="categories"><DashboardOutlinedIcon style={{fontSize: '30px'}}/></a>
+				</div>
+			</div>
+		</div>
 		<div className="search120">
 			<div className="ui search">
 			  <div className="ui left icon input swdh10">
-          <input className="prompt srch10" type="text" placeholder="Search for Tuts Videos, Tutors, Tests and more.."/>
-          <i className='uil uil-search-alt icon icon1'></i>
+				
+          <input className="prompt srch10" type="text" placeholder="Search for Tuts Videos, Tutors ..."/>
 			  </div>
 			</div>
 		</div>
