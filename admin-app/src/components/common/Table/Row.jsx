@@ -1,10 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
+//components 
+import Cell from './Cell';
 
 function Row({data}) {
   return (
-    <div>
-      
-    </div>
+    <tr>
+      {data.map((cell, index) => {
+       <h1>Test</h1>
+      })}
+    </tr>
   )
 }
 
