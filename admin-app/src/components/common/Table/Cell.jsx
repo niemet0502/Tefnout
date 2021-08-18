@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Cell() {
+function Cell({index,content,header}) {
   return (
     <div>
       
@@ -8,4 +8,9 @@ function Cell() {
   )
 }
 
+Cell.propTypes = {
+  index: PropTypes.number.isRequired,
+  content: PropTypes.string.isRequired,
+  header: PropTypes.bool
+};
 export default Cell
