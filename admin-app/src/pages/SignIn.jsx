@@ -3,6 +3,9 @@ import styled from "styled-components"
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
+// components 
+import Button from '../components/common/Button';
+
 import logo from "../assets/img/logo.svg"
 
 function SignIn() {
@@ -35,7 +38,7 @@ function SignIn() {
 									<VpnKeyIcon className="input__icon" />
 								</div>
 							</div>
-							<button className="login-btn" type="submit">Sign In</button>
+							<Button text="SignIn" className="col-md-12" />
 						</form>
 						<p className="sgntrm145">Or <a href="forgot_password.html">Forgot Password</a>.</p>
 						
