@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types';
 function Cell({index,content,header}) {
   return (
     <div>
