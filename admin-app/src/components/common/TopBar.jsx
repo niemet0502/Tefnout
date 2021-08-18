@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 
+//components 
+import Button from './Button';
+
 //images 
 import user_profil from "../../assets/img/user_profil.jpg";
 import logo from "../../assets/img/logo.svg"
@@ -46,7 +49,7 @@ function TopBar() {
 		<div className="header_right">
 			<ul>
 				<li>
-					<a href="create_new_course.html" className="upload_btn" title="Create New Course">Create New Course</a>
+					<Button text="Create New Course" />
 				</li>
 				<li>
 					<a href="shopping_cart.html" className="option_links" title="cart"><ShoppingCartOutlinedIcon /><span className="noti_count">2</span></a>
