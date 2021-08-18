@@ -1,6 +1,6 @@
 import React from 'react'
 
-function TableItem() {
+function Cell() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function TableItem() {
   )
 }
 
-export default TableItem
+export default Cell
