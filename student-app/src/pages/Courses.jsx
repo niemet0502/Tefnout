@@ -16,11 +16,11 @@ function Courses() {
       title="Our Courses"
       page="COURSES"/>
       
-      <section class="courses_area pt-5 pb-5" style={{background: '#f7f7f7'}}>
-        <div class="container">
-          <div class="row">
-              <div class="col-12">
-                  <div class="mb-40 d-flex">
+      <section className="courses_area pt-5 pb-5" style={{background: '#f7f7f7'}}>
+        <div className="container">
+          <div className="row">
+              <div className="col-12">
+                  <div className="mb-40 d-flex">
                   <Button 
                     text="All categories"
                     bgColorHover="#0073ff" />
@@ -62,7 +62,7 @@ function Courses() {
               </div>
           </div>
 
-          <div class="row justify-content-between ">
+          <div className="row justify-content-between ">
           <CourseCard />
           <CourseCard />
           <CourseCard />
