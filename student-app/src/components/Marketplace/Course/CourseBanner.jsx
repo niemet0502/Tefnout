@@ -7,19 +7,19 @@ import bg_image from "../../../assets/img/counter_bg.jpg"
 function CourseBanner({title,page}) {
   return (
     <CourseBannerComponent>
-      <div class="containe">
-          <div class="row">
-              <div class="col-l2">
-                  <div class="page_title text-center">
+      <div className="containe">
+          <div className="row">
+              <div className="col-l2">
+                  <div className="page_title text-center">
                       <h2>{title}</h2>
                       <nav aria-label="breadcrumb">
-                          <ol class="breadcrumb justify-content-center">
-                              <li class="breadcrumb-item">
+                          <ol className="breadcrumb justify-content-center">
+                              <li className="breadcrumb-item">
                                 <Link to="/">
                                   Home
                                 </Link>
                               </li>
-                              <li class="breadcrumb-item active" aria-current="page">{page}</li>
+                              <li className="breadcrumb-item active" aria-current="page">{page}</li>
                           </ol>
                       </nav>
                   </div>
