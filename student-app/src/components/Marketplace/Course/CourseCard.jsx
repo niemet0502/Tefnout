@@ -14,23 +14,23 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 function CourseCard() {
   return (
     <CourseComponent>
-      <div class="course_single mb-30">
-          <div class="c_thumb">
+      <div className="course_single mb-30">
+          <div className="c_thumb">
               <img src={img_01} alt=""/>
           </div>
-          <div class="course_content">
-              <div class="c_head">
-                  <span class="cat">Architecture</span>
-                  <span class="price">Debutant</span>
+          <div className="course_content">
+              <div className="c_head">
+                  <span className="cat">Architecture</span>
+                  <span className="price">Debutant</span>
               </div>
-              <h3 class="title">
+              <h3 className="title">
                 <Link to="/course-details">
                   The Power of Podcast for Story telling Process
                 </Link>
               </h3>
-              <div class="rating_wrap ul_li d-flex">
+              <div className="rating_wrap ul_li d-flex">
                   <span>13 votes</span>
-                  <ul class="rating_star ul_li d-flex">
+                  <ul className="rating_star ul_li d-flex">
                       <li><StarIcon /></li>
                       <li><StarIcon /></li>
                       <li><StarIcon /></li>
@@ -38,13 +38,13 @@ function CourseCard() {
                       <li><StarBorderIcon /></li>
                   </ul>
               </div>
-              <ul class="c_bottom ul_li d-flex">
+              <ul className="c_bottom ul_li d-flex">
                   <div className="d-flex">
                     <li className="d-flex"> <PeopleIcon />  180</li>
                     <li className="d-flex"> <VisibilityIcon /> 28k</li>
                     </div>
                   <li>
-                      <div class="author">
+                      <div className="author">
                           <img src={c_author} alt=""/>
                       </div>
                   </li>
