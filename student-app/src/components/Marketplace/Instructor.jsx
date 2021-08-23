@@ -11,17 +11,17 @@ function Instructor({image, name, poste}) {
   return (
     <InstructorComponent>
     
-        <div class="team_single text-center mb-30">
-            <div class="team_thumb">
+        <div className="team_single text-center mb-30">
+            <div className="team_thumb">
                 <img src={team_01} alt=""/>
-                <div class="team_social social_icon">
+                <div className="team_social social_icon">
                     <a href="#"><FacebookIcon /></a>
                     <a href="#"><TwitterIcon /></a>
                     <a href="#"><InstagramIcon /></a>
                     <a href="#"><LinkedInIcon /></a>
                 </div>
             </div>
-            <div class="team_text">
+            <div className="team_text">
                 <h3><a href="team-details.html">Mohammad Wasim</a></h3>
                 <p>Web Developer</p>
             </div>
