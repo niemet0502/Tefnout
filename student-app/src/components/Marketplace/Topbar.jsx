@@ -6,18 +6,18 @@ import logo from "../../assets/img/logo.png"
 function Topbar() {
   return (
     <div>
-      <header class="header_area">
-        <div id="sticky-header" class="header_bottom white_bg pl-130 pr-130" 
+      <header className="header_area">
+        <div id="sticky-header" className="header_bottom white_bg pl-130 pr-130" 
         style={{paddingLeft: '140px', paddingRight: '140px'}}>
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-xl-2 col-lg-2 col-6">
-                        <div class="logo">
+            <div className="container-fluid">
+                <div className="row align-items-center">
+                    <div className="col-xl-2 col-lg-2 col-6">
+                        <div className="logo">
                         <Link to="/"><img src={logo} alt="" /></Link> 
                         </div>
                     </div>
-                    <div class="col-xl-7 col-lg-8 d-none d-lg-block">
-                        <nav class="main_menu">
+                    <div className="col-xl-7 col-lg-8 d-none d-lg-block">
+                        <nav className="main_menu">
                           <ul>
                             <li><Link to="/">Home</Link></li>
                             <li>
@@ -26,9 +26,9 @@ function Topbar() {
                           </ul>
                         </nav>
                     </div>
-                    <div class="col-xl-3 col-lg-2 col-6">
-                        <div class="header_right">
-                            <div class="account">
+                    <div className="col-xl-3 col-lg-2 col-6">
+                        <div className="header_right">
+                            <div className="account">
                                 <Link to="/login">account</Link>
                             </div>
                         </div>
