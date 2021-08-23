@@ -9,6 +9,11 @@ import Button from '../components/common/Button';
 import logo from "../assets/img/logo.svg"
 
 function SignIn() {
+
+	function handleClick(){
+		console.log('marius');
+	}
+
   return (
     <div className="sign_in_up_bg">
 		<div className="container">
@@ -38,12 +43,12 @@ function SignIn() {
 									<VpnKeyIcon className="input__icon" />
 								</div>
 							</div>
-							<Button text="SignIn" className="col-md-12" />
+							 <Button text="SignIn" className="col-md-12" onClick={handleClick} />
 						</form>
 						<p className="sgntrm145">Or <a href="forgot_password.html">Forgot Password</a>.</p>
 						
 					</div>
-					<div className="sign_footer"> 2020 <strong>Cursus</strong>. All Rights Reserved.</div>
+					<div className="sign_footer" onClick={handleClick} > 2020 <strong>Cursus</strong>. All Rights Reserved.</div>
 				</div>				
 			</div>				
 		</div>				
