@@ -5,13 +5,13 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 function CategoryCard({image, title, description}) {
   return (
     <CategoryCardComponent>
-      <div class="ct_single">
-          <div class="ser_thumb mb-4">
+      <div className="ct_single">
+          <div className="ser_thumb mb-4">
               <img src={image} alt=""/>
           </div>
           <h3><a href="courses.html">{title}</a></h3>
           <p>{description}</p>
-          <div class="ser_icon pt-25">
+          <div className="ser_icon pt-25">
               <a href="courses.html">
                 <ArrowRightAltIcon/>
               </a>
