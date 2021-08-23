@@ -8,7 +8,7 @@ function Login() {
   return (
     <LoginPage>
       <CourseBanner/>
-      <h2>I'm login page</h2>
+      <h2>I m login page</h2>
     </LoginPage>
   )
 }
