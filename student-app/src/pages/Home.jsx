@@ -17,25 +17,25 @@ function Home() {
   return (
     <HomePage>
     <div>
-      <section class="hero_area">
-          <div class="hero_wrap hero_height">
-              <div class="container-fluid">
-                  <div class="row flex-row-reverse align-items-center">
-                      <div class="col-xl-7 col-lg-6 col-md-12">
-                          <div class="hero_img f-right">
+      <section className="hero_area">
+          <div className="hero_wrap hero_height">
+              <div className="container-fluid">
+                  <div className="row flex-row-reverse align-items-center">
+                      <div className="col-xl-7 col-lg-6 col-md-12">
+                          <div className="hero_img f-right">
                               <img src={hero_img} alt=""/>
                           </div>
                       </div>
-                      <div class="col-xl-5 col-lg-6 col-md-12">
-                          <div class="hero_content">
-                              <div class="icon">
+                      <div className="col-xl-5 col-lg-6 col-md-12">
+                          <div className="hero_content">
+                              <div className="icon">
                                   <img src={hero_icon} alt=""/>
                               </div>
                               <span># Learn Anything, Anytime, Anywhere</span>
                               <h2>Best Online Learning For your future.</h2>
                               <p>We believe everyone has the capacity to be creative. Turitor is a place where
                                   people develop their own potential.</p>
-                              <div class="hero_btn mt-15 d-flex">
+                              <div className="hero_btn mt-15 d-flex">
                               <Button 
                                 text="Views courses"
                                 Icon={ArrowRightAltIcon}  />
@@ -53,24 +53,24 @@ function Home() {
           </div>
       </section>
     </div>
-    <section class="courses_area pt-5 pb-5 category-section">
-      <div class="container">
-        <div class="row align-items-center mb-5">
-            <div class="col-lg-8 col-md-8">
-                <div class="sec_title">
+    <section className="courses_area pt-5 pb-5 category-section">
+      <div className="container">
+        <div className="row align-items-center mb-5">
+            <div className="col-lg-8 col-md-8">
+                <div className="sec_title">
                     <h2>Recent Popular Subjects</h2>
                     <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4">
-                <div class="crs_btn d-flex justify-content-end mb-20">
+            <div className="col-lg-4 col-md-4">
+                <div className="crs_btn d-flex justify-content-end mb-20">
                 <Button 
                   text="View all"
                   Icon={ArrowRightAltIcon}  />
                 </div>
             </div>
         </div>
-        <div class="row ">
+        <div className="row ">
           <CategoryCard/>
           <CategoryCard/>
           <CategoryCard/>
@@ -84,24 +84,24 @@ function Home() {
     </section>
 
 
-    <section class="courses_area pt-5 pb-5 category-section">
-      <div class="container">
-        <div class="row align-items-center mb-5">
-            <div class="col-lg-8 col-md-8">
-                <div class="sec_title">
+    <section className="courses_area pt-5 pb-5 category-section">
+      <div className="container">
+        <div className="row align-items-center mb-5">
+            <div className="col-lg-8 col-md-8">
+                <div className="sec_title">
                     <h2>Find the right course for you</h2>
                     <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4">
-              <div class="crs_btn d-flex justify-content-end mb-20">
+            <div className="col-lg-4 col-md-4">
+              <div className="crs_btn d-flex justify-content-end mb-20">
                 <Button 
                   text="View all"
                   Icon={ArrowRightAltIcon}  />
                 </div>
             </div>
         </div>
-        <div class="row justify-content-between ">
+        <div className="row justify-content-between ">
           <CourseCard />
           <CourseCard />
           <CourseCard />
@@ -112,24 +112,24 @@ function Home() {
       </div>
     </section>
 
-    <section class="courses_area pt-5 pb-5 category-section">
-      <div class="container">
-        <div class="row align-items-center mb-5">
-            <div class="col-lg-8 col-md-8">
-                <div class="sec_title">
+    <section className="courses_area pt-5 pb-5 category-section">
+      <div className="container">
+        <div className="row align-items-center mb-5">
+            <div className="col-lg-8 col-md-8">
+                <div className="sec_title">
                     <h2>Featured Instructors</h2>
                     <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4">
-              <div class="crs_btn d-flex justify-content-end mb-20">
+            <div className="col-lg-4 col-md-4">
+              <div className="crs_btn d-flex justify-content-end mb-20">
                 <Button 
                   text="View all"
                   Icon={ArrowRightAltIcon}  />
                 </div>
             </div>
         </div>
-        <div class="row d-flex justify-content-between ">
+        <div className="row d-flex justify-content-between ">
           <Instructor/>
           <Instructor/>
           <Instructor/>
