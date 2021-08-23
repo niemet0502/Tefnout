@@ -14,12 +14,11 @@ import "bootstrap/dist/js/bootstrap.min.js"
 import Sidebar from './components/common/Sidebar/Sidebar';
 import TopBar from "./components/common/TopBar"
 import Dashboard from './pages/Dashboard';
+import SignIn from "./pages/SignIn"
 function App() {
   return (
     <div className="App">
-     <TopBar />
-     <Sidebar />
-     <Dashboard />
+      <SignIn />
     </div>
   );
 }
