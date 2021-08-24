@@ -50,6 +50,7 @@ const ButtonComponent = styled.button`
 
   display: flex;
   align-items: center;
+  justify-content: center;
 
   &:hover {
     color: #ffff;
