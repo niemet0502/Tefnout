@@ -6,11 +6,20 @@ function Button({
   text, 
   Icon,
   bgColor,
-  bgColorHover,}) {
+  bgColorHover,
+  type,
+  classNames,
+  handleClick}) {
   return (
-    <ButtonComponent bgColor={bgColor} bgColorHover={bgColorHover}>
-      {text} 
-      {Icon && <Icon />}
+    <ButtonComponent 
+      bgColor={bgColor} 
+      bgColorHover={bgColorHover}
+      type={type}
+      className={classNames}
+      onClick={handleClick}
+      >
+        {text} 
+        {Icon && <Icon />}
     </ButtonComponent>
   )
 }
@@ -20,6 +29,9 @@ Button.propTypes = {
   Icon: PropTypes.node.isRequired,
   bgColor: PropTypes.string.isRequired,
   bgColorHover: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  classNames: PropTypes.string,
+  handleClick: PropTypes.func
 };
 
 const ButtonComponent = styled.button`
