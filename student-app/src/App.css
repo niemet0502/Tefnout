@@ -1954,3 +1954,53 @@ input:focus, textarea:focus {
 .breadcrumb-item + .breadcrumb-item::before {
 	color: #fff;
 }
+
+/* Login */
+/* 18. account */
+.account_wrap {
+	background: #fff;
+	padding: 80px 70px;
+	margin-bottom: 30px;
+}
+.account_wrap .title {
+	font-size: 24px;
+	margin-bottom: 35px;
+}
+.account_wrap input {
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	background-color: #f7f7f7;
+}
+.account_wrap input:focus {
+	border-color: #0073ff;
+}
+.account_wrap button {
+	width: 100%;
+}
+.account_wrap .action {
+	justify-content: space-between;
+	margin-top: 20px;
+}
+.account_wrap .action .left input {
+	width: auto;
+	height: auto;
+	margin-right: 2px;
+	margin-bottom: 0;
+}
+.account_wrap .action .left label {
+	color: #000;
+	font-size: 15px;
+}
+.account_wrap .action .left, .account_wrap .action .right {
+	margin-top: 5px;
+}
+.account_wrap .action .right span {
+	font-size: 15px;
+}
+.account_wrap .action .right span a {
+	text-transform: uppercase;
+	color: #000;
+	font-weight: 600;
+	padding-left: 3px;
+	font-size: 14px;
+}
