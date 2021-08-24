@@ -41,43 +41,59 @@ function Login() {
   return (
     <LoginPage>
       <CourseBanner/>
-      <h2>I m login page</h2>
 
-      <FormInput
-        label="Username"
-        name="username"
-        type="text"
-        value={user.username}
-        onChange={handleChange}
-        placeholder="Enter username..."
-        required
-        error={errors.username}
-        className="input"
-      />
+      <section className="account_area pt-120 pb-90 mt-5">
+        <div className="container mt-5">
+          <div className="row">
+            <div className="col-lg-6">
+                <div className="account_wrap">
+                  <h3 className="title">Login your Account</h3>
+                  <form action="">
+                    <FormInput
+                      name="username"
+                      type="text"
+                      value={user.username}
+                      onChange={handleChange}
+                      placeholder="Enter username..."
+                      required
+                      error={errors.username}
+                      className="input"
+                    />
 
-      <FormInput
-          label="Password"
-          name="password"
-          type="password"
-          value={user.password}
-          onChange={handleChange}
-          placeholder="Enter password..."
-          className="input"
-          error={errors.password}
-          required
-        />
+                    <FormInput
+                        name="password"
+                        type="password"
+                        value={user.password}
+                        onChange={handleChange}
+                        placeholder="Enter password..."
+                        className="input"
+                        error={errors.password}
+                        required
+                      />
 
-      <Button
-        type="submit"
-        label="Submit"
-        className="button"
-        text="Submit"
-        handleClick={onSubmit}
-      />
+                    <Button
+                      type="submit"
+                      className="button"
+                      text="Submit"
+                      handleClick={onSubmit}
+                    />
+
+                  </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </LoginPage>
   )
 }
 
-const LoginPage = styled.div``;
+const LoginPage = styled.div`
+  background-color: #f7f7f7;
+  
+  button{
+    margin-left: -2px;
+  }
+`;
 
 export default Login
