@@ -26,9 +26,9 @@ function Button({
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
-  Icon: PropTypes.node.isRequired,
-  bgColor: PropTypes.string.isRequired,
-  bgColorHover: PropTypes.string.isRequired,
+  Icon: PropTypes.node,
+  bgColor: PropTypes.string,
+  bgColorHover: PropTypes.string,
   type: PropTypes.string,
   classNames: PropTypes.string,
   handleClick: PropTypes.func
