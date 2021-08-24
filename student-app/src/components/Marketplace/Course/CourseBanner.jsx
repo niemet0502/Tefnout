@@ -31,8 +31,8 @@ function CourseBanner({title,page}) {
 }
 
 CourseBanner.propTypes = {
-  page: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  page: PropTypes.string,
+  title: PropTypes.string,
 };
 
 const CourseBannerComponent = styled.section`
