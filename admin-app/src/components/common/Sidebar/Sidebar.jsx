@@ -9,6 +9,7 @@ import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsAct
 import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
 import VerifiedUserOutlinedIcon from '@material-ui/icons/VerifiedUserOutlined';
+import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
 
 function Sidebar() {
   return (
@@ -20,6 +21,12 @@ function Sidebar() {
 						<a href="instructor_dashboard.html" className="menu--link d-flex align-items-center" title="Dashboard">
               <DashboardOutlinedIcon className="uil uil-apps menu--icon" />
 							<span className="menu--label">Dashboard</span>
+						</a>
+					</li>
+					<li className="menu--item">
+						<a href="instructor_dashboard.html" className="menu--link d-flex align-items-center" title="Dashboard">
+              <CategoryOutlinedIcon className="uil uil-apps menu--icon" />
+							<span className="menu--label">Categories</span>
 						</a>
 					</li>
 					<li className="menu--item">
