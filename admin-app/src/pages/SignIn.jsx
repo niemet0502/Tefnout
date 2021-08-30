@@ -10,11 +10,11 @@ import FormInput from '../components/form/FormInput';
 import logo from "../assets/img/logo.svg"
 
 function SignIn() {
-	const [user, setUser] = useState({username: "", password: ""})
+	const [user, setUser] = useState({email: "", password: ""})
 	const [errors, setError] = useState({})
 
 	function handleChange(event){
-    let user = {username: "",password: ""}
+    let user = {email: "",password: ""}
     user[event.target.name] = event.target.value;
     setUser(user)
   };
@@ -41,7 +41,7 @@ function SignIn() {
 									<FormInput
 									name="email"
 									type="email"
-									value={user.password}
+									value={user.email}
 									onChange={handleChange}
 									placeholder="Enter Address..."
 									className="prompt srch_explore"
