@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 //components 
-import Button from './Button';
+import Button from '../common/Button';
 
 //images 
 import user_profil from "../../assets/img/user_profil.jpg";

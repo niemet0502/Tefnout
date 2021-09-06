@@ -11,8 +11,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
 
 // components
-import Sidebar from './components/common/Sidebar/Sidebar';
-import TopBar from "./components/common/TopBar"
+import Sidebar from './components/layout/Sidebar/Sidebar';
+import TopBar from "./components/layout/TopBar"
 import Dashboard from './pages/Dashboard';
 import SignIn from "./pages/SignIn"
 function App() {
