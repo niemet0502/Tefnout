@@ -9,21 +9,7 @@ function CourseBanner({title,page}) {
     <CourseBannerComponent>
       <div className="containe">
           <div className="row">
-              <div className="col-l2">
-                  <div className="page_title text-center">
-                      <h2>{title}</h2>
-                      <nav aria-label="breadcrumb">
-                          <ol className="breadcrumb justify-content-center">
-                              <li className="breadcrumb-item">
-                                <Link to="/">
-                                  Home
-                                </Link>
-                              </li>
-                              <li className="breadcrumb-item active" aria-current="page">{page}</li>
-                          </ol>
-                      </nav>
-                  </div>
-              </div>
+              
           </div>
         </div>
     </CourseBannerComponent>
