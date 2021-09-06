@@ -7,3 +7,5 @@ export const removeStoredAuthToken = () => localStorage.removeItem('authToken');
 export const getStoredUserProfil = () => localStorage.getItem('userProfil');
 
 export const storeUserProfil = profil => localStorage.setItem('userProfil', profil);
+
+export const removeUserProfil = () => localStorage.removeItem('userProfil');
