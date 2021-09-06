@@ -11,15 +11,13 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
 
 // components
-import Sidebar from './components/common/Sidebar/Sidebar';
-import TopBar from "./components/common/TopBar"
 import Dashboard from './pages/Dashboard';
 import SignIn from "./pages/SignIn"
+import Navigation from './components/common/Navigation';
 function App() {
   return (
     <div className="App">
-      <TopBar />
-      <Sidebar />
+      <Navigation/>
       <Dashboard />
     </div>
   );
