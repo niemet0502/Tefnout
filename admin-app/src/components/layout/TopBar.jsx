@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { logout } from "../../store/authentication/authentication.actions"
+import { connect } from 'react-redux';
+import PropTypes from "prop-types"
 
 //components 
 import Button from '../common/Button';
@@ -15,7 +18,7 @@ import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import NightsStayOutlinedIcon from '@material-ui/icons/NightsStayOutlined';
 
-function TopBar() {
+function TopBar({onLogout}) {
 	const [userDropdown, setUserDropdown] = useState(false)
 
 	const toggleUserDropdown = () => {
@@ -93,7 +96,8 @@ function TopBar() {
 							</a>
 						</div>
 						<a href="instructor_dashboard.html" className="item channel_item">Cursus dashboard</a>						
-						<a href="sign_in.html" className="item channel_item">Sign Out</a>
+						
+						<button className="item channel_item col-md-12 bg-white" onClick={() => onLogout()}>Sign Out</button>
 					</div>
 					}
 
@@ -104,4 +108,14 @@ function TopBar() {
   )
 }
 
-export default TopBar
+TopBar.propTypes = {
+	onLogout: PropTypes.func
+}
+
+const mapDispatchToProps = dispatch => {
+	return{
+		onLogout: () => dispatch(logout())
+	}
+}
+
+export default connect(null,mapDispatchToProps)(TopBar)

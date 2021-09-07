@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 //icons 
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
@@ -18,10 +19,10 @@ function Sidebar() {
 			<div className="left_section">
 				<ul>
 					<li className="menu--item">
-						<a href="instructor_dashboard.html" className="menu--link d-flex align-items-center" title="Dashboard">
+						<Link to="/dashboard">
               <DashboardOutlinedIcon className="uil uil-apps menu--icon" />
 							<span className="menu--label">Dashboard</span>
-						</a>
+						</Link>
 					</li>
 					<li className="menu--item">
 						<a href="instructor_dashboard.html" className="menu--link d-flex align-items-center" title="Dashboard">
@@ -90,5 +91,7 @@ function Sidebar() {
 	</nav>
   )
 }
+
+
 
 export default Sidebar
