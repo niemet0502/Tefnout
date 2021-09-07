@@ -19,16 +19,16 @@ function Sidebar() {
 			<div className="left_section">
 				<ul>
 					<li className="menu--item">
-						<Link to="/dashboard">
+						<Link to="/dashboard" className="menu--link d-flex align-items-center">
               <DashboardOutlinedIcon className="uil uil-apps menu--icon" />
 							<span className="menu--label">Dashboard</span>
 						</Link>
 					</li>
 					<li className="menu--item">
-						<a href="instructor_dashboard.html" className="menu--link d-flex align-items-center" title="Dashboard">
+					<Link to="/categories" className="menu--link d-flex align-items-center">
               <CategoryOutlinedIcon className="uil uil-apps menu--icon" />
 							<span className="menu--label">Categories</span>
-						</a>
+					</Link>
 					</li>
 					<li className="menu--item">
 						<a href="instructor_courses.html" className="menu--link d-flex align-items-center" title="Courses">
