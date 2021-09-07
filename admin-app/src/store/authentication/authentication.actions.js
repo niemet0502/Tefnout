@@ -1,5 +1,6 @@
-import { storeAuthToken, storeUserProfil, removeStoredAuthToken, removeUserProfil } from "../../utils/currentUser" 
-
+import { storeAuthToken, getStoredAuthToken, storeUserProfil, removeStoredAuthToken, removeUserProfil } from "../../utils/currentUser" 
+import { history } from "../../utils/history"
+import axios from "axios"
 export const USERS_LOGIN_LOADING = 'USERS LOGIN LOADING'
 export const USERS_LOGIN_REQUEST = 'LOGIN REQUEST'
 export const USERS_LOGOUT_REQUEST = 'USERS LOGOUT REQUEST'
@@ -15,33 +16,46 @@ export function login(user){
       dispatch(loginUser())
 
       try {
-        const response = await axios.post(`http://127.0.0.1:8000/api/login`, { user })
-        const data = response.json()
+          
+           axios.post("http://127.0.0.1:8000/api/login", {
+            email: user.email,
+            password: user.password,
+          }).then(result => {
 
-        // save token and profil in localStorage 
-        storeAuthToken(data.token)
-        storeUserProfil(data.user.profil_id)
-
-        dispatch(loginUserSuccess(data))
+            // save user's information in localStorage 
+            console.log(result.data.token);
+            storeAuthToken(result.data.token)
+            
+            dispatch(loginUserSuccess(result.data))
+            history.push('/dashboard');
+          }).catch(error => {
+            console.log(error.response.data.errors);
+            dispatch(loginUserfailure())
+          })
       } catch (error) {
-        dispatch(loginUserfailure())
+
       }
   }
 }
 
 export function logout(){
   return async dispatch =>{
-
+      console.log(getStoredAuthToken());
       try {
-        const response = await axios.post(`http://127.0.0.1:8000/api/logout`)
+        const response = await axios.post(`http://127.0.0.1:8000/api/logout`,{
+          headers: {
+            Authorization: getStoredAuthToken() ? `Bearer ${getStoredAuthToken()}` : undefined,
+          }
+        })
         
         // remove token and profil in localStorage  
         removeStoredAuthToken()
         removeUserProfil()
-
+        
         dispatch(logoutUser())
+        history.push('/')
       } catch (error) {
-        console.log(error);
+        console.log(error); 
       }
   }
 }
