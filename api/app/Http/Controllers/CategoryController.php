@@ -15,7 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return Category::all();
+        return Category::leftJoin('Courses', 'Categories.id', '=', 'Courses.category_id')
+                    ->selectRaw('Categories.*, count(Courses.id) as CoursesCount')
+                    ->groupBy('Categories.id')
+                    ->get();
     }
 
     /**
