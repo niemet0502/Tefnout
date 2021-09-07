@@ -16,6 +16,7 @@ import Dashboard from './pages/Dashboard';
 import SignIn from "./pages/SignIn"
 import ResetPassword from "./pages/ResetPassword"
 import Navigation from './components/common/Navigation';
+import Categories from './pages/Categories';
 function App() {
   return (
     <div className="App">
@@ -24,6 +25,7 @@ function App() {
         <Switch>
           <PrivateRoute path="/dashboard" component={Dashboard} exact />
           <PublicRoute path="/reset-password" component={ResetPassword} exact/>
+          <PrivateRoute path="/categories" component={Categories} exact />
           <PublicRoute path="/" component={SignIn}/>
         </Switch>
       </Router>
