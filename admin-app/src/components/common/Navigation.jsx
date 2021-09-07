@@ -1,6 +1,6 @@
 import React from 'react'
-import TopBar from './TopBar'
-import Sidebar from './Sidebar/Sidebar'
+import TopBar from '../layout/TopBar'
+import Sidebar from '../layout/Sidebar/Sidebar'
 function Navigation() {
   return (
     <>
