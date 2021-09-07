@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Redirect } from "react-router-dom"
 import { getStoredAuthToken, getStoredUserProfil } from "../../utils/currentUser"
+import PropTypes from 'prop-types'; 
 
 function PublicRoute({component: Component, resticted, ...rest}) {
   return (
@@ -11,6 +12,11 @@ function PublicRoute({component: Component, resticted, ...rest}) {
     )}
     />
   )
+}
+
+PublicRoute.propTypes = {
+  component: PropTypes.node,
+  resticted: PropTypes.bool,
 }
 
 export default PublicRoute
