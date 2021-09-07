@@ -15,7 +15,7 @@ function PublicRoute({component: Component, resticted, ...rest}) {
 }
 
 PublicRoute.propTypes = {
-  component: PropTypes.node,
+  component: PropTypes.any,
   resticted: PropTypes.bool,
 }
 
