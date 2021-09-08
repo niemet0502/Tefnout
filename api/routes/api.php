@@ -31,10 +31,12 @@ Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/courses/{id}', [CourseController::class, 'show']);
 Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 
+Route::resource('categories', CategoryController::class);
+Route::post('/logout', [AuthController::class, 'logout']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
-    Route::resource('categories', CategoryController::class);
 
     //user's routes 
     Route::get('/users', [UserController::class, 'index']);
@@ -64,7 +66,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/profils', [ProfilController::class, 'store']);
 
     //logout's route
-    Route::post('/logout', [AuthController::class, 'logout']);
 
     //Formation routes
     Route::delete('/formations/{id}', [FormationController::class, 'cancelFormation']); //cancel formation
