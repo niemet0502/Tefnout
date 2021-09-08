@@ -14,6 +14,8 @@ function categoriesReducer(state = initialState, action){
       return {loading: false, categories: action.payload, hasErros: false}
     case actions.GET_CATEGORIES_FAILURES: 
       return { ...state, loading: false, hasErrors: true }
+    case actions.DELETE_CATEGORY:
+      return {...state, categories: state.categories.filter(category => action.payload !== category.id)}
     default:
       return state
   }
