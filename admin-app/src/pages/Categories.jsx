@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
+import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import * as actions from "../store/categories/categories.actions"
 import PropTypes from "prop-types"
@@ -10,7 +11,11 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { getStoredAuthToken, storeAuthToken } from '../utils/currentUser';
 
-function Categories({categories, dispatch}) {
+function Categories({categories}) {
+  const dispatch = useDispatch()
+  const onDelete =  useCallback((id) => {
+      dispatch(actions.removeCategory(id))
+    },[])
 
   useEffect(() => {
     dispatch(actions.fetchCategories())
@@ -43,7 +48,7 @@ function Categories({categories, dispatch}) {
               <td className="text-center">{category.CoursesCount}</td>
               <td className="text-center">
                 <EditOutlinedIcon className="uil" />
-                {category.CoursesCount > 0 ? '' : <DeleteOutlineOutlinedIcon className="uil" />}
+                {category.CoursesCount > 0 ? '' : <DeleteOutlineOutlinedIcon onClick={() => onDelete(category.id)} className="uil" />}
               </td>
             </tr>
           ))}
