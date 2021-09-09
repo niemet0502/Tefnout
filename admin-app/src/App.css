@@ -570,6 +570,26 @@ i.icon1 {
     font-weight: 400;
     font-family: 'Roboto', sans-serif;
 }
+.label{
+  font-size: 16px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px !important;
+    color: #333;
+    text-align: left;
+    display: block;
+    font-weight: bold;
+}
+
+.ui.form.swdh30 textarea {
+  background: #fff;
+  border: 1px solid #e5e5e5 !important;
+  outline: 0;
+  min-height: 130px;
+  color: rgba(0,0,0,.87);
+  border-radius: 3px !important;
+  box-shadow: inset 0px 1px 4px rgb(0 0 0 / 2%) !important;
+}
 
 .header_right {
     margin-left: auto;
