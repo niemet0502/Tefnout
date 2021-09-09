@@ -66,6 +66,11 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
               display: flex;
               justify-content: space-between;
               align-items: center;
+              padding: 0px;
+            }
+            .modal-header h4{
+              font-size: 20px !important;
+
             }
 
             .modal-close-button {
@@ -75,6 +80,13 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
               cursor: pointer;
               border: none;
               background: transparent;
+            }
+            .modal-body {
+              padding: 0px;
+            }
+
+            .modal-body .ui[class*="left icon"].swdh95.input>input{
+              padding-left: 10px !important;
             }
           `}</style>
         </>,

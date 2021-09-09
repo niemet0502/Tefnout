@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'; 
 
-const FormInput = ({
+function FormTextArea({
   name,
-  type,
-  placeholder,
   onChange,
   className,
   value,
@@ -12,42 +10,36 @@ const FormInput = ({
   children,
   label,
   ...props
-}) => {
-  
+}) {
   return (
-    <React.Fragment>
+    <>
       <label className="label mt-4" htmlFor={name}>{label}</label>
-      <input
+      <textarea 
+        row="3"
         id={name}
         name={name}
-        type={type}
-        placeholder={placeholder}
         onChange={onChange}
         value={value}
         className={className}
         style={error && {border: 'solid 1px red'}}
-      />
-      { error && <p>{ error }</p>}
-    </React.Fragment>
+      >
+      </textarea>
+    </>
   )
 }
 
-FormInput.defaultProps = {
+FormTextArea.defaultProps = {
   type: "text",
   className: ""
 }
 
-FormInput.propTypes = {
+FormTextArea.propTypes = {
   error: PropTypes.string,
   children: PropTypes.node,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  placeholder: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['text', 'number', 'password', 'email']),
   className: PropTypes.string,
   value: PropTypes.any,
   onChange: PropTypes.func.isRequired
 }
-
-export default FormInput
+export default FormTextArea
