@@ -10,6 +10,8 @@ import { history } from './utils/history';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // components
 import Dashboard from './pages/Dashboard';

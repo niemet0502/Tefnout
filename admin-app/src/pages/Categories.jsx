@@ -5,6 +5,7 @@ import * as actions from "../store/categories/categories.actions"
 import PropTypes from "prop-types"
 import useModal from '../hooks/useModal';
 import Modal from "../components/common/Modal"
+import { ToastContainer, toast } from 'react-toastify';
 
 // components 
 import PageHeader from '../components/common/PageHeader';
@@ -21,16 +22,23 @@ import { getStoredAuthToken, storeAuthToken } from '../utils/currentUser';
 function Categories({categories}) {
   const [label, setLabel] = useState('')
   const [description, setDescription] = useState('')
+  const [image, setImage] = useState(null)
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal();
   const dispatch = useDispatch()
   const onDelete =  useCallback((id) => {
       dispatch(actions.removeCategory(id))
     },[])
 
+  const createCategory = useCallback((category) => {
+    dispatch(actions.newCategory(category))
+  })
+
   const handleSubmit =  e => {
   
     e.preventDefault();
-    console.log('submit');
+    
+    createCategory({label, image})
+    toggleLoginForm()
   }
   useEffect(() => {
     dispatch(actions.fetchCategories())
@@ -65,7 +73,9 @@ function Categories({categories}) {
           {categories.map((category) => (
             <tr key={category.id}>
               <td className="text-center">{category.id}</td>
-              <td>{category.image}</td>
+              <td>
+                <img src={`/uploads/${category.image}`} alt="" />
+              </td>
               <td className="text-center">{category.name}</td>
               <td className="text-center">{category.created_at}</td>
               <td className="text-center">{category.CoursesCount}</td>
@@ -110,7 +120,7 @@ function Categories({categories}) {
               />
             </div>
 
-            <input type="file" name="" id="" />
+            <input type="file" name="image" id="image" onChange={(e) => setImage(e.target.files[0])} />
 
             <div className="d-flex align-items-center justify-content-end">
               <Button
@@ -120,6 +130,17 @@ function Categories({categories}) {
           </div>
           </form>
         </Modal>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
     </div>
   )
 }
