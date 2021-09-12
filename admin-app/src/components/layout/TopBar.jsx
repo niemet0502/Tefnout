@@ -86,7 +86,7 @@ function TopBar({onLogout, user}) {
 									<span>{user.email}</span>
 								</div>							
 							</div>
-							<a href="my_instructor_profile_view.html" className="dp_link_12">View { user.profil_id == 1 ? 'Instructor' : 'Teacher'} Profile</a>						
+							<a href="my_instructor_profile_view.html" className="dp_link_12">View { user.profil_id == 1 ? 'Administrator' : 'Teacher'} Profile</a>						
 						</div>
 						<div className="night_mode_switch__btn">
 							<a href="#" id="night-mode" className="btn-night-mode">
