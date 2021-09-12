@@ -30,16 +30,19 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            // 'image' => 'nullable'
         ]);
 
         $category = new Category();
         $category->name = $request->name;
+        $category->image = $request->image;
         $category->save();
 
         return response([
             'status' => 'success',
-            'message' => 'Categorie ajouté avec succès !'
+            'message' => 'Categorie ajouté avec succès !',
+            'category' => $category
         ], 200);
     }
 
