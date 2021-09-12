@@ -5,25 +5,23 @@ import * as actions from "../store/categories/categories.actions"
 import PropTypes from "prop-types"
 import useModal from '../hooks/useModal';
 import Modal from "../components/common/Modal"
-import { ToastContainer, toast } from 'react-toastify';
 
 // components 
 import PageHeader from '../components/common/PageHeader';
 import Button from "../components/common/Button"
 import FormInput from "../components/form/FormInput"
-import FormTextArea from '../components/form/FormTextArea';
 
 //icons 
 import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import { getStoredAuthToken, storeAuthToken } from '../utils/currentUser';
 
 function Categories({categories}) {
   const [label, setLabel] = useState('')
-  const [description, setDescription] = useState('')
   const [image, setImage] = useState(null)
+  const [deleteCategory, setDeleteCategory] = useState({id: null, name: ""})
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal();
+  const { isShowing: isConfirmationModalShowed, toggle: toggleConfirmationModal } = useModal();
   const dispatch = useDispatch()
   const onDelete =  useCallback((id) => {
       dispatch(actions.removeCategory(id))
@@ -34,12 +32,21 @@ function Categories({categories}) {
   })
 
   const handleSubmit =  e => {
-  
     e.preventDefault();
-    
     createCategory({label, image})
     toggleLoginForm()
   }
+
+  const deleteAction = category => {
+    setDeleteCategory(category)
+    toggleConfirmationModal()
+  }
+  
+  const handleDelete = (id) =>{
+    onDelete(id)
+    toggleConfirmationModal()
+  }
+
   useEffect(() => {
     dispatch(actions.fetchCategories())
   }, [dispatch])
@@ -55,7 +62,8 @@ function Categories({categories}) {
         <Button 
           classNames="modal-toggle" 
           handleClick={toggleLoginForm} 
-          text="Create Category"/> 
+          text="Create Category"
+        /> 
       </PageHeader>
 
       <table className="table ucp-table mt-5">
@@ -81,7 +89,7 @@ function Categories({categories}) {
               <td className="text-center">{category.CoursesCount}</td>
               <td className="text-center">
                 <EditOutlinedIcon className="uil" />
-                {category.CoursesCount > 0 ? '' : <DeleteOutlineOutlinedIcon onClick={() => onDelete(category.id)} className="uil" />}
+                {category.CoursesCount > 0 ? '' : <DeleteOutlineOutlinedIcon onClick={() => deleteAction(category)} className="uil" />}
               </td>
             </tr>
           ))}
@@ -110,15 +118,6 @@ function Categories({categories}) {
             </div>
           </div>
           <div className="ui form swdh30">
-						<div className="field">
-              <FormTextArea 
-                name="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="col-md-12"
-                label="Description"
-              />
-            </div>
 
             <input type="file" name="image" id="image" onChange={(e) => setImage(e.target.files[0])} />
 
@@ -130,17 +129,29 @@ function Categories({categories}) {
           </div>
           </form>
         </Modal>
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
+
+        <Modal
+          isShowing={isConfirmationModalShowed}
+          hide={toggleConfirmationModal}
+          title="Delete confirmation" 
+        >
+          <p className="mt-2 text-bold"> <strong>You are deleting &quot; {deleteCategory.name} &quot; Category</strong> <br />
+          do you want to confirm? </p>
+
+          <div className="d-flex align-items-center justify-content-end">
+            <Button 
+              classNames="modal-toggle" 
+              handleClick={toggleConfirmationModal} 
+              text="Cancel"
+              variant="secondary"
+            /> 
+          <Button 
+            classNames="modal-toggle ml-3" 
+            handleClick={() => handleDelete(deleteCategory.id)} 
+            text="Delete"
+          /> 
+          </div>
+        </Modal>
     </div>
   )
 }

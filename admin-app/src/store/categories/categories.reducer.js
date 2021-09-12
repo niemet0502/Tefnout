@@ -17,12 +17,16 @@ function categoriesReducer(state = initialState, action){
       return { ...state, loading: false, hasErrors: true }
     case actions.DELETE_CATEGORY:
       toast("Category deleted...",{
-        position: toast.POSITION.BOTTOM_LEFT
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS,
       })
       return {...state, categories: state.categories.filter(category => action.payload !== category.id)}
     case actions.ADD_CATEGORY: 
       toast("Category added...",{
-        position: toast.POSITION.BOTTOM_LEFT
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS
       })
       return {...state, categories: [...state.categories, {...action.payload, CoursesCount: 0}]}
       default:

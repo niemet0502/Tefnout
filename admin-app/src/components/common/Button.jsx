@@ -9,7 +9,8 @@ function Button({
   bgColorHover,
   type,
   classNames,
-  handleClick}) {
+  handleClick, 
+  variant}) {
   return (
     <ButtonComponent 
       bgColor={bgColor} 
@@ -17,11 +18,16 @@ function Button({
       type={type}
       className={classNames}
       onClick={handleClick}
+      variant={variant}
       >
         {text} 
         {Icon && <Icon />}
     </ButtonComponent>
   )
+}
+
+Button.defaultProps = {
+  variant: "primary"
 }
 
 Button.propTypes = {
@@ -31,18 +37,21 @@ Button.propTypes = {
   bgColorHover: PropTypes.string,
   type: PropTypes.string,
   classNames: PropTypes.string,
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
+  variant: PropTypes.string
 };
 
 const ButtonComponent = styled.button`
   font-size: 14px;
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
-  color: #fff;
-  background: #ed2a26;
+  color: ${props => props.variant == "primary"  ? "#fff" : "#91699c"} ;
+  background: ${props => props.variant == "primary"  ? "#ed2a26" : "#f3f3f3"};
   padding: 9px 15px;
   border-radius: 3px;
-  border: 1px solid #ed2a26;
+  border: 1px solid;
+  border-color: ${props => props.variant == "primary"  ? "#ed2a26" : "#f3f3f3"} ;
+  margin-right: 10px;
 `;
 
 export default Button
