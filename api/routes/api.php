@@ -32,7 +32,9 @@ Route::get('/courses/{id}', [CourseController::class, 'show']);
 Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 
 Route::resource('categories', CategoryController::class);
+
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/users/find/{email}', [UserController::class, 'getUserByEmail']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 

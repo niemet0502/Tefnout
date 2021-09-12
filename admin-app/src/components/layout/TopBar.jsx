@@ -18,7 +18,7 @@ import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import NightsStayOutlinedIcon from '@material-ui/icons/NightsStayOutlined';
 
-function TopBar({onLogout}) {
+function TopBar({onLogout, user}) {
 	const [userDropdown, setUserDropdown] = useState(false)
 
 	const toggleUserDropdown = () => {
@@ -52,7 +52,8 @@ function TopBar({onLogout}) {
 		<div className="header_right">
 			<ul>
 				<li>
-					<Button text="Create New Course" />
+					{user.profil_id == 1 ? '' :<Button text="Create New Course" /> }
+				
 				</li>
 				<li>
 					<a href="shopping_cart.html" className="option_links" title="cart"><ShoppingCartOutlinedIcon /><span className="noti_count">2</span></a>
@@ -77,15 +78,15 @@ function TopBar({onLogout}) {
 							<img src={user_profil} alt="user_profil" />
 								<div className="pd_content">
 									<div className="rhte85">
-										<h6>Joginder Singh</h6>
+										<h6> {user.name}  {user.fisrtname}</h6>
 										<div className="mef78" title="Verify">
 											<i className='uil uil-check-circle'></i>
 										</div>
 									</div>
-									<span>gambol943@gmail.com</span>
+									<span>{user.email}</span>
 								</div>							
 							</div>
-							<a href="my_instructor_profile_view.html" className="dp_link_12">View Instructor Profile</a>						
+							<a href="my_instructor_profile_view.html" className="dp_link_12">View { user.profil_id == 1 ? 'Administrator' : 'Teacher'} Profile</a>						
 						</div>
 						<div className="night_mode_switch__btn">
 							<a href="#" id="night-mode" className="btn-night-mode">
@@ -109,7 +110,8 @@ function TopBar({onLogout}) {
 }
 
 TopBar.propTypes = {
-	onLogout: PropTypes.func
+	onLogout: PropTypes.func,
+	user: PropTypes.object
 }
 
 const mapDispatchToProps = dispatch => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from "react-router-dom"
-import { getStoredAuthToken, getStoredUserProfil } from "../../utils/currentUser"
+import { getStoredAuthToken, getStoredUser } from "../../utils/currentUser"
 import PropTypes from 'prop-types'; 
 
 function PublicRoute({component: Component, resticted, ...rest}) {

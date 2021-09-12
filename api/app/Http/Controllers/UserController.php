@@ -93,4 +93,9 @@ class UserController extends Controller
 
         return $users;
     }
+
+    public function getUserByEmail($email){
+        return User::where('users.email', '=', $email)
+                    ->get();
+    }
 }
