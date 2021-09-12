@@ -1,4 +1,4 @@
-import { storeAuthToken, getStoredAuthToken, storeUserProfil, removeStoredAuthToken, removeUserProfil } from "../../utils/currentUser" 
+import { storeAuthToken, getStoredAuthToken, storeUser, removeStoredAuthToken, removeUser } from "../../utils/currentUser" 
 import { history } from "../../utils/history"
 import axios from "axios"
 export const USERS_LOGIN_LOADING = 'USERS LOGIN LOADING'
@@ -7,7 +7,7 @@ export const USERS_LOGOUT_REQUEST = 'USERS LOGOUT REQUEST'
 export const USERS_LOGIN_FAILURES = 'USERS LOGIN FAILURES'
 
 export const loginUser = () => ({type: USERS_LOGIN_LOADING})
-export const loginUserSuccess = user =>  ({type: USERS_LOGIN_REQUEST, payload: user.token})
+export const loginUserSuccess = user =>  ({type: USERS_LOGIN_REQUEST, payload: user})
 export const logoutUser = () => ({type: USERS_LOGOUT_REQUEST})
 export const loginUserfailure = () => ({type: USERS_LOGIN_FAILURES})
 
@@ -22,9 +22,10 @@ export function login(user){
             password: user.password,
           }).then(result => {
 
-            // save user's information in localStorage 
-            console.log(result.data.token);
+            // save user's informations in localStorage 
+            console.log(result.data.user);
             storeAuthToken(result.data.token)
+            storeUser(result.data.user)
             
             dispatch(loginUserSuccess(result.data))
             history.push('/dashboard');
@@ -50,7 +51,7 @@ export function logout(){
         
         // remove token and profil in localStorage  
         removeStoredAuthToken()
-        removeUserProfil()
+        removeUser()
         
         dispatch(logoutUser())
         history.push('/')
