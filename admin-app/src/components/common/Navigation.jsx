@@ -5,22 +5,24 @@ import { getStoredAuthToken } from "../../utils/currentUser"
 import { connect } from 'react-redux'
 import PropTypes from "prop-types"
 
-function Navigation({token}) {
+function Navigation({token,user}) {
 
   return (
     token !== null ? 
     <>
-      <TopBar />
+      <TopBar user={user} />
       <Sidebar/>
     </> : ''
   )
 }
 Navigation.propTypes = {
-  token: PropTypes.any
+  token: PropTypes.any,
+	user: PropTypes.object
 }
 const mapStateToProps = state => {
   return{
-    token: state.authentication.token
+    token: state.authentication.token,
+    user: state.authentication.user
   }
 }
 
