@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import * as actions from "../store/categories/categories.actions"
 import PropTypes from "prop-types"
 import useModal from '../hooks/useModal';
-import Modal from "../components/common/Modal"
+import { encodeFileBase64, getBase64} from '../utils/convertFile';
 
 // components 
 import PageHeader from '../components/common/PageHeader';
+import Modal from "../components/common/Modal"
 import Button from "../components/common/Button"
 import FormInput from "../components/form/FormInput"
 
@@ -15,6 +16,9 @@ import FormInput from "../components/form/FormInput"
 import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+
+//images 
+import placeholderImage from "../assets/img/placeholder-image.png"
 
 function Categories({categories}) {
   const [label, setLabel] = useState('')
@@ -26,15 +30,26 @@ function Categories({categories}) {
   const onDelete =  useCallback((id) => {
       dispatch(actions.removeCategory(id))
     },[])
-
   const createCategory = useCallback((category) => {
     dispatch(actions.newCategory(category))
-  })
+  },[])
+
+
+  async function convert(file){
+    let image = await getBase64(file)
+
+    setImage(image);
+    createCategory({label, image})
+
+    setImage(null)
+    setLabel('')
+    toggleLoginForm()
+  }
 
   const handleSubmit =  e => {
     e.preventDefault();
-    createCategory({label, image})
-    toggleLoginForm()
+
+    convert(image);
   }
 
   const deleteAction = category => {
@@ -73,7 +88,7 @@ function Categories({categories}) {
             <th>Image</th>
             <th className="text-center" scope="col">Name</th>
             <th className="text-center" scope="col">Created at</th>
-            <th className="text-center" scope="col">Course count</th>
+            <th className="text-center" scope="col">Course(s)</th>
             <th className="text-center" scope="col">Actions</th>
           </tr>
         </thead>
@@ -82,7 +97,10 @@ function Categories({categories}) {
             <tr key={category.id}>
               <td className="text-center">{category.id}</td>
               <td>
-                <img src={`/uploads/${category.image}`} alt="" />
+                { category.image !== null ?   
+                  <img src={category.image} alt=""style={{width: "80px", height: "80px"}} /> : 
+                  <img src={placeholderImage} alt="" style={{width: "80px", height: "80px"}}  />}
+                
               </td>
               <td className="text-center">{category.name}</td>
               <td className="text-center">{category.created_at}</td>
@@ -119,8 +137,12 @@ function Categories({categories}) {
           </div>
           <div className="ui form swdh30">
 
-            <input type="file" name="image" id="image" onChange={(e) => setImage(e.target.files[0])} />
-
+            <label className="label mt-3">Image</label>
+            <input type="file" name="image" id="image" onChange={(e) => setImage(e.target.files[0])} className="d-none" />
+            
+            <label htmlFor="image" style={{width: '100%', border: '1px dashed #e5e5e5', marginBottom: '15px'}}>
+              <img src={placeholderImage} style={{width: '100%', height: '250px'}} alt="" />
+            </label>
             <div className="d-flex align-items-center justify-content-end">
               <Button
                 text="Register"

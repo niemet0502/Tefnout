@@ -54,13 +54,14 @@ export function newCategory(category){
   return async dispatch => {
 
     try {
-      const formData = new FormData();
-
-        formData.append('file',category.image)
-        formData.append('name',category.label)
-      await axios.post("http://127.0.0.1:8000/api/categories",formData,{
+      await axios.post("http://127.0.0.1:8000/api/categories",{
+        name: category.label,
+        image: category.image
+      }
+      ,{
         headers: {
-          'content-type': 'multipart/form-data'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         }
       }).then(result => {
 
