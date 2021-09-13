@@ -7,3 +7,9 @@ export function getBase64(file) {
   });
 }
 
+export function isBase64(file){
+  var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+
+  return base64regex.test(file);
+}
+
