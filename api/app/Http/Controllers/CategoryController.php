@@ -15,7 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return Category::all();
+        return Category::leftJoin('Courses', 'Categories.id', '=', 'Courses.category_id')
+                    ->selectRaw('Categories.*, count(Courses.id) as CoursesCount')
+                    ->groupBy('Categories.id')
+                    ->get();
     }
 
     /**
@@ -27,16 +30,19 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            // 'image' => 'nullable'
         ]);
 
         $category = new Category();
         $category->name = $request->name;
+        $category->image = $request->image;
         $category->save();
 
         return response([
             'status' => 'success',
-            'message' => 'Categorie ajouté avec succès !'
+            'message' => 'Categorie ajouté avec succès !',
+            'category' => $category
         ], 200);
     }
 
@@ -71,13 +77,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
             'image' => 'nullable'
         ]);
 
         $category = Category::find($id);
         $category->name =  $request->name;
-
+        $category->image =  $request->image;
         $category->update();
         
         return response([

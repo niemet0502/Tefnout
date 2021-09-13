@@ -18,8 +18,38 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 body{
   background-color: #F7F7F7 !important;
+}
+
+.page-title{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+/*  common css */
+
+.page-title svg{
+  margin-right: 7px;
+}
+.card_dash1{
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #efefef;
+  padding: 30px 20px;
+  margin-top: 30px;
+}
+
+.card_dash1 h2{
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.card_dash1 h2 svg {
+  font-size: 30px;
+  margin-right: 10px;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -539,6 +569,26 @@ i.icon1 {
     font-weight: 400;
     font-family: 'Roboto', sans-serif;
 }
+.label{
+  font-size: 16px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px !important;
+    color: #333;
+    text-align: left;
+    display: block;
+    font-weight: bold;
+}
+
+.ui.form.swdh30 textarea {
+  background: #fff;
+  border: 1px solid #e5e5e5 !important;
+  outline: 0;
+  min-height: 130px;
+  color: rgba(0,0,0,.87);
+  border-radius: 3px !important;
+  box-shadow: inset 0px 1px 4px rgb(0 0 0 / 2%) !important;
+}
 
 .header_right {
     margin-left: auto;
@@ -867,6 +917,10 @@ i.icon1 {
   margin-left: 240px;
   padding: 90px 20px 20px 20px;
 }
+.wrap-content{
+  margin-left: 240px;
+  padding: 90px 20px 20px 20px;
+}
 
 /* Card */
 .card_dash {
@@ -907,4 +961,106 @@ i.icon1 {
   border-radius: 3px;
   color: #fff;
   background: #ffa052 !important;
+}
+
+/* table css */
+.table-responsive {
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  overflow-x: inherit;
+}
+
+table.table.ucp-table {
+  margin-bottom: 0px;
+}
+
+.ucp-table {
+  height: auto;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.ucp-table thead {
+  font-weight: 500;
+  padding: 14px !important;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  color: #333 !important;
+}
+
+
+.ucp-table thead tr th:first-child {
+  border-bottom-left-radius: 4px;
+}
+
+.ucp-table thead tr th {
+  color: #333;
+font-size: 14px;
+  background-color: #ffecec;
+}
+
+.ucp-table tfoot {
+  font-weight: 500;
+  padding: 14px !important;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  color: #333 !important;
+}
+
+.ucp-table tfoot td {
+  color: #fff;
+  font-size: 14px;
+  background-color: #333;
+padding: .75rem !important;
+}
+
+.ucp-table.earning__table td {
+padding: 1rem !important;
+}
+
+table {
+  margin: 0px auto 0px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.ucp-table tbody {
+  background: #fff;
+}
+
+.ucp-table td, .ucp-table th {
+  border-top: 1px solid #efefef !important;
+}
+
+.ucp-table td {
+  padding: 1.5rem .75rem !important;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.ucp-table th:first-child {
+  border-top: 0 !important;
+}
+
+.ucp-table thead th {
+  vertical-align: bottom;
+  border-bottom: 0 !important;
+}
+
+.course_active {
+  color: #ed2a26;
+}
+
+.ucp-table tbody tr td {
+  font-size: 14px;
+  vertical-align: middle;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+.uil{
+  font-size: 22px !important;
+}
+.uil:hover{
+  cursor: pointer;
 }
