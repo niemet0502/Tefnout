@@ -18,7 +18,7 @@ import Dashboard from './pages/Dashboard';
 import SignIn from "./pages/SignIn"
 import ResetPassword from "./pages/ResetPassword"
 import Navigation from './components/common/Navigation';
-import Categories from './pages/Categories';
+import Categories from './pages/categories/Categories';
 function App() {
   return (
     <div className="App">
