@@ -87,8 +87,6 @@ export function editCategory(category){
         'Accept': 'application/json'
       };
 
-      console.log(category);
-
       const response = await axios.put(`http://127.0.0.1:8000/api/categories/${category.id}`, category, { headers })
       
       dispatch(updateCategory(category))
