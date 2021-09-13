@@ -19,7 +19,7 @@ function Sidebar() {
 			<div className="left_section">
 				<ul>
 					<li className="menu--item">
-						<Link to="/dashboard">
+						<Link to="/dashboard" className="menu--link d-flex align-items-center">
               <DashboardOutlinedIcon className="uil uil-apps menu--icon" />
 							<span className="menu--label">Dashboard</span>
 						</Link>

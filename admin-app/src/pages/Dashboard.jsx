@@ -12,12 +12,6 @@ function Dashboard() {
         <div className="col-md-6"><Card title="Total issue" value={15} /></div>
         <div className="col-md-6"><Card title="Total issue" value={15} /></div>
       </div>
-
-      <table className="mt-5" style={{height: '4000px', border: '1px solid blue'}}>
-        <tr>
-          <td>marius</td>
-        </tr>
-      </table>
       </div>
     </div>
   )
