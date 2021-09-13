@@ -1,13 +1,29 @@
 import React from 'react'
 import TopBar from '../layout/TopBar'
 import Sidebar from '../layout/Sidebar/Sidebar'
-function Navigation() {
+import { getStoredAuthToken } from "../../utils/currentUser"
+import { connect } from 'react-redux'
+import PropTypes from "prop-types"
+
+function Navigation({token,user}) {
+
   return (
+    token !== null ? 
     <>
-      <TopBar />
+      <TopBar user={user} />
       <Sidebar/>
-    </>
+    </> : ''
   )
 }
+Navigation.propTypes = {
+  token: PropTypes.any,
+	user: PropTypes.object
+}
+const mapStateToProps = state => {
+  return{
+    token: state.authentication.token,
+    user: state.authentication.user
+  }
+}
 
-export default Navigation
+export default connect(mapStateToProps)(Navigation)

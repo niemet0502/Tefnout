@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { logout } from "../../store/authentication/authentication.actions"
+import { connect } from 'react-redux';
+import PropTypes from "prop-types"
 
 //components 
 import Button from '../common/Button';
@@ -15,7 +18,7 @@ import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import NightsStayOutlinedIcon from '@material-ui/icons/NightsStayOutlined';
 
-function TopBar() {
+function TopBar({onLogout, user}) {
 	const [userDropdown, setUserDropdown] = useState(false)
 
 	const toggleUserDropdown = () => {
@@ -49,7 +52,8 @@ function TopBar() {
 		<div className="header_right">
 			<ul>
 				<li>
-					<Button text="Create New Course" />
+					{user.profil_id == 1 ? '' :<Button text="Create New Course" /> }
+				
 				</li>
 				<li>
 					<a href="shopping_cart.html" className="option_links" title="cart"><ShoppingCartOutlinedIcon /><span className="noti_count">2</span></a>
@@ -74,15 +78,15 @@ function TopBar() {
 							<img src={user_profil} alt="user_profil" />
 								<div className="pd_content">
 									<div className="rhte85">
-										<h6>Joginder Singh</h6>
+										<h6> {user.name}  {user.fisrtname}</h6>
 										<div className="mef78" title="Verify">
 											<i className='uil uil-check-circle'></i>
 										</div>
 									</div>
-									<span>gambol943@gmail.com</span>
+									<span>{user.email}</span>
 								</div>							
 							</div>
-							<a href="my_instructor_profile_view.html" className="dp_link_12">View Instructor Profile</a>						
+							<a href="my_instructor_profile_view.html" className="dp_link_12">View { user.profil_id == 1 ? 'Administrator' : 'Teacher'} Profile</a>						
 						</div>
 						<div className="night_mode_switch__btn">
 							<a href="#" id="night-mode" className="btn-night-mode">
@@ -93,7 +97,8 @@ function TopBar() {
 							</a>
 						</div>
 						<a href="instructor_dashboard.html" className="item channel_item">Cursus dashboard</a>						
-						<a href="sign_in.html" className="item channel_item">Sign Out</a>
+						
+						<button className="item channel_item col-md-12 bg-white" onClick={() => onLogout()}>Sign Out</button>
 					</div>
 					}
 
@@ -104,4 +109,15 @@ function TopBar() {
   )
 }
 
-export default TopBar
+TopBar.propTypes = {
+	onLogout: PropTypes.func,
+	user: PropTypes.object
+}
+
+const mapDispatchToProps = dispatch => {
+	return{
+		onLogout: () => dispatch(logout())
+	}
+}
+
+export default connect(null,mapDispatchToProps)(TopBar)

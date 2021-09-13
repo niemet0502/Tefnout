@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 import logo from "../assets/img/logo.svg"
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 function ResetPassword() {
@@ -25,7 +27,7 @@ function ResetPassword() {
               </div>
               <button className="login-btn mb-2" type="submit">Reset Password</button>
             </form>
-            <p className="mb-0 mt-30">Go Back <a href="sign_up.html">Sign In</a></p>
+            <p className="mb-0 mt-30">Go Back <Link to="/">Sign In</Link></p>
           </div>
           <div className="sign_footer">© 2020 <strong>Cursus</strong>. All Rights Reserved.</div>
         </div>				

@@ -31,6 +31,8 @@ Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/courses/{id}', [CourseController::class, 'show']);
 Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 
+Route::get('/users/find/{email}', [UserController::class, 'getUserByEmail']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
