@@ -8,10 +8,10 @@ function Dashboard() {
   return (
     <div className="wrap-content">
       <div className="container-fluid">
-      <div className="row d-flex">
-        <div className="col-md-6"><Card title="Total issue" value={15} /></div>
-        <div className="col-md-6"><Card title="Total issue" value={15} /></div>
-      </div>   
+        <div className="row d-flex">
+          <div className="col-md-6"><Card title="Total issue" value={15} /></div>
+          <div className="col-md-6"><Card title="Total issue" value={15} /></div>
+        </div>   
       </div>
     </div>
   )
