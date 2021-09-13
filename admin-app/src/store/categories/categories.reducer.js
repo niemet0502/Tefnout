@@ -29,6 +29,20 @@ function categoriesReducer(state = initialState, action){
         type: toast.TYPE.SUCCESS
       })
       return {...state, categories: [...state.categories, {...action.payload, CoursesCount: 0}]}
+    case actions.UPDATE_CATEGORY: 
+      toast("Category updated...",{
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS
+      })  
+
+      return {...state, categories: state.categories.map(category => {
+        if (category.id === action.payload.id){
+          return {...category, ...action.payload} 
+        }else {
+          return category}
+        }
+      )}
       default:
       return state
   }
