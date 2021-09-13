@@ -6,12 +6,14 @@ export const GET_CATEGORIES_SUCCESS = 'GET CATEGORIES SUCCESS'
 export const GET_CATEGORIES_FAILURES = 'GET CATEGORIES FAILURES'
 export const DELETE_CATEGORY = 'DELETE CATEGORY'
 export const ADD_CATEGORY = 'ADD CATEGORY'
+export const UPDATE_CATEGORY = 'UPDATE CATEGORY'
 
 export const getCategories = () => ({type: GET_CATEGORIES_LOADING})
 export const getCategoriesSuccess = (data) => ({type: GET_CATEGORIES_SUCCESS, payload: data}) 
 export const getCategoriesFailures = () => ({type: GET_CATEGORIES_FAILURES})
 export const deleteCategory = (id) => ({type: DELETE_CATEGORY, payload: id})
 export const addCategory = (category) => ({type: ADD_CATEGORY, payload: category})
+export const updateCategory = (category) => ({type: UPDATE_CATEGORY, payload: category})
 
 
 export function fetchCategories(){
@@ -69,6 +71,27 @@ export function newCategory(category){
         }).catch(error => {
           console.log(error);
         })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export function editCategory(category){
+  return async dispatch =>{
+
+    try {
+      const headers = { 
+        // 'Authorization': 'Bearer ',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      };
+
+      console.log(category);
+
+      const response = await axios.put(`http://127.0.0.1:8000/api/categories/${category.id}`, category, { headers })
+      
+      dispatch(updateCategory(category))
     } catch (error) {
       console.log(error);
     }
