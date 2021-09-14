@@ -25,7 +25,7 @@ export function login(user){
             // save user's informations in localStorage 
             console.log(result.data.user);
             storeAuthToken(result.data.token)
-            storeUser(result.data.user)
+            storeUser(JSON.stringify(result.data.user))
             
             dispatch(loginUserSuccess(result.data))
             history.push('/dashboard');
