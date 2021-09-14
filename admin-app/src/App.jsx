@@ -19,6 +19,11 @@ import SignIn from "./pages/SignIn"
 import ResetPassword from "./pages/ResetPassword"
 import Navigation from './components/common/Navigation';
 import Categories from './pages/categories/Categories';
+import NewCourse from "./pages/courses/NewCourse";
+import Reviews from "./pages/reviews/Reviews";
+import Users from "./pages/users/Users";
+import Settings from './pages/settings/Settings';
+import Courses from "./pages/courses/Courses"
 function App() {
   return (
     <div className="App">
@@ -28,6 +33,11 @@ function App() {
           <PrivateRoute path="/dashboard" component={Dashboard} exact />
           <PublicRoute path="/reset-password" component={ResetPassword} exact/>
           <PrivateRoute path="/categories" component={Categories} exact />
+          <PrivateRoute path="/users" component={Users} exact />
+          <PrivateRoute path="/reviews" component={Reviews} exact />
+          <PrivateRoute path="/courses/new" component={NewCourse} exact />
+          <PrivateRoute path="/courses" component={Courses} exact />
+          <PrivateRoute path="/settings" component={Settings} exact />
           <PublicRoute path="/" component={SignIn}/>
         </Switch>
       </Router>

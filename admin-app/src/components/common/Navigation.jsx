@@ -11,7 +11,7 @@ function Navigation({token,user}) {
     token !== null ? 
     <>
       <TopBar user={user} />
-      <Sidebar/>
+      <Sidebar user={user}/>
     </> : ''
   )
 }
