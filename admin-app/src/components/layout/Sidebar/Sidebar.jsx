@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import PropTypes from "prop-types"
 
 //icons 
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
@@ -10,7 +11,8 @@ import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
 import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
-function Sidebar() {
+
+function Sidebar({user}) {
   return (
     <nav className="vertical_nav">
 		<div className="left_section menu_left" id="js-menu" >
@@ -68,6 +70,10 @@ function Sidebar() {
 		</div>
 	</nav>
   )
+}
+
+Sidebar.propTypes = {
+	user: PropTypes.object
 }
 
 
