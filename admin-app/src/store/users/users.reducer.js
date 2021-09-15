@@ -1,5 +1,5 @@
 import * as actions from "./users.actions"
-
+import { toast } from "react-toastify"
 export const initialState = {
   loading: false, 
   users: [],
@@ -14,6 +14,13 @@ function usersReducer(state = initialState, action){
       return {loading: false, users: action.payload, hasErros: false}
     case actions.GET_USERS_FAILURES: 
       return {...state, loading: false, hasErros: true}
+    case actions.DELETE_USER: 
+      toast("User deleted...",{
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS,
+      })
+      return {...state, users: state.users.filter(user => user.id !== action.payload)}
     default:
       return state
   }
