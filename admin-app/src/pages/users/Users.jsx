@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import * as actions from "../../store/users/users.actions";
+import useModal from '../../hooks/useModal';
 // components 
 import PageHeader from '../../components/common/PageHeader';
 import Button from "../../components/common/Button";
+import Modal from "../../components/common/Modal"
 //icons 
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
@@ -12,7 +14,19 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import userProfil from "../../assets/img/user_profil.jpg"
 
 
-function Users({users, dispatch,currentUser}) {
+function Users({users, dispatch,currentUser,onDelete}) {
+  const [selectedUser, setSelectedUser] = useState({id: null, name: "", firstname: ""})
+  const { isShowing: isDeleteUserShowed, toggle: toggleDeleteUser } = useModal();
+
+  const deleteAction = user => {
+    setSelectedUser(user)
+    toggleDeleteUser()
+  }
+
+  const handleDelete = () =>{
+    dispatch(actions.removeUser(selectedUser))
+    toggleDeleteUser()
+  }
 
   useEffect(() => {
     dispatch(actions.fetchUsers())
@@ -49,16 +63,38 @@ function Users({users, dispatch,currentUser}) {
               <td className="text-center">{user.avatar == null ? <img src={userProfil}  style={{width: '50px'}} /> : <img src={user.avatar} style={{width: '50px'}} />}</td>
               <td className="text-center">{user.name} &nbsp; {user.firstname}</td>
               <td className="text-center">{user.email}</td>
-              <td className="text-center">{user.profil_name}</td>
               <td className="text-center">{user.phone ? user.phone : '- -'}</td>
+              <td className="text-center">{user.profil_name}</td>
               <td className="text-center">
-                {currentUser !== user.id && <DeleteOutlineOutlinedIcon />}
-                
+                {currentUser !== user.id && <DeleteOutlineOutlinedIcon onClick={() => deleteAction(user)} />}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <Modal
+          isShowing={isDeleteUserShowed}
+          hide={toggleDeleteUser}
+          title="Delete confirmation" 
+        >
+          <p className="mt-2 text-bold"> <strong>You are deleting &quot; {selectedUser.name} {selectedUser.firstname} &quot; user</strong> <br />
+          do you want to confirm? </p>
+
+          <div className="d-flex align-items-center justify-content-end">
+            <Button 
+              classNames="modal-toggle" 
+              handleClick={toggleDeleteUser} 
+              text="Cancel"
+              variant="secondary"
+            /> 
+          <Button 
+            classNames="modal-toggle ml-3" 
+            handleClick={() => handleDelete()}
+            text="Delete"
+          /> 
+          </div>
+        </Modal>
     </div>
   )
 }
@@ -66,7 +102,8 @@ function Users({users, dispatch,currentUser}) {
 Users.propTypes = {
   users: PropTypes.array,
   dispatch: PropTypes.func,
-  currentUser: PropTypes.number
+  currentUser: PropTypes.number,
+  onDelete: PropTypes.func
 }
 
 const mapStateToProps = state => {

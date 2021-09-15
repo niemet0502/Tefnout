@@ -975,6 +975,10 @@ table.table.ucp-table {
   margin-bottom: 0px;
 }
 
+table.table.ucp-table svg:hover{
+  cursor: pointer;
+}
+
 .ucp-table {
   height: auto;
   overflow: hidden;
