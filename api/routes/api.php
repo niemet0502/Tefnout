@@ -35,13 +35,13 @@ Route::resource('categories', CategoryController::class);
 
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/users/find/{email}', [UserController::class, 'getUserByEmail']);
+Route::get('/users', [UserController::class, 'index']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
 
     //user's routes 
-    Route::get('/users', [UserController::class, 'index']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::get('/users/profil/{id}', [UserController::class, 'getUserByProfil']);
