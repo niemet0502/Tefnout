@@ -2,15 +2,15 @@ import React, { useEffect, useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import * as actions from "../../store/categories/categories.actions"
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import useModal from '../../hooks/useModal';
 import { isBase64, getBase64} from '../../utils/convertFile';
 
 // components 
 import PageHeader from '../../components/common/PageHeader';
-import Modal from "../../components/common/Modal"
-import Button from "../../components/common/Button"
-import FormInput from "../../components/form/FormInput"
+import Modal from "../../components/common/Modal";
+import Button from "../../components/common/Button";
+import FormInput from "../../components/form/FormInput";
 
 //icons 
 import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
@@ -18,7 +18,7 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 //images 
-import placeholderImage from "../../assets/img/placeholder-image.png"
+import placeholderImage from "../../assets/img/placeholder-image.png";
 
 function Categories({categories}) {
   const [label, setLabel] = useState('')
