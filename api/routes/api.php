@@ -36,7 +36,7 @@ Route::resource('categories', CategoryController::class);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/users/find/{email}', [UserController::class, 'getUserByEmail']);
 Route::get('/users', [UserController::class, 'index']);
-
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
