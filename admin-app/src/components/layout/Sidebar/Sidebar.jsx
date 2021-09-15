@@ -24,37 +24,42 @@ function Sidebar({user}) {
 							<span className="menu--label">Dashboard</span>
 						</Link>
 					</li>
+					{ user.profil_id == 1 ? 
 					<li className="menu--item">
 					<Link to="/categories" className="menu--link d-flex align-items-center">
               <CategoryOutlinedIcon className="uil uil-apps menu--icon" />
 							<span className="menu--label">Categories</span>
 					</Link>
-					</li>
+					</li> : 
 					<li className="menu--item">
 						<Link to="/courses/new" className="menu--link d-flex align-items-center">
 							<AddCircleOutlineOutlinedIcon className='uil uil-plus-circle menu--icon' />
 							<span className="menu--label">Create Course</span>
 						</Link>
 					</li>
+					}
+					
 					<li className="menu--item">
 						<Link  to="/courses" className="menu--link d-flex align-items-center">
 							<LibraryBooksOutlinedIcon className='uil uil-book-alt menu--icon' />
 							<span className="menu--label">Courses</span>
 						</Link>
 					</li>
-
-					<li className="menu--item">
-						<Link to="/users" className="menu--link d-flex align-items-center">
-							<PeopleOutlineIcon className='uil uil-comments menu--icon' />
-							<span className="menu--label">Users</span>
-						</Link>
-					</li>
-					<li className="menu--item">
-						<Link to="/reviews" className="menu--link active d-flex align-items-center">
-							<StarBorderOutlinedIcon className='uil uil-star menu--icon' />
-							<span className="menu--label">Reviews</span>
-						</Link>
-					</li>
+					{ user.profil_id == 1 ? 
+						<li className="menu--item">
+							<Link to="/users" className="menu--link d-flex align-items-center">
+								<PeopleOutlineIcon className='uil uil-comments menu--icon' />
+								<span className="menu--label">Users</span>
+							</Link>
+						</li> : 
+						<li className="menu--item">
+							<Link to="/reviews" className="menu--link active d-flex align-items-center">
+								<StarBorderOutlinedIcon className='uil uil-star menu--icon' />
+								<span className="menu--label">Reviews</span>
+							</Link>
+						</li>
+					
+					}
 				</ul>
 			</div>
 			<div className="left_section pt-2">
