@@ -6,7 +6,8 @@ import useModal from '../../hooks/useModal';
 // components 
 import PageHeader from '../../components/common/PageHeader';
 import Button from "../../components/common/Button";
-import Modal from "../../components/common/Modal"
+import Modal from "../../components/common/Modal";
+import FormInput from "../../components/form/FormInput"
 //icons 
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
@@ -14,9 +15,11 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import userProfil from "../../assets/img/user_profil.jpg"
 
 
-function Users({users, dispatch,currentUser,onDelete}) {
+function Users({users, dispatch,currentUser}) {
+  const [newUser, setNewUser] = useState({email: "", name: "", profil_id: null})
   const [selectedUser, setSelectedUser] = useState({id: null, name: "", firstname: ""})
   const { isShowing: isDeleteUserShowed, toggle: toggleDeleteUser } = useModal();
+  const { isShowing: isNewUserShowed, toggle: toggleNewUser } = useModal();
 
   const deleteAction = user => {
     setSelectedUser(user)
@@ -26,6 +29,10 @@ function Users({users, dispatch,currentUser,onDelete}) {
   const handleDelete = () =>{
     dispatch(actions.removeUser(selectedUser))
     toggleDeleteUser()
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefaut()
   }
 
   useEffect(() => {
@@ -41,6 +48,7 @@ function Users({users, dispatch,currentUser,onDelete}) {
       > 
         <Button 
           classNames="modal-toggle" 
+          handleClick={toggleNewUser}
           text="Create User"
         /> 
       </PageHeader>
@@ -95,6 +103,64 @@ function Users({users, dispatch,currentUser,onDelete}) {
           /> 
           </div>
         </Modal>
+
+        <Modal
+          isShowing={isNewUserShowed}
+          hide={toggleNewUser}
+          title="New User"
+        >
+          <form onSubmit={handleSubmit}>
+          <div className="ui search focus mt-2">
+            <div className="ui left icon input swdh95">
+            <FormInput
+              name="name"
+              type="text"
+              value={newUser.name}
+              onChange={(e) => setNewUser({...state,name: e.target.value})}
+              placeholder=""
+              className="prompt srch_explore"
+              label="Name"
+              required
+              />
+            </div>
+          </div>
+
+          <div className="ui search focus mt-2">
+            <div className="ui left icon input swdh95">
+            <FormInput
+              name="email"
+              type="email"
+              value={newUser.email}
+              onChange={(e) => setNewUser({...state,email: e.target.value})}
+              placeholder=""
+              className="prompt srch_explore"
+              label="Email"
+              required
+              />
+            </div>
+          </div>
+
+          <div className="ui search focus mt-2">
+            <div className="ui left icon input swdh95">
+            
+            </div>
+          </div>
+
+          <div className="ui form swdh30">
+            <div className="d-flex align-items-center justify-content-end">
+             <Button 
+                classNames="modal-toggle" 
+                handleClick={toggleNewUser} 
+                text="Cancel"
+                variant="secondary"
+              /> 
+              <Button
+                text="Register"
+              />
+            </div>
+          </div>
+          </form>
+        </Modal>
     </div>
   )
 }
@@ -102,8 +168,7 @@ function Users({users, dispatch,currentUser,onDelete}) {
 Users.propTypes = {
   users: PropTypes.array,
   dispatch: PropTypes.func,
-  currentUser: PropTypes.number,
-  onDelete: PropTypes.func
+  currentUser: PropTypes.number
 }
 
 const mapStateToProps = state => {
