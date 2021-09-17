@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Course;
+use App\Models\FollowCourse;
+use Illuminate\Support\Facades\DB;
+
 class UserController extends Controller
 {
     /**
@@ -97,5 +101,34 @@ class UserController extends Controller
     public function getUserByEmail($email){
         return User::where('users.email', '=', $email)
                     ->get();
+    }
+
+
+    public function getAdminStat(){
+        $courses = Course::count();
+        $formations = FollowCourse::count();
+        $instructors = User::where('users.profil_id', '=', 3)->get();
+        $students = User::where('users.profil_id', '=', 4)->get();
+        
+        return response([
+            'status' => 'success',
+            'courses' => $courses,
+            'formations' => $formations,
+            'instructors' => $instructors->count(),
+            'students' => $students->count()
+        ], 200);
+    }
+
+    public function getInstructorStat($id){
+        $courses = Course::where('courses.teacher_id', '=', $id)->get();
+        $students = Course::where('courses.teacher_id', '=', $id)
+                    ->join('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+                    ->select(DB::raw('COUNT(follow_courses.id) as student_count'))
+                    ->get();
+
+        return response([
+            'courses' => $courses->count(), 
+            'students' => $students[0]['student_count']
+        ],200);
     }
 }
