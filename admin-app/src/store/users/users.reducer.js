@@ -21,6 +21,13 @@ function usersReducer(state = initialState, action){
         type: toast.TYPE.SUCCESS,
       })
       return {...state, users: state.users.filter(user => user.id !== action.payload)}
+    case actions.ADD_USER: 
+      toast("User added...",{
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS,
+      })
+      return {...state, users: [...state.users, action.payload]}
     default:
       return state
   }
