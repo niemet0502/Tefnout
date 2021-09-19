@@ -9,6 +9,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,9 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/users/find/{email}', [UserController::class, 'getUserByEmail']);
 Route::get('/users', [UserController::class, 'index']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
+Route::get('/users/admin/dashboard', [UserController::class, 'getAdminStat']);
+Route::get('/users/instructor/dashboard/{id}', [UserController::class, 'getInstructorStat']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
