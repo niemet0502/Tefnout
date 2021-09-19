@@ -579,6 +579,16 @@ i.icon1 {
     display: block;
     font-weight: bold;
 }
+.select-field{
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 5px;
+}
+.select-field:focus{
+  outline: none ;
+}
 
 .ui.form.swdh30 textarea {
   background: #fff;
@@ -973,6 +983,10 @@ i.icon1 {
 
 table.table.ucp-table {
   margin-bottom: 0px;
+}
+
+table.table.ucp-table svg:hover{
+  cursor: pointer;
 }
 
 .ucp-table {
