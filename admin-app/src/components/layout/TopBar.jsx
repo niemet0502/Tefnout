@@ -68,14 +68,14 @@ function TopBar({onLogout, user}) {
 				</li>
 				<li className="ui dropdown">
 					<a href="#" className="opts_account" title="Account" onClick={toggleUserDropdown}>
-						<img src={user_profil} alt="user_profil" />
+					{ user.avatar == null ? <img src={user_profil} alt="user_profil" /> : <img src={user.avatar} alt="user_profil" />  }
 					</a>
 					{userDropdown && 
 					
 					<div className="menu dropdown_account transition">
 						<div className="channel_my">
 							<div className="profile_link">
-							<img src={user_profil} alt="user_profil" />
+							{ user.avatar == null ? <img src={user_profil} alt="user_profil" /> : <img src={user.avatar} alt="user_profil" />  }
 								<div className="pd_content">
 									<div className="rhte85">
 										<h6> {user.name}  {user.fisrtname}</h6>
