@@ -16,7 +16,7 @@ import userProfil from "../../assets/img/user_profil.jpg"
 
 
 function Users({users, dispatch,currentUser}) {
-  const [newUser, setNewUser] = useState({email: "", name: "", profil_id: null})
+  const [newUser, setNewUser] = useState({email: "", name: "", profil_id: 1})
   const [selectedUser, setSelectedUser] = useState({id: null, name: "", firstname: ""})
   const { isShowing: isDeleteUserShowed, toggle: toggleDeleteUser } = useModal();
   const { isShowing: isNewUserShowed, toggle: toggleNewUser } = useModal();
@@ -32,7 +32,12 @@ function Users({users, dispatch,currentUser}) {
   }
 
   const handleSubmit = (e) =>{
-    e.preventDefaut()
+    e.preventDefault();
+    console.log(newUser);
+    dispatch(actions.newUser(newUser))
+    toggleNewUser()
+    setNewUser({email: "", name: "", profil_id: 1})
+    
   }
 
   useEffect(() => {
@@ -116,7 +121,7 @@ function Users({users, dispatch,currentUser}) {
               name="name"
               type="text"
               value={newUser.name}
-              onChange={(e) => setNewUser({...state,name: e.target.value})}
+              onChange={(e) => setNewUser({...newUser,name: e.target.value})}
               placeholder=""
               className="prompt srch_explore"
               label="Name"
@@ -131,7 +136,7 @@ function Users({users, dispatch,currentUser}) {
               name="email"
               type="email"
               value={newUser.email}
-              onChange={(e) => setNewUser({...state,email: e.target.value})}
+              onChange={(e) => setNewUser({...newUser,email: e.target.value})}
               placeholder=""
               className="prompt srch_explore"
               label="Email"
@@ -142,7 +147,11 @@ function Users({users, dispatch,currentUser}) {
 
           <div className="ui search focus mt-2">
             <div className="ui left icon input swdh95">
-            
+              <label htmlFor="" className="label">Profil</label>
+              <select className="select-field" name="profil_id" value={newUser.profil_id} onChange={(e) => setNewUser({...newUser, profil_id: e.target.value})} id="">
+                <option value="1">Administrateur</option>
+                <option value="3">Instructor</option>
+              </select>
             </div>
           </div>
 
