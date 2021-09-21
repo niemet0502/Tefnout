@@ -46,6 +46,7 @@ function Courses({user, dispatch,courses}) {
             <th className="text-center" scope="col">Publish date</th>
             <th className="text-center" scope="col">Training(s)</th>
             <th className="text-center" scope="col">Category</th>
+            <th className="text-center" scope="col">Chapters</th>
             <th className="text-center" scope="col">Status</th>
             <th className="text-center" scope="col">Actions</th>
           </tr>
@@ -59,6 +60,7 @@ function Courses({user, dispatch,courses}) {
               <td className="text-center">{ course.created_at.substr(0,10)}</td>
               <td className="text-center">{ course.follow_courses_count}</td>
               <td className="text-center">  { course.category_name}</td>
+              <td className="text-center">  { course.chapters_count}</td>
               <td className="text-center"> <b className="course_active">{ course.status}</b> </td>
               <td className="text-center">
                 {user.profil_id == 1 ? '': <EditOutlinedIcon  className="uil" />}
