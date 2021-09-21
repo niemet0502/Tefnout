@@ -36,6 +36,8 @@ class CourseController extends Controller
                 ->groupBy('courses.id')
                 ->get();
 
+                  
+
 
         $response = [
             'courses' => $courses,
@@ -184,9 +186,22 @@ class CourseController extends Controller
     }
 
     public function getCoursesByTeacher(int $id){
-        $courses = Course::where('teacher_id', '=', $id)
-                ->withCount('followCourses')
-                ->get();
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
+        'categories.name as category_name', 
+        'users.name as user_name', 
+        'users.firstname as user_firstname')
+        ->where('courses.teacher_id', '=', $id)
+        ->join('users', 'users.id', '=', 'courses.teacher_id')
+        ->join('categories', 'categories.id', '=', 'courses.category_id')
+        ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+        ->withCount('followCourses')
+        ->orderBy('courses.id')
+        ->get();
+
+        return response([
+            'status' => 'success',
+            'courses' => $courses
+        ],200);
 
         $response = [
             'courses' => $courses,
@@ -209,6 +224,25 @@ class CourseController extends Controller
             ->orWhere('categories.name', 'like', '%'.$name.'%') 
             ->orWhere('users.name', 'like', '%'.$name.'%')   
             ->get();
+    }
+
+    public function getAdminCourse(){
+        
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
+        'categories.name as category_name', 
+        'users.name as user_name', 
+        'users.firstname as user_firstname')
+        ->join('users', 'users.id', '=', 'courses.teacher_id')
+        ->join('categories', 'categories.id', '=', 'courses.category_id')
+        ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+        ->withCount('followCourses')
+        ->orderBy('courses.id')
+        ->get();
+
+        return response([
+            'status' => 'success',
+            'courses' => $courses
+        ],200);
     }
 
 }
