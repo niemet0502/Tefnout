@@ -39,8 +39,13 @@ Route::get('/users/find/{email}', [UserController::class, 'getUserByEmail']);
 Route::get('/users', [UserController::class, 'index']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
+//dashboard
 Route::get('/users/admin/dashboard', [UserController::class, 'getAdminStat']);
 Route::get('/users/instructor/dashboard/{id}', [UserController::class, 'getInstructorStat']);
+
+//courses admin::site 
+Route::get('/admin/courses', [CourseController::class, 'getAdminCourse']);
+Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
@@ -65,7 +70,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     //teacher's courses
-    Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
     
 
     // profil's routes 
