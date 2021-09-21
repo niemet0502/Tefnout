@@ -189,13 +189,16 @@ class CourseController extends Controller
         $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
         'categories.name as category_name', 
         'users.name as user_name', 
-        'users.firstname as user_firstname')
+        'users.firstname as user_firstname',
+        DB::raw('COUNT(chapters.id) as chapters_count'))
         ->where('courses.teacher_id', '=', $id)
         ->join('users', 'users.id', '=', 'courses.teacher_id')
         ->join('categories', 'categories.id', '=', 'courses.category_id')
         ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+        ->leftJoin('sections', 'sections.course_id', '=', 'courses.id')
+        ->leftJoin('chapters', 'chapters.section_id', '=', 'sections.id')
         ->withCount('followCourses')
-        ->orderBy('courses.id')
+        ->groupBy('courses.id')
         ->get();
 
         return response([
@@ -231,12 +234,15 @@ class CourseController extends Controller
         $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
         'categories.name as category_name', 
         'users.name as user_name', 
-        'users.firstname as user_firstname')
+        'users.firstname as user_firstname',
+        DB::raw('COUNT(chapters.id) as chapters_count'))
         ->join('users', 'users.id', '=', 'courses.teacher_id')
         ->join('categories', 'categories.id', '=', 'courses.category_id')
         ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+        ->leftJoin('sections', 'sections.course_id', '=', 'courses.id')
+        ->leftJoin('chapters', 'chapters.section_id', '=', 'sections.id')
         ->withCount('followCourses')
-        ->orderBy('courses.id')
+        ->groupBy('courses.id')
         ->get();
 
         return response([
