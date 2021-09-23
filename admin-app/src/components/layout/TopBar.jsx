@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { logout } from "../../store/authentication/authentication.actions"
 import { connect } from 'react-redux';
 import PropTypes from "prop-types"
-
+import { Link } from 'react-router-dom';
 //components 
 import Button from '../common/Button';
 
@@ -52,7 +52,7 @@ function TopBar({onLogout, user}) {
 		<div className="header_right">
 			<ul>
 				<li>
-					{user.profil_id == 1 ? '' :<Button text="Create New Course" /> }
+					{user.profil_id == 1 ? '' : <Link to="/courses/new"> <Button text="Create New Course" /> </Link>  }
 				
 				</li>
 				<li>
