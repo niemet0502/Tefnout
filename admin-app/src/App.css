@@ -980,6 +980,9 @@ i.icon1 {
   margin-bottom: 12px;
   overflow-x: inherit;
 }
+.course_active {
+  color: #ed2a26;
+}
 
 table.table.ucp-table {
   margin-bottom: 0px;

@@ -36,6 +36,8 @@ class CourseController extends Controller
                 ->groupBy('courses.id')
                 ->get();
 
+                  
+
 
         $response = [
             'courses' => $courses,
@@ -165,28 +167,40 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        $course = Course::find($id);
-         
-
         // get sections of current course 
         $sections = Section::where('course_id', $id)->get();
 
         foreach($sections as $section){
-            $chapter = Chapter::where('section_id', $section->id);
+            Chapter::where('section_id', $section->id)->delete();
         }
-
-            $response = [
-                'course' => $chapter,
-                'status' => 200
-            ];
-    
-            return $response;
+        Section::where('course_id', $id)->delete();
+        Course::destroy($id);
+        return response([
+            'status' => 'success',
+            'message' => 'Cours supprimer avec succes'
+        ],200);
     }
 
     public function getCoursesByTeacher(int $id){
-        $courses = Course::where('teacher_id', '=', $id)
-                ->withCount('followCourses')
-                ->get();
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
+        'categories.name as category_name', 
+        'users.name as user_name', 
+        'users.firstname as user_firstname',
+        DB::raw('COUNT(chapters.id) as chapters_count'))
+        ->where('courses.teacher_id', '=', $id)
+        ->join('users', 'users.id', '=', 'courses.teacher_id')
+        ->join('categories', 'categories.id', '=', 'courses.category_id')
+        ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+        ->leftJoin('sections', 'sections.course_id', '=', 'courses.id')
+        ->leftJoin('chapters', 'chapters.section_id', '=', 'sections.id')
+        ->withCount('followCourses')
+        ->groupBy('courses.id')
+        ->get();
+
+        return response([
+            'status' => 'success',
+            'courses' => $courses
+        ],200);
 
         $response = [
             'courses' => $courses,
@@ -209,6 +223,28 @@ class CourseController extends Controller
             ->orWhere('categories.name', 'like', '%'.$name.'%') 
             ->orWhere('users.name', 'like', '%'.$name.'%')   
             ->get();
+    }
+
+    public function getAdminCourse(){
+        
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
+        'categories.name as category_name', 
+        'users.name as user_name', 
+        'users.firstname as user_firstname',
+        DB::raw('COUNT(chapters.id) as chapters_count'))
+        ->join('users', 'users.id', '=', 'courses.teacher_id')
+        ->join('categories', 'categories.id', '=', 'courses.category_id')
+        ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+        ->leftJoin('sections', 'sections.course_id', '=', 'courses.id')
+        ->leftJoin('chapters', 'chapters.section_id', '=', 'sections.id')
+        ->withCount('followCourses')
+        ->groupBy('courses.id')
+        ->get();
+
+        return response([
+            'status' => 'success',
+            'courses' => $courses
+        ],200);
     }
 
 }

@@ -31,6 +31,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/courses/{id}', [CourseController::class, 'show']);
 Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
+Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 
 Route::resource('categories', CategoryController::class);
 
@@ -39,8 +40,16 @@ Route::get('/users/find/{email}', [UserController::class, 'getUserByEmail']);
 Route::get('/users', [UserController::class, 'index']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
+//dashboard
 Route::get('/users/admin/dashboard', [UserController::class, 'getAdminStat']);
 Route::get('/users/instructor/dashboard/{id}', [UserController::class, 'getInstructorStat']);
+
+//courses admin::site 
+Route::get('/admin/courses', [CourseController::class, 'getAdminCourse']);
+Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
+
+
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
@@ -60,12 +69,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //course's route {store}
     Route::post('/courses', [CourseController::class, 'store']);
     Route::get('/topics/{id}',  [CategoryController::class, 'show']); // show course
-    Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 
 
 
     //teacher's courses
-    Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
     
 
     // profil's routes 
