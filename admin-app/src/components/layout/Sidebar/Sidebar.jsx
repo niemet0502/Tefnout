@@ -51,15 +51,14 @@ function Sidebar({user}) {
 								<PeopleOutlineIcon className='uil uil-comments menu--icon' />
 								<span className="menu--label">Users</span>
 							</Link>
-						</li> : 
-						<li className="menu--item">
-							<Link to="/reviews" className="menu--link active d-flex align-items-center">
-								<StarBorderOutlinedIcon className='uil uil-star menu--icon' />
-								<span className="menu--label">Reviews</span>
-							</Link>
-						</li>
-					
+						</li> : ''
 					}
+					<li className="menu--item">
+						<Link to="/reviews" className="menu--link active d-flex align-items-center">
+							<StarBorderOutlinedIcon className='uil uil-star menu--icon' />
+							<span className="menu--label">Reviews</span>
+						</Link>
+					</li>
 				</ul>
 			</div>
 			<div className="left_section pt-2">
