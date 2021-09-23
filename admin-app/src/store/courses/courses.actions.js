@@ -41,7 +41,9 @@ export function fetchTeacherCourses(id){
 export function removeCourse(id){
   return async dispatch => {
     try {
-      await fetch(`http://127.0.0.1:8000/api/courses/${id}`)
+      await fetch(`http://127.0.0.1:8000/api/courses/${id}`, {
+        method: "DELETE"
+      })
 
       dispatch(delCourse(id))
     } catch (error) {
