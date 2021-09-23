@@ -1,16 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types"
-import * as actions from "../../store/courses/courses.actions"
+import * as actions from "../../store/courses/courses.actions";
+import useModal from "../../hooks/useModal";
 //components 
 import PageHeader from '../../components/common/PageHeader';
-import Button from "../../components/common/Button"
+import Button from "../../components/common/Button";
+import Modal from "../../components/common/Modal";
 //icons 
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 function Courses({user, dispatch,courses}) {
+  const [course, setCourse] = useState({id: null, title: ""})
+  const { isShowing: isDeleteModalShowed, toggle: toggleDeleteModal } = useModal();
+
+  const deleteAction = course => {
+    setCourse({id: course.id, title: course.title})
+    toggleDeleteModal()
+  }
+
+  const handleDelete = () => {
+    dispatch(actions.removeCourse(course.id))
+    toggleDeleteModal()
+  }
 
   useEffect(() => {
     if(user.profil_id == 1){
@@ -64,13 +78,36 @@ function Courses({user, dispatch,courses}) {
               <td className="text-center"> <b className="course_active">{ course.status}</b> </td>
               <td className="text-center">
                 {user.profil_id == 1 ? '': <EditOutlinedIcon  className="uil" />}
-                {course.follow_courses_count > 0 ? '' :  <DeleteOutlineOutlinedIcon className="uil"/>}
+                {course.follow_courses_count > 0 ? '' :  <DeleteOutlineOutlinedIcon onClick={() => deleteAction(course)} className="uil"/>}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       </div>
+
+      <Modal
+          isShowing={isDeleteModalShowed}
+          hide={toggleDeleteModal}
+          title="Delete confirmation" 
+        >
+          <p className="mt-2 text-bold"> <strong>You are deleting &quot; {course.title} &quot; course</strong> <br />
+          do you want to confirm? </p>
+
+          <div className="d-flex align-items-center justify-content-end">
+            <Button 
+              classNames="modal-toggle" 
+              handleClick={toggleDeleteModal} 
+              text="Cancel"
+              variant="secondary"
+            /> 
+          <Button 
+            classNames="modal-toggle ml-3" 
+            handleClick={() => handleDelete} 
+            text="Delete"
+          /> 
+          </div>
+        </Modal>
     </div>
   )
 }
