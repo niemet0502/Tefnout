@@ -167,22 +167,18 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        $course = Course::find($id);
-         
-
         // get sections of current course 
         $sections = Section::where('course_id', $id)->get();
 
         foreach($sections as $section){
-            $chapter = Chapter::where('section_id', $section->id);
+            Chapter::where('section_id', $section->id)->delete();
         }
-
-            $response = [
-                'course' => $chapter,
-                'status' => 200
-            ];
-    
-            return $response;
+        Section::where('course_id', $id)->delete();
+        Course::destroy($id);
+        return response([
+            'status' => 'success',
+            'message' => 'Cours supprimer avec succes'
+        ],200);
     }
 
     public function getCoursesByTeacher(int $id){
