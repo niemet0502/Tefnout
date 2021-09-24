@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NoteController extends Controller
 {
@@ -73,5 +75,48 @@ class NoteController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getAllCourseRatings(){
+        $notes =  Course::join('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+            ->join('notes', 'notes.formation_id', '=', 'follow_courses.id')
+            ->join('users', 'users.id', '=', 'follow_courses.student_id')
+            ->select(DB::raw('SUM(notes.value) as total_note'),
+            DB::raw('COUNT(notes.value) as notes_count'))
+            ->groupBy('follow_courses.id')
+            ->get();
+            
+        return response([
+            'status' => 'success',
+            'notes' => $notes
+        ],200);
+
+    }
+
+    public function getTeacherCourseRatings($id){
+        $notes =  Course::where('courses.teacher_id', $id)
+                ->join('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+                ->join('notes', 'notes.formation_id', '=', 'follow_courses.id')
+                ->join('users', 'users.id', '=', 'follow_courses.student_id')
+                ->select(DB::raw('SUM(notes.value) as total_note'),
+                DB::raw('COUNT(notes.value) as notes_count'))
+                ->groupBy('courses.id')
+                ->get();
+
+        $one =  Course::where('courses.teacher_id', $id)
+                ->join('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+                ->join('notes', 'notes.formation_id', '=', 'follow_courses.id')
+                ->join('users', 'users.id', '=', 'follow_courses.student_id')
+                ->where('notes.value', '=', 1)
+                ->select(DB::raw('SUM(notes.value) as total_note'),
+                DB::raw('COUNT(notes.value) as notes_count'))
+                ->groupBy('courses.id')
+                ->get();
+
+
+            return response([
+                'status' => 'success',
+                'notes' => $notes
+            ],200);
     }
 }
