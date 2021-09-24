@@ -1081,3 +1081,142 @@ table {
 .uil:hover{
   cursor: pointer;
 }
+
+/* --- All Reviews --- */
+.reviews_left {
+  float: left;
+  width: 100%;
+  background: #fff;
+  padding: 20px 30px 30px;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+}
+
+.reviews_left h3 {
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 500;
+}
+
+.review_right_heading h3 {
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  margin-bottom: 0;
+  color: #333;
+  float: left;
+  font-weight: 500;
+}
+.review_all120{
+  background: #fff;
+  border-radius: 3px;
+}
+
+
+.review_item {
+	padding: 20px;
+	border-bottom: 1px solid #efefef;
+}
+
+.review_item:last-child {
+    border-bottom: 0;
+}
+
+.review_usr_dt {
+    display: flex;
+	position: relative;
+}
+.review_usr_dt img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+  margin-right: 15px;
+}
+.review_item_course_title a {
+	font-size: 16px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  line-height: 24px;
+  margin-bottom: 0;
+  color: #333;
+  border-bottom: 1px solid #efefef;
+  padding: 15px 20px;
+	display: block;
+  text-decoration: none;
+}
+.rvds10{
+  font-size: 14px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 17px;
+    line-height: 26px;
+    color: #686f7a;
+    text-align: left;
+}
+
+.tutor_name1 {
+	font-size: 16px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    color: #333 !important;
+    text-align: left;
+	margin-bottom: 0;
+}
+
+.time_145 {
+    font-size: 13px;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    color: #686f7a;
+    display: block;
+    margin-top: 5px;
+}
+.total_raiting{
+  display: flex;
+  width: 100%;
+  font-size: 16px;
+  justify-items: center;
+	background: #f7f7f7;
+  border: 1px solid #efefef;
+  padding: 10px 20px;
+	border-radius: 3px;
+}
+.rating-box {
+	color: #dedfe0;
+	display: flex;
+    flex-basis: 30%;
+}
+.star-icon:hover{
+  cursor: pointer;
+}
+._rate001 {
+	font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 0;
+    color: #333;
+    margin-right: 10px;
+    line-height: 22px;
+}
+._rate002 {
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 0;
+  color: #333;
+  margin-left: 10px;
+  line-height: 22px;
+}
+._rate004 {
+	display: flex;
+  cursor: pointer;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 0px;
+}
