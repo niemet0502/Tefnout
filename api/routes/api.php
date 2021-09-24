@@ -48,7 +48,13 @@ Route::get('/users/instructor/dashboard/{id}', [UserController::class, 'getInstr
 Route::get('/admin/courses', [CourseController::class, 'getAdminCourse']);
 Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
 
+//comments admin::site 
+Route::get('/admin/comments', [CommentController::class, 'getAllComments']);
+Route::get('/admin/teacher/{id}/comments', [CommentController::class, 'getTeacherComments']);
 
+// notes admin:: site 
+Route::get('/admin/raiting', [NoteController::class, 'getAllCourseRatings']);
+Route::get('/admin/teacher/{id}/raiting', [NoteController::class, 'getTeacherCourseRatings']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
