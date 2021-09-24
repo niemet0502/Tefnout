@@ -151,35 +151,4 @@ class FormationController extends Controller
         return $response;
     }
 
-    public function teacherReviews($id){
-
-        $comments = Course::where('courses.teacher_id', $id)
-                ->join('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
-                ->join('comments', 'comments.formation_id', '=', 'follow_courses.id')
-                ->join('users', 'users.id', '=', 'follow_courses.student_id')
-                ->select('courses.title as course_title',
-                    'comments.content as comment',
-                    'users.name as student_name',
-                    'users.firstname as student_firstname',
-                    'courses.created_at as comment_date',
-                    'users.avatar as student_avatar')
-                ->get(); 
-        
-        $notes =  Course::where('courses.teacher_id', $id)
-                ->join('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
-                ->join('notes', 'notes.formation_id', '=', 'follow_courses.id')
-                ->join('users', 'users.id', '=', 'follow_courses.student_id')
-                ->select(DB::raw('SUM(notes.value) as total_note'),
-                DB::raw('COUNT(notes.value) as notes_count'))
-                ->groupBy('courses.id')
-                ->get(); 
-
-        $response = [
-            'comments' =>  $comments,
-            'notes' =>  $notes,
-            'status' => 200
-        ];
-
-        return $response;
-    }
 }
