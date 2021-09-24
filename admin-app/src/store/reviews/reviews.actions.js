@@ -73,9 +73,7 @@ export function fetchTeacherCourseRaiting(id){
       const response = await fetch(`http://127.0.0.1:8000/api/admin/teacher/${id}/raiting`);
       const data = await response.json()
 
-
-      console.log(data.notes);
-      dispatch(getRaitingSuccess(data.notes))
+      dispatch(getRaitingSuccess(parseRaitings(data.notes)))
       
     } catch (error) {
       dispatch(getRaitingFailures())

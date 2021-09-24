@@ -42,7 +42,7 @@ function Reviews(
 										<h3>All Student Feedback</h3>
                     <div className="total_raiting">
                       <div className="_rate001">{(raiting.sum/raiting.count)}</div>	
-                      { raitingLoader ? 'Loading...' : <StarRaiting count={(raiting.sum/raiting.count)} />}
+                      { raitingLoader ? 'Loading...' : <StarRaiting count={4} />}
                       
                       <div className="_rate002">All Rating ({raiting.count})</div>	
                     </div>
