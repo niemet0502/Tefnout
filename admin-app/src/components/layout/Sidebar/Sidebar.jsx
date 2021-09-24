@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from "prop-types"
 
 //icons 
@@ -19,55 +19,55 @@ function Sidebar({user}) {
 			<div className="left_section">
 				<ul>
 					<li className="menu--item">
-						<Link to="/dashboard" className="menu--link d-flex align-items-center">
+						<NavLink to="/dashboard" className="menu--link d-flex align-items-center">
               <DashboardOutlinedIcon className="uil uil-apps menu--icon" />
 							<span className="menu--label">Dashboard</span>
-						</Link>
+						</NavLink>
 					</li>
 					{ user.profil_id == 1 ? 
 					<li className="menu--item">
-					<Link to="/categories" className="menu--link d-flex align-items-center">
+					<NavLink to="/categories" className="menu--link d-flex align-items-center">
               <CategoryOutlinedIcon className="uil uil-apps menu--icon" />
 							<span className="menu--label">Categories</span>
-					</Link>
+					</NavLink>
 					</li> : 
 					<li className="menu--item">
-						<Link to="/courses/new" className="menu--link d-flex align-items-center">
+						<NavLink to="/courses/new" className="menu--link d-flex align-items-center">
 							<AddCircleOutlineOutlinedIcon className='uil uil-plus-circle menu--icon' />
 							<span className="menu--label">Create Course</span>
-						</Link>
+						</NavLink>
 					</li>
 					}
 					
 					<li className="menu--item">
-						<Link  to="/courses" className="menu--link d-flex align-items-center">
+						<NavLink  to="/courses" className="menu--link d-flex align-items-center">
 							<LibraryBooksOutlinedIcon className='uil uil-book-alt menu--icon' />
 							<span className="menu--label">Courses</span>
-						</Link>
+						</NavLink>
 					</li>
 					{ user.profil_id == 1 ? 
 						<li className="menu--item">
-							<Link to="/users" className="menu--link d-flex align-items-center">
+							<NavLink to="/users" className="menu--link d-flex align-items-center">
 								<PeopleOutlineIcon className='uil uil-comments menu--icon' />
 								<span className="menu--label">Users</span>
-							</Link>
+							</NavLink>
 						</li> : ''
 					}
 					<li className="menu--item">
-						<Link to="/reviews" className="menu--link active d-flex align-items-center">
+						<NavLink to="/reviews" className="menu--link d-flex align-items-center">
 							<StarBorderOutlinedIcon className='uil uil-star menu--icon' />
 							<span className="menu--label">Reviews</span>
-						</Link>
+						</NavLink>
 					</li>
 				</ul>
 			</div>
 			<div className="left_section pt-2">
 				<ul>
 					<li className="menu--item">
-						<Link to="/settings" className="menu--link d-flex align-items-center">
+						<NavLink to="/settings" className="menu--link d-flex align-items-center">
 							<SettingsOutlinedIcon className='uil uil-cog menu--icon' />
 							<span className="menu--label">Setting</span>
-						</Link>
+						</NavLink>
 					</li>
 				</ul>
 			</div>
