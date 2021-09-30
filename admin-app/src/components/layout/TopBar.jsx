@@ -78,7 +78,7 @@ function TopBar({onLogout, user}) {
 							{ user.avatar == null ? <img src={user_profil} alt="user_profil" /> : <img src={user.avatar} alt="user_profil" />  }
 								<div className="pd_content">
 									<div className="rhte85">
-										<h6> {user.name}  {user.fisrtname}</h6>
+										<h6> {user.name}  {user.firstname}</h6>
 										<div className="mef78" title="Verify">
 											<i className='uil uil-check-circle'></i>
 										</div>

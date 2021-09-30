@@ -58,12 +58,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+           
         $user = User::find($id);
         $user->update($request->all());
-
+        
+        $newUser = User::where('users.id', '=', $id)
+                ->join('profils', 'profils.id', '=', 'users.profil_id')
+                ->select('users.*', 'profils.id as profil_id')
+                ->get();
         return response([
-            'user', $user,
-            'status' => 'success',
+            'newUser', '',
+            'status' => $newUser,
             'message' => 'Utilisateur mise a jour avec succès !'
         ], 200);
     }
