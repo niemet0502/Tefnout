@@ -9,6 +9,7 @@ function FormTextArea({
   error,
   children,
   label,
+ placeholder,
   ...props
 }) {
   return (
@@ -22,7 +23,9 @@ function FormTextArea({
         value={value}
         className={className}
         style={error && {border: 'solid 1px red'}}
+        placeholder={placeholder}
       >
+        {placeholder}
       </textarea>
     </>
   )
@@ -30,7 +33,8 @@ function FormTextArea({
 
 FormTextArea.defaultProps = {
   type: "text",
-  className: ""
+  className: "",
+ placeholder: ""
 }
 
 FormTextArea.propTypes = {
@@ -40,6 +44,7 @@ FormTextArea.propTypes = {
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
   value: PropTypes.any,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string
 }
 export default FormTextArea
