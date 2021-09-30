@@ -15,6 +15,8 @@ export default function authenticationReducer(state = initialState, action){
         return {...state, loading: false, hasErrors: true}
       case actions.USERS_LOGOUT_REQUEST: 
         return { loading: false, token: null, user: null, hasErrors: false }
+      case actions.UPDATE_CURRENT_USER: 
+        return {...state, user: action.payload}
       default: 
         return state
     }
