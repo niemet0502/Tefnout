@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from "styled-components"
-
+import PropTypes from "prop-types"
+import { connect } from 'react-redux'
+import { fetchLastCourses } from "../store/courses/courses.actions"
+import { fetchInstructor } from "../store/users/users.actions"
+import { fetchCategories } from "../store/categories/categories.actions"
 // components 
 import CategoryCard from "../components/Marketplace/CategoryCard"
 import CourseCard from '../components/Marketplace/Course/CourseCard'
@@ -13,7 +17,25 @@ import hero_img from "../assets/img/hero_img.png"
 
 //icon 
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
-function Home() {
+
+function Home({
+  users,
+  usersLoader,
+  courses,
+  coursesLoader,
+  categories,
+  categoriesLoader,
+  dispatch
+}) {
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+    dispatch(fetchLastCourses())
+    dispatch(fetchInstructor())
+
+
+  }, [dispatch])
+
   return (
     <HomePage>
     <div>
@@ -71,14 +93,13 @@ function Home() {
             </div>
         </div>
         <div className="row ">
-          <CategoryCard/>
-          <CategoryCard/>
-          <CategoryCard/>
-          <CategoryCard/>
-          <CategoryCard/>
-          <CategoryCard/>
-          <CategoryCard/>
-          <CategoryCard/>
+          {categories.map((category) => (
+              <CategoryCard 
+                key={category.id} 
+                title={category.name}
+                image={category.image}
+              />
+          ))}
         </div>
       </div>
     </section>
@@ -102,12 +123,10 @@ function Home() {
             </div>
         </div>
         <div className="row justify-content-between ">
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+          {courses.map((course) => (
+            <CourseCard key={course.id} />
+          ))}
+          
         </div>
       </div>
     </section>
@@ -189,4 +208,25 @@ const HomePage = styled.div`
     margin-right: 0;
 }
 `;
-export default Home
+
+Home.propTypes = {
+  users : PropTypes.array,
+  usersLoader : PropTypes.bool,
+  courses : PropTypes.array,
+  coursesLoader : PropTypes.bool,
+  categories : PropTypes.array,
+  categoriesLoader : PropTypes.bool,
+  dispatch: PropTypes.func
+}
+
+const mapStateToProps = state => {
+  return{
+    users: state.users.users,
+    usersLoader: state.users.loading,
+    courses: state.courses.courses ,
+    coursesLoader: state.courses.loading,
+    categories: state.categories.categories,
+    categoriesLoader: state.categories.loading
+  }
+}
+export default  connect (mapStateToProps)(Home)
