@@ -163,7 +163,8 @@ function Home({
           {users.map((user) => (
             <Instructor key={user.id}
             image={user.avatart}
-            name={`${user.name} ${user.firstname}`}
+            name={user.name}
+            firstname={user.firstname}
             poste={user.function}
             siteweb={user.siteweb}
              />

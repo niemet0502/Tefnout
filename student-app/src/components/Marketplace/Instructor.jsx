@@ -7,7 +7,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
-function Instructor({image, name, poste, siteweb}) {
+function Instructor({image, name, firstname, poste, siteweb}) {
   return (
     <InstructorComponent>
     
@@ -20,7 +20,7 @@ function Instructor({image, name, poste, siteweb}) {
                 </div>
             </div>
             <div className="team_text pb-2">
-                <h3><a href="team-details.html">{name}</a></h3>
+                <h3><a href="team-details.html" className="mt-3">{name} {firstname}</a></h3>
 								{poste == null ? <p >Instructor</p> : <p>{poste}</p>}
                 
             </div>
@@ -32,6 +32,7 @@ function Instructor({image, name, poste, siteweb}) {
 Instructor.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
+	firstname: PropTypes.string,
   poste: PropTypes.string,
 	siteweb: PropTypes.string
 };
