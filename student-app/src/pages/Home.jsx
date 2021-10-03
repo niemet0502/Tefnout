@@ -124,7 +124,18 @@ function Home({
         </div>
         <div className="row justify-content-between ">
           {courses.map((course) => (
-            <CourseCard key={course.id} />
+            <CourseCard 
+              key={course.id} 
+              title={course.title}
+              banner={course.image}
+              level={course.level}
+              views={course.views}
+              teacher_image={course.teacher_image}
+              category_name={course.category_name}
+              follow_courses_count={course.follow_courses_count}
+              notes_count={course.notes_count}
+              total_note={course.total_note}
+            />
           ))}
           
         </div>
@@ -149,9 +160,14 @@ function Home({
             </div>
         </div>
         <div className="row d-flex justify-content-between ">
-          <Instructor/>
-          <Instructor/>
-          <Instructor/>
+          {users.map((user) => (
+            <Instructor key={user.id}
+            image={user.avatart}
+            name={`${user.name} ${user.firstname}`}
+            poste={user.function}
+            siteweb={user.siteweb}
+             />
+          ))}
         </div>
       </div>
     </section>
