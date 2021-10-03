@@ -7,23 +7,22 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
-function Instructor({image, name, poste}) {
+function Instructor({image, name, poste, siteweb}) {
   return (
     <InstructorComponent>
     
         <div className="team_single text-center mb-30">
             <div className="team_thumb">
-                <img src={team_01} alt=""/>
+								{image == null ? <img src={team_01} alt=""/> : <img src={image} alt=""/>}
+                
                 <div className="team_social social_icon">
-                    <a href="#"><FacebookIcon /></a>
-                    <a href="#"><TwitterIcon /></a>
-                    <a href="#"><InstagramIcon /></a>
-                    <a href="#"><LinkedInIcon /></a>
+                    <a href={siteweb}><FacebookIcon /></a>
                 </div>
             </div>
-            <div className="team_text">
-                <h3><a href="team-details.html">Mohammad Wasim</a></h3>
-                <p>Web Developer</p>
+            <div className="team_text pb-2">
+                <h3><a href="team-details.html">{name}</a></h3>
+								{poste == null ? <p >Instructor</p> : <p>{poste}</p>}
+                
             </div>
         </div>
     </InstructorComponent>
@@ -31,9 +30,10 @@ function Instructor({image, name, poste}) {
 }
 
 Instructor.propTypes = {
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  poste: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  name: PropTypes.string,
+  poste: PropTypes.string,
+	siteweb: PropTypes.string
 };
 
 const InstructorComponent = styled.div`
@@ -140,6 +140,14 @@ const InstructorComponent = styled.div`
 .team_details .td_social li a:hover {
 	background-color: #000;
 	color: #fff;
+}
+
+.team_text a {
+	text-decoration: none;
+}
+
+.team_text p {
+	color: #e5175c;
 }
 `;
 
