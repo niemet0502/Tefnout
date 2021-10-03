@@ -23,7 +23,7 @@ function CategoryCard({image, title}) {
 }
 
 CategoryCard.propTypes = {
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
