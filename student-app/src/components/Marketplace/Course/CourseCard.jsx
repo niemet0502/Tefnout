@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import { Link } from 'react-router-dom'
+import PropTypes from "prop-types"
 
 // import images 
 import img_01 from "../../../assets/img/img_01.jpg"
@@ -11,21 +12,31 @@ import PeopleIcon from '@material-ui/icons/People';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-function CourseCard() {
+function CourseCard({
+  title,
+  banner,
+  level,
+  views,
+  teacher_image,
+  category_name,
+  follow_courses_count,
+  notes_count,
+  total_note
+}) {
   return (
     <CourseComponent>
       <div className="course_single mb-30">
           <div className="c_thumb">
-              <img src={img_01} alt=""/>
+            {banner == null ? <img src={img_01} alt=""/> : <img src={banner} alt=""/>}
           </div>
           <div className="course_content">
               <div className="c_head">
-                  <span className="cat">Architecture</span>
-                  <span className="price">Debutant</span>
+                  <span className="cat">{category_name}</span>
+                  <span className="price">{level}</span>
               </div>
               <h3 className="title">
                 <Link to="/course-details">
-                  The Power of Podcast for Story telling Process
+                  {title}
                 </Link>
               </h3>
               <div className="rating_wrap ul_li d-flex">
@@ -40,12 +51,12 @@ function CourseCard() {
               </div>
               <ul className="c_bottom ul_li d-flex">
                   <div className="d-flex">
-                    <li className="d-flex"> <PeopleIcon />  180</li>
-                    <li className="d-flex"> <VisibilityIcon /> 28k</li>
+                    <li className="d-flex"> <PeopleIcon />  {follow_courses_count}</li>
+                    <li className="d-flex"> <VisibilityIcon /> {views}</li>
                     </div>
                   <li>
                       <div className="author">
-                          <img src={c_author} alt=""/>
+                        {teacher_image == null ? <img src={c_author} alt=""/> : <img src={teacher_image} alt=""/>} 
                       </div>
                   </li>
               </ul>
@@ -79,5 +90,17 @@ const CourseComponent = styled.div`
       padding-left: 10px;
     }
 `;
+
+CourseCard.propTypes = {
+  title: PropTypes.string,
+  banner: PropTypes.string,
+  level: PropTypes.string,
+  views: PropTypes.number,
+  teacher_image: PropTypes.string,
+  category_name: PropTypes.string,
+  follow_courses_count: PropTypes.number,
+  notes_count: PropTypes.number,
+  total_note: PropTypes.string
+}
 
 export default CourseCard
