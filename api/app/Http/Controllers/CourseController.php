@@ -34,6 +34,7 @@ class CourseController extends Controller
                 DB::raw('COUNT(notes.value) as notes_count'))
                 ->withCount('followCourses')
                 ->groupBy('courses.id')
+                ->orderBy('courses.id','DESC')
                 ->get();
 
                   
