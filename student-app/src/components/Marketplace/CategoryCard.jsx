@@ -2,15 +2,16 @@ import React from 'react'
 import styled from "styled-components"
 import PropTypes from 'prop-types';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
-function CategoryCard({image, title, description}) {
+import sImg from "../../assets/img/s_01.png"
+function CategoryCard({image, title}) {
   return (
     <CategoryCardComponent>
       <div className="ct_single">
           <div className="ser_thumb mb-4">
-              <img src={image} alt=""/>
+            {image == null ? <img src={sImg} alt=""/> : <img src={image} alt=""/>}    
           </div>
           <h3><a href="courses.html">{title}</a></h3>
-          <p>{description}</p>
+          <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, seddo eiusmod tempor.</p>
           <div className="ser_icon pt-25">
               <a href="courses.html">
                 <ArrowRightAltIcon/>
@@ -22,9 +23,8 @@ function CategoryCard({image, title, description}) {
 }
 
 CategoryCard.propTypes = {
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
 };
 
 const CategoryCardComponent = styled.div`

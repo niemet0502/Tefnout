@@ -57,13 +57,14 @@ Route::get('/admin/raiting', [NoteController::class, 'getAllCourseRatings']);
 Route::get('/admin/teacher/{id}/raiting', [NoteController::class, 'getTeacherCourseRatings']);
 
 Route::put('/users/{id}', [UserController::class, 'update']);
+Route::get('/users/profil/{id}', [UserController::class, 'getUserByProfil']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
 
     //user's routes 
     Route::get('/users/{id}', [UserController::class, 'show']);
-    Route::get('/users/profil/{id}', [UserController::class, 'getUserByProfil']);
 
 
     // Comment's routes 

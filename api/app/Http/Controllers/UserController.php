@@ -95,10 +95,12 @@ class UserController extends Controller
 
     public function getUserByProfil(int $id)
     {
-        $users = User::select('users.*', 'profils.name as profil_name')
-        ->join('profils', 'profils.id', '=', 'users.profil_id')
-        ->where('profils.id', '=', $id)
-        ->get();
+        $users = User::select('users.name', 'users.firstname', 'users.avatar', 'users.function', 'users.siteweb', 'users.id')
+            ->join('profils', 'profils.id', '=', 'users.profil_id')
+            ->where('profils.id', '=', $id)
+            ->orderBy('users.id', 'DESC')
+            ->take(3)
+            ->get();
 
         return $users;
     }
