@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Link} from "react-router-dom"
-
+import PropTypes from "prop-types"
+import { connect } from 'react-redux'
+import 'react-toastify/dist/ReactToastify.css';
 // images 
 import logo from "../../assets/img/logo.png"
-function Topbar() {
+//icons 
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
+function Topbar({user}) {
+  const [userDropdown, setUserDropdown] = useState(false)
+
+	const toggleUserDropdown = () => {
+		setUserDropdown(!userDropdown);
+	}
+
   return (
     <div>
       <header className="header_area">
@@ -26,12 +40,32 @@ function Topbar() {
                           </ul>
                         </nav>
                     </div>
-                    <div className="col-xl-3 col-lg-2 col-6">
-                        <div className="header_right">
-                            <div className="account">
-                                <Link to="/login">account</Link>
+                    <div className="col-xl-3 col-lg-2 col-6 d-flex justify-content-end">
+                        
+
+                        { Object.keys(user).length === 0 ? 
+                          <div className="header_right">
+                              <div className="account">
+                                  <Link to="/login">account</Link>
+                              </div>
+                          </div>: 
+                          <div className="header_search_wrap" onClick={toggleUserDropdown}>
+                            <div className="search_main">
+                                {userDropdown ? <CloseIcon /> : <MenuIcon />}
                             </div>
-                        </div>
+                          </div>
+                        }
+                        
+                        { userDropdown && 
+                          <div className="topbar_dropdown">
+                           <ul>
+                             <li> <PersonIcon /> Tableau de bord </li>
+                             <li> <SettingsIcon/> Parametres</li>
+                             <li> <LogoutIcon/> Se deconnecter</li>
+                           </ul>
+                          </div>
+                        }
+                        
                     </div>
                 </div>
             </div>
@@ -40,5 +74,14 @@ function Topbar() {
     </div>
   )
 }
+Topbar.propTypes = {
+  user: PropTypes.object
+}
 
-export default Topbar
+const mapStateToProps = state => {
+  return{
+    user: state.authentication.user
+  }
+}
+
+export default connect(mapStateToProps)(Topbar)
