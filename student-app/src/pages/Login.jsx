@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-
+import PropTypes from "prop-types"
+import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
+import * as actions from "../store/authentication/authentication.actions"
 // components 
 import CourseBanner from '../components/Marketplace/Course/CourseBanner'
 import FormInput from '../components/Marketplace/Form/FormInput'
 import Button from '../components/Marketplace/Button'
 
-function Login() {
-  const [user, setUser] = useState({username: "",password: ""})
+
+function Login({handleLogin, loading, hasErrors, token}) {
+  const [login, setLogin] = useState({email: "marius@niemet.com",password: "passer2019@"})
+  const [signup, setSignup] = useState({username: "",password: "",email: ""})
   const [errors, setError] = useState({})
   const [submit, setSubmit] = useState(false)
 
@@ -17,27 +22,13 @@ function Login() {
     setUser(user)
   };
 
-  function onSubmit(){
-    
+  function onSubmit(e){
+    e.preventDefault()
 
-    let err = {};
-
-    if (!user.username) {
-      err.username = "Enter your username!";
-    }
-
-    if (user.password.length < 8) {
-      err.password = "Password must be at least 8 characters!";
-    }
-
-    setError(err, () => {
-      if (Object.getOwnPropertyNames(errors).length === 0) {
-        setSubmit(true)
-      }
-    });
-
+    handleLogin(login)
   };
 
+  if (token) return <Redirect to="/" />
   return (
     <LoginPage>
       <CourseBanner/>
@@ -48,12 +39,12 @@ function Login() {
             <div className="col-lg-6">
                 <div className="account_wrap">
                   <h3 className="title">Login your Account</h3>
-                  <form action="">
+                  <form >
                     <FormInput
                       name="username"
                       type="text"
-                      value={user.username}
-                      onChange={handleChange}
+                      value={login.email}
+                      onChange={(e) => setLogin({...login, email: e.target.value})}
                       placeholder="Enter username..."
                       required
                       error={errors.username}
@@ -63,8 +54,8 @@ function Login() {
                     <FormInput
                         name="password"
                         type="password"
-                        value={user.password}
-                        onChange={handleChange}
+                        value={login.password}
+                        onChange={(e) => setLogin({...login,password: e.target.value})}
                         placeholder="Enter password..."
                         className="input"
                         error={errors.password}
@@ -84,12 +75,12 @@ function Login() {
             <div className="col-lg-6">
                 <div className="account_wrap">
                   <h3 className="title">Sign up your Account</h3>
-                  <form action="">
+                  <form >
                     <FormInput
                       name="username"
                       type="text"
-                      value={user.username}
-                      onChange={handleChange}
+                      value={signup.username}
+                      onChange={(e) => setSignup({...signup, username: e.target.value})}
                       placeholder="Enter username..."
                       required
                       error={errors.username}
@@ -98,8 +89,8 @@ function Login() {
                     <FormInput
                       name="username"
                       type="text"
-                      value={user.username}
-                      onChange={handleChange}
+                      value={signup.email}
+                      onChange={(e) => setSignup({...signup, email: e.target.value})}
                       placeholder="Enter email..."
                       required
                       error={errors.username}
@@ -109,8 +100,8 @@ function Login() {
                     <FormInput
                         name="password"
                         type="password"
-                        value={user.password}
-                        onChange={handleChange}
+                        value={signup.password}
+                        onChange={(e) => setSignup({...signup, password: e.target.value})}
                         placeholder="Enter password..."
                         className="input"
                         error={errors.password}
@@ -142,4 +133,24 @@ const LoginPage = styled.div`
   }
 `;
 
-export default Login
+Login.propTypes = {
+  loading: PropTypes.bool,
+  handleLogin: PropTypes.func,
+	hasErrors: PropTypes.bool,
+	token: PropTypes.string
+}
+
+const mapStateToProps = state => {
+	return {
+		loading: state.authentication.loading,
+		hasErrors: state.authentication.hasErrors,
+		token: state.authentication.token
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		handleLogin: user => dispatch(actions.login(user))
+	}
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
