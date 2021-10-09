@@ -19,9 +19,16 @@ export default function authenticationReducer(state = initialState, action){
       case actions.USERS_LOGIN_FAILURES: 
         return {...state, loading: false, hasErrors: true}
       case actions.USERS_LOGOUT_REQUEST: 
-        return { loading: false, token: null, user: null, hasErrors: false }
+        return { loading: false, token: null, user: {}, hasErrors: false }
       case actions.UPDATE_CURRENT_USER: 
         return {...state, user: action.payload}
+        case actions.USER_SIGNUP_SUCCESS: 
+        toast("New account created...",{
+          position: toast.POSITION.BOTTOM_LEFT,
+          theme: "colored",
+          type: toast.TYPE.SUCCESS,
+        })
+        return {...state, loading: false, hasErrors: false}
       default: 
         return state
     }
