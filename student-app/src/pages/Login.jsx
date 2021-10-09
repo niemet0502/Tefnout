@@ -10,23 +10,22 @@ import FormInput from '../components/Marketplace/Form/FormInput'
 import Button from '../components/Marketplace/Button'
 
 
-function Login({handleLogin, loading, hasErrors, token}) {
+function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
   const [login, setLogin] = useState({email: "marius@niemet.com",password: "passer2019@"})
-  const [signup, setSignup] = useState({username: "",password: "",email: ""})
+  const [signup, setSignup] = useState({username: "",password: "",email: "", profil_id: 3})
   const [errors, setError] = useState({})
-  const [submit, setSubmit] = useState(false)
-
-  function handleChange(event){
-    let user = {username: "",password: ""}
-    user[event.target.name] = event.target.value;
-    setUser(user)
-  };
 
   function onSubmit(e){
     e.preventDefault()
 
     handleLogin(login)
   };
+
+  function handleSubmitSignUp(e){
+    e.preventDefault()
+    handleSignUp(signup);
+    setSignup({username: "",password: "",email: "", profil_id: 3})
+  }
 
   if (token) return <Redirect to="/" />
   return (
@@ -39,7 +38,7 @@ function Login({handleLogin, loading, hasErrors, token}) {
             <div className="col-lg-6">
                 <div className="account_wrap">
                   <h3 className="title">Login your Account</h3>
-                  <form >
+                  <form onSubmit={onSubmit}>
                     <FormInput
                       name="username"
                       type="text"
@@ -66,7 +65,7 @@ function Login({handleLogin, loading, hasErrors, token}) {
                       type="submit"
                       className="button"
                       text="Submit"
-                      handleClick={onSubmit}
+                      disabled={loading}
                     />
 
                   </form>
@@ -75,7 +74,7 @@ function Login({handleLogin, loading, hasErrors, token}) {
             <div className="col-lg-6">
                 <div className="account_wrap">
                   <h3 className="title">Sign up your Account</h3>
-                  <form >
+                  <form onSubmit={handleSubmitSignUp}>
                     <FormInput
                       name="username"
                       type="text"
@@ -87,7 +86,7 @@ function Login({handleLogin, loading, hasErrors, token}) {
                       className="input"
                     />
                     <FormInput
-                      name="username"
+                      name="email"
                       type="text"
                       value={signup.email}
                       onChange={(e) => setSignup({...signup, email: e.target.value})}
@@ -112,7 +111,7 @@ function Login({handleLogin, loading, hasErrors, token}) {
                       type="submit"
                       className="button"
                       text="Submit"
-                      handleClick={onSubmit}
+                      disabled={loading}
                     />
 
                   </form>
@@ -137,7 +136,8 @@ Login.propTypes = {
   loading: PropTypes.bool,
   handleLogin: PropTypes.func,
 	hasErrors: PropTypes.bool,
-	token: PropTypes.string
+	token: PropTypes.string,
+  handleSignUp: PropTypes.func
 }
 
 const mapStateToProps = state => {
@@ -150,7 +150,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		handleLogin: user => dispatch(actions.login(user))
+		handleLogin: user => dispatch(actions.login(user)),
+    handleSignUp: user => dispatch(actions.Signup(user))
 	}
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Login)
