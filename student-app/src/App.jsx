@@ -15,7 +15,8 @@ import { ToastContainer } from 'react-toastify';
 import Home from "./pages/Home"
 import Topbar from "./components/Marketplace/Topbar";
 import ScrollToTop from "./components/ScrollToTop";
-import { connect } from "react-redux"
+import PrivateRoute from "./components/routing/PrivateRoute";
+import PublicRoute from "./components/routing/PublicRoute"
 //pages 
 import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
@@ -28,10 +29,10 @@ function App() {
         <ScrollToTop />
         <Topbar />
         <Switch>
-          <Route  component={Courses} path="/courses" exact />
-          <Route  component={Login} path="/login" exact />
-          <Route  component={CourseDetails} path="/course-details" exact />
-          <Route  component={Home} path="/" exact />
+          <PublicRoute  component={Courses} path="/courses" exact />
+          <PublicRoute  component={Login} path="/login" exact />
+          <PublicRoute  component={CourseDetails} path="/course-details" exact />
+          <PublicRoute  component={Home} path="/" exact />
         </Switch>
       </Router>
 
