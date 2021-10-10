@@ -59,6 +59,8 @@ Route::get('/admin/teacher/{id}/raiting', [NoteController::class, 'getTeacherCou
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::get('/users/profil/{id}', [UserController::class, 'getUserByProfil']);
 
+//student's course 
+Route::get('/student/trainings/{id}', [FormationController::class, 'getStudentFormations']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
@@ -93,8 +95,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/formation/chapter', [FormationController::class, 'valideChapter']); // validated chapter
     Route::delete('/formation/chapter/{id}', [FormationController::class, 'unvalideChapter']); // unvalidated chapter
 
-    //student's course 
-    Route::get('/student/courses/{id}', [FormationController::class, 'studentsCourse']);
+    
 
     // get student's review 
     Route::get('/students/reviews/{id}', [FormationController::class, 'studentReviews']);
