@@ -180,6 +180,7 @@ function Home({
 const HomePage = styled.div`
   margin: 0;
   padding: 0 !important;
+  padding-top: 120px !important;
  
   //margin-top: var(--bs-gutter-y);
 
