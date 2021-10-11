@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types"
 import { percentage } from '../utils/helpers';
 import ProgressBar from '../components/Marketplace/ProgressBar';
-
-function Dashboard({trainings,dispatch,user}) {
+import Certificate from '../components/Marketplace/Certificate';
+function Dashboard({trainings,dispatch,user,certificates}) {
 
   useEffect(() => {
     dispatch(actions.fetchTrainings(user.id))
@@ -65,6 +65,14 @@ function Dashboard({trainings,dispatch,user}) {
         <div id="certificats" className="mt-5">
           <h3>Certificats de cours</h3>
           <hr />
+
+          <ul className="d-flex justify-content-center">
+            {certificates.map((certif) => (
+              <li key={certif.id}>
+                <Certificate title={certif.course_title} />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
@@ -73,6 +81,7 @@ function Dashboard({trainings,dispatch,user}) {
 
 Dashboard.propTypes = {
   trainings: PropTypes.array,
+  certificates: PropTypes.array,
   user: PropTypes.object,
   dispatch: PropTypes.func
 }
@@ -80,7 +89,8 @@ Dashboard.propTypes = {
 const mapStateToProps = state => {
   return {
     trainings: state.trainings.trainings,
-    user: state.authentication.user
+    user: state.authentication.user,
+    certificates: state.trainings.certificates
   }
 }
 
