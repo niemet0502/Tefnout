@@ -1,7 +1,6 @@
 
 
 export const parseRaitings = response => {
-  console.log(response);
   let count = 0;
   let sum = 0;
   let moy = 0;

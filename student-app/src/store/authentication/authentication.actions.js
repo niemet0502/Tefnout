@@ -28,12 +28,11 @@ export function login(user){
           }).then(result => {
 
             // save user's informations in localStorage 
-            console.log(result.data.user);
-            storeAuthToken(result.data.token)
+            storeAuthToken(result.data.token);
             storeUser(JSON.stringify(result.data.user))
             
             dispatch(loginUserSuccess(result.data))
-            history.push('/');
+            history.push('/dashboard');
           }).catch(error => {
             console.log(error.response.data.errors);
             dispatch(loginUserfailure())
