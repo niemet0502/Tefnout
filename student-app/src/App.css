@@ -2014,7 +2014,7 @@ input:focus, textarea:focus {
 }
 
 .header_search_wrap .search_main {
-	color: #fff;
+	color: #a3a3a3;
 	height: 50px;
 	width: 50px;
 	border-radius: 50% !important;
@@ -2029,7 +2029,7 @@ input:focus, textarea:focus {
 .header_search_wrap .search_main:hover {
 	transition: 0.3s;
 	background-color: #0073ff;
-	color: #fff; 
+	color: #a3a3a3; 
 	cursor: pointer;
 }
 
@@ -2119,7 +2119,8 @@ input:focus, textarea:focus {
 	flex: 2;
 	margin-left: 300px;
 	background-color: #F7F7F7;
-	height: 100vh;
+	min-height: 100vh;
+	height: auto;
 	padding: 30px 40px 30px 20px;
 }
 
@@ -2170,4 +2171,70 @@ input:focus, textarea:focus {
 	position: absolute;
 	bottom: -7px;
 	left: 20px;
+}
+
+.courseHit__illustration {
+	height: 122px;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	background-position: center center !important;
+	position: relative;
+}
+.courseHit__title {
+	margin-top: 10px;
+	margin-bottom: 0;
+	font-size: 1.063rem;
+	line-height: 1.688rem;
+	font-weight: 500;
+	text-align: left;
+	padding: 15px;
+	min-height: 108px;
+	overflow: hidden;
+	position: relative;
+}
+.courseHit__author {
+	padding: 5px 10px;
+	position: absolute;
+	bottom: -12px;
+	left: 15px;
+	background: #fff;
+	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 20%);
+	border-radius: 20px;
+	font-size: .563rem;
+	line-height: .75rem;
+	text-transform: uppercase;
+	max-width: 190px;
+}
+.courseHit__authorOriginal {
+	text-transform: capitalize;
+}
+.courseHit__authorOC {
+	font-weight: 500;
+	color: #7451eb;
+}
+.courseHit__action {
+	border-top: 1px solid rgba(0,0,0,.1);
+	padding: 15px 0;
+	background: rgba(0,0,0,.03);
+	text-align: center;
+}
+
+.courseHit:hover {
+	color: rgba(0,0,0,.92);
+	box-shadow: 0 6px 6px 0 rgb(0 0 0 / 26%), 0 10px 20px 0 rgb(0 0 0 / 19%);
+	cursor: pointer;
+}
+
+.courseHit {
+	width: 218px;
+	display: block;
+	text-decoration: none;
+	border-radius: 5px;
+	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 20%);
+	background: #fff;
+	cursor: pointer;
+	outline: 0;
+	position: relative;
+	margin-bottom: 40px;
+	overflow: hidden;
 }
