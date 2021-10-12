@@ -21,24 +21,21 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::join('users', 'users.id', '=', 'courses.teacher_id')
-                ->join('categories', 'categories.id', '=', 'courses.category_id')
-                ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
-                ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
-                ->select('courses.title', 
-                'courses.image',
-                'courses.level',
-                'courses.views',
-                'users.avatar as teacher_image', 
-                'categories.name as category_name',
-                DB::raw('SUM(notes.value) as total_note'),
-                DB::raw('COUNT(notes.value) as notes_count'))
-                ->withCount('followCourses')
-                ->groupBy('courses.id')
-                ->orderBy('courses.id','DESC')
-                ->get();
-
-                  
-
+            ->join('categories', 'categories.id', '=', 'courses.category_id')
+            ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+            ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
+            ->select('courses.title', 
+            'courses.image',
+            'courses.level',
+            'courses.views',
+            'users.avatar as teacher_image', 
+            'categories.name as category_name',
+            DB::raw('SUM(notes.value) as total_note'),
+            DB::raw('COUNT(notes.value) as notes_count'))
+            ->withCount('followCourses')
+            ->groupBy('courses.id')
+            ->orderBy('courses.id','DESC')
+            ->get();
 
         $response = [
             'courses' => $courses,
@@ -246,6 +243,33 @@ class CourseController extends Controller
             'status' => 'success',
             'courses' => $courses
         ],200);
+    }
+
+    public function getCoursesByCategories(int $id){
+        $courses = Course::join('users', 'users.id', '=', 'courses.teacher_id')
+            ->join('categories', 'categories.id', '=', 'courses.category_id')
+            ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+            ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
+            ->select('courses.title', 
+            'courses.image',
+            'courses.level',
+            'courses.views',
+            'users.avatar as teacher_image', 
+            'categories.name as category_name',
+            DB::raw('SUM(notes.value) as total_note'),
+            DB::raw('COUNT(notes.value) as notes_count'))
+            ->where('categories.id', '=', $id)
+            ->withCount('followCourses')
+            ->groupBy('courses.id')
+            ->orderBy('courses.id','DESC')
+            ->get();
+
+        $response = [
+            'courses' => $courses,
+            'status' => 200
+        ];
+
+        return $response;
     }
 
 }
