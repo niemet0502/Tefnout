@@ -54,7 +54,7 @@ const ButtonComponent = styled.button`
 
   &:hover {
     color: #ffff;
-    background-color: ${props => props.bgColorHover || "#e5175c"};
+    background-color: ${props => props.bgColor == "#0073ff" ? "#0073ff" : "#e5175c"};
   }
 
   svg{
