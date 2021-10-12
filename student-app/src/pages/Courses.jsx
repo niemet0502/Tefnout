@@ -78,6 +78,8 @@ function Courses() {
 }
 
 const CoursePage = styled.div`
+  padding-top: 110px;
+
   .course_page_banner{
     background-image: url(${bg_image});
   }

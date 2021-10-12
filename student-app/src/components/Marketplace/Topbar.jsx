@@ -59,7 +59,7 @@ function Topbar({user}) {
                         { userDropdown && 
                           <div className="topbar_dropdown">
                            <ul>
-                             <li> <PersonIcon /> Tableau de bord </li>
+                             <li> <Link to="/dashboard"><PersonIcon /> Tableau de bord</Link> </li>
                              <li> <SettingsIcon/> Parametres</li>
                              <li> <LogoutIcon/> Se deconnecter</li>
                            </ul>

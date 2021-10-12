@@ -21,6 +21,7 @@ import PublicRoute from "./components/routing/PublicRoute"
 import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
 import Login from "./pages/Login";
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <PublicRoute  component={Courses} path="/courses" exact />
           <PublicRoute  component={Login} path="/login" exact />
           <PublicRoute  component={CourseDetails} path="/course-details" exact />
+          <PrivateRoute  component={Dashboard} path="/dashboard" exact />
           <PublicRoute  component={Home} path="/" exact />
         </Switch>
       </Router>

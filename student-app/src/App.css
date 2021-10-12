@@ -2006,9 +2006,15 @@ input:focus, textarea:focus {
 .header_area a{
 	text-decoration: none;
 }
+.header_area{
+	position: fixed;
+	z-index: 10;
+	background-color: white;
+	width: 100%;
+}
 
 .header_search_wrap .search_main {
-	color: #fff;
+	color: #a3a3a3;
 	height: 50px;
 	width: 50px;
 	border-radius: 50% !important;
@@ -2023,7 +2029,7 @@ input:focus, textarea:focus {
 .header_search_wrap .search_main:hover {
 	transition: 0.3s;
 	background-color: #0073ff;
-	color: #fff; 
+	color: #a3a3a3; 
 	cursor: pointer;
 }
 
@@ -2046,6 +2052,12 @@ input:focus, textarea:focus {
 	z-index: 11;
 	will-change: transform,opacity;
 }
+.topbar_dropdown a{
+	color: black;
+}
+.topbar_dropdown a:hover{
+	color: black;
+}
 
 .topbar_dropdown ul {
 	margin: 0px !important;
@@ -2061,4 +2073,168 @@ input:focus, textarea:focus {
 
 .topbar_dropdown ul li svg{
 	margin-right: 10px;
+}
+
+.dashboard-container{
+	background-color: #F7F7F7;
+	padding-top: 113px;
+	display: flex;
+}
+
+.dashboard-container .dashboard_sidebar {
+	width:250px;
+	position: fixed;
+	height: 100vh;
+	background-color: white;
+	border-right: 1px solid gray;
+}
+
+.dashboard-container .dashboard_sidebar .active-link{
+	padding: 10px 0px 10px 16px;
+	background-color: rgba(116, 81, 235, 0.08);
+	border-radius: 0 24px 24px 0;
+	width: calc(100% - 16px);
+	text-align: left;
+	margin-top: 30px;
+	color: black;
+	font-size: 18px;
+	text-decoration: none;
+}
+.dashboard-container .dashboard_sidebar ul {
+	padding-left: 0px;
+}
+.dashboard-container .dashboard_sidebar ul a{
+	padding: 10px 0px 10px 16px;
+	color: black;
+	font-size: 18px;
+	padding-left: 48px;
+	text-decoration: none;
+	width: 100%;
+}
+.dashboard-container .dashboard_sidebar ul a:hover {
+	background-color: rgba(116, 81, 235, 0.08);
+	color: #0073ff;
+}
+.dashboard-container .dashboard-content{
+	flex: 2;
+	margin-left: 300px;
+	background-color: #F7F7F7;
+	min-height: 100vh;
+	height: auto;
+	padding: 30px 40px 30px 20px;
+}
+
+.dashboard-container .dashboard-content table{
+	width: 100%;
+	margin-top: 30px;
+	background-color: white;
+	box-shadow: 0 0 8px #9b9b9b;
+}
+
+.dashboard-container .dashboard-content table thead{
+	padding: 14px !important;
+	border-radius: 4px;
+	font-family: 'Roboto', sans-serif;
+	color: white !important;
+	font-weight: normal;
+	background-color: #003668;;
+}
+
+.dashboard-container .dashboard-content table td{
+	padding: 10px;
+	border: 1px solid rgba(0,0,0,0.15);
+}
+
+.dashboard-container .dashboard-content h3{
+	font-family: 'Roboto';
+}
+
+.progressbar__rate {
+	background-color: #2e7e32;
+	display: inline-block;
+	min-width: 45px;
+	margin-bottom: 8px;
+	border-radius: 12px;
+	padding: 5px;
+	color: #fff;
+	position: relative;
+}
+
+.progressbar__rate::after {
+	content: " ";
+	display: inline-block;
+	height: 0;
+	width: 0;
+	border: 1px solid transparent;
+	border-top-color: #2e7e32;
+	border-width: 7px 5px 0 5px;
+	position: absolute;
+	bottom: -7px;
+	left: 20px;
+}
+
+.courseHit__illustration {
+	height: 122px;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	background-position: center center !important;
+	position: relative;
+}
+.courseHit__title {
+	margin-top: 10px;
+	margin-bottom: 0;
+	font-size: 1.063rem;
+	line-height: 1.688rem;
+	font-weight: 500;
+	text-align: left;
+	padding: 15px;
+	min-height: 108px;
+	overflow: hidden;
+	position: relative;
+}
+.courseHit__author {
+	padding: 5px 10px;
+	position: absolute;
+	bottom: -12px;
+	left: 15px;
+	background: #fff;
+	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 20%);
+	border-radius: 20px;
+	font-size: .563rem;
+	line-height: .75rem;
+	text-transform: uppercase;
+	max-width: 190px;
+}
+.courseHit__authorOriginal {
+	text-transform: capitalize;
+}
+.courseHit__authorOC {
+	font-weight: 500;
+	color: #7451eb;
+}
+.courseHit__action {
+	border-top: 1px solid rgba(0,0,0,.1);
+	padding: 15px 0;
+	background: rgba(0,0,0,.03);
+	text-align: center;
+}
+
+.courseHit:hover {
+	color: rgba(0,0,0,.92);
+	box-shadow: 0 6px 6px 0 rgb(0 0 0 / 26%), 0 10px 20px 0 rgb(0 0 0 / 19%);
+	cursor: pointer;
+}
+
+.courseHit {
+	width: 218px;
+	display: block;
+	text-decoration: none;
+	border-radius: 5px;
+	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 20%);
+	background: #fff;
+	cursor: pointer;
+	outline: 0;
+	position: relative;
+	margin-bottom: 40px;
+	overflow: hidden;
 }

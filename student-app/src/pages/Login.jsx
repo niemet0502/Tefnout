@@ -11,7 +11,7 @@ import Button from '../components/Marketplace/Button'
 
 
 function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
-  const [login, setLogin] = useState({email: "marius@niemet.com",password: "passer2019@"})
+  const [login, setLogin] = useState({email: "mariusn@gmail.com",password: "passer2019@"})
   const [signup, setSignup] = useState({username: "",password: "",email: "", profil_id: 3})
   const [errors, setError] = useState({})
 
