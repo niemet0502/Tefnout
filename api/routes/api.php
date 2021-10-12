@@ -32,6 +32,7 @@ Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/courses/{id}', [CourseController::class, 'show']);
 Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
+Route::get('/categories/{id}/courses', [CourseController::class, 'getCoursesByCategories']);
 
 Route::resource('categories', CategoryController::class);
 
