@@ -123,10 +123,12 @@ function Home({
             </div>
         </div>
         <div className="row justify-content-between ">
+ 
           {courses.map((course) => (
             <CourseCard 
               key={course.id} 
               title={course.title}
+              slug={course.slug}
               banner={course.image}
               level={course.level}
               views={course.views}
