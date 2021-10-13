@@ -28,6 +28,7 @@ class CourseController extends Controller
             'courses.image',
             'courses.level',
             'courses.views',
+            'courses.slug',
             'users.avatar as teacher_image', 
             'categories.name as category_name',
             DB::raw('SUM(notes.value) as total_note'),
@@ -65,8 +66,12 @@ class CourseController extends Controller
             'topics' => 'nullable'
         ]);
 
+          
+        $maxId = Course::orderBy('id', 'desc')->value('id'); 
+
         $course = new Course();
         $course->title = $request->title;
+        $course->slug = str_replace(' ', '-', $request->title);
         $course->description = $request->description;
         $course->image = $request->image;
         $course->video = $request->video;
@@ -92,10 +97,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //get course's infos and count, sum notes
-        $courses = Course::where('courses.id', '=', $id)
+        $courses = Course::where('courses.slug', '=', $slug)
                 ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
                 ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
                 ->select('courses.*',
@@ -105,7 +110,7 @@ class CourseController extends Controller
                 ->get();   
 
         // get Reviews 
-        $reviews = FollowCourse::where('follow_courses.course_id', $id)
+        $reviews = FollowCourse::where('follow_courses.course_id', $courses->id)
                 ->join('comments', 'comments.formation_id', '=', 'follow_courses.id')
                 ->join('users', 'users.id', '=', 'follow_courses.student_id')
                 ->select('comments.*', 
@@ -131,7 +136,7 @@ class CourseController extends Controller
 
         //get course's program 
 
-        $program = Section::where("course_id", $id)
+        $program = Section::where("course_id", $courses->id)
                 ->select('sections.title',
                 'sections.id')
                 ->get();
@@ -254,6 +259,7 @@ class CourseController extends Controller
             'courses.image',
             'courses.level',
             'courses.views',
+            'courses.slug',
             'users.avatar as teacher_image', 
             'categories.name as category_name',
             DB::raw('SUM(notes.value) as total_note'),
