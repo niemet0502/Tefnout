@@ -88,7 +88,9 @@ function CourseDetails({
               <div>
                 <Tabs> 
                   <div label="Overview"> 
-                    See ya later, <em>Alligator</em>! 
+                    <div className="ov_text_wrap">
+                      <p>{course.description}</p>
+                    </div>
                   </div>
                   <div label="Curriculum"> 
                     See ya later, <em>Alligator</em>! 
