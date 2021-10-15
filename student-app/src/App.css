@@ -2238,3 +2238,49 @@ input:focus, textarea:focus {
 	margin-bottom: 40px;
 	overflow: hidden;
 }
+
+/* reviews tab */
+.post_comment .comment_title {
+	font-size: 26px;
+	margin-bottom: 40px;
+}
+
+.instructor_info .info .title {
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+.cdl_bottom .tab-list{
+	padding-left: 0px;
+}
+.cdl_bottom .tab-list .tab-list-item button{
+	border: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+/* instructor tab */
+.instructor_wrap .instructor_img {
+	width: 155px;
+	height: 135px;
+	overflow: hidden;
+	margin-right: 30px;
+}
+.instructor_info .info .title {
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+.ul_li {
+	justify-content: flex-start;
+}
+.ul_li, .ul_li_right, .ul_li_center {
+	margin: 0px;
+	padding: 0px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.instructor_function {
+	font-size: 19px;
+	color: #0073ff;
+	font-weight: 500;
+}
