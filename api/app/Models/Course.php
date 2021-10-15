@@ -12,6 +12,7 @@ class Course extends Model
         'teacher_id',
         'category_id',
         'title',
+        'slug',
         'description',
         'image',
         'video',
