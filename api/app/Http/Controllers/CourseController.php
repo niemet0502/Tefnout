@@ -109,44 +109,9 @@ class CourseController extends Controller
                 ->groupBy('courses.id')
                 ->get();   
 
-        // get Reviews 
-        $reviews = FollowCourse::where('follow_courses.course_id', $courses->id)
-                ->join('comments', 'comments.formation_id', '=', 'follow_courses.id')
-                ->join('users', 'users.id', '=', 'follow_courses.student_id')
-                ->select('comments.*', 
-                'users.name as user_name',
-                'users.firstname as user_firstname',
-                'users.avatar as user_avatar')
-                ->groupBy('comments.id')
-                ->get();
-        
-        // get teacher's infos 
-        $instructor = User::where('users.id', $courses[0]['teacher_id'])
-            ->leftJoin('courses', 'courses.teacher_id', '=', 'users.id')
-            ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
-            ->select('users.name',
-            'users.firstname',
-            'users.avatar',
-            'users.function',
-            'users.bio',
-            DB::raw('COUNT(courses.id) as courses_count'),
-            DB::raw('COUNT(follow_courses.id) as students_count'))
-            ->groupBy('users.id')  
-            ->get();
-
-        //get course's program 
-
-        $program = Section::where("course_id", $courses->id)
-                ->select('sections.title',
-                'sections.id')
-                ->get();
 
         return response([
-            'course' => $courses,
-            'reviews' => $reviews,
-            'instructor' => $instructor,
-            'program' => $program,
-            'message' => 'Cours ajouté avec succès !'
+            'course' => $courses[0],
         ], 200);
     }
 
