@@ -95,44 +95,24 @@ function CourseDetails({
                   </div> 
                   <div label="Instructor"> 
                   <div className="instructor_wrap">
-                      <div className="instructor_info ul_li">
+                      <div className="instructor_info ul_li justify-content-start">
                           <div className="instructor_img">
-                              <img src="assets/img/course/details/instructor.jpg" alt="" />
+                            { user.avatar == null ? <img src={instructorImg} alt="" /> : <img src={user.avatar} alt="" /> }
+                              <img src={instructorImg} alt="" />
                           </div>
                           <div className="info">
-                              <h3 className="title">Rasalina De WIllamson</h3>
-                              <div className="instructor_rating ul_li">
-                                  <ul className="rating_star ul_li">
-                                      <li><i className="fas fa-star"></i></li>
-                                      <li><i className="fas fa-star"></i></li>
-                                      <li><i className="fas fa-star"></i></li>
-                                      <li><i className="fal fa-star"></i></li>
-                                      <li><i className="fal fa-star"></i></li>
-                                  </ul>
-                                  <div className="review">
-                                      <span>4.9 Rating</span>
-                                  </div>
-                              </div>
+                              <h3 className="title">{user.name} {user.firstname}</h3>
                               <div className="instructor_student ul_li">
-                                  <span>24 Course</span>
-                                  <span>243 Student</span>
+                                  <span>{user.courses_count} Course (s) </span>
+                                  <span>{user.students_count} Student (s) </span>
                               </div>
-                              <div className="instructor_btn mt-20">
-                                  <a href="#">view All Course<i
-                                          className="fal fa-long-arrow-right"></i></a>
+                              <div className="instructor_btn mt-2">
+                                <span className="instructor_function">{user.function}</span>
                               </div>
                           </div>
                       </div>
-                      <div className="instructor_dtls mt-30">
-                          <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                              enim ad minim veniam, quis nostrud exercitation eyee. ullamco
-                              laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolorrepr ehenderit in voluptate velit esse cillum dolore eu
-                              fugiat nulla pariatur. Excepteur sint occaecat yeef cupidatat
-                              non proident, sunt in culpa qui officia deserunt mollit anim id
-                              est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                              voluptatem</p>
+                      <div className="instructor_dtls mt-4">
+                          <p>{user.bio}</p>
                       </div>
                   </div>
                   </div> 
