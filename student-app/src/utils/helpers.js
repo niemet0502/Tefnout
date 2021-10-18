@@ -16,3 +16,11 @@ export function percentage(a,b){
   a = parseInt(a);
   return Math.round(((b*100)/a));
 }
+
+export function parseTrainingObjet(tr){
+  if( tr.length == 0){
+    return false
+  }else{
+    return tr[0]
+  }
+}
