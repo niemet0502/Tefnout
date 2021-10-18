@@ -63,6 +63,7 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 
 //student's trainings 
 Route::get('/student/trainings/{id}', [FormationController::class, 'getStudentFormations']);
+Route::get('/student/{student}/training/{cours}', [FormationController::class, 'checkIfTrainingsExist']);
 
 // reviews 
 Route::get('/course/{id}/reviews', [CommentController::class, 'getCourseReviews']);
