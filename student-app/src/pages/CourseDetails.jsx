@@ -25,7 +25,8 @@ function CourseDetails({
   dispatch,
   course,
   user,
-  reviews
+  reviews,
+  token
 }) {
   
   useEffect(() => {
@@ -36,8 +37,27 @@ function CourseDetails({
 
   useEffect(() => {
     dispatch(fetchUser(course.teacher_id))
-    dispatch(fetchCourseReviews(course.teacher_id))
+    dispatch(fetchCourseReviews(course.id))
   }, [course])
+
+
+  const renderTrainingButton = () => {
+    if (token == null){
+      return (
+         <Button 
+            text="Commencer la formation"
+            bgColorHover="#0073ff"
+            Icon={ArrowRightAltIcon} />
+      )
+    }else{
+      return (
+         <Button 
+          text="Continuer la formation"
+          bgColorHover="#0073ff"
+          Icon={ArrowRightAltIcon} />
+        )
+    }
+  }
 
   return (
     <CourseDetailsComponent>
@@ -133,7 +153,6 @@ function CourseDetails({
                                   <span className="date"><i className="fal fa-calendar-alt"></i>
                                       {review.created_at.substr(0,10)}</span>
                                   <div className="cd_review_wrap ul_li">
-                                      
                                   </div>
                                   <p>{review.content}</p>
                               </div>
@@ -171,15 +190,12 @@ function CourseDetails({
                               <span>Beginner</span>
                           </li>
                           <li>
-                              <span className="left">Quizzers :</span>
-                              <span>2</span>
+                              <span className="left">Views :</span>
+                              <span>{course.views}</span>
                           </li>
                       </ul>
                       <div className="course_btn text-center mt-3 d-flex justify-content-center">
-                        <Button 
-                          text="Enroll Course"
-                          bgColorHover="#0073ff"
-                          Icon={ArrowRightAltIcon} />
+                       {renderTrainingButton()}
                       </div>
                   </div>
               </div>
@@ -205,14 +221,16 @@ CourseDetails.propTypes = {
   dispatch: PropTypes.func,
   course: PropTypes.object,
   user: PropTypes.object,
-  reviews: PropTypes.array
+  reviews: PropTypes.array,
+  token: PropTypes.string
 }
 
 const mapStateToProps = state => {
   return {
     course: state.course.course,
     user: state.user.user,
-    reviews: state.reviews.reviews
+    reviews: state.reviews.reviews,
+    token: state.authentication.token
   }
 }
 export default connect(mapStateToProps)(CourseDetails)

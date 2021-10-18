@@ -8,6 +8,7 @@ import reviewsReducer from './reviews/reviews.reducer';
 import courseReducer from './course/course.reducer';
 import userReducer from './user/user.reducer';
 import curriculumReducer from './curriculum/curriculum.reducer';
+import formationReducer from './formation/formation.reducer';
 
 const rootReducer = combineReducers({
   categories: categoriesReducer,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   course: courseReducer,
   reviews: reviewsReducer,
   user: userReducer,
-  curriculum: curriculumReducer
+  curriculum: curriculumReducer,
+  training: formationReducer
 })
 
 export default rootReducer

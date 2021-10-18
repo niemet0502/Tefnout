@@ -31,9 +31,7 @@ function Home({
   useEffect(() => {
     dispatch(fetchCategories())
     dispatch(fetchLastCourses())
-    dispatch(fetchInstructor())
-
-
+    // dispatch(fetchInstructor())
   }, [dispatch])
 
   return (
@@ -162,7 +160,7 @@ function Home({
             </div>
         </div>
         <div className="row d-flex justify-content-between ">
-          {users.map((user) => (
+          {/* {users.map((user) => (
             <Instructor key={user.id}
             image={user.avatart}
             name={user.name}
@@ -170,7 +168,7 @@ function Home({
             poste={user.function}
             siteweb={user.siteweb}
              />
-          ))}
+          ))} */}
         </div>
       </div>
     </section>

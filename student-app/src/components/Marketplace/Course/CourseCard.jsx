@@ -50,7 +50,7 @@ function CourseCard({
                       <li><StarBorderIcon /></li>
                   </ul>
               </div>
-              <ul className="c_bottom ul_li d-flex">
+              <ul className="c_bottom ul_li d-flex p-1 mt-2">
                   <div className="d-flex">
                     <li className="d-flex"> <PeopleIcon />  {follow_courses_count}</li>
                     <li className="d-flex"> <VisibilityIcon /> {views}</li>

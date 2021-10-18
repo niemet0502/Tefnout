@@ -13,7 +13,6 @@ export function fetchCourseReviews(id){
       const response = await fetch(`http://127.0.0.1:8000/api/course/${id}/reviews`)
       const data = await response.json()
 
-      console.log(data);
       dispatch(getReviewSuccess(data.reviews))
     } catch (error) {
       dispatch(getReviewFailures())
