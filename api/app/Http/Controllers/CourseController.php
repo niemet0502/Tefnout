@@ -107,11 +107,13 @@ class CourseController extends Controller
                 DB::raw('SUM(notes.value) as total_notes'),
                 DB::raw('COUNT(notes.value) as notes_count'))
                 ->groupBy('courses.id')
-                ->get();   
+                ->first();   
 
-
+        
+        Course::find($courses->id)->increment('views');
+        
         return response([
-            'course' => $courses[0],
+            'course' => $courses,
         ], 200);
     }
 
