@@ -8,7 +8,7 @@ function PrivateRoute({component: Component, ...rest}) {
     <Route {...rest} render={props => (
       getStoredAuthToken() ?
       <Component {...props} />
-      : <Redirect to="/" />
+      : <Redirect to="/login" />
     )}
     />
   )
