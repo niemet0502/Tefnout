@@ -150,4 +150,12 @@ class FormationController extends Controller
         return $response;
     }
 
+    public function checkIfTrainingsExist(int $cours,int $student){
+
+
+        $training = FollowCourse::where([['course_id', '=', $cours], ['student_id', '=', $student]])->get();
+
+        return $training;
+    }
+
 }

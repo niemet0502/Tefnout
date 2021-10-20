@@ -16,3 +16,55 @@ export function percentage(a,b){
   a = parseInt(a);
   return Math.round(((b*100)/a));
 }
+
+export function parseTrainingObjet(tr){
+  if( tr.length == 0){
+    return false
+  }else{
+    return tr[0]
+  }
+}
+
+
+
+export function parseCurriculumArray(arr){
+  let newArray = []
+  for (let i = 0; i < arr.length; i++) {
+    const elm = arr[i];
+    let verifie = false;
+    let chapters = []
+    if( i > 0){
+      for (let j = 0; j < i; j++) {
+        const element = arr[j];
+
+        if(elm.id == element.id){
+          verifie = true
+        }
+      }
+    }
+
+    if( verifie == false){
+     
+      for (let j = i; j < arr.length; j++) {
+        const element = arr[j];
+        
+        
+        if(elm.id == element.id){
+          chapters.push({
+            "id": element.chapter_id,
+            "chapter_title": element.chapter_title
+          })
+        }
+      }
+
+      newArray.push({
+        "id": elm.id,
+        "section_title": elm.section_title,
+        "chapters": chapters
+      })
+    }
+    
+  }
+
+  return newArray
+}

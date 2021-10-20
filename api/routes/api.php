@@ -29,9 +29,10 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //course's route {list, search and show}
 Route::get('/courses', [CourseController::class, 'index']);
-Route::get('/courses/{id}', [CourseController::class, 'show']);
+Route::get('/courses/{slug}', [CourseController::class, 'show']);
 Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
+Route::get('/course/{id}/curriculum', [CourseController::class, 'getCourseCurriculum']);
 Route::get('/categories/{id}/courses', [CourseController::class, 'getCoursesByCategories']);
 
 Route::resource('categories', CategoryController::class);
@@ -59,15 +60,19 @@ Route::get('/admin/teacher/{id}/raiting', [NoteController::class, 'getTeacherCou
 
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::get('/users/profil/{id}', [UserController::class, 'getUserByProfil']);
+Route::get('/users/{id}', [UserController::class, 'show']);
 
-//student's course 
+//student's trainings 
 Route::get('/student/trainings/{id}', [FormationController::class, 'getStudentFormations']);
+Route::get('/student/{student}/training/{cours}', [FormationController::class, 'checkIfTrainingsExist']);
+
+// reviews 
+Route::get('/course/{id}/reviews', [CommentController::class, 'getCourseReviews']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
 
     //user's routes 
-    Route::get('/users/{id}', [UserController::class, 'show']);
 
 
     // Comment's routes 

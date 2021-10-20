@@ -66,6 +66,7 @@ function Courses({courses,dispatch,categories}) {
               <CourseCard 
                 key={course.id} 
                 title={course.title}
+                slug={course.slug}
                 banner={course.image}
                 level={course.level}
                 views={course.views}

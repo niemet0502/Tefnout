@@ -32,7 +32,7 @@ function App() {
         <Switch>
           <PublicRoute  component={Courses} path="/courses" exact />
           <PublicRoute  component={Login} path="/login" exact />
-          <PublicRoute  component={CourseDetails} path="/course-details" exact />
+          <PublicRoute  component={CourseDetails} path="/course/:slug" exact />
           <PrivateRoute  component={Dashboard} path="/dashboard" exact />
           <PublicRoute  component={Home} path="/" exact />
         </Switch>

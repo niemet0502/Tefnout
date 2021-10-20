@@ -41,10 +41,21 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user =  User::find($id);
+        $user = User::where('users.id', $id)
+            ->leftJoin('courses', 'courses.teacher_id', '=', 'users.id')
+            ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+            ->select('users.name',
+            'users.firstname',
+            'users.avatar',
+            'users.function',
+            'users.bio',
+            DB::raw('COUNT(courses.id) as courses_count'),
+            DB::raw('COUNT(follow_courses.id) as students_count'))
+            ->groupBy('users.id')  
+            ->get();
 
         return response([
-            'user', $user,
+            'user' => $user[0],
             'status' => 'success',
         ], 200);
     }
@@ -95,9 +106,9 @@ class UserController extends Controller
 
     public function getUserByProfil(int $id)
     {
-        $users = User::select('users.name', 'users.firstname', 'users.avatar', 'users.function', 'users.siteweb', 'users.id')
+        $users = User::select('users.name', 'users.firstname', 'users.avatar', 'users.function', 'users.siteweb', 'users.id', 'users.profil_id')
             ->join('profils', 'profils.id', '=', 'users.profil_id')
-            ->where('profils.id', '=', $id)
+            ->where('users.profil_id', '=', $id)
             ->orderBy('users.id', 'DESC')
             ->take(3)
             ->get();

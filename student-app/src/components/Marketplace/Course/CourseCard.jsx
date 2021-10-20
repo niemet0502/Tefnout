@@ -21,6 +21,7 @@ function CourseCard({
   category_name,
   follow_courses_count,
   notes_count,
+  slug, 
   total_note
 }) {
   return (
@@ -35,7 +36,7 @@ function CourseCard({
                   <span className="price">{level}</span>
               </div>
               <h3 className="title">
-                <Link to="/course-details">
+                <Link to={`/course/${slug}`}>
                   {title}
                 </Link>
               </h3>
@@ -49,7 +50,7 @@ function CourseCard({
                       <li><StarBorderIcon /></li>
                   </ul>
               </div>
-              <ul className="c_bottom ul_li d-flex">
+              <ul className="c_bottom ul_li d-flex p-1 mt-2">
                   <div className="d-flex">
                     <li className="d-flex"> <PeopleIcon />  {follow_courses_count}</li>
                     <li className="d-flex"> <VisibilityIcon /> {views}</li>
@@ -100,7 +101,8 @@ CourseCard.propTypes = {
   category_name: PropTypes.string,
   follow_courses_count: PropTypes.number,
   notes_count: PropTypes.number,
-  total_note: PropTypes.string
+  total_note: PropTypes.string,
+  slug: PropTypes.string
 }
 
 export default CourseCard

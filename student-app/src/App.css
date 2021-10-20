@@ -1106,7 +1106,7 @@ input:focus, textarea:focus {
 	right: 25px;
 	line-height: 1;
 	font-size: 14px;
-	content: "\e61a";
+	content: "";
 	position: absolute;
 	font-family: 'themify';
 	transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -1115,14 +1115,7 @@ input:focus, textarea:focus {
 	-moz-transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 	-ms-transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.cc_wrap .accordion_box .block.active-block .acc-btn::before {
-	content: "\e622";
-	transform: rotate(180deg);
-	-webkit-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-}
+
 .cc_wrap .accordion_box .block .acc_body {
 	position: relative;
 	display: none;
@@ -2237,4 +2230,50 @@ input:focus, textarea:focus {
 	position: relative;
 	margin-bottom: 40px;
 	overflow: hidden;
+}
+
+/* reviews tab */
+.post_comment .comment_title {
+	font-size: 26px;
+	margin-bottom: 40px;
+}
+
+.instructor_info .info .title {
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+.cdl_bottom .tab-list{
+	padding-left: 0px;
+}
+.cdl_bottom .tab-list .tab-list-item button{
+	border: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+/* instructor tab */
+.instructor_wrap .instructor_img {
+	width: 155px;
+	height: 135px;
+	overflow: hidden;
+	margin-right: 30px;
+}
+.instructor_info .info .title {
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+.ul_li {
+	justify-content: flex-start;
+}
+.ul_li, .ul_li_right, .ul_li_center {
+	margin: 0px;
+	padding: 0px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.instructor_function {
+	font-size: 19px;
+	color: #0073ff;
+	font-weight: 500;
 }
