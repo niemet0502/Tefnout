@@ -99,9 +99,9 @@ function CourseDetails({
                     <h3 className="title">{course.title}</h3>
                     <div className="bottom">
                         <div className="left ul_li d-flex align-items-center">
-                            <div className="author">
-                            { user.avatar == null ? <img src={cd_thumb} alt="" style={{width: '100%'}} /> : 
-                              <img src={image} alt="" style={{width: '100%'}} />}
+                            <div className="">
+                            { user.avatar == null ? <img src={cd_thumb} className="author" alt="" /> : 
+                              <img src={image} alt="" className="author"  />}
                             </div>
                             <h4><span>By :</span> {user.name} {user.firstname} </h4>
                         </div> 
@@ -131,12 +131,6 @@ function CourseDetails({
 
                                     <li key={chapter.id}>
                                         <a > {chapter.chapter_title} </a>
-                                        <div className="acb_right">
-                                            <span className="title">
-                                                <a>Preview</a>
-                                            </span>
-                                            <span className="acc-time">36min</span>
-                                        </div>
                                     </li>
                                   ))}
                                 </ul>
