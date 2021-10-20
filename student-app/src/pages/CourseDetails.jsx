@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import { fetchCourse } from '../store/course/course.actions';
 import { fetchUser } from '../store/user/user.actions';
 import { fetchCourseReviews } from '../store/reviews/reviews.actions';
+import { fetchCourseCurriculum } from '../store/curriculum/curriculum.actions';
+import { parseCurriculum } from '../utils/helpers';
 //components 
 import CourseBanner from '../components/Marketplace/Course/CourseBanner';
 import Button from '../components/Marketplace/Button';
@@ -26,7 +28,8 @@ function CourseDetails({
   course,
   user,
   reviews,
-  token
+  token,
+  curriculum
 }) {
   
   useEffect(() => {
@@ -38,6 +41,7 @@ function CourseDetails({
   useEffect(() => {
     dispatch(fetchUser(course.teacher_id))
     dispatch(fetchCourseReviews(course.id))
+    dispatch(fetchCourseCurriculum(course.id))
   }, [course])
 
 
@@ -113,7 +117,33 @@ function CourseDetails({
                     </div>
                   </div>
                   <div label="Curriculum"> 
-                    See ya later, <em>Alligator</em>! 
+                    <div className="cc_wrap mt-20">
+                      <ul className="accordion_box clearfix p-0">
+                        {curriculum.map((curr) => (  
+
+                            <li className="accordion block active-block" key={curr.id}>
+                                <div className="acc-btn">
+                                    {curr.section_title}
+                                </div>
+                                <ul className="acc_body current">
+
+                                  {curr.chapters.map((chapter) => (
+
+                                    <li key={chapter.id}>
+                                        <a > {chapter.chapter_title} </a>
+                                        <div className="acb_right">
+                                            <span className="title">
+                                                <a>Preview</a>
+                                            </span>
+                                            <span className="acc-time">36min</span>
+                                        </div>
+                                    </li>
+                                  ))}
+                                </ul>
+                            </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div> 
                   <div label="Instructor"> 
                   <div className="instructor_wrap">
@@ -222,7 +252,8 @@ CourseDetails.propTypes = {
   course: PropTypes.object,
   user: PropTypes.object,
   reviews: PropTypes.array,
-  token: PropTypes.string
+  token: PropTypes.string,
+  curriculum: PropTypes.array
 }
 
 const mapStateToProps = state => {
@@ -230,7 +261,8 @@ const mapStateToProps = state => {
     course: state.course.course,
     user: state.user.user,
     reviews: state.reviews.reviews,
-    token: state.authentication.token
+    token: state.authentication.token,
+    curriculum: state.curriculum.curriculum
   }
 }
 export default connect(mapStateToProps)(CourseDetails)

@@ -25,38 +25,7 @@ export function parseTrainingObjet(tr){
   }
 }
 
-export function parseCurriculum(arr){
-  let newArray = []
-  arr.forEach(element => {
-    let verifie = false
-    let chapters = []
-    arr.forEach(elm => {
 
-      newArray.forEach(element => {
-        if(elm.id == element.id){
-          verifie = true
-        }
-      });
-
-      if(verifie == false){
-        chapters.push({
-          chapter_title: elm.chapter_title
-        })
-      }
-    });
-
-    if (verifie == false){
-
-      newArray.push({
-        id: element.id,
-        section_title: element.section_title,
-        chapters: chapters
-      })
-    }
-  });
-
-  return newArray;
-}
 
 export function parseCurriculumArray(arr){
   let newArray = []
