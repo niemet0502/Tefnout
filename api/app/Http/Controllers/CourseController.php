@@ -245,4 +245,14 @@ class CourseController extends Controller
         return $response;
     }
 
+    public function getCourseCurriculum($id){
+        $curriculum = Section::where('sections.course_id', $id)
+                ->join('chapters', 'chapters.section_id', '=', 'sections.id')
+                ->select('sections.id','sections.title as section_title', 'chapters.title as chapter_title', 'chapters.id as chapter_id')
+                ->groupBy('chapters.id')
+                ->get();
+
+        return $curriculum;
+    }
+
 }
