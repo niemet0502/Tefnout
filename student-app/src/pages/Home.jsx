@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { fetchLastCourses } from "../store/courses/courses.actions"
 import { fetchInstructor } from "../store/users/users.actions"
 import { fetchCategories } from "../store/categories/categories.actions"
+import { Link } from "react-router-dom"
 // components 
 import CategoryCard from "../components/Marketplace/CategoryCard"
 import CourseCard from '../components/Marketplace/Course/CourseCard'
@@ -84,9 +85,11 @@ function Home({
             </div>
             <div className="col-lg-4 col-md-4">
                 <div className="crs_btn d-flex justify-content-end mb-20">
-                <Button 
-                  text="View all"
-                  Icon={ArrowRightAltIcon}  />
+                  <Link to="/courses">
+                    <Button 
+                    text="View all"
+                    Icon={ArrowRightAltIcon}  />
+                  </Link>
                 </div>
             </div>
         </div>
@@ -114,9 +117,11 @@ function Home({
             </div>
             <div className="col-lg-4 col-md-4">
               <div className="crs_btn d-flex justify-content-end mb-20">
-                <Button 
-                  text="View all"
-                  Icon={ArrowRightAltIcon}  />
+                <Link to="/courses">
+                  <Button 
+                    text="View all"
+                    Icon={ArrowRightAltIcon}  />
+                  </Link>
                 </div>
             </div>
         </div>
