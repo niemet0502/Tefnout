@@ -2280,3 +2280,36 @@ input:focus, textarea:focus {
 	color: #0073ff;
 	font-weight: 500;
 }
+
+/* settings */
+.wrap_content {
+	padding-top: 120px;
+	margin: 0px 150px;
+	padding-bottom: 150px;
+}
+
+.settings_card{
+	background-color: white;
+	border-radius: 5px;
+	padding: 15px;
+	box-shadow: 0 1px 5px 0 rgb(84 84 84 / 20%), 0 2px 2px 0 rgb(84 84 84 / 20%), 0 3px 1px -2px rgb(84 84 84 / 20%);
+	margin-bottom: 50px;
+}
+
+.settings_card img{
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+}
+
+.informations-container{
+	padding: 20px 40px;
+}
+
+.settings_title{
+	color: rgba(0,0,0,0.92);
+	font-size: 1.25rem;
+	font-family: Montserrat;
+	font-weight: 700;
+	line-height: 1.875rem;
+}
