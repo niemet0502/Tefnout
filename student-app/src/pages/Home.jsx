@@ -57,15 +57,19 @@ function Home({
                               <p>We believe everyone has the capacity to be creative. Turitor is a place where
                                   people develop their own potential.</p>
                               <div className="hero_btn mt-15 d-flex">
-                              <Button 
-                                text="Views courses"
-                                Icon={ArrowRightAltIcon}  />
+                              <Link to="/courses">
+                                <Button 
+                                  text="Views courses"
+                                  Icon={ArrowRightAltIcon}  />
+                              </Link>
 
-                               <Button 
-                                text="Start trial" 
-                                bgColor="#e5175c"
-                                bgColorHover="#0073ff"
-                                Icon={ArrowRightAltIcon} />
+                              <Link to="/login">
+                                <Button 
+                                  text="Start trial" 
+                                  bgColor="#e5175c"
+                                  bgColorHover="#0073ff"
+                                  Icon={ArrowRightAltIcon} />
+                              </Link>
                               </div>
                           </div>
                       </div>
