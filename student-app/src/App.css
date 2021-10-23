@@ -2296,7 +2296,7 @@ input:focus, textarea:focus {
 	margin-bottom: 50px;
 }
 
-.settings_card img{
+.settings_card_img{
 	border-radius: 50%;
 	width: 150px;
 	height: 150px;
@@ -2304,6 +2304,11 @@ input:focus, textarea:focus {
 
 .informations-container{
 	padding: 20px 40px;
+}
+
+.main_menu ul {
+	padding-left: 0px;
+	margin-bottom: 0px;
 }
 
 .settings_title{
