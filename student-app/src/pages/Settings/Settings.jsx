@@ -1,9 +1,10 @@
 import React from 'react'
-import Button from "../../components/Marketplace/Button"
-import PropTypes from "prop-types"
-//image 
-import studentAvatar from '../../assets/img/student_profil.png'
+import Button from "../../components/Marketplace/Button";
+import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
+//image 
+import studentAvatar from '../../assets/img/student_profil.png';
 function Settings({user}) {
   return (
     <div style={{background: 'rgb(247, 247, 247)'}}>
@@ -11,15 +12,17 @@ function Settings({user}) {
         <div className="container-fluid">
 
        <div className="d-flex justify-content-end m-3 mr-0">
+        <Link to="/settings/edit">
           <Button 
           text="Modifer"
           bgColorHover="#0073ff" 
           />
+        </Link>
        </div>
 
           <div className="settings_card d-flex">
 
-            <img src={studentAvatar} alt="" />
+            <img src={studentAvatar} alt="" className="settings_card_img" />
             
             <div className="informations-container" style={{flex: '2'}}>
              <h6 className="settings_title"> {user.name} {user.firstname}</h6>
