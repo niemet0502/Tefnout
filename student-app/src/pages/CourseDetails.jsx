@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
@@ -6,11 +6,12 @@ import { fetchCourse } from '../store/course/course.actions';
 import { fetchUser } from '../store/user/user.actions';
 import { fetchCourseReviews } from '../store/reviews/reviews.actions';
 import { fetchCourseCurriculum } from '../store/curriculum/curriculum.actions';
-import { parseCurriculum } from '../utils/helpers';
+import { trainingIsExist } from '../store/formation/formation.actions';
 //components 
 import CourseBanner from '../components/Marketplace/Course/CourseBanner';
 import Button from '../components/Marketplace/Button';
 import Tabs from '../components/Marketplace/Tabs/Tabs';
+import FormTextArea from '../components/Marketplace/Form/FormTextArea';
 
 //images 
 import cd_thumb from "../assets/img/cd_thumb.jpg"
@@ -29,24 +30,13 @@ function CourseDetails({
   user,
   reviews,
   token,
-  curriculum
+  curriculum,
+  currentUser,
+  currentTraining
 }) {
   
-  useEffect(() => {
-    const { slug } = match.params
-
-    dispatch(fetchCourse(slug))
-  }, [dispatch, match])
-
-  useEffect(() => {
-    dispatch(fetchUser(course.teacher_id))
-    dispatch(fetchCourseReviews(course.id))
-    dispatch(fetchCourseCurriculum(course.id))
-  }, [course])
-
-
   const renderTrainingButton = () => {
-    if (token == null){
+    if (token == null || currentTraining == false){
       return (
          <Button 
             text="Commencer la formation"
@@ -62,6 +52,25 @@ function CourseDetails({
         )
     }
   }
+
+  const [newReview, setNewReview] = useState('')
+
+  useEffect(() => {
+    const { slug } = match.params
+    
+    dispatch(fetchCourse(slug))
+  }, [dispatch, match])
+  
+  useEffect(() => {
+    dispatch(fetchUser(course.teacher_id))
+    dispatch(fetchCourseReviews(course.id))
+    dispatch(fetchCourseCurriculum(course.id))
+    dispatch(trainingIsExist(course.id,currentUser.id))
+  }, [course])
+
+  useEffect(() => {
+    renderTrainingButton()
+  }, [currentTraining])
 
   return (
     <CourseDetailsComponent>
@@ -165,7 +174,7 @@ function CourseDetails({
                   <div label="Reviews"> 
                   <div className="review_wrap">
                     <div className="post_comment">
-                        <h3 className="comment_title">{ reviews && reviews.lenght} Reviews</h3>
+                        <h3 className="comment_title">Reviews</h3>
                         <ul className="comment_list mb-40 p-0">
                           {reviews.map((review) => (
                             <li key={review.id}>
@@ -183,6 +192,27 @@ function CourseDetails({
                             </li>
                           ))}
                         </ul>
+
+                        {currentTraining !== false ?
+                         <div>
+                           <h3 className="comment_title">Add a review</h3>
+                           <form>
+                            <FormTextArea
+                              name="review"
+                              value={newReview}
+                              onChange={(e) => setNewReview(e.target.value)}
+                              placeholder="Entrez votre commentaire..."
+                              />
+
+                              <div className="d-flex justify-content-center">
+                                <Button
+                                 text="Enregistrer"
+                                 bgColorHover="#0073ff"
+                                 type="submit"
+                                 />
+                              </div>
+                           </form>
+                         </div>: ''}
                       </div>
                     </div>
                   </div> 
@@ -244,10 +274,12 @@ CourseDetails.propTypes = {
   match: PropTypes.object,
   dispatch: PropTypes.func,
   course: PropTypes.object,
+  currentUser: PropTypes.object,
   user: PropTypes.object,
   reviews: PropTypes.array,
   token: PropTypes.string,
-  curriculum: PropTypes.array
+  curriculum: PropTypes.array,
+  currentTraining: PropTypes.object
 }
 
 const mapStateToProps = state => {
@@ -256,7 +288,9 @@ const mapStateToProps = state => {
     user: state.user.user,
     reviews: state.reviews.reviews,
     token: state.authentication.token,
-    curriculum: state.curriculum.curriculum
+    curriculum: state.curriculum.curriculum,
+    currentUser: state.authentication.user,
+    currentTraining: state.training.currentTraining
   }
 }
 export default connect(mapStateToProps)(CourseDetails)

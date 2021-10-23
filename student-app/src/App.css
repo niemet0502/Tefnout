@@ -2318,3 +2318,9 @@ input:focus, textarea:focus {
 	font-weight: 700;
 	line-height: 1.875rem;
 }
+
+.post_comment  textarea {
+	height: 150px;
+	padding: 20px;
+	margin-bottom: 20px;
+}
