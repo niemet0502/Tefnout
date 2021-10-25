@@ -36,19 +36,24 @@ function CourseDetails({
 }) {
   
   const renderTrainingButton = () => {
+    const { slug } = match.params
     if (token == null || currentTraining == false){
       return (
-         <Button 
+         <Link to={`/training/${slug}`}>
+            <Button 
             text="Commencer la formation"
             bgColorHover="#0073ff"
             Icon={ArrowRightAltIcon} />
+         </Link>
       )
     }else{
       return (
-         <Button 
-          text="Continuer la formation"
-          bgColorHover="#0073ff"
-          Icon={ArrowRightAltIcon} />
+        <Link to={`/training/${slug}`}>
+          <Button 
+           text="Continuer la formation"
+           bgColorHover="#0073ff"
+           Icon={ArrowRightAltIcon} />
+        </Link>
         )
     }
   }
