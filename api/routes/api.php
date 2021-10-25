@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FormationController;
@@ -49,6 +50,7 @@ Route::get('/users/instructor/dashboard/{id}', [UserController::class, 'getInstr
 //courses admin::site 
 Route::get('/admin/courses', [CourseController::class, 'getAdminCourse']);
 Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
+Route::post('/courses', [CourseController::class, 'store']);
 
 //comments admin::site 
 Route::get('/admin/comments', [CommentController::class, 'getAllComments']);
@@ -68,6 +70,12 @@ Route::get('/student/{student}/training/{cours}', [FormationController::class, '
 
 // reviews 
 Route::get('/course/{id}/reviews', [CommentController::class, 'getCourseReviews']);
+
+// formation 
+Route::get('/training/{slug}/student/{id}', [FormationController::class, 'show']);
+
+//chapter 
+Route::get('/chapter/{id}', [ChapterController::class, 'show']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
@@ -82,7 +90,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/notes',[NoteController::class, 'store']);
   
     //course's route {store}
-    Route::post('/courses', [CourseController::class, 'store']);
     Route::get('/topics/{id}',  [CategoryController::class, 'show']); // show course
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
 use Illuminate\Http\Request;
 
 class ChapterController extends Controller
@@ -35,7 +36,9 @@ class ChapterController extends Controller
      */
     public function show($id)
     {
-        //
+        $chapter = Chapter::find($id);
+
+        return $chapter;
     }
 
     /**
