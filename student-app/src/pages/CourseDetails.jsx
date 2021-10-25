@@ -89,7 +89,7 @@ function CourseDetails({
               <div className="course_dtls_left mb-30 p-3 pb-4" style={{background: '#ffff'}}> 
                 <div className="cd_thumb">
                   { course.image == null ? <img src={cd_thumb} alt="" style={{width: '100%'}} /> : 
-                    <img src={image} alt="" style={{width: '100%'}} />}
+                    <img src={course.image} alt="" style={{width: '100%'}} />}
                   
                 </div>
                 <div className="cd_content">
@@ -115,7 +115,7 @@ function CourseDetails({
                         <div className="left ul_li d-flex align-items-center">
                             <div className="">
                             { user.avatar == null ? <img src={cd_thumb} className="author" alt="" /> : 
-                              <img src={image} alt="" className="author"  />}
+                              <img src={user.avatar} alt="" className="author"  />}
                             </div>
                             <h4><span>By :</span> {user.name} {user.firstname} </h4>
                         </div> 
@@ -234,7 +234,7 @@ function CourseDetails({
                   <div className="thumb_wrap pos-rel">
                       <div className="thumb">
                       { course.image == null ? <img src={cd_thumb} alt="" style={{width: '100%'}} /> : 
-                        <img src={image} alt="" style={{width: '100%'}} />}
+                        <img src={course.image} alt="" style={{width: '100%'}} />}
                       </div>
                      
                   </div>
