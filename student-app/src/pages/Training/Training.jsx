@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from "prop-types"
-import { Link } from 'react-router-dom'
 import { fetchTrainingState, fetchChapter } from '../../store/formation/formation.actions'
 import DoneIcon from '@mui/icons-material/Done';
+import Button from "../../components/Marketplace/Button"
 function Training({
     currentUser,
     dispatch,
@@ -24,7 +24,7 @@ function Training({
 
   return (
     <div style={{paddingTop: '120px'}} className="border border-danger formation_wrapper">
-      <div className="formation_content">
+      <div className="formation_content" style={{paddingBottom: '60px', marginBottom: '30px'}}>
         <div className="col-md-12 d-flex  p-3">
           {trainingProgress.map(tr => (
             <span className="timeline__steps" key={tr.section_id}>
@@ -78,7 +78,10 @@ function Training({
                       incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                       veniam, quis nostrud exercitation ullamcoey.</p>
               </div>
-          </div>
+            </div>
+              <div className="d-flex align-items-center justify-content-center" style={{marginTop: '60px'}}>
+                <Button text=" J AI TERMINER CE CHAPITRE JE PASSE AU SUIVANT "/>
+              </div>
           </div>
           <div className="col-md-4 p-3">
             
