@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from "prop-types"
+import { Link } from 'react-router-dom'
 import { fetchTrainingState, fetchChapter } from '../../store/formation/formation.actions'
+import DoneIcon from '@mui/icons-material/Done';
 function Training({
     currentUser,
     dispatch,
@@ -23,7 +25,6 @@ function Training({
   return (
     <div style={{paddingTop: '120px'}} className="border border-danger formation_wrapper">
       <div className="formation_content">
-        <h2>Progression</h2>
         <div className="col-md-12 d-flex  p-3">
           {trainingProgress.map(tr => (
             <span className="timeline__steps" key={tr.section_id}>
@@ -79,8 +80,36 @@ function Training({
               </div>
           </div>
           </div>
-          <div className="col-md-4 border border-danger">
-            Next
+          <div className="col-md-4 p-3">
+            
+            <div className="section_recap" style={{marginRight: '18px'}}>
+              {trainingProgress.map(tr => (
+                <span key={tr.section_id}>
+                  {tr.chapters.map(chapter => (
+                    chapter.id == currentChapter.id ? 
+                    <div className="recap_content">
+                      <div className="recap_header">
+                        {tr.section_title}
+                      </div>
+                      <div className="recap_body">
+                        {tr.chapters.map(chap => (
+                          <span  key={chap.id} className={ currentChapter.id == chap.id ? 'active': ''}>
+                            {chap.is_valide ? <span className="doneIcon_container">
+                            <DoneIcon />
+                            </span> : null}
+                            {chap.chapter_title}
+
+                          </span>
+
+                        ))}
+                      </div>
+                    </div>
+                    : ''
+                  ))}
+                </span>
+              ))}
+            </div>
+
           </div>
         </div>
       </div>
