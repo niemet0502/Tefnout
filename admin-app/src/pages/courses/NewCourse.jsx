@@ -3,6 +3,7 @@ import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOut
 import CourseInformation from "./CourseInformation";
 import CourseContent from './CourseContent';
 import CourseMedia from './CourseMedia';
+import CoursePublish from './CoursePublish';
 import Button from "../../components/common/Button"
 function NewCourse() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -17,7 +18,7 @@ function NewCourse() {
       case 3: 
         return <CourseMedia />
       case 4: 
-       return <h1>Publier</h1>
+       return <CoursePublish />
       default:
         <CourseInformation />
     }
@@ -62,7 +63,7 @@ function NewCourse() {
         <div className="step-footer step-tab-pager">
           { currentStep > 1 ? <Button text="Precedent" handleClick={() => setCurrentStep(currentStep - 1)} /> : null}
   
-          <Button text="Suivant" handleClick={() => setCurrentStep(currentStep + 1)} />
+          <Button text={currentStep == 4 ? "Publier": "Suivant"} handleClick={() => setCurrentStep(currentStep + 1)} />
         </div>   
         </div> 
       </div>
