@@ -43,7 +43,7 @@ function Courses({user, dispatch,courses}) {
           Icon={LibraryBooksOutlinedIcon} 
           text="Course"
           > 
-            <Link to="/courses/new">
+            <Link to="/new-course">
               <Button 
                 text="Create Your Course"
               /> 
