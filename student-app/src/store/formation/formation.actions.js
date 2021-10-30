@@ -32,19 +32,20 @@ export function fetchTrainingState(slug,student){
       const trainings = parseTrainingState(data);
 
       dispatch(getFormationSuccess(trainings));
-      dispatch(fetchChapter(findCurrentChapter(trainings)));
+      dispatch(fetchChapter(findCurrentChapter(trainings), slug, student));
     } catch (error) {
       
     }
   }
 }
 
-export function fetchChapter(chapter){
+export function fetchChapter(chapter,slug,student){
   return async dispatch => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/chapter/${chapter}`)
+      const response = await fetch(`http://127.0.0.1:8000/api/chapter/${chapter}/${slug}/${student}`)
       const data = await response.json()
 
+      console.log(data.content.title);
       dispatch(getChapterSuccess(data))
     } catch (error) {
       

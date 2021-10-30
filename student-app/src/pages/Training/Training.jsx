@@ -9,7 +9,8 @@ function Training({
     dispatch,
     match,
     trainingProgress,
-    currentChapter}) {
+    currentChapter,
+    currentChapterProgress}) {
   
   const [currentChapterId, setCurrentChapterId] = useState(0)
   
@@ -19,7 +20,8 @@ function Training({
   }, [dispatch, match])
 
   useEffect(() => {
-    dispatch(fetchChapter(currentChapterId))
+    const { slug } = match.params
+    dispatch(fetchChapter(currentChapterId,slug,currentUser.id))
   }, [currentChapterId])
 
   return (
@@ -80,7 +82,10 @@ function Training({
               </div>
             </div>
               <div className="d-flex align-items-center justify-content-center" style={{marginTop: '60px'}}>
-                <Button text=" J AI TERMINER CE CHAPITRE JE PASSE AU SUIVANT "/>
+                { currentChapterProgress == null ? 
+                   <Button text=" J AI TERMINER CE CHAPITRE JE PASSE AU SUIVANT "/> : 
+                   <Button text=" INDIQUER QUE CE CHAPITRE N EST PAS TERMINER "/>
+                }
               </div>
           </div>
           <div className="col-md-4 p-3">
@@ -125,14 +130,16 @@ Training.propTypes = {
   currentChapter: PropTypes.object,
   dispatch: PropTypes.func,
   match: PropTypes.func,
-  trainingProgress: PropTypes.array
+  trainingProgress: PropTypes.array,
+  currentChapterProgress: PropTypes.any
 }
 
 const mapStateToProps = state => {
   return{
     currentUser: state.authentication.user,
     trainingProgress: state.training.trainingState,
-    currentChapter: state.training.currentChapter
+    currentChapter: state.training.currentChapter,
+    currentChapterProgress: state.training.currentChapterProgress
   }
 }
 
