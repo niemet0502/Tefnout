@@ -50,7 +50,7 @@ function Dashboard({trainings,dispatch,user,certificates}) {
 
               {trainings.map((training) => (
                 <tr key={training.id}>
-                  <td>{training.course_title}</td>
+                  <td> <Link to={`/training/${training.course_slug}`}> {training.course_title}  </Link></td>
                   <td> {training.inscription_date.substr(0,10)} </td>
                   <td style={{padding: '0px'}}> 
                     <ProgressBar completed={percentage(training.chapter_count,training.follow_chapters_count)} /> 
