@@ -3,7 +3,8 @@ import * as actions from "./formation.actions"
 const initialState = {
   currentTraining: false,
   trainingState : [],
-  currentChapter: {}
+  currentChapter: {},
+  currentChapterProgress: {}
 }
 
 function formationReducer(state = initialState, action){
@@ -13,7 +14,7 @@ function formationReducer(state = initialState, action){
     case actions.GET_FORMATION_SUCCESS: 
       return {...state, trainingState: action.payload}
     case actions.GET_CHAPTER_SUCCESS: 
-      return {...state, currentChapter: action.payload}
+      return {...state, currentChapter: action.payload.content, currentChapterProgress: action.payload.training}
     default:
       return state;
   }
