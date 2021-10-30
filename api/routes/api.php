@@ -75,7 +75,7 @@ Route::get('/course/{id}/reviews', [CommentController::class, 'getCourseReviews'
 Route::get('/training/{slug}/student/{id}', [FormationController::class, 'show']);
 
 //chapter 
-Route::get('/chapter/{id}', [ChapterController::class, 'show']);
+Route::get('/chapter/{chapterId}/{slug}/{student}', [ChapterController::class, 'show']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
