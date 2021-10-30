@@ -32,7 +32,7 @@ function Sidebar({user}) {
 					</NavLink>
 					</li> : 
 					<li className="menu--item">
-						<NavLink to="/courses/new" className="menu--link d-flex align-items-center">
+						<NavLink to="/new-course" className="menu--link d-flex align-items-center">
 							<AddCircleOutlineOutlinedIcon className='uil uil-plus-circle menu--icon' />
 							<span className="menu--label">Create Course</span>
 						</NavLink>
