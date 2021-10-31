@@ -33,9 +33,9 @@ function Topbar({user}) {
                     <div className="col-xl-7 col-lg-8 d-none d-lg-block">
                         <nav className="main_menu">
                           <ul>
-                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/">Accueil</Link></li>
                             <li>
-                              <Link to="/courses">Courses</Link>
+                              <Link to="/courses">Cours</Link>
                             </li>
                           </ul>
                         </nav>
