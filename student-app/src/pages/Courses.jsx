@@ -34,7 +34,7 @@ function Courses({courses,dispatch,categories}) {
   return (
     <CoursePage>
       <CourseBanner
-      title="Our Courses"
+      title="Nos Cours"
       page="COURSES"/>
       
       <section className="courses_area pt-5 pb-5" style={{background: '#f7f7f7'}}>
@@ -43,7 +43,7 @@ function Courses({courses,dispatch,categories}) {
               <div className="col-12">
                   <div className="mb-40 d-flex">
                   <Button 
-                    text="All categories"
+                    text="Toutes categories"
                     bgColorHover="#0073ff" 
                     bgColor={currentCategory == 0 ? "#0073ff" : "#ffff"} 
                     handleClick={() => setCurrentCategory(0)}
