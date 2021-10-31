@@ -24,26 +24,26 @@ function Dashboard({user, dispatch, data}) {
   return (
     <div className="wrap-content">
       <div className="container-fluid">
-      <h6 className="page-title"> <DashboardOutlinedIcon /> <span> { user.profil_id == 1 ? 'Admin': 'Instructor'}  Dashboard</span></h6>
+      <h6 className="page-title"> <DashboardOutlinedIcon /> <span> { user.profil_id == 1 ? 'Administrateur': 'Formateur'}  Dashboard</span></h6>
         <div className="row d-flex">
           { user.profil_id == 1 ? 
             <div className="row d-flex"> 
-              <div className="col-md-3"><Card title="Total Courses" value={data.courses} /></div>
-              <div className="col-md-3"><Card title="Total Trainings" value={data.formations} /></div>
-              <div className="col-md-3"><Card title="Total Instructors" value={data.instructors} /></div>
-              <div className="col-md-3"><Card title="Total Students" value={data.students} /></div>
+              <div className="col-md-3"><Card title="Total Cours" value={data.courses} /></div>
+              <div className="col-md-3"><Card title="Formation en cours" value={data.formations} /></div>
+              <div className="col-md-3"><Card title="Total Formateurs" value={data.instructors} /></div>
+              <div className="col-md-3"><Card title="Total Etudiants" value={data.students} /></div>
             </div> : 
               <div className="row d-flex"> 
-                <div className="col-md-6"><Card title="Total Courses" value={data.courses} /></div>
-                <div className="col-md-6"><Card title="Total Students" value={data.students} /></div>
+                <div className="col-md-6"><Card title="Total Cours" value={data.courses} /></div>
+                <div className="col-md-6"><Card title="Total Etudiants" value={data.students} /></div>
                 <div>
                     <PageHeader 
                     Icon={LibraryBooksOutlinedIcon} 
-                    text="Course"
+                    text="Cours"
                     > 
                       <Link to="/new-course">
                         <Button 
-                          text="Create Your Course"
+                          text="Nouveau cours"
                         /> 
                       </Link>
                     </PageHeader>
