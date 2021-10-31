@@ -31,7 +31,7 @@ function Reviews(
   return (
     <div className="wrap-content">
       <div className="container-fluid">
-        <h6 className="page-title"> <StarBorderOutlinedIcon /> <span>Reviews</span></h6>
+        <h6 className="page-title"> <StarBorderOutlinedIcon /> <span>Revues</span></h6>
 
         <div className="row mt-5">
 					<div className="col-12">						
@@ -39,7 +39,7 @@ function Reviews(
 							<div className="row">
 								<div className="col-lg-5">
 									<div className="reviews_left">
-										<h3>All Student Feedback</h3>
+										<h3>Tous les retours des etudiants</h3>
                     <div className="total_raiting">
                       <div className="_rate001">{(raiting.sum/raiting.count)}</div>	
                       { raitingLoader ? 'Loading...' : <StarRaiting count={4} />}
@@ -106,13 +106,11 @@ function Reviews(
                 <div className="col-lg-7">
                   <div className="review_right">
 										<div className="review_right_heading">
-											<h3>All Reviews</h3>
+											<h3>Tous les commentaires</h3>
 										</div>
 									</div>
 
                   { commentsLoading && 'Comments are fetching...'}
-
-                  {/* <h6>{JSON.stringify(comments)}</h6> */}
 
                   {comments.map((com) => (
                     <Comments 
