@@ -52,20 +52,19 @@ function Home({
                               <div className="icon">
                                   <img src={hero_icon} alt=""/>
                               </div>
-                              <span># Learn Anything, Anytime, Anywhere</span>
-                              <h2>Best Online Learning For your future.</h2>
-                              <p>We believe everyone has the capacity to be creative. Turitor is a place where
-                                  people develop their own potential.</p>
+                              <span># Apprendre Tout, N&apos;importe quand, N&apos;importe ou</span>
+                              <h2>Meilleure plateforme de formation en ligne.</h2>
+                              <p>Nous croyons en votre capacite a se former aux nouveaux metiers de maniere totalment indpendante.</p>
                               <div className="hero_btn mt-15 d-flex">
                               <Link to="/courses">
                                 <Button 
-                                  text="Views courses"
+                                  text="Tous les cours"
                                   Icon={ArrowRightAltIcon}  />
                               </Link>
 
                               <Link to="/login">
                                 <Button 
-                                  text="Start trial" 
+                                  text="Essai Gratuit" 
                                   bgColor="#e5175c"
                                   bgColorHover="#0073ff"
                                   Icon={ArrowRightAltIcon} />
@@ -83,15 +82,15 @@ function Home({
         <div className="row align-items-center mb-5">
             <div className="col-lg-8 col-md-8">
                 <div className="sec_title">
-                    <h2>Recent Popular Subjects</h2>
-                    <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
+                    <h2>Categories</h2>
+                    <p>La formation en ligne vous donne une nouvelle possibilite de vous former aux metiers qui vous passionne.</p>
                 </div>
             </div>
             <div className="col-lg-4 col-md-4">
                 <div className="crs_btn d-flex justify-content-end mb-20">
                   <Link to="/courses">
                     <Button 
-                    text="View all"
+                    text="Voir tout"
                     Icon={ArrowRightAltIcon}  />
                   </Link>
                 </div>
@@ -115,15 +114,15 @@ function Home({
         <div className="row align-items-center mb-5">
             <div className="col-lg-8 col-md-8">
                 <div className="sec_title">
-                    <h2>Find the right course for you</h2>
-                    <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
+                    <h2>Trouvez le bon cours pour vous</h2>
+                    <p>La formation en ligne vous donne une nouvelle possibilite de vous former aux metiers qui vous passionne.</p>
                 </div>
             </div>
             <div className="col-lg-4 col-md-4">
               <div className="crs_btn d-flex justify-content-end mb-20">
                 <Link to="/courses">
                   <Button 
-                    text="View all"
+                    text="Voir tout"
                     Icon={ArrowRightAltIcon}  />
                   </Link>
                 </div>
@@ -156,14 +155,14 @@ function Home({
         <div className="row align-items-center mb-5">
             <div className="col-lg-8 col-md-8">
                 <div className="sec_title">
-                    <h2>Featured Instructors</h2>
-                    <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
+                    <h2>Nos instructeurs</h2>
+                    <p>La formation en ligne vous donne une nouvelle possibilite de vous former aux metiers qui vous passionne.</p>
                 </div>
             </div>
             <div className="col-lg-4 col-md-4">
               <div className="crs_btn d-flex justify-content-end mb-20">
                 <Button 
-                  text="View all"
+                  text="Voir tout"
                   Icon={ArrowRightAltIcon}  />
                 </div>
             </div>
