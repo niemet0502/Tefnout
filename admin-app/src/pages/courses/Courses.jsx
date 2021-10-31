@@ -36,7 +36,7 @@ function Courses({user, dispatch,courses}) {
   return (
     <div className="wrap-content">
       <div className="container-fluid">
-        <h6 className="page-title"> <LibraryBooksOutlinedIcon /> <span>Courses</span></h6>
+        <h6 className="page-title"> <LibraryBooksOutlinedIcon /> <span>Cours</span></h6>
 
         { user.profil_id == 1 ? '' : 
         <PageHeader 
@@ -45,7 +45,7 @@ function Courses({user, dispatch,courses}) {
           > 
             <Link to="/new-course">
               <Button 
-                text="Create Your Course"
+                text="Nouveau cours"
               /> 
             </Link>
         </PageHeader>
@@ -54,14 +54,14 @@ function Courses({user, dispatch,courses}) {
       <table className="table ucp-table mt-5">
         <thead className="thead-s">
           <tr>
-            <th className="text-center" scope="col">Item No.</th>
-            <th className="text-center" scope="col">Title</th>
-            {user.profil_id == 1 ? <th className="text-center" scope="col">Instructor</th> : ''}
-            <th className="text-center" scope="col">Publish date</th>
-            <th className="text-center" scope="col">Training(s)</th>
-            <th className="text-center" scope="col">Category</th>
-            <th className="text-center" scope="col">Chapters</th>
-            <th className="text-center" scope="col">Status</th>
+            <th className="text-center" scope="col">Id</th>
+            <th className="text-center" scope="col">Titre</th>
+            {user.profil_id == 1 ? <th className="text-center" scope="col">Formateur</th> : ''}
+            <th className="text-center" scope="col">Date de publication</th>
+            <th className="text-center" scope="col">Formation(s)</th>
+            <th className="text-center" scope="col">Categorie</th>
+            <th className="text-center" scope="col">Chapitres</th>
+            <th className="text-center" scope="col">Statut</th>
             <th className="text-center" scope="col">Actions</th>
           </tr>
         </thead>
@@ -89,22 +89,22 @@ function Courses({user, dispatch,courses}) {
       <Modal
           isShowing={isDeleteModalShowed}
           hide={toggleDeleteModal}
-          title="Delete confirmation" 
+          title="confirmation de suppression" 
         >
-          <p className="mt-2 text-bold"> <strong>You are deleting &quot; {course.title} &quot; course</strong> <br />
-          do you want to confirm? </p>
+          <p className="mt-2 text-bold"> <strong>Vous etes sur le point de supprimer le cours &quot; {course.title} &quot;</strong> <br />
+          voulez-vous confirmez ? </p>
 
           <div className="d-flex align-items-center justify-content-end">
             <Button 
               classNames="modal-toggle" 
               handleClick={toggleDeleteModal} 
-              text="Cancel"
+              text="Annuler"
               variant="secondary"
             /> 
           <Button 
             classNames="modal-toggle ml-3" 
             handleClick={() => handleDelete} 
-            text="Delete"
+            text="Supprimer"
           /> 
           </div>
         </Modal>
