@@ -34,7 +34,7 @@ function Sidebar({user}) {
 					<li className="menu--item">
 						<NavLink to="/new-course" className="menu--link d-flex align-items-center">
 							<AddCircleOutlineOutlinedIcon className='uil uil-plus-circle menu--icon' />
-							<span className="menu--label">Create Course</span>
+							<span className="menu--label">Nouveau Cours</span>
 						</NavLink>
 					</li>
 					}
@@ -42,21 +42,21 @@ function Sidebar({user}) {
 					<li className="menu--item">
 						<NavLink  to="/courses" className="menu--link d-flex align-items-center">
 							<LibraryBooksOutlinedIcon className='uil uil-book-alt menu--icon' />
-							<span className="menu--label">Courses</span>
+							<span className="menu--label">Cours</span>
 						</NavLink>
 					</li>
 					{ user.profil_id == 1 ? 
 						<li className="menu--item">
 							<NavLink to="/users" className="menu--link d-flex align-items-center">
 								<PeopleOutlineIcon className='uil uil-comments menu--icon' />
-								<span className="menu--label">Users</span>
+								<span className="menu--label">Utilisateurs</span>
 							</NavLink>
 						</li> : ''
 					}
 					<li className="menu--item">
 						<NavLink to="/reviews" className="menu--link d-flex align-items-center">
 							<StarBorderOutlinedIcon className='uil uil-star menu--icon' />
-							<span className="menu--label">Reviews</span>
+							<span className="menu--label">Revues</span>
 						</NavLink>
 					</li>
 				</ul>
@@ -66,7 +66,7 @@ function Sidebar({user}) {
 					<li className="menu--item">
 						<NavLink to="/settings" className="menu--link d-flex align-items-center">
 							<SettingsOutlinedIcon className='uil uil-cog menu--icon' />
-							<span className="menu--label">Setting</span>
+							<span className="menu--label">Parametres</span>
 						</NavLink>
 					</li>
 				</ul>
