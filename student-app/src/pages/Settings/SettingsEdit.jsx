@@ -24,7 +24,7 @@ function SettingsEdit({currentUser, dispatch}) {
         <div className="container-fluid">
           <div className="d-flex mt-4">
             <img src={studentAvatar} alt="" className="settings_card_img" />
-            <div style={{flex: '2'}} className="border border-danger">
+            <div style={{flex: '2'}}>
               <form onSubmit={handleSubmit}>
               <FormInput
                 name="username"

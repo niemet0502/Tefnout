@@ -25,7 +25,7 @@ function Training({
   }, [currentChapterId])
 
   return (
-    <div style={{paddingTop: '120px'}} className="border border-danger formation_wrapper">
+    <div style={{paddingTop: '120px'}} className=" formation_wrapper">
       <div className="formation_content" style={{paddingBottom: '60px', marginBottom: '30px'}}>
         <div className="col-md-12 d-flex  p-3">
           {trainingProgress.map(tr => (
