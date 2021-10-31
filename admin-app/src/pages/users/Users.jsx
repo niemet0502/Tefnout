@@ -45,16 +45,16 @@ function Users({users, dispatch,currentUser}) {
   }, [dispatch])
   return (
     <div className="wrap-content">
-      <h6 className="page-title"> <PeopleOutlineIcon /> <span>Users</span></h6>
+      <h6 className="page-title"> <PeopleOutlineIcon /> <span>Utilisateurs</span></h6>
       
       <PageHeader 
         Icon={PeopleOutlineIcon} 
-        text="User"
+        text="Utilisateur"
       > 
         <Button 
           classNames="modal-toggle" 
           handleClick={toggleNewUser}
-          text="Create User"
+          text="Nouvel Utilisateur"
         /> 
       </PageHeader>
       <table className="table ucp-table mt-5">
@@ -62,9 +62,9 @@ function Users({users, dispatch,currentUser}) {
           <tr>
             <th className="text-center" scope="col">Id</th>
             <th  className="text-center" scope="col">Avatar</th>
-            <th className="text-center" scope="col">Full Name</th>
+            <th className="text-center" scope="col">Nom complet</th>
             <th className="text-center" scope="col">Email</th>
-            <th className="text-center" scope="col">Phone</th>
+            <th className="text-center" scope="col">Telephone</th>
             <th className="text-center" scope="col">Profil</th>
             <th className="text-center" scope="col">Action</th>
           </tr>
@@ -89,22 +89,22 @@ function Users({users, dispatch,currentUser}) {
       <Modal
           isShowing={isDeleteUserShowed}
           hide={toggleDeleteUser}
-          title="Delete confirmation" 
+          title="Supprimer confirmation" 
         >
-          <p className="mt-2 text-bold"> <strong>You are deleting &quot; {selectedUser.name} {selectedUser.firstname} &quot; user</strong> <br />
-          do you want to confirm? </p>
+          <p className="mt-2 text-bold"> <strong>Vous etes sur le point de supprimer l&apos;utilisateur &quot; {selectedUser.name} {selectedUser.firstname} &quot;</strong> <br />
+          Voulez-vous confirmez ? </p>
 
           <div className="d-flex align-items-center justify-content-end">
             <Button 
               classNames="modal-toggle" 
               handleClick={toggleDeleteUser} 
-              text="Cancel"
+              text="Annuler"
               variant="secondary"
             /> 
           <Button 
             classNames="modal-toggle ml-3" 
             handleClick={() => handleDelete()}
-            text="Delete"
+            text="Supprimer"
           /> 
           </div>
         </Modal>
@@ -112,7 +112,7 @@ function Users({users, dispatch,currentUser}) {
         <Modal
           isShowing={isNewUserShowed}
           hide={toggleNewUser}
-          title="New User"
+          title="Nouveau Utilisateur"
         >
           <form onSubmit={handleSubmit}>
           <div className="ui search focus mt-2">
@@ -160,11 +160,11 @@ function Users({users, dispatch,currentUser}) {
              <Button 
                 classNames="modal-toggle" 
                 handleClick={toggleNewUser} 
-                text="Cancel"
+                text="Annuler"
                 variant="secondary"
               /> 
               <Button
-                text="Register"
+                text="Enregistrer"
               />
             </div>
           </div>
