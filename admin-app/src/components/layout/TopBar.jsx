@@ -51,7 +51,7 @@ function TopBar({onLogout, user}) {
 		<div className="header_right">
 			<ul>
 				<li>
-					{user.profil_id == 1 ? '' : <Link to="/new-course"> <Button text="Nouveau cours" /> </Link>  }
+					{/* {user.profil_id == 1 ? '' : <Link to="/new-course"> <Button text="Nouveau cours" /> </Link>  } */}
 				
 				</li>
 				<li className="ui dropdown">
