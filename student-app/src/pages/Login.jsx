@@ -37,14 +37,14 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
           <div className="row">
             <div className="col-lg-6">
                 <div className="account_wrap">
-                  <h3 className="title">Login your Account</h3>
+                  <h3 className="title">Se connecter</h3>
                   <form onSubmit={onSubmit}>
                     <FormInput
                       name="username"
                       type="text"
                       value={login.email}
                       onChange={(e) => setLogin({...login, email: e.target.value})}
-                      placeholder="Enter username..."
+                      placeholder="Entrez votre nom..."
                       required
                       error={errors.username}
                       className="input"
@@ -55,7 +55,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                         type="password"
                         value={login.password}
                         onChange={(e) => setLogin({...login,password: e.target.value})}
-                        placeholder="Enter password..."
+                        placeholder="Entrez votre mot de passe..."
                         className="input"
                         error={errors.password}
                         required
@@ -64,7 +64,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                     <Button
                       type="submit"
                       className="button"
-                      text="Submit"
+                      text="connexion"
                       disabled={loading}
                     />
 
@@ -73,14 +73,14 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
             </div>
             <div className="col-lg-6">
                 <div className="account_wrap">
-                  <h3 className="title">Sign up your Account</h3>
+                  <h3 className="title">Creer un compte</h3>
                   <form onSubmit={handleSubmitSignUp}>
                     <FormInput
                       name="username"
                       type="text"
                       value={signup.username}
                       onChange={(e) => setSignup({...signup, username: e.target.value})}
-                      placeholder="Enter username..."
+                      placeholder="Entrez votre nom..."
                       required
                       error={errors.username}
                       className="input"
@@ -90,7 +90,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                       type="text"
                       value={signup.email}
                       onChange={(e) => setSignup({...signup, email: e.target.value})}
-                      placeholder="Enter email..."
+                      placeholder="Entrez votre email..."
                       required
                       error={errors.username}
                       className="input"
@@ -101,7 +101,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                         type="password"
                         value={signup.password}
                         onChange={(e) => setSignup({...signup, password: e.target.value})}
-                        placeholder="Enter password..."
+                        placeholder="Entrez votre mot de passe..."
                         className="input"
                         error={errors.password}
                         required
@@ -110,7 +110,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                     <Button
                       type="submit"
                       className="button"
-                      text="Submit"
+                      text="inscription"
                       disabled={loading}
                     />
 
@@ -126,6 +126,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
 
 const LoginPage = styled.div`
   background-color: #f7f7f7;
+  padding-top: 98px;
   
   button{
     margin-left: -2px;
