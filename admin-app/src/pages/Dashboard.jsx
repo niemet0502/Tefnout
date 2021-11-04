@@ -37,7 +37,7 @@ function Dashboard({user, dispatch, data}) {
                 <div className="col-md-6"><Card title="Total Cours" value={data.courses} /></div>
                 <div className="col-md-6"><Card title="Total Etudiants" value={data.students} /></div>
                 <div>
-                    <PageHeader 
+                    {/* <PageHeader 
                     Icon={LibraryBooksOutlinedIcon} 
                     text="Cours"
                     > 
@@ -46,7 +46,7 @@ function Dashboard({user, dispatch, data}) {
                           text="Nouveau cours"
                         /> 
                       </Link>
-                    </PageHeader>
+                    </PageHeader> */}
 
                 </div>
               </div>
