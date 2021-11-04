@@ -46,7 +46,7 @@ function Topbar({user}) {
                         { Object.keys(user).length === 0 ? 
                           <div className="header_right">
                               <div className="account">
-                                  <Link to="/login">account</Link>
+                                  <Link to="/login">Compte</Link>
                               </div>
                           </div>: 
                           <div className="header_search_wrap" onClick={toggleUserDropdown}>

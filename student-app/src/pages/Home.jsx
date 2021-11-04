@@ -150,7 +150,7 @@ function Home({
       </div>
     </section>
 
-    <section className="courses_area pt-5 pb-5 category-section">
+    {/* <section className="courses_area pt-5 pb-5 category-section">
       <div className="container">
         <div className="row align-items-center mb-5">
             <div className="col-lg-8 col-md-8">
@@ -176,10 +176,10 @@ function Home({
             poste={user.function}
             siteweb={user.siteweb}
              />
-          ))} */}
+          ))} 
         </div>
       </div>
-    </section>
+    </section> */}
     </HomePage>
 
   )
