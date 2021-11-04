@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Chapter from './Chapter';
+import FormInput from '../form/FormInput';
+import Button from "../../components/common/Button"
+import FormTextArea from '../form/FormTextArea';
+
+import useModal from '../../hooks/useModal';
+import Modal from "../../components/common/Modal";
 const Section = () => {
+  const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal();
+  const [state, setstate] = useState('')
+
   return (
     <div className="added-section-item mb-30">
       <div className="section-header">
@@ -30,12 +39,54 @@ const Section = () => {
         </div>
       </div>
       <div className="section-group-list sortable">
-        <Chapter title="1. Mettez en place le CSS" />
-        <Chapter title="2. Créez des bordures et des ombres" />
+        <Chapter title=" 1: Mettez en place le CSS" />
       </div>
       <div className="section-add-item-wrap p-3">
-        <button className="add_lecture d-flex align-items-center" data-toggle="modal" data-target="#add_lecture_model"> <AddBoxIcon /> <span className="mr-2" style={{marginLeft: '8px'}}>Chapitre</span></button>
+        <button className="add_lecture d-flex align-items-center" onClick={toggleLoginForm}> <AddBoxIcon /> <span className="mr-2" style={{marginLeft: '8px'}}>Chapitre</span></button>
       </div>
+
+      <Modal
+          isShowing={isLoginFormShowed}
+          hide={toggleLoginForm}
+          title="Nouveau Chapitre"
+        >
+
+          <div className="ui search focus mt-2">
+            <div className="ui left icon input swdh95">
+            <FormInput
+              name="label"
+              type="text"
+              value={state}
+              onChange={(e) => setstate(e.target.value)}
+              className="prompt srch_explore"
+              label="Titre*"
+              required
+              />
+            </div>
+          </div>
+
+          <div className="ui search focus mt-30">																
+            <div className="ui form swdh30">
+              <FormTextArea
+                name="Contenu"
+                value=""
+                label="Contenu*"
+              />
+            </div>
+          </div>
+
+          <div className="d-flex align-items-center justify-content-end mt-4">
+             <Button 
+                classNames="modal-toggle" 
+                text="Annuler"
+                variant="secondary"
+              /> 
+              <Button
+                text="Enregistrer"
+                classNames="mr-0"
+              />
+            </div>
+        </Modal>
     </div>
   )
 }
