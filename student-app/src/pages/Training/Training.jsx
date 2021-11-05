@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from "prop-types"
-import { fetchTrainingState, fetchChapter } from '../../store/formation/formation.actions'
+import { fetchTrainingState, fetchChapter, validateChapter, unValidateChapter } from '../../store/formation/formation.actions'
 import DoneIcon from '@mui/icons-material/Done';
 import Button from "../../components/Marketplace/Button"
 function Training({
@@ -10,7 +10,7 @@ function Training({
     match,
     trainingProgress,
     currentChapter,
-    currentChapterProgress}) {
+    currentChapterProgress,}) {
   
   const [currentChapterId, setCurrentChapterId] = useState(0)
   
@@ -23,6 +23,18 @@ function Training({
     const { slug } = match.params
     dispatch(fetchChapter(currentChapterId,slug,currentUser.id))
   }, [currentChapterId])
+
+  const vChapter =  chapter => {
+    const { slug } = match.params
+    dispatch(validateChapter(slug,chapter,currentUser.id))
+    window.scrollTo(0, 0);
+  }
+
+  const unChapter = chapter => {
+    const { slug } = match.params
+    dispatch(unValidateChapter(slug,chapter,currentUser.id))
+    window.scrollTo(0, 0);
+  }
 
   return (
     <div style={{paddingTop: '120px'}} className="border border-danger formation_wrapper">
@@ -83,8 +95,8 @@ function Training({
             </div>
               <div className="d-flex align-items-center justify-content-center" style={{marginTop: '60px'}}>
                 { currentChapterProgress == null ? 
-                   <Button text=" J AI TERMINER CE CHAPITRE JE PASSE AU SUIVANT "/> : 
-                   <Button text=" INDIQUER QUE CE CHAPITRE N EST PAS TERMINER "/>
+                   <Button handleClick={() => vChapter(currentChapter.id)} text=" J AI TERMINER CE CHAPITRE JE PASSE AU SUIVANT "/> : 
+                   <Button handleClick={() => unChapter(currentChapter.id)} text=" INDIQUER QUE CE CHAPITRE N EST PAS TERMINER "/>
                 }
               </div>
           </div>
@@ -131,7 +143,7 @@ Training.propTypes = {
   dispatch: PropTypes.func,
   match: PropTypes.func,
   trainingProgress: PropTypes.array,
-  currentChapterProgress: PropTypes.any
+  currentChapterProgress: PropTypes.any,
 }
 
 const mapStateToProps = state => {
@@ -142,5 +154,6 @@ const mapStateToProps = state => {
     currentChapterProgress: state.training.currentChapterProgress
   }
 }
+
 
 export default connect(mapStateToProps)(Training)
