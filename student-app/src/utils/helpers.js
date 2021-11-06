@@ -95,10 +95,11 @@ export function parseTrainingState(data){
 
 export function findCurrentChapter(arr){
   let currentChapter = 0; 
+  let find = false
 
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i];
-    let find = false
+     find = false
     
     for (let j = 0; j < element.chapters.length; j++) {
       const elmt = element.chapters[j];
@@ -114,6 +115,10 @@ export function findCurrentChapter(arr){
     if(find == true){
       break;
     }
+  }
+
+  if (find == false){
+   currentChapter = arr[arr.length - 1].chapters[arr[arr.length - 1].chapters.length - 1].id
   }
 
   return currentChapter;
