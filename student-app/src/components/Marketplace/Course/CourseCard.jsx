@@ -35,11 +35,13 @@ function CourseCard({
                   <span className="cat">{category_name}</span>
                   <span className="price">{level}</span>
               </div>
-              <h3 className="title">
-                <Link to={`/course/${slug}`}>
-                  {title}
-                </Link>
-              </h3>
+              <div style={{minHeight: '100px'}}>
+                <h3 className="title" >
+                  <Link to={`/course/${slug}`}>
+                    {title}
+                  </Link>
+                </h3>
+              </div>
               <div className="rating_wrap ul_li d-flex">
                   <span>13 votes</span>
                   <ul className="rating_star ul_li d-flex">
@@ -50,7 +52,9 @@ function CourseCard({
                       <li><StarBorderIcon /></li>
                   </ul>
               </div>
-              <ul className="c_bottom ul_li d-flex p-1 mt-2">
+              <ul 
+                className="c_bottom ul_li d-flex mt-2" 
+                style={{paddingLeft: '30px'}}>
                   <div className="d-flex">
                     <li className="d-flex"> <PeopleIcon />  {follow_courses_count}</li>
                     <li className="d-flex"> <VisibilityIcon /> {views}</li>

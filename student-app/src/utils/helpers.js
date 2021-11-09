@@ -68,3 +68,58 @@ export function parseCurriculumArray(arr){
 
   return newArray
 }
+
+export function parseTrainingState(data){
+  const allChapters = parseCurriculumArray(data.curriculum);
+  const chaptersValidate = data.chapterValide;
+
+  for (let i = 0; i < allChapters.length; i++) {
+    const element = allChapters[i];
+    
+    for (let j = 0; j < element.chapters.length; j++) {
+      const elt = element.chapters[j];
+      let findd = false
+      chaptersValidate.forEach(elm => {
+        if(elt.id == elm.chapter_id){
+          findd = true
+        }
+      });
+
+      element.chapters[j] = {...element.chapters[j], is_valide: findd}
+    }
+
+  }
+
+  return allChapters;
+}
+
+export function findCurrentChapter(arr){
+  let currentChapter = 0; 
+  let find = false
+
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+     find = false
+    
+    for (let j = 0; j < element.chapters.length; j++) {
+      const elmt = element.chapters[j];
+      
+
+      if(elmt.is_valide == false){
+        currentChapter = elmt.id;
+        find = true;
+        break;
+      }
+    }
+
+    if(find == true){
+      break;
+    }
+  }
+
+  if (find == false){
+   currentChapter = arr[arr.length - 1].chapters[arr[arr.length - 1].chapters.length - 1].id
+  }
+
+  return currentChapter;
+}

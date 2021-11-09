@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\FollowChapter;
 use Illuminate\Http\Request;
 use App\Models\FollowCourse;
+use App\Models\Section;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 class FormationController extends Controller
@@ -43,9 +44,36 @@ class FormationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug,$id)
     {
-        //
+        if((FollowCourse::where([['course_id', intval(substr($slug,0,1))], ['student_id', $id]])->first()) == null){
+            $formation = new FollowCourse();
+
+            $formation->student_id = $id;
+            $formation->course_id =  intval(substr($slug,0,1));
+            $formation->status = "en cours";
+            $formation->save();
+        }
+        $curriculum = Course::where('courses.slug', $slug)
+                ->join('sections', 'sections.course_id', '=', 'courses.id')
+                ->join('chapters', 'chapters.section_id', '=', 'sections.id')
+                ->select('sections.id','sections.title as section_title', 'chapters.title as chapter_title', 'chapters.id as chapter_id')
+                ->groupBy('chapters.id')
+                ->get();
+
+
+        $chapterValide = FollowCourse::where([['follow_courses.course_id', intval(substr($slug,0,1))],
+                        ['follow_courses.student_id', $id]])
+                    ->join('follow_chapters', 'follow_chapters.formation_id', '=', 'follow_courses.id')
+                    ->select('follow_chapters.chapter_id as chapter_id')
+                    ->groupBy('follow_chapters.id')
+                    ->get();
+
+        return response([
+            'curriculum' => $curriculum,
+            'chapterValide' => $chapterValide
+
+        ]);
     }
 
     /**
@@ -64,6 +92,7 @@ class FormationController extends Controller
         $courses = FollowCourse::select(
                 'follow_courses.created_at as inscription_date',
                 'courses.title as course_title', 
+                'courses.slug as course_slug',
                 'categories.name as category_name',
                 'courses.chapter_count as chapter_count')
                 ->where('follow_courses.student_id', '=', $id)
@@ -79,15 +108,18 @@ class FormationController extends Controller
 
     public function valideChapter(Request $request){
         $request->validate([
-            'formation_id' => 'required|integer|min:1|',
+            'slug' => 'required|string|min:1|',
             'chapter_id' => 'required|integer|min:1|',
+            'student_id' => 'required|integer|min:1|',
         ]);
 
+        $formation =  FollowCourse::where([['course_id', intval(substr($request->slug,0,1))], ['student_id', $request->student_id]])->first();
+
         $chapter = new FollowChapter();
-        $chapter->is_validated = true;
+        $chapter->is_validated = "true";
         $chapter->chapter_id = $request->chapter_id;
-        $chapter->formation_id = $request->formation_id;
-        $chapter->follow_course_id = $request->formation_id;
+        $chapter->formation_id = $formation->id;
+        $chapter->follow_course_id = $formation->id;
 
         $chapter->save();
         
@@ -97,8 +129,12 @@ class FormationController extends Controller
         ], 200);
     }
 
-    public function unvalideChapter($id){
-        FollowChapter::destroy($id);
+    public function unvalideChapter($slug,$student_id,$chapter){
+        $formation =  FollowCourse::where([['course_id', intval(substr($slug,0,1))], ['student_id', $student_id]])->first();
+        
+        FollowChapter::where([['formation_id', $formation->id], 
+                    ['chapter_id', $chapter]])->delete();
+        
 
         return response([
             'chapitre' => 'success',
@@ -150,8 +186,7 @@ class FormationController extends Controller
         return $response;
     }
 
-    public function checkIfTrainingsExist(int $cours,int $student){
-
+    public function checkIfTrainingsExist(int $student,int $cours){
 
         $training = FollowCourse::where([['course_id', '=', $cours], ['student_id', '=', $student]])->get();
 

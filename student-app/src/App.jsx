@@ -22,7 +22,9 @@ import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
 import Login from "./pages/Login";
 import Dashboard from './pages/Dashboard';
-
+import Settings from './pages/Settings/Settings';
+import SettingsEdit from './pages/Settings/SettingsEdit';
+import Training from './pages/Training/Training';
 function App() {
   return (
     <div className="App">
@@ -34,6 +36,9 @@ function App() {
           <PublicRoute  component={Login} path="/login" exact />
           <PublicRoute  component={CourseDetails} path="/course/:slug" exact />
           <PrivateRoute  component={Dashboard} path="/dashboard" exact />
+          <PrivateRoute  component={Settings} path="/settings" exact />
+          <PrivateRoute  component={SettingsEdit} path="/settings/edit" exact />
+          <PrivateRoute  component={Training} path="/training/:slug" exact />
           <PublicRoute  component={Home} path="/" exact />
         </Switch>
       </Router>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
+use App\Models\Course;
+use App\Models\FollowCourse;
 use Illuminate\Http\Request;
 
 class ChapterController extends Controller
@@ -33,9 +36,27 @@ class ChapterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($chapterId, $slug, $student)
     {
-        //
+
+        $cours = Course::where('slug', $slug)->first();
+
+        $training = FollowCourse::where([['follow_courses.course_id', $cours->id],
+                    ['follow_courses.student_id', $student]])
+                    ->join('follow_chapters', 'follow_chapters.formation_id', '=', 'follow_courses.id')
+                    ->where('follow_chapters.chapter_id', $chapterId)
+                    ->select('follow_chapters.is_validated as is_validated')
+                    ->groupBy('follow_chapters.id')
+                    ->first();
+
+        $chapter = Chapter::find($chapterId);
+
+        return response([
+            'content' => $chapter,
+            'training' => $training
+        ]);
+
+       // return $chapter;
     }
 
     /**

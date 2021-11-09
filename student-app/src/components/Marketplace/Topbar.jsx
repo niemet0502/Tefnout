@@ -61,7 +61,7 @@ function Topbar({user}) {
                            <ul>
                              <li> {user.name} {user.firstname} </li>
                              <li> <Link to="/dashboard"><PersonIcon /> Tableau de bord</Link> </li>
-                             <li> <SettingsIcon/> Parametres</li>
+                             <li> <Link to="/settings"><SettingsIcon/> Parametres</Link> </li>
                              <li> <LogoutIcon/> Se deconnecter</li>
                            </ul>
                           </div>
