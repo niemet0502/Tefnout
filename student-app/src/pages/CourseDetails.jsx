@@ -6,7 +6,7 @@ import { fetchCourse } from '../store/course/course.actions';
 import { fetchUser } from '../store/user/user.actions';
 import { fetchCourseReviews } from '../store/reviews/reviews.actions';
 import { fetchCourseCurriculum } from '../store/curriculum/curriculum.actions';
-import { trainingIsExist } from '../store/formation/formation.actions';
+import { trainingIsExist, cancelCurrentTraining } from '../store/formation/formation.actions';
 //components 
 import CourseBanner from '../components/Marketplace/Course/CourseBanner';
 import Button from '../components/Marketplace/Button';
@@ -48,12 +48,15 @@ function CourseDetails({
       )
     }else{
       return (
-        <Link to={`/training/${slug}`}>
-          <Button 
-           text="Continuer la formation"
-           bgColorHover="#0073ff"
-           Icon={ArrowRightAltIcon} />
-        </Link>
+        <div className="d-flex align-items-center justify-content-center" style={{flexDirection: 'column'}}>
+          <Link to={`/training/${slug}`}>
+            <Button 
+            text="Continuer la formation"
+            bgColorHover="#0073ff"
+            Icon={ArrowRightAltIcon} />
+          </Link>
+          <span className="mt-3 cancel-formation" onClick={() => dispatch(cancelCurrentTraining(currentTraining.id))}>NE PLUS SUIVRE</span>
+        </div>
         )
     }
   }
@@ -76,6 +79,7 @@ function CourseDetails({
   useEffect(() => {
     renderTrainingButton()
   }, [currentTraining])
+
 
   return (
     <CourseDetailsComponent>

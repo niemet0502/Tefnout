@@ -15,6 +15,8 @@ function formationReducer(state = initialState, action){
       return {...state, trainingState: action.payload}
     case actions.GET_CHAPTER_SUCCESS: 
       return {...state, currentChapter: action.payload.content, currentChapterProgress: action.payload.training}
+    case actions.CANCEL_FORMATION: 
+      return {...state, currentTraining: false}
     default:
       return state;
   }
