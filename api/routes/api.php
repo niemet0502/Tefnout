@@ -75,7 +75,7 @@ Route::get('/course/{id}/reviews', [CommentController::class, 'getCourseReviews'
 Route::get('/training/{slug}/student/{id}', [FormationController::class, 'show']); // get an student's training
 Route::post('/formation/chapter', [FormationController::class, 'valideChapter']); // validated chapter
 Route::delete('/formation/chapter/{slug}/{student_id}/{chapter}', [FormationController::class, 'unvalideChapter']); // unvalidated chapter
-
+Route::delete('/formations/{id}', [FormationController::class, 'cancelFormation']); //cancel formation
 //chapter 
 Route::get('/chapter/{chapterId}/{slug}/{student}', [ChapterController::class, 'show']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //logout's route
 
     //Formation routes
-    Route::delete('/formations/{id}', [FormationController::class, 'cancelFormation']); //cancel formation
+   
     Route::post('/formations', [FormationController::class, 'store']); // start learning course 
     // Route::delete('/formation/chapter/{id}', [FormationController::class, 'unvalideChapter']); // unvalidated chapter
 

@@ -2456,3 +2456,10 @@ input:focus, textarea:focus {
 	color: white;
 	margin-top: -5px;
 }
+
+.cancel-formation{
+	color: #0073ff;
+}
+.cancel-formation:hover{
+	cursor: pointer;
+}
