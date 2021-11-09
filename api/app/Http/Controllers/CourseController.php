@@ -21,24 +21,22 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::join('users', 'users.id', '=', 'courses.teacher_id')
-                ->join('categories', 'categories.id', '=', 'courses.category_id')
-                ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
-                ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
-                ->select('courses.title', 
-                'courses.image',
-                'courses.level',
-                'courses.views',
-                'users.avatar as teacher_image', 
-                'categories.name as category_name',
-                DB::raw('SUM(notes.value) as total_note'),
-                DB::raw('COUNT(notes.value) as notes_count'))
-                ->withCount('followCourses')
-                ->groupBy('courses.id')
-                ->orderBy('courses.id','DESC')
-                ->get();
-
-                  
-
+            ->join('categories', 'categories.id', '=', 'courses.category_id')
+            ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+            ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
+            ->select('courses.title', 
+            'courses.image',
+            'courses.level',
+            'courses.views',
+            'courses.slug',
+            'users.avatar as teacher_image', 
+            'categories.name as category_name',
+            DB::raw('SUM(notes.value) as total_note'),
+            DB::raw('COUNT(notes.value) as notes_count'))
+            ->withCount('followCourses')
+            ->groupBy('courses.id')
+            ->orderBy('courses.id','DESC')
+            ->get();
 
         $response = [
             'courses' => $courses,
@@ -68,8 +66,12 @@ class CourseController extends Controller
             'topics' => 'nullable'
         ]);
 
+          
+        $maxId = Course::orderBy('id', 'desc')->value('id'); 
+
         $course = new Course();
         $course->title = $request->title;
+        $course->slug = str_replace(' ', '-', $request->title);
         $course->description = $request->description;
         $course->image = $request->image;
         $course->video = $request->video;
@@ -95,56 +97,23 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //get course's infos and count, sum notes
-        $courses = Course::where('courses.id', '=', $id)
+        $courses = Course::where('courses.slug', '=', $slug)
                 ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
                 ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
                 ->select('courses.*',
                 DB::raw('SUM(notes.value) as total_notes'),
                 DB::raw('COUNT(notes.value) as notes_count'))
                 ->groupBy('courses.id')
-                ->get();   
+                ->first();   
 
-        // get Reviews 
-        $reviews = FollowCourse::where('follow_courses.course_id', $id)
-                ->join('comments', 'comments.formation_id', '=', 'follow_courses.id')
-                ->join('users', 'users.id', '=', 'follow_courses.student_id')
-                ->select('comments.*', 
-                'users.name as user_name',
-                'users.firstname as user_firstname',
-                'users.avatar as user_avatar')
-                ->groupBy('comments.id')
-                ->get();
         
-        // get teacher's infos 
-        $instructor = User::where('users.id', $courses[0]['teacher_id'])
-            ->leftJoin('courses', 'courses.teacher_id', '=', 'users.id')
-            ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
-            ->select('users.name',
-            'users.firstname',
-            'users.avatar',
-            'users.function',
-            'users.bio',
-            DB::raw('COUNT(courses.id) as courses_count'),
-            DB::raw('COUNT(follow_courses.id) as students_count'))
-            ->groupBy('users.id')  
-            ->get();
-
-        //get course's program 
-
-        $program = Section::where("course_id", $id)
-                ->select('sections.title',
-                'sections.id')
-                ->get();
-
+        Course::find($courses->id)->increment('views');
+        
         return response([
             'course' => $courses,
-            'reviews' => $reviews,
-            'instructor' => $instructor,
-            'program' => $program,
-            'message' => 'Cours ajouté avec succès !'
         ], 200);
     }
 
@@ -246,6 +215,44 @@ class CourseController extends Controller
             'status' => 'success',
             'courses' => $courses
         ],200);
+    }
+
+    public function getCoursesByCategories(int $id){
+        $courses = Course::join('users', 'users.id', '=', 'courses.teacher_id')
+            ->join('categories', 'categories.id', '=', 'courses.category_id')
+            ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+            ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
+            ->select('courses.title', 
+            'courses.image',
+            'courses.level',
+            'courses.views',
+            'courses.slug',
+            'users.avatar as teacher_image', 
+            'categories.name as category_name',
+            DB::raw('SUM(notes.value) as total_note'),
+            DB::raw('COUNT(notes.value) as notes_count'))
+            ->where('categories.id', '=', $id)
+            ->withCount('followCourses')
+            ->groupBy('courses.id')
+            ->orderBy('courses.id','DESC')
+            ->get();
+
+        $response = [
+            'courses' => $courses,
+            'status' => 200
+        ];
+
+        return $response;
+    }
+
+    public function getCourseCurriculum($id){
+        $curriculum = Section::where('sections.course_id', $id)
+                ->join('chapters', 'chapters.section_id', '=', 'sections.id')
+                ->select('sections.id','sections.title as section_title', 'chapters.title as chapter_title', 'chapters.id as chapter_id')
+                ->groupBy('chapters.id')
+                ->get();
+
+        return $curriculum;
     }
 
 }

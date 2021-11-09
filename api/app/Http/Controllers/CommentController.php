@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Comments;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\FollowCourse;
+
 class CommentController extends Controller
 {
     /**
@@ -42,40 +44,6 @@ class CommentController extends Controller
         ], 200);
 
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     
     public function getTeacherComments($id){
         $comments = Course::where('courses.teacher_id', $id)
@@ -109,6 +77,22 @@ class CommentController extends Controller
         return response([
             'status' => 'success',
             'comments' => $comments
+        ],200);
+    }
+
+    public function getCourseReviews($id){
+        $reviews = FollowCourse::where('follow_courses.course_id', $id)
+            ->join('comments', 'comments.formation_id', '=', 'follow_courses.id')
+            ->join('users', 'users.id', '=', 'follow_courses.student_id')
+            ->select('comments.*', 
+            'users.name as user_name',
+            'users.firstname as user_firstname',
+            'users.avatar as user_avatar')
+            ->groupBy('comments.id')
+            ->get();
+
+        return response([
+            'reviews' => $reviews 
         ],200);
     }
 }

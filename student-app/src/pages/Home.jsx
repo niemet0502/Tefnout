@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { fetchLastCourses } from "../store/courses/courses.actions"
 import { fetchInstructor } from "../store/users/users.actions"
 import { fetchCategories } from "../store/categories/categories.actions"
+import { Link } from "react-router-dom"
 // components 
 import CategoryCard from "../components/Marketplace/CategoryCard"
 import CourseCard from '../components/Marketplace/Course/CourseCard'
@@ -31,9 +32,7 @@ function Home({
   useEffect(() => {
     dispatch(fetchCategories())
     dispatch(fetchLastCourses())
-    dispatch(fetchInstructor())
-
-
+    // dispatch(fetchInstructor())
   }, [dispatch])
 
   return (
@@ -58,15 +57,19 @@ function Home({
                               <p>We believe everyone has the capacity to be creative. Turitor is a place where
                                   people develop their own potential.</p>
                               <div className="hero_btn mt-15 d-flex">
-                              <Button 
-                                text="Views courses"
-                                Icon={ArrowRightAltIcon}  />
+                              <Link to="/courses">
+                                <Button 
+                                  text="Views courses"
+                                  Icon={ArrowRightAltIcon}  />
+                              </Link>
 
-                               <Button 
-                                text="Start trial" 
-                                bgColor="#e5175c"
-                                bgColorHover="#0073ff"
-                                Icon={ArrowRightAltIcon} />
+                              <Link to="/login">
+                                <Button 
+                                  text="Start trial" 
+                                  bgColor="#e5175c"
+                                  bgColorHover="#0073ff"
+                                  Icon={ArrowRightAltIcon} />
+                              </Link>
                               </div>
                           </div>
                       </div>
@@ -86,9 +89,11 @@ function Home({
             </div>
             <div className="col-lg-4 col-md-4">
                 <div className="crs_btn d-flex justify-content-end mb-20">
-                <Button 
-                  text="View all"
-                  Icon={ArrowRightAltIcon}  />
+                  <Link to="/courses">
+                    <Button 
+                    text="View all"
+                    Icon={ArrowRightAltIcon}  />
+                  </Link>
                 </div>
             </div>
         </div>
@@ -116,17 +121,21 @@ function Home({
             </div>
             <div className="col-lg-4 col-md-4">
               <div className="crs_btn d-flex justify-content-end mb-20">
-                <Button 
-                  text="View all"
-                  Icon={ArrowRightAltIcon}  />
+                <Link to="/courses">
+                  <Button 
+                    text="View all"
+                    Icon={ArrowRightAltIcon}  />
+                  </Link>
                 </div>
             </div>
         </div>
         <div className="row justify-content-between ">
+ 
           {courses.map((course) => (
             <CourseCard 
               key={course.id} 
               title={course.title}
+              slug={course.slug}
               banner={course.image}
               level={course.level}
               views={course.views}
@@ -160,7 +169,7 @@ function Home({
             </div>
         </div>
         <div className="row d-flex justify-content-between ">
-          {users.map((user) => (
+          {/* {users.map((user) => (
             <Instructor key={user.id}
             image={user.avatart}
             name={user.name}
@@ -168,7 +177,7 @@ function Home({
             poste={user.function}
             siteweb={user.siteweb}
              />
-          ))}
+          ))} */}
         </div>
       </div>
     </section>

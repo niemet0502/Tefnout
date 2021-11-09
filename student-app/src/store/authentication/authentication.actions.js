@@ -21,10 +21,13 @@ export function login(user){
       dispatch(loginUser())
 
       try {
+
+
           
            axios.post("http://127.0.0.1:8000/api/login", {
             email: user.email,
             password: user.password,
+            profil_id: 4
           }).then(result => {
 
             // save user's informations in localStorage 
@@ -34,7 +37,7 @@ export function login(user){
             dispatch(loginUserSuccess(result.data))
             history.push('/dashboard');
           }).catch(error => {
-            console.log(error.response.data.errors);
+            
             dispatch(loginUserfailure())
           })
       } catch (error) {

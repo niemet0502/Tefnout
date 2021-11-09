@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FormationController;
@@ -29,9 +30,11 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //course's route {list, search and show}
 Route::get('/courses', [CourseController::class, 'index']);
-Route::get('/courses/{id}', [CourseController::class, 'show']);
+Route::get('/courses/{slug}', [CourseController::class, 'show']);
 Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
+Route::get('/course/{id}/curriculum', [CourseController::class, 'getCourseCurriculum']);
+Route::get('/categories/{id}/courses', [CourseController::class, 'getCoursesByCategories']);
 
 Route::resource('categories', CategoryController::class);
 
@@ -47,6 +50,7 @@ Route::get('/users/instructor/dashboard/{id}', [UserController::class, 'getInstr
 //courses admin::site 
 Route::get('/admin/courses', [CourseController::class, 'getAdminCourse']);
 Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
+Route::post('/courses', [CourseController::class, 'store']);
 
 //comments admin::site 
 Route::get('/admin/comments', [CommentController::class, 'getAllComments']);
@@ -58,15 +62,27 @@ Route::get('/admin/teacher/{id}/raiting', [NoteController::class, 'getTeacherCou
 
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::get('/users/profil/{id}', [UserController::class, 'getUserByProfil']);
+Route::get('/users/{id}', [UserController::class, 'show']);
 
-//student's course 
+//student's trainings 
 Route::get('/student/trainings/{id}', [FormationController::class, 'getStudentFormations']);
+Route::get('/student/{student}/training/{cours}', [FormationController::class, 'checkIfTrainingsExist']);
+
+// reviews 
+Route::get('/course/{id}/reviews', [CommentController::class, 'getCourseReviews']);
+
+// formation 
+Route::get('/training/{slug}/student/{id}', [FormationController::class, 'show']); // get an student's training
+Route::post('/formation/chapter', [FormationController::class, 'valideChapter']); // validated chapter
+Route::delete('/formation/chapter/{slug}/{student_id}/{chapter}', [FormationController::class, 'unvalideChapter']); // unvalidated chapter
+Route::delete('/formations/{id}', [FormationController::class, 'cancelFormation']); //cancel formation
+//chapter 
+Route::get('/chapter/{chapterId}/{slug}/{student}', [ChapterController::class, 'show']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
 
     //user's routes 
-    Route::get('/users/{id}', [UserController::class, 'show']);
 
 
     // Comment's routes 
@@ -76,7 +92,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/notes',[NoteController::class, 'store']);
   
     //course's route {store}
-    Route::post('/courses', [CourseController::class, 'store']);
     Route::get('/topics/{id}',  [CategoryController::class, 'show']); // show course
 
 
@@ -90,10 +105,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //logout's route
 
     //Formation routes
-    Route::delete('/formations/{id}', [FormationController::class, 'cancelFormation']); //cancel formation
+   
     Route::post('/formations', [FormationController::class, 'store']); // start learning course 
-    Route::post('/formation/chapter', [FormationController::class, 'valideChapter']); // validated chapter
-    Route::delete('/formation/chapter/{id}', [FormationController::class, 'unvalideChapter']); // unvalidated chapter
+    // Route::delete('/formation/chapter/{id}', [FormationController::class, 'unvalideChapter']); // unvalidated chapter
 
     
 

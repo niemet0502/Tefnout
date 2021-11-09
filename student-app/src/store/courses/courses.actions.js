@@ -20,3 +20,31 @@ export function fetchLastCourses(){
     }
   }
 }
+
+export function fetchAllCourses(){
+  return async dispatch => {
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/courses")
+      const data = await response.json()
+
+      dispatch(getCoursesSuccess(data.courses))
+    } catch (error) {
+      dispatch(getCoursesFailures())
+    }
+  }
+}
+
+export function fetchCoursesByCategories(id){
+  return async dispatch => {
+
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/categories/${id}/courses`)
+      const data = await response.json()
+
+      dispatch(getCoursesSuccess(data.courses))
+    } catch (error) {
+      dispatch(getCoursesFailures())
+    }
+  }
+}
