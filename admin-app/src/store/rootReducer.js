@@ -5,12 +5,14 @@ import usersReducer from './users/users.reducer';
 import dashboardReducer from "./dashboard/dashboard.reducer";
 import coursesReducer from './courses/courses.reducer';
 import reviewsReducer from './reviews/reviews.reducer';
+import courseReducer from './course/course.reducer';
 const rootReducer = combineReducers({
   authentication: authenticationReducer,
   categories: categoriesReducer,
   dashboard: dashboardReducer,
   users: usersReducer,
   courses: coursesReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  course: courseReducer
 })
 export default rootReducer
