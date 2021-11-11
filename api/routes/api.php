@@ -51,6 +51,8 @@ Route::get('/users/instructor/dashboard/{id}', [UserController::class, 'getInstr
 Route::get('/admin/courses', [CourseController::class, 'getAdminCourse']);
 Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
 Route::post('/courses', [CourseController::class, 'store']);
+Route::put('/courses/{id}', [CourseController::class, 'update']);
+Route::post('/courses/publish/{id}', [CourseController::class, 'publishCourse']);
 
 //comments admin::site 
 Route::get('/admin/comments', [CommentController::class, 'getAllComments']);
@@ -78,6 +80,12 @@ Route::delete('/formation/chapter/{slug}/{student_id}/{chapter}', [FormationCont
 Route::delete('/formations/{id}', [FormationController::class, 'cancelFormation']); //cancel formation
 //chapter 
 Route::get('/chapter/{chapterId}/{slug}/{student}', [ChapterController::class, 'show']);
+Route::post('/chapter', [ChapterController::class, 'store']);
+Route::put('/chapter/{id}', [ChapterController::class, 'update']);
+
+//section
+Route::post('/section', [SectionController::class, 'store']);
+Route::put('/section/{id}', [SectionController::class, 'update']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
