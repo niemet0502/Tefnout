@@ -117,6 +117,11 @@ class CourseController extends Controller
         ], 200);
     }
 
+    public function publishCourse(int $id){
+        $course = Course::find($id);
+        $course->update(['status', 'Publier']);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -126,7 +131,14 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::find($id);
+        $course->update($request->all());
+
+
+        return response([
+            'status' => 'success',
+            'message' => 'Cours edité avec succès !'
+        ], 200);
     }
 
     /**
@@ -197,16 +209,13 @@ class CourseController extends Controller
 
     public function getAdminCourse(){
         
-        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status', 'courses.chapter_count',
         'categories.name as category_name', 
         'users.name as user_name', 
-        'users.firstname as user_firstname',
-        DB::raw('COUNT(chapters.id) as chapters_count'))
+        'users.firstname as user_firstname',)
         ->join('users', 'users.id', '=', 'courses.teacher_id')
         ->join('categories', 'categories.id', '=', 'courses.category_id')
         ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
-        ->leftJoin('sections', 'sections.course_id', '=', 'courses.id')
-        ->leftJoin('chapters', 'chapters.section_id', '=', 'sections.id')
         ->withCount('followCourses')
         ->groupBy('courses.id')
         ->get();
