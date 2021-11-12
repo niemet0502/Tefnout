@@ -13,31 +13,43 @@ import FormTextArea from "../form/FormTextArea";
 const Section = ({title,chapters}) => { 
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal();
   const [state, setstate] = useState('')
+  const [showEditForm, setShowEditForm] = useState(false)
 
   return (
     <div className="added-section-item mb-30">
       <div className="section-header">
         <h4><ReorderIcon /> {title}</h4>
         <div className="section-edit-options">
-          <button className="btn-152" type="button" data-toggle="collapse" data-target="#edit-section"><EditIcon /></button>
+          <button className="btn-152" type="button" onClick={() => setShowEditForm(!showEditForm)} ><EditIcon /></button>
           <button className="btn-152" type="button"><DeleteIcon /></button>
         </div>
       </div>
-      <div id="edit-section" className="collapse">
+      
+      {showEditForm && 
+      <div id="edit-section" className="m-4 mb-1">
         <div className="new-section smt-25">
           <div className="form_group">
-            <div className="ui search focus mt-30 lbel25">
-              <label>Section Name*</label>
-              <div className="ui left icon input swdh19">
-                <input className="prompt srch_explore" type="text" placeholder="" name="title"  value="Introduction" />															
-              </div>
+          <div className="ui left icon input swdh95">
+            <FormInput
+              name="label"
+              type="text"
+              value={title}
+              onChange={(e) => setstate(e.target.value)}
+              className="prompt srch_explore"
+              label="Titre"
+              required
+              />
             </div>
           </div>
-          <div className="share-submit-btns pl-0">
-            <button className="main-btn color btn-hover"><i className="fas fa-save mr-2"></i>Update Section</button>
+          <div className="share-submit-btns pl-0 mt-3">
+            <Button
+              type="submit"
+              text="Modifier section"
+            />
           </div>
         </div>
       </div>
+      }
       <div className="section-group-list sortable">
         {chapters.map(chapter => {
           <Chapter
