@@ -6,6 +6,7 @@ import {
 import PublicRoute from './components/routing/PublicRoute';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { history } from './utils/history';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 // style
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
