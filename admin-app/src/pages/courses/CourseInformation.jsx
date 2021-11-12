@@ -1,7 +1,32 @@
-import React from 'react'
-import FormInput from '../../components/form/FormInput'
-import FormSelect from '../../components/form/FormSelect'
-const CourseInformation = () => {
+import React, { useEffect, useState } from 'react';
+import {connect} from "react-redux";
+import FormInput from '../../components/form/FormInput';
+import FormSelect from '../../components/form/FormSelect';
+import PropTypes from "prop-types";
+import { useDispatch } from 'react-redux';
+import { fetchCategories } from '../../store/categories/categories.actions';
+import { EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+const CourseInformation = ({
+  categories,
+  course,
+  handleChange
+}) => {
+  const dispatch = useDispatch()
+  const [editorState, setEditorState] = useState(
+    () => EditorState.createEmpty(),
+  );
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  }, [dispatch])
+
+  useEffect(() => {
+    handleChange({...course,description: editorState})
+  }, [editorState])
+
   return (
     <div>
       <div className="title-icon">
@@ -15,11 +40,23 @@ const CourseInformation = () => {
             name="name"
             type="text"
             label="Titre*"
+            value={course.title}
+            onChange={(e) => handleChange({...course,title:  e.target.value})}
             placeholder="titre du cours..."
             className="prompt srch_explore"
             required
           />   
         </div>
+        <div className="col-md-12 mt-2">
+          <label htmlFor="" className="label">Description</label>
+          <Editor 
+            editorState={editorState}
+            onEditorStateChange={setEditorState}
+            wrapperClassName="wrapper-class"
+            editorClassName="editor-class"
+            toolbarClassName="toolbar-class"
+          />
+          </div>
         <div className="row">
           <div className="col-md-6">
             <div className="ui left icon input swdh11 swdh19">
@@ -27,6 +64,8 @@ const CourseInformation = () => {
               name="Duree"
               type="text"
               label="Duree*"
+              value={course.hours}
+              onChange={(e) => handleChange({...course,hours:  e.target.value})}
               placeholder="duree du cours..."
               className="prompt srch_explore"
               required
@@ -39,6 +78,8 @@ const CourseInformation = () => {
               name="topics"
               type="text"
               label="Topics*"
+              value={course.topics}
+              onChange={(e) => handleChange({...course,topics:  e.target.value})}
               placeholder="topics..."
               className="prompt srch_explore"
               required
@@ -54,6 +95,9 @@ const CourseInformation = () => {
                 <FormSelect
                   name="categorie"
                   label="Categorie"
+                  options={categories}
+                  value={course.category_id}
+                  onChange={(e) => handleChange({...course, category_id: e.target.value})}
                 />
               </div>
               </div>
@@ -64,7 +108,10 @@ const CourseInformation = () => {
                 <div className="ui left icon input swdh95" style={{marginRight: '20px'}}>
                 <FormSelect
                   name="niveau"
-                  label="Niveau"
+                  label="Niveau" 
+                  options={niveaux}
+                  value={course.level}
+                  onChange={(e) => handleChange({...course, level: e.target.value})}
                 />
                 </div>
               </div>
@@ -77,4 +124,31 @@ const CourseInformation = () => {
   )
 }
 
-export default CourseInformation
+CourseInformation.propTypes = {
+  categories: PropTypes.array,
+  course: PropTypes.object,
+  handleChange: PropTypes.func
+}
+
+const mapStateToProps = state => {
+  return {
+    categories: state.categories.categories
+  }
+}
+
+const niveaux = [
+  {
+    id: 1,
+    name: "Debutant"
+  },
+  {
+    id: 2,
+    name: "Moyen"
+  },
+  {
+    id: 3,
+    name: "Difficile"
+  }
+]
+
+export default connect(mapStateToProps)(CourseInformation)
