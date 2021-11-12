@@ -8,7 +8,8 @@ function FormSelect({
   value,
   error,
   children,
-  label
+  label,
+  options
 }) {
   return (
     <>
@@ -21,9 +22,9 @@ function FormSelect({
         value={value}
         className={`select-field ${className}`}
         >
-          <option value=""></option>
-          <option value="1">Administrateur</option>
-          <option value="3">Instructor</option>
+          {options.map(option => (
+            <option value={option.id} key={option.id}> {option.name} </option>
+          ))}
       </select>
     </>
   )
@@ -38,7 +39,8 @@ FormSelect.propTypes = {
   type: PropTypes.oneOf(['text', 'number', 'password', 'email']),
   className: PropTypes.string,
   value: PropTypes.any,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func,
+  options: PropTypes.array
 }
 
 export default FormSelect
