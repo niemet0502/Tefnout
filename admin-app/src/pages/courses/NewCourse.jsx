@@ -4,15 +4,22 @@ import CourseInformation from "./CourseInformation";
 import CourseContent from './CourseContent';
 import CourseMedia from './CourseMedia';
 import CoursePublish from './CoursePublish';
-import Button from "../../components/common/Button"
-function NewCourse() {
+import Button from "../../components/common/Button";
+import { convertToHTML } from 'draft-convert';
+import { storeCourse } from '../../store/course/course.actions';
+import { useDispatch, connect } from 'react-redux';
+import PropTypes from "prop-types"
+function NewCourse({currentUser}) {
+  const dispatch = useDispatch()
   const [currentStep, setCurrentStep] = useState(1)
-
+  const [newCourse, setNewCourse] = useState({title: "", hours: "", 
+                                  description: "", topics: "",
+                                  category_id: 3,level: "Debutant"})
 
   const handleStep = () => {
     switch (currentStep) {
       case 1:
-        return <CourseInformation />
+        return <CourseInformation course={newCourse} handleChange={setNewCourse} />
       case 2:
         return <CourseContent />
       case 3: 
@@ -22,6 +29,14 @@ function NewCourse() {
       default:
         <CourseInformation />
     }
+  }
+
+  const changeStep = () => {
+    if(currentStep == 1){
+      let description = (convertToHTML(newCourse.description.getCurrentContent()));
+      dispatch(storeCourse(newCourse,description,currentUser));
+    }
+    setCurrentStep(currentStep + 1)
   }
   
 
@@ -33,25 +48,25 @@ function NewCourse() {
         <div className="steps_container step-app mt-5" id="add-course-tab">
           <ul className="step-steps">
             <li className={"" + (currentStep > 1 ? "done" : '') +  " " + (currentStep == 1 ? "active" : '')}>
-              <a href="#!" onClick={() => setCurrentStep(1)}>
+              <a href="#!">
                 <span className="number"></span>
                 <span className="step-name">Informations</span>
               </a>
             </li>
             <li className={"" + (currentStep > 2 ? "done" : '') +  " " + (currentStep == 2 ? "active" : '')}>
-              <a href="#!" onClick={() => setCurrentStep(2)}>
+              <a href="#!">
                 <span className="number"></span>
                 <span className="step-name">Contenu</span>
               </a>
             </li>
             <li className={"" + (currentStep > 3 ? "done" : '') +  " " + (currentStep == 3 ? "active" : '')}>
-              <a href="#!" onClick={() => setCurrentStep(3)}>
+              <a href="#!">
                 <span className="number"></span>
                 <span className="step-name">Media</span>
               </a>
             </li>
             <li className={" " + (currentStep == 4 ? "active" : '')}>
-              <a href="#!" onClick={() => setCurrentStep(4)}>
+              <a href="#!">
                 <span className="number"></span>
                 <span className="step-name">Publier</span>
               </a>
@@ -63,7 +78,7 @@ function NewCourse() {
         <div className="step-footer step-tab-pager">
           { currentStep > 1 ? <Button text="Precedent" handleClick={() => setCurrentStep(currentStep - 1)} /> : null}
   
-          <Button text={currentStep == 4 ? "Publier": "Suivant"} handleClick={() => setCurrentStep(currentStep + 1)} />
+          <Button text={currentStep == 4 ? "Publier": "Suivant"} handleClick={() => changeStep()} />
         </div>   
         </div> 
       </div>
@@ -71,4 +86,14 @@ function NewCourse() {
   )
 }
 
-export default NewCourse
+NewCourse.propTypes = {
+  currentUser: PropTypes.number
+}
+
+const mapStateToProps = state => {
+  return {
+    currentUser: state.authentication.user.id
+  }
+}
+
+export default connect(mapStateToProps)(NewCourse)
