@@ -1,13 +1,10 @@
-import React from 'react'
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import ReorderIcon from '@mui/icons-material/Reorder';
+import React from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import SubjectIcon from '@mui/icons-material/Subject';
 import DescriptionIcon from '@mui/icons-material/Description';
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-const Chapter = ({title}) => {
+const Chapter = ({title,textContent,videoContent}) => {
   return (
     <div className="section-list-item">
       <div className="section-item-title">
@@ -22,6 +19,8 @@ const Chapter = ({title}) => {
 }
 
 Chapter.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  textContent: PropTypes.any,
+  videoContent: PropTypes.any
 }
 export default Chapter
