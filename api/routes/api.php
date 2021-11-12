@@ -9,8 +9,7 @@ use App\Http\Controllers\FormationController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
-use App\Models\Course;
-use App\Models\User;
+use App\Http\Controllers\SectionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +34,7 @@ Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 Route::get('/course/{id}/curriculum', [CourseController::class, 'getCourseCurriculum']);
 Route::get('/categories/{id}/courses', [CourseController::class, 'getCoursesByCategories']);
+Route::get('/course/{id}/new/curriculum', [CourseController::class, 'getNewCourseCurriculum']);
 
 Route::resource('categories', CategoryController::class);
 
