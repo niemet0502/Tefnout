@@ -16,7 +16,7 @@ function PageHeader({Icon,text,children}) {
   )
 }
 PageHeader.propTypes = {
-  Icon: PropTypes.node.isRequired,
+  Icon: PropTypes.node,
   text:  PropTypes.string.isRequired,
   children: PropTypes.node
 } 
