@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Chapter from './Chapter';
-const Section = () => {
+import PropTypes from "prop-types";
+import Button from "../common/Button";
+import Modal from "../common/Modal";
+import useModal from '../../hooks/useModal';
+import FormInput from '../form/FormInput';
+import FormTextArea from "../form/FormTextArea";
+const Section = ({title,chapters}) => { 
+  const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal();
+  const [state, setstate] = useState('')
+
   return (
     <div className="added-section-item mb-30">
       <div className="section-header">
-        <h4><ReorderIcon /> Section 1 - Mettez en forme vos pages avec CSS</h4>
+        <h4><ReorderIcon /> {title}</h4>
         <div className="section-edit-options">
           <button className="btn-152" type="button" data-toggle="collapse" data-target="#edit-section"><EditIcon /></button>
           <button className="btn-152" type="button"><DeleteIcon /></button>
@@ -30,14 +39,69 @@ const Section = () => {
         </div>
       </div>
       <div className="section-group-list sortable">
-        <Chapter title="1. Mettez en place le CSS" />
-        <Chapter title="2. Créez des bordures et des ombres" />
+        {chapters.map(chapter => {
+          <Chapter
+            key={chapter.id}
+            title={chapter.chapter_title}
+            textContent={chapter.chapter_text_content}
+            videoContent={chapter.chapter_video_content}
+          />
+        })}
       </div>
       <div className="section-add-item-wrap p-3">
-        <button className="add_lecture d-flex align-items-center" data-toggle="modal" data-target="#add_lecture_model"> <AddBoxIcon /> <span className="mr-2" style={{marginLeft: '8px'}}>Chapitre</span></button>
+        <button className="add_lecture d-flex align-items-center" data-toggle="modal" onClick={() => toggleLoginForm()} > <AddBoxIcon /> <span className="mr-2" style={{marginLeft: '8px'}}>Chapitre</span></button>
       </div>
+
+
+      <Modal
+          isShowing={isLoginFormShowed}
+          hide={toggleLoginForm}
+          title="Nouveau Chapitre"
+        >
+
+          <div className="ui search focus mt-2">
+            <div className="ui left icon input swdh95">
+            <FormInput
+              name="label"
+              type="text"
+              value={state}
+              onChange={(e) => setstate(e.target.value)}
+              className="prompt srch_explore"
+              label="Titre*"
+              required
+              />
+            </div>
+          </div>
+
+          <div className="ui search focus mt-30">																
+            <div className="ui form swdh30">
+              <FormTextArea
+                name="Contenu"
+                value=""
+                label="Contenu*"
+              />
+            </div>
+          </div>
+
+          <div className="d-flex align-items-center justify-content-end mt-4">
+             <Button 
+                classNames="modal-toggle" 
+                text="Annuler"
+                variant="secondary"
+              /> 
+              <Button
+                text="Enregistrer"
+                classNames="mr-0"
+              />
+            </div>
+        </Modal>
     </div>
   )
+}
+
+Section.propTypes = {
+  title: PropTypes.string.isRequired,
+  chapters: PropTypes.array
 }
 
 export default Section
