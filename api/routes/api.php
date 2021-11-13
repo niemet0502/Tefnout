@@ -86,6 +86,7 @@ Route::put('/chapter/{id}', [ChapterController::class, 'update']);
 //section
 Route::post('/section', [SectionController::class, 'store']);
 Route::put('/section/{id}', [SectionController::class, 'update']);
+Route::delete('/section/{id}', [SectionController::class, 'destroy']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
