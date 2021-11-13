@@ -30,7 +30,6 @@ export function storeCourse(course,description,teacher_id){
       const data = await response.json()
 
       dispatch(createNewCourse(data.course))
-      // dispatch(fetchCourseContent(data.course.id))
     } catch (error) {
       
     }
@@ -42,7 +41,6 @@ export function fetchCourseContent(id){
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/course/${id}/new/curriculum`)
       const data = await response.json()
-     console.log(parseNewCourseContent(data.sections,data.chapters));
       dispatch(getCurrentCourse(parseNewCourseContent(data.sections,data.chapters)))
     } catch (error) {
       
@@ -80,10 +78,10 @@ export function storeSection(title,course){
   }
 }
 
-export function updateSection(title,course){
+export function updateSection(title,course,id){
   return async dispatch => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/section",{
+      const response = await fetch(`http://127.0.0.1:8000/api/section/${id}`,{
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',
@@ -102,6 +100,60 @@ export function updateSection(title,course){
         type: toast.TYPE.SUCCESS,
       })
       dispatch(fetchCourseContent(course))
+    } catch (error) {
+      
+    }
+  }
+}
+
+export function deleteSection(id,course){
+  return async dispatch => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/section/${id}`,{
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+  
+      const data = await response.json()
+  
+      toast(`${data.message}`,{
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS,
+      })
+      dispatch(fetchCourseContent(course))
+    } catch (error) {
+      
+    }
+  }
+}
+
+export function updateCourse(course,description,id){
+  return async dispatch => {
+    
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/courses/${id}`, {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          title:course.title, 
+          description: description,
+          hours:course.hours, 
+          level:course.level, 
+          category_id:course.category_id,
+          topics:course.topics
+        })
+      })
+
+      const data = await response.json()
+
+      dispatch(createNewCourse(data.course))
     } catch (error) {
       
     }
