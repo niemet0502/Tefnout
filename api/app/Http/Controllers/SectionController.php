@@ -82,6 +82,12 @@ class SectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Chapter::where('section_id', $id)->delete();
+        Section::destroy($id);
+
+        return response([
+            'status' => 'success',
+            'message' => 'Section supprimée avec succès !'
+        ], 200);
     }
 }

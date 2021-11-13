@@ -138,7 +138,8 @@ class CourseController extends Controller
 
         return response([
             'status' => 'success',
-            'message' => 'Cours edité avec succès !'
+            'message' => 'Cours edité avec succès !',
+            'course' => $course
         ], 200);
     }
 
@@ -272,6 +273,7 @@ class CourseController extends Controller
         $sections = Section::where('sections.course_id', $id)
                 ->select('sections.id','sections.title as section_title')
                 ->groupBy('sections.id')
+                ->orderBy('sections.id', 'DESC')
                 ->get();
         $chapters = Section::where('sections.course_id', $id)
                 ->join('chapters', 'chapters.section_id', '=', 'sections.id')
