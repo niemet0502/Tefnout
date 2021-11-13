@@ -1,7 +1,6 @@
 
 
 export const parseRaitings = response => {
-  console.log(response);
   let count = 0;
   let sum = 0;
   let moy = 0;
@@ -82,8 +81,6 @@ export function parseNewCourseContent(sections,chapters){
       "chapters": newChapters
     })
   }
-
-  console.log(newArray);
 
   return newArray;
 }
