@@ -8,7 +8,6 @@ import { fetchCourseContent, storeSection } from '../../store/course/course.acti
 import useModal from '../../hooks/useModal';
 import Modal from "../../components/common/Modal"
 import FormInput from '../../components/form/FormInput';
-
 const CourseContent = ({courseContent,courseId}) => {
   const dispatch = useDispatch()
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal();
@@ -42,6 +41,7 @@ const CourseContent = ({courseContent,courseId}) => {
       {courseContent.map(section => (
         <Section 
           key={section.id} 
+          id={section.id}
           title={section.section_title} 
           chapters={section.chapters} 
         /> 
