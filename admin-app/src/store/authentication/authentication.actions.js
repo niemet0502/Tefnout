@@ -22,6 +22,7 @@ export function login(user){
            axios.post("http://127.0.0.1:8000/api/login", {
             email: user.email,
             password: user.password,
+            profil_id: 1
           }).then(result => {
 
             // save user's informations in localStorage 

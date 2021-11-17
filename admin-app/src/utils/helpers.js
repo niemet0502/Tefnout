@@ -84,3 +84,21 @@ export function parseNewCourseContent(sections,chapters){
 
   return newArray;
 }
+
+export function CourseContentIsValid(content){
+  
+  if (content.length <= 0){
+    return false
+  }
+
+
+  // for (let i = 0; i < content.length; i++) {
+  //   const element = array[i];
+    
+  //   if (element.chapters.length <= 0){
+  //     return false;
+  //   }
+  // }
+
+  return true;
+}

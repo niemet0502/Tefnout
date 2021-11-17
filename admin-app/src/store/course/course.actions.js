@@ -131,7 +131,7 @@ export function deleteSection(id,course){
   }
 }
 
-export function updateCourse(course,description,id){
+export function updateCourse(course,id){
   return async dispatch => {
     
     try {
@@ -141,19 +141,35 @@ export function updateCourse(course,description,id){
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          title:course.title, 
-          description: description,
-          hours:course.hours, 
-          level:course.level, 
-          category_id:course.category_id,
-          topics:course.topics
-        })
+        body: JSON.stringify(course)
       })
 
       const data = await response.json()
 
       dispatch(createNewCourse(data.course))
+    } catch (error) {
+      
+    }
+  }
+}
+
+export function publishCourse(id){
+  return async dispatch => {
+
+    console.log(id);
+
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/courses/publish/${id}`,{
+        method: "POST"
+      })
+      const data = await response.json()
+
+      dispatch(createNewCourse(data.course))
+      toast(`${data.message}`,{
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS,
+      })
     } catch (error) {
       
     }
