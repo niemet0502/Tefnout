@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import CourseInformation from "./CourseInformation";
 import CourseContent from './CourseContent';
@@ -6,15 +6,23 @@ import CourseMedia from './CourseMedia';
 import CoursePublish from './CoursePublish';
 import Button from "../../components/common/Button";
 import { convertToHTML } from 'draft-convert';
-import { storeCourse } from '../../store/course/course.actions';
+import { storeCourse, updateCourse,publishCourse } from '../../store/course/course.actions';
 import { useDispatch, connect } from 'react-redux';
-import PropTypes from "prop-types"
-function NewCourse({currentUser}) {
+import PropTypes from "prop-types";
+import { CourseContentIsValid } from '../../utils/helpers';
+function NewCourse({currentUser,courseId,currentCourseContent}) {
   const dispatch = useDispatch()
+  const [hasNewCourse, setHasNewCourse] = useState(true)
   const [currentStep, setCurrentStep] = useState(1)
-  const [newCourse, setNewCourse] = useState({title: "", hours: "", 
-                                  description: "", topics: "",
+  const [newCourse, setNewCourse] = useState({title: "Creer une application android", hours: "3 heures", 
+                                  description: "", topics: "android java kotlin",
                                   category_id: 3,level: "Debutant"})
+  const handlePublish = useCallback(
+    (courseId) => {
+      console.log(courseId);
+      dispatch(publishCourse(courseId))
+    },
+    [dispatch])
 
   const handleStep = () => {
     switch (currentStep) {
@@ -34,11 +42,16 @@ function NewCourse({currentUser}) {
   const changeStep = () => {
     if(currentStep == 1){
       let description = (convertToHTML(newCourse.description.getCurrentContent()));
-      dispatch(storeCourse(newCourse,description,currentUser));
+        
+        if(hasNewCourse == true){
+          dispatch(storeCourse(newCourse,description,currentUser));
+          setHasNewCourse(false)
+        }else{
+          dispatch(updateCourse(newCourse,courseId))
+        }
     }
     setCurrentStep(currentStep + 1)
   }
-  
 
   return (
     <div className="wrap-content">
@@ -77,8 +90,11 @@ function NewCourse({currentUser}) {
         </div>    
         <div className="step-footer step-tab-pager">
           { currentStep > 1 ? <Button text="Precedent" handleClick={() => setCurrentStep(currentStep - 1)} /> : null}
-  
-          <Button text={currentStep == 4 ? "Publier": "Suivant"} handleClick={() => changeStep()} />
+          
+          {currentStep < 4 ? 
+            <Button text="Suivant" handleClick={() => changeStep()} /> : 
+            CourseContentIsValid(currentCourseContent) ? <Button text="Publier" handleClick={ () => handlePublish(courseId)} /> : null }
+            
         </div>   
         </div> 
       </div>
@@ -87,12 +103,16 @@ function NewCourse({currentUser}) {
 }
 
 NewCourse.propTypes = {
-  currentUser: PropTypes.number
+  currentUser: PropTypes.number,
+  courseId: PropTypes.number,
+  currentCourseContent: PropTypes.array
 }
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.authentication.user.id
+    currentUser: state.authentication.user.id,
+    courseId: state.course.currentCourse.id,
+    currentCourseContent: state.course.currentCourseContent
   }
 }
 

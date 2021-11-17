@@ -120,7 +120,12 @@ class CourseController extends Controller
 
     public function publishCourse(int $id){
         $course = Course::find($id);
-        $course->update(['status', 'Publier']);
+        $course->update(['status' => 'Publier']);
+
+        return response([
+            'message' => 'Votre cours a bien ete publier',
+            'course' => $course
+        ], 200);
     }
 
     /**

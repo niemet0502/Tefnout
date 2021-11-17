@@ -2510,3 +2510,7 @@ input:focus, textarea:focus {
 #edit-section .ui[class*="left icon"].swdh95.input>input{
 	padding-left: 5px !important;
 }
+.course-thum-item {
+	width: 400px;
+	height: 250px;
+}
