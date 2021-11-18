@@ -9,20 +9,26 @@ import Button from "../common/Button";
 import Modal from "../common/Modal";
 import useModal from '../../hooks/useModal';
 import FormInput from '../form/FormInput';
-import FormTextArea from "../form/FormTextArea";
 import { updateSection,deleteSection } from '../../store/course/course.actions';
 import { useDispatch, connect } from 'react-redux';
+import { EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 const Section = ({id,title,chapters,courseId}) => { 
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal();
   const [state, setstate] = useState(title)
   const [showEditForm, setShowEditForm] = useState(false)
+  const [selectedTab, setSelectedTab] = useState(false)
   const dispatch = useDispatch()
-  const onDelete = useCallback(
-    () => {
+  const onDelete = useCallback(() => {
       dispatch(deleteSection(id,courseId))
-    },
-    [dispatch])
+    },[dispatch])
+  
+  const [editorState, setEditorState] = useState(
+    () => EditorState.createEmpty(),
+  );
 
   const handleSubmitSection = e => {
     e.preventDefault()
@@ -87,29 +93,58 @@ const Section = ({id,title,chapters,courseId}) => {
           isShowing={isLoginFormShowed}
           hide={toggleLoginForm}
           title="Nouveau Chapitre"
+          classNames="chapter-modal"
         >
 
-          <div className="ui search focus mt-2">
-            <div className="ui left icon input swdh95">
-            <FormInput
-              name="label"
-              type="text"
-              value={state}
-              onChange={(e) => setstate(e.target.value)}
-              className="prompt srch_explore"
-              label="Titre*"
-              required
-              />
+          <div className="nav nav-pills d-flex ">
+            <a href="#!" onClick={() => setSelectedTab(!selectedTab)} className={"nav-linkk " + (selectedTab == false ? "active": null)}><DescriptionOutlinedIcon /> Basique</a>
+            <a href="#!" onClick={() => setSelectedTab(!selectedTab)} className={"nav-linkk " + (selectedTab ? "active": null)}> <VideoCallOutlinedIcon /> Video</a>
+          </div>
+
+          <div 
+            className={"basic-chapter-container " + 
+              (selectedTab == false ? "d-block" : "d-none")}>
+            <div className="ui search focus mt-2">
+              <div className="ui left icon input swdh95">
+              <FormInput
+                name="label"
+                type="text"
+                value={state}
+                onChange={(e) => setstate(e.target.value)}
+                className="prompt srch_explore"
+                label="Titre*"
+                required
+                />
+              </div>
+            </div>
+
+            <div className="col-md-12">
+
+            <label htmlFor="" className="label mt-3 mb-3">Contenu*</label>
+            
+            <Editor 
+              editorState={editorState}
+              onEditorStateChange={setEditorState}
+              wrapperClassName="wrapper-class"
+              editorClassName="editor-class"
+              toolbarClassName="toolbar-class"
+            />
             </div>
           </div>
 
-          <div className="ui search focus mt-30">																
-            <div className="ui form swdh30">
-              <FormTextArea
-                name="Contenu"
-                value=""
-                label="Contenu*"
-              />
+          <div  style={{height: '270px'}}
+            className={"chapter-video-container justify-content-center mt-3 " +
+            (selectedTab  ? "d-flex" : "d-none")}>
+            <div className="col-md-8 align-items-center ">
+              <div className="upload-file-dt mt-30" style={{height: '80%'}}>
+                <div className="upload-btn">													
+                  <input className="uploadBtn-main-input" type="file" id="IntroFile__input--source" />
+                  <label title="Zip">Selectionnez une Video</label>
+                </div>
+                <span className="uploadBtn-main-file"> Format: .mp4</span>
+                <span className="uploaded-id"></span>
+              </div>
+
             </div>
           </div>
 
