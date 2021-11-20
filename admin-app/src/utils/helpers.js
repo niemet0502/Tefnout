@@ -90,15 +90,13 @@ export function CourseContentIsValid(content){
   if (content.length <= 0){
     return false
   }
-
-
-  // for (let i = 0; i < content.length; i++) {
-  //   const element = array[i];
+  for (let i = 0; i < content.length; i++) {
+    const element = content[i];
     
-  //   if (element.chapters.length <= 0){
-  //     return false;
-  //   }
-  // }
+    if (element.chapters.length <= 0){
+      return false;
+    }
+  }
 
   return true;
 }
