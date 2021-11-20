@@ -54,6 +54,7 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'title' => 'required',
             'description' => 'nullable',
@@ -65,10 +66,9 @@ class CourseController extends Controller
             'category_id' => 'required|integer|min:1|',
             'topics' => 'nullable'
         ]);
-
-          
-        $maxId = Course::orderBy('id', 'desc')->value('id'); 
-
+        
+        
+        
         $course = new Course();
         $course->title = $request->title;
         $course->slug = str_replace(' ', '-', $request->title);
@@ -81,9 +81,10 @@ class CourseController extends Controller
         $course->category_id = $request->category_id;
         $course->topics = $request->topics;
         $course->status = "Brouillon";
-
+        
         $course->save();
-
+        $maxId = Course::orderBy('id', 'desc')->value('id'); 
+        $course->update(['slug' => strval($maxId).'-'.str_replace(' ', '-', $request->title)]);
         
         return response([
             'status' => 'success',
