@@ -24,6 +24,7 @@ class CourseController extends Controller
             ->join('categories', 'categories.id', '=', 'courses.category_id')
             ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
             ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
+            ->where('courses.status', '=', 'Publier')
             ->select('courses.title', 
             'courses.image',
             'courses.level',
