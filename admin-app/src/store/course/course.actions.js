@@ -175,3 +175,60 @@ export function publishCourse(id){
     }
   }
 }
+
+export function storeChapter(chapter_title,textContent, course, section_id){
+  return async dispatch => {
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/chapter", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          title: chapter_title,
+          description: '',
+          video: null,
+          textContent: textContent,
+          section_id: section_id
+        })
+      })
+
+      const data = await response.json()
+      dispatch(fetchCourseContent(course))
+      toast(`${data.message}`,{
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS,
+      })
+    } catch (error) {
+      
+    }
+  }
+}
+
+
+export function deleteChapter(id,course){
+  return async dispatch => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/chapter/${id}`,{
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      })
+
+      const data = await response.json()
+      dispatch(fetchCourseContent(course))
+      toast(`${data.message}`,{
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS,
+      })
+    } catch (error) {
+      
+    }
+  }
+}
