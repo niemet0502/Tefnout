@@ -82,6 +82,7 @@ Route::delete('/formations/{id}', [FormationController::class, 'cancelFormation'
 Route::get('/chapter/{chapterId}/{slug}/{student}', [ChapterController::class, 'show']);
 Route::post('/chapter', [ChapterController::class, 'store']);
 Route::put('/chapter/{id}', [ChapterController::class, 'update']);
+Route::delete('/chapter/{id}', [ChapterController::class, 'destroy']);
 
 //section
 Route::post('/section', [SectionController::class, 'store']);
