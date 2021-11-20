@@ -106,6 +106,11 @@ class ChapterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Chapter::destroy($id);
+
+        return response([
+            'status' => 'success',
+            'message' => 'chapitre supprimé avec succès !'
+        ]);
     }
 }
