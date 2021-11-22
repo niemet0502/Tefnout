@@ -1,5 +1,7 @@
 import { parseNewCourseContent } from "../../utils/helpers"
 import { toast } from "react-toastify";
+import { convertToHTML } from 'draft-convert';
+
 export const CREATE_NEW_COURSE = 'CREATE_NEW_COURSE'
 export const GET_CURRENT_COURSE_CONTENT = 'GET CURRENT COURSE'
 
@@ -134,6 +136,8 @@ export function deleteSection(id,course){
 export function updateCourse(course,id){
   return async dispatch => {
     
+    
+    course = {...course, description: ""}
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/courses/${id}`, {
         method: "PUT",
@@ -145,7 +149,6 @@ export function updateCourse(course,id){
       })
 
       const data = await response.json()
-
       dispatch(createNewCourse(data.course))
     } catch (error) {
       
@@ -155,8 +158,6 @@ export function updateCourse(course,id){
 
 export function publishCourse(id){
   return async dispatch => {
-
-    console.log(id);
 
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/courses/publish/${id}`,{
@@ -227,6 +228,32 @@ export function deleteChapter(id,course){
         theme: "colored",
         type: toast.TYPE.SUCCESS,
       })
+    } catch (error) {
+      
+    }
+  }
+}
+
+
+export function updateChapter(title,id,course,textContent){
+  return async dispatch => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/chapter/${id}`,{
+        method: "PUT",
+        body: JSON.stringify({
+          title: title,
+          textContent: textContent
+        })
+      })
+
+      const data = await response.json()
+      dispatch(fetchCourseContent(course))
+      toast(`${data.message}`,{
+        position: toast.POSITION.BOTTOM_LEFT,
+        theme: "colored",
+        type: toast.TYPE.SUCCESS,
+      })
+
     } catch (error) {
       
     }

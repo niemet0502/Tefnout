@@ -10,7 +10,7 @@ import { storeCourse, updateCourse,publishCourse } from '../../store/course/cour
 import { useDispatch, connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { CourseContentIsValid } from '../../utils/helpers';
-function NewCourse({currentUser,courseId,currentCourseContent}) {
+function NewCourse({currentUser,courseId,currentCourseContent,courseStatus}) {
   const dispatch = useDispatch()
   const [hasNewCourse, setHasNewCourse] = useState(true)
   const [currentStep, setCurrentStep] = useState(1)
@@ -47,6 +47,7 @@ function NewCourse({currentUser,courseId,currentCourseContent}) {
           dispatch(storeCourse(newCourse,description,currentUser));
           setHasNewCourse(false)
         }else{
+          console.log(courseId);
           dispatch(updateCourse(newCourse,courseId))
         }
     }
@@ -93,8 +94,7 @@ function NewCourse({currentUser,courseId,currentCourseContent}) {
           
           {currentStep < 4 ? 
             <Button text="Suivant" handleClick={() => changeStep()} /> : 
-            CourseContentIsValid(currentCourseContent) ? <Button text="Publier" handleClick={ () => handlePublish(courseId)} /> : null }
-            
+            courseStatus === "Publier" ? null :  CourseContentIsValid(currentCourseContent) ? <Button text="Publier" handleClick={ () => handlePublish(courseId)} /> : null }            
         </div>   
         </div> 
       </div>
@@ -105,13 +105,15 @@ function NewCourse({currentUser,courseId,currentCourseContent}) {
 NewCourse.propTypes = {
   currentUser: PropTypes.number,
   courseId: PropTypes.number,
-  currentCourseContent: PropTypes.array
+  currentCourseContent: PropTypes.array,
+  courseStatus: PropTypes.string
 }
 
 const mapStateToProps = state => {
   return {
     currentUser: state.authentication.user.id,
     courseId: state.course.currentCourse.id,
+    courseStatus: state.course.currentCourse.status,
     currentCourseContent: state.course.currentCourseContent
   }
 }
