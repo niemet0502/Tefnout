@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import PropTypes from "prop-types"
 import { fetchTrainingState, fetchChapter, validateChapter, unValidateChapter } from '../../store/formation/formation.actions'
 import DoneIcon from '@mui/icons-material/Done';
-import Button from "../../components/Marketplace/Button"
+import Button from "../../components/Marketplace/Button";
+import DOMPurify from 'dompurify';
+
 function Training({
     currentUser,
     dispatch,
@@ -35,6 +37,11 @@ function Training({
     dispatch(unValidateChapter(slug,chapter,currentUser.id))
     window.scrollTo(0, 0);
   }
+  const createMarkup = (html) => {
+    return  {
+      __html: DOMPurify.sanitize(html)
+    }
+  }
 
   return (
     <div style={{paddingTop: '120px'}} className="border border-danger formation_wrapper">
@@ -58,39 +65,7 @@ function Training({
 
             <div className="ov_text_wrap m-4">
               <div className="ov_text">
-                  <h4>{currentChapter.title}</h4>
-                  <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                      enim ad minim veniam, quis nostrud exercitation eyee. ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                      dolorrepr ehenderit in voluptate velit esse cillum dolore eu
-                      fugiat nulla pariatur. Excepteur sint occaecat yeef cupidatat
-                      non proident, sunt in culpa qui officia deserunt mollit anim id
-                      est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                      voluptatem</p>
-              </div>
-              <div className="ov_text">
-                  <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                      enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                      nisi ut aliquip ex ea commodo consequat.</p>
-              </div>
-              <div className="ov_text">
-                  <h4>Show Realtime Resualts :</h4>
-                  <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                      enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                      nisiey.</p>
-              </div>
-              <div className="ov_text">
-                  <h4>Altime Support From Course Instractor :</h4>
-                  <p>Rorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                      enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                      nisi ut aliquip ex ea commodo consequat.Rorem ipsum dolor sit
-                      amet, consectetur adipisicing elit, sed do eiusmod tempor
-                      incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                      veniam, quis nostrud exercitation ullamcoey.</p>
+                  <p dangerouslySetInnerHTML={createMarkup(currentChapter.textContent)}></p>
               </div>
             </div>
               <div className="d-flex align-items-center justify-content-center" style={{marginTop: '60px'}}>
