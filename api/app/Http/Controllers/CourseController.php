@@ -173,11 +173,10 @@ class CourseController extends Controller
     }
 
     public function getCoursesByTeacher(int $id){
-        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status', 'courses.chapter_count',
         'categories.name as category_name', 
         'users.name as user_name', 
-        'users.firstname as user_firstname',
-        DB::raw('COUNT(chapters.id) as chapters_count'))
+        'users.firstname as user_firstname')
         ->where('courses.teacher_id', '=', $id)
         ->join('users', 'users.id', '=', 'courses.teacher_id')
         ->join('categories', 'categories.id', '=', 'courses.category_id')

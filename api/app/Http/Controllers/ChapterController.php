@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\FollowCourse;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class ChapterController extends Controller
@@ -41,6 +42,10 @@ class ChapterController extends Controller
         $chapter->textContent = $request->textContent;
         $chapter->video = $request->video;
         $chapter->section_id = $request->section_id;
+
+        $section = Section::find($request->section_id);
+
+        Course::find($section->course_id)->increment('chapter_count');
 
         $chapter->save();
 
