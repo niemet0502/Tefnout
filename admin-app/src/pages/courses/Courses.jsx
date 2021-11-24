@@ -43,7 +43,7 @@ function Courses({user, dispatch,courses}) {
           Icon={LibraryBooksOutlinedIcon} 
           text="Course"
           > 
-            <Link to="/courses/new">
+            <Link to="/new-course">
               <Button 
                 text="Create Your Course"
               /> 
@@ -74,7 +74,7 @@ function Courses({user, dispatch,courses}) {
               <td className="text-center">{ course.created_at.substr(0,10)}</td>
               <td className="text-center">{ course.follow_courses_count}</td>
               <td className="text-center">  { course.category_name}</td>
-              <td className="text-center">  { course.chapters_count}</td>
+              <td className="text-center">  { course.chapter_count}</td>
               <td className="text-center"> <b className="course_active">{ course.status}</b> </td>
               <td className="text-center">
                 {user.profil_id == 1 ? '': <EditOutlinedIcon  className="uil" />}
@@ -103,7 +103,7 @@ function Courses({user, dispatch,courses}) {
             /> 
           <Button 
             classNames="modal-toggle ml-3" 
-            handleClick={() => handleDelete} 
+            handleClick={handleDelete} 
             text="Delete"
           /> 
           </div>

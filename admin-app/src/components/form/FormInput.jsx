@@ -25,8 +25,9 @@ const FormInput = ({
         onChange={onChange}
         value={value}
         className={className}
-        style={error && {border: 'solid 1px red'}}
+        // style={error && {border: 'solid 1px red !important'}}
       />
+      <p>{ error }</p>
       { error && <p>{ error }</p>}
     </React.Fragment>
   )
@@ -34,7 +35,8 @@ const FormInput = ({
 
 FormInput.defaultProps = {
   type: "text",
-  className: ""
+  className: "",
+  error: ""
 }
 
 FormInput.propTypes = {

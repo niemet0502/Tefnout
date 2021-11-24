@@ -46,11 +46,11 @@ class FormationController extends Controller
      */
     public function show($slug,$id)
     {
-        if((FollowCourse::where([['course_id', intval(substr($slug,0,1))], ['student_id', $id]])->first()) == null){
+        if((FollowCourse::where([['course_id', intval(substr($slug,0,2))], ['student_id', $id]])->first()) == null){
             $formation = new FollowCourse();
 
             $formation->student_id = $id;
-            $formation->course_id =  intval(substr($slug,0,1));
+            $formation->course_id =  intval(substr($slug,0,2));
             $formation->status = "en cours";
             $formation->save();
         }
@@ -62,7 +62,7 @@ class FormationController extends Controller
                 ->get();
 
 
-        $chapterValide = FollowCourse::where([['follow_courses.course_id', intval(substr($slug,0,1))],
+        $chapterValide = FollowCourse::where([['follow_courses.course_id', intval(substr($slug,0,2))],
                         ['follow_courses.student_id', $id]])
                     ->join('follow_chapters', 'follow_chapters.formation_id', '=', 'follow_courses.id')
                     ->select('follow_chapters.chapter_id as chapter_id')
@@ -127,10 +127,11 @@ class FormationController extends Controller
             'chapitre' => 'success',
             'message' => 'Et un chapitre de terminé, bravo !'
         ], 200);
+
     }
 
     public function unvalideChapter($slug,$student_id,$chapter){
-        $formation =  FollowCourse::where([['course_id', intval(substr($slug,0,1))], ['student_id', $student_id]])->first();
+        $formation =  FollowCourse::where([['course_id', intval(substr($slug,0,2))], ['student_id', $student_id]])->first();
         
         FollowChapter::where([['formation_id', $formation->id], 
                     ['chapter_id', $chapter]])->delete();

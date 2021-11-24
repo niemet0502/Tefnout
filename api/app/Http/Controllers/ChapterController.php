@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\FollowCourse;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class ChapterController extends Controller
@@ -27,7 +28,32 @@ class ChapterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable',
+            'textContent' => 'nullable',
+            'video' => 'nullable',
+            'section_id' => 'required|integer'
+        ]);
+
+        $chapter = new Chapter();
+        $chapter->title = $request->title;
+        $chapter->description = $request->description;
+        $chapter->textContent = $request->textContent;
+        $chapter->video = $request->video;
+        $chapter->section_id = $request->section_id;
+
+        $section = Section::find($request->section_id);
+
+        Course::find($section->course_id)->increment('chapter_count');
+
+        $chapter->save();
+
+        return response([
+            'status' => 'success',
+            'message' => 'chapitre ajouté avec succès !'
+        ], 200);
+
     }
 
     /**
@@ -68,7 +94,13 @@ class ChapterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $chapter = Chapter::find($id);
+        $chapter->update($request->all());
+
+        return response([
+            'status' => 'success',
+            'message' => 'chapitre édité avec succès !'
+        ], 200);
     }
 
     /**
@@ -79,6 +111,11 @@ class ChapterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Chapter::destroy($id);
+
+        return response([
+            'status' => 'success',
+            'message' => 'chapitre supprimé avec succès !'
+        ]);
     }
 }

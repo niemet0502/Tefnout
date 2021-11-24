@@ -2463,3 +2463,59 @@ input:focus, textarea:focus {
 .cancel-formation:hover{
 	cursor: pointer;
 }
+.wrapper-class {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.editor-class {
+  background-color:lightgray;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.toolbar-class {
+  border: 1px solid #ccc;
+}
+
+.wrapper-class {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.editor-class {
+  background-color:lightgray;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.toolbar-class {
+  border: 1px solid #ccc;
+}
+.wrapper-class{
+	min-height: 300px;
+	border: 1px solid #e5e5e5;
+}
+
+.smt-25 {
+	margin-top: 25px !important;
+}
+.ui.search {
+	font-size: 1em;
+}
+
+.ui.search {
+	position: relative;
+}
+.mt-30 {
+	margin-top: 30px;
+}
+
+#edit-section .ui[class*="left icon"].swdh95.input>input{
+	padding-left: 5px !important;
+}
+.course-thum-item {
+	width: 400px;
+	height: 250px;
+}
+
+.rdw-editor-wrapper{
+	border:  1px solid red;
+}
+

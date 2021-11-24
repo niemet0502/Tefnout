@@ -7,6 +7,7 @@ import { fetchUser } from '../store/user/user.actions';
 import { fetchCourseReviews } from '../store/reviews/reviews.actions';
 import { fetchCourseCurriculum } from '../store/curriculum/curriculum.actions';
 import { trainingIsExist, cancelCurrentTraining } from '../store/formation/formation.actions';
+import DOMPurify from 'dompurify';
 //components 
 import CourseBanner from '../components/Marketplace/Course/CourseBanner';
 import Button from '../components/Marketplace/Button';
@@ -80,6 +81,12 @@ function CourseDetails({
     renderTrainingButton()
   }, [currentTraining])
 
+  const createMarkup = (html) => {
+    return  {
+      __html: DOMPurify.sanitize(html)
+    }
+  }
+
 
   return (
     <CourseDetailsComponent>
@@ -131,7 +138,7 @@ function CourseDetails({
                 <Tabs> 
                   <div label="Overview"> 
                     <div className="ov_text_wrap">
-                      <p>{course.description}</p>
+                      <p dangerouslySetInnerHTML={createMarkup(course.description)}></p>
                     </div>
                   </div>
                   <div label="Curriculum"> 

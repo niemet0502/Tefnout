@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -24,7 +26,23 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable',
+            'course_id' => 'required|nullable'
+        ]);
+
+        $section = new Section();
+        $section->title = $request->title;
+        $section->description = $request->description;
+        $section->course_id = $request->course_id;
+
+        $section->save();
+
+        return response([
+            'status' => 'success',
+            'message' => 'Section ajoutée avec succès !'
+        ], 200);
     }
 
     /**
@@ -47,7 +65,13 @@ class SectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $section = Section::find($id);
+        $section->update($request->all());
+
+        return response([
+            'status' => 'success',
+            'message' => 'Section éditée avec succès !'
+        ], 200);
     }
 
     /**
@@ -58,6 +82,12 @@ class SectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Chapter::where('section_id', $id)->delete();
+        Section::destroy($id);
+
+        return response([
+            'status' => 'success',
+            'message' => 'Section supprimée avec succès !'
+        ], 200);
     }
 }

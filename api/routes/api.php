@@ -9,8 +9,7 @@ use App\Http\Controllers\FormationController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
-use App\Models\Course;
-use App\Models\User;
+use App\Http\Controllers\SectionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +34,7 @@ Route::get('/courses/search/{name}', [CourseController::class, 'searchCourse']);
 Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 Route::get('/course/{id}/curriculum', [CourseController::class, 'getCourseCurriculum']);
 Route::get('/categories/{id}/courses', [CourseController::class, 'getCoursesByCategories']);
+Route::get('/course/{id}/new/curriculum', [CourseController::class, 'getNewCourseCurriculum']);
 
 Route::resource('categories', CategoryController::class);
 
@@ -51,6 +51,8 @@ Route::get('/users/instructor/dashboard/{id}', [UserController::class, 'getInstr
 Route::get('/admin/courses', [CourseController::class, 'getAdminCourse']);
 Route::get('/teacher/{id}/courses', [CourseController::class, 'getCoursesByTeacher']);
 Route::post('/courses', [CourseController::class, 'store']);
+Route::put('/courses/{id}', [CourseController::class, 'update']);
+Route::post('/courses/publish/{id}', [CourseController::class, 'publishCourse']);
 
 //comments admin::site 
 Route::get('/admin/comments', [CommentController::class, 'getAllComments']);
@@ -78,6 +80,14 @@ Route::delete('/formation/chapter/{slug}/{student_id}/{chapter}', [FormationCont
 Route::delete('/formations/{id}', [FormationController::class, 'cancelFormation']); //cancel formation
 //chapter 
 Route::get('/chapter/{chapterId}/{slug}/{student}', [ChapterController::class, 'show']);
+Route::post('/chapter', [ChapterController::class, 'store']);
+Route::put('/chapter/{id}', [ChapterController::class, 'update']);
+Route::delete('/chapter/{id}', [ChapterController::class, 'destroy']);
+
+//section
+Route::post('/section', [SectionController::class, 'store']);
+Route::put('/section/{id}', [SectionController::class, 'update']);
+Route::delete('/section/{id}', [SectionController::class, 'destroy']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes

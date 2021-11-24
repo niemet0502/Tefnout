@@ -10,7 +10,8 @@ function Button({
   type,
   classNames,
   handleClick, 
-  variant}) {
+  variant,
+  disabled}) {
   return (
     <ButtonComponent 
       bgColor={bgColor} 
@@ -19,6 +20,7 @@ function Button({
       className={classNames}
       onClick={handleClick}
       variant={variant}
+      disabled={disabled}
       >
         {text} 
         {Icon && <Icon />}
@@ -38,7 +40,8 @@ Button.propTypes = {
   type: PropTypes.string,
   classNames: PropTypes.string,
   handleClick: PropTypes.func,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 const ButtonComponent = styled.button`

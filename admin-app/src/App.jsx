@@ -6,6 +6,7 @@ import {
 import PublicRoute from './components/routing/PublicRoute';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { history } from './utils/history';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 // style
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -35,7 +36,7 @@ function App() {
           <PrivateRoute path="/categories" component={Categories} exact />
           <PrivateRoute path="/users" component={Users} exact />
           <PrivateRoute path="/reviews" component={Reviews} exact />
-          <PrivateRoute path="/courses/new" component={NewCourse} exact />
+          <PrivateRoute path="/new-course" component={NewCourse} exact />
           <PrivateRoute path="/courses" component={Courses} exact />
           <PrivateRoute path="/settings" component={Settings} exact />
           <PublicRoute path="/" component={SignIn}/>

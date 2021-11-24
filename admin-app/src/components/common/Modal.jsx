@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
-const Modal = ({ isShowing, hide, title, ...props }) =>
+const Modal = ({ isShowing, hide, title, classNames , ...props}) =>
   isShowing
     ? ReactDOM.createPortal(
         <>
-          <div className="modal-overlay">
+          <div className={`modal-overlay`}>
             <div className="modal-wrapper">
-              <div className="modal">
+              <div className={`modal ${classNames} `}>
                 <div className="modal-header">
                   <h4>{title}</h4>
                   <button
@@ -72,6 +72,37 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
               font-size: 20px !important;
 
             }
+            .nav.nav-pills {
+              display: flex;
+              margin-top: 30px;
+            }
+
+            .nav-linkk{
+              border-radius: 0 !important;
+              border-top: 1px solid #efefef;
+              border-bottom: 1px solid #efefef;
+              border-right: 1px solid #efefef;
+              border-left: 0;
+              font-size: 14px;
+              text-align: center;
+              font-weight: 500;
+              color: black !important;
+              padding: 12px !important;
+              color: white;
+              background: #f7f7f7;
+              text-decoration: none;
+              width: 50%;
+              display: flex; 
+              align-items:center;
+              justify-content: center;
+            }
+
+            .nav-linkk.active{
+              color: white !important;
+              background: red !important;
+            }
+            
+
 
             .modal-close-button {
               font-size: 1.4rem;
@@ -87,6 +118,10 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
 
             .modal-body .ui[class*="left icon"].swdh95.input>input{
               padding-left: 10px !important;
+            }
+
+            .modal.chapter-modal{
+              max-width: 1000px !important;
             }
           `}</style>
         </>,

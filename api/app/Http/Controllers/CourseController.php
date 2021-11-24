@@ -24,6 +24,7 @@ class CourseController extends Controller
             ->join('categories', 'categories.id', '=', 'courses.category_id')
             ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
             ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
+            ->where('courses.status', '=', 'Publier')
             ->select('courses.title', 
             'courses.image',
             'courses.level',
@@ -54,6 +55,7 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'title' => 'required',
             'description' => 'nullable',
@@ -65,10 +67,9 @@ class CourseController extends Controller
             'category_id' => 'required|integer|min:1|',
             'topics' => 'nullable'
         ]);
-
-          
-        $maxId = Course::orderBy('id', 'desc')->value('id'); 
-
+        
+        
+        
         $course = new Course();
         $course->title = $request->title;
         $course->slug = str_replace(' ', '-', $request->title);
@@ -80,14 +81,16 @@ class CourseController extends Controller
         $course->teacher_id = $request->teacher_id;
         $course->category_id = $request->category_id;
         $course->topics = $request->topics;
-        $course->status = "draft";
-
+        $course->status = "Brouillon";
+        
         $course->save();
-
+        $maxId = Course::orderBy('id', 'desc')->value('id'); 
+        $course->update(['slug' => strval($maxId).'-'.str_replace(' ', '-', $request->title)]);
         
         return response([
             'status' => 'success',
-            'message' => 'Cours ajouté avec succès !'
+            'message' => 'Cours ajouté avec succès !',
+            'course' => $course
         ], 200);
     }
 
@@ -117,6 +120,16 @@ class CourseController extends Controller
         ], 200);
     }
 
+    public function publishCourse(int $id){
+        $course = Course::find($id);
+        $course->update(['status' => 'Publier']);
+
+        return response([
+            'message' => 'Votre cours a bien ete publier',
+            'course' => $course
+        ], 200);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -126,7 +139,15 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::find($id);
+        $course->update($request->all());
+
+
+        return response([
+            'status' => 'success',
+            'message' => 'Cours edité avec succès !',
+            'course' => $course
+        ], 200);
     }
 
     /**
@@ -152,11 +173,10 @@ class CourseController extends Controller
     }
 
     public function getCoursesByTeacher(int $id){
-        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status', 'courses.chapter_count',
         'categories.name as category_name', 
         'users.name as user_name', 
-        'users.firstname as user_firstname',
-        DB::raw('COUNT(chapters.id) as chapters_count'))
+        'users.firstname as user_firstname')
         ->where('courses.teacher_id', '=', $id)
         ->join('users', 'users.id', '=', 'courses.teacher_id')
         ->join('categories', 'categories.id', '=', 'courses.category_id')
@@ -197,16 +217,13 @@ class CourseController extends Controller
 
     public function getAdminCourse(){
         
-        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status',
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status', 'courses.chapter_count',
         'categories.name as category_name', 
         'users.name as user_name', 
-        'users.firstname as user_firstname',
-        DB::raw('COUNT(chapters.id) as chapters_count'))
+        'users.firstname as user_firstname',)
         ->join('users', 'users.id', '=', 'courses.teacher_id')
         ->join('categories', 'categories.id', '=', 'courses.category_id')
         ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
-        ->leftJoin('sections', 'sections.course_id', '=', 'courses.id')
-        ->leftJoin('chapters', 'chapters.section_id', '=', 'sections.id')
         ->withCount('followCourses')
         ->groupBy('courses.id')
         ->get();
@@ -248,11 +265,35 @@ class CourseController extends Controller
     public function getCourseCurriculum($id){
         $curriculum = Section::where('sections.course_id', $id)
                 ->join('chapters', 'chapters.section_id', '=', 'sections.id')
-                ->select('sections.id','sections.title as section_title', 'chapters.title as chapter_title', 'chapters.id as chapter_id')
+                ->select('sections.id','sections.title as section_title', 
+                    'chapters.title as chapter_title', 'chapters.id as chapter_id',
+                    'chapters.textContent as chapter_text_content', 
+                    'chapters.video as chapter_video_content')
                 ->groupBy('chapters.id')
                 ->get();
 
         return $curriculum;
+    }
+
+    public function getNewCourseCurriculum($id){
+        $sections = Section::where('sections.course_id', $id)
+                ->select('sections.id','sections.title as section_title')
+                ->groupBy('sections.id')
+                ->orderBy('sections.id', 'DESC')
+                ->get();
+        $chapters = Section::where('sections.course_id', $id)
+                ->join('chapters', 'chapters.section_id', '=', 'sections.id')
+                ->select('sections.id','sections.title as section_title', 
+                    'chapters.title as chapter_title', 'chapters.id as chapter_id',
+                    'chapters.textContent as chapter_text_content', 
+                    'chapters.video as chapter_video_content')
+                ->groupBy('chapters.id')
+                ->get();
+
+        return response([
+            'sections' => $sections,
+            'chapters' => $chapters
+        ],200);
     }
 
 }
