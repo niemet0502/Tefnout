@@ -14,6 +14,8 @@ function reviewsReducer(state = initialState, action){
     return {loading: false, reviews: action.payload, hasErrors: false}
     case actions.GET_REVIEW_FAILURES: 
       return {...state, hasErrors: true}
+    case actions.ADD_REVIEW_SUCCESS:
+      return {...state, reviews: [...state.reviews, action.payload]}
     default:
       return state;
   }
