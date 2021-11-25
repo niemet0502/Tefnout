@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { fetchCourse } from '../store/course/course.actions';
 import { fetchUser } from '../store/user/user.actions';
-import { fetchCourseReviews } from '../store/reviews/reviews.actions';
+import { fetchCourseReviews, addReview } from '../store/reviews/reviews.actions';
 import { fetchCourseCurriculum } from '../store/curriculum/curriculum.actions';
 import { trainingIsExist, cancelCurrentTraining } from '../store/formation/formation.actions';
 import DOMPurify from 'dompurify';
@@ -23,7 +23,6 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { connect } from 'react-redux';
-
 function CourseDetails({
   match,
   dispatch,
@@ -35,7 +34,6 @@ function CourseDetails({
   currentUser,
   currentTraining
 }) {
-  
   const renderTrainingButton = () => {
     const { slug } = match.params
     if (token == null || currentTraining == false){
@@ -61,7 +59,6 @@ function CourseDetails({
         )
     }
   }
-
   const [newReview, setNewReview] = useState('')
 
   useEffect(() => {
@@ -87,7 +84,12 @@ function CourseDetails({
     }
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
 
+    dispatch(addReview(newReview,currentTraining.id, currentTraining.course_id))
+    setNewReview('')
+  }
   return (
     <CourseDetailsComponent>
       <CourseBanner
@@ -212,7 +214,7 @@ function CourseDetails({
                         {currentTraining !== false ?
                          <div>
                            <h3 className="comment_title">Add a review</h3>
-                           <form>
+                           <form onSubmit={handleSubmit}>
                             <FormTextArea
                               name="review"
                               value={newReview}
@@ -222,9 +224,8 @@ function CourseDetails({
 
                               <div className="d-flex justify-content-center">
                                 <Button
-                                 text="Enregistrer"
-                                 bgColorHover="#0073ff"
-                                 type="submit"
+                                  text="Enregistrer"
+                                  bgColorHover="#0073ff"
                                  />
                               </div>
                            </form>

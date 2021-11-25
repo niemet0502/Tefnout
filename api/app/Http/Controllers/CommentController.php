@@ -6,6 +6,7 @@ use App\Models\Comments;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\FollowCourse;
+use App\Models\Note;
 
 class CommentController extends Controller
 {
@@ -30,6 +31,7 @@ class CommentController extends Controller
         $request->validate([
             'content' => 'required',
             'formation_id' => 'required|integer|min:1|',
+            'note' => 'nullable|integer'
         ]);
 
         $comment = new Comments();
@@ -37,10 +39,16 @@ class CommentController extends Controller
         $comment->formation_id =  $request->formation_id;
         $comment->save();
 
+        if($request->note){
+            $note = new Note();
+            $note->value = $request->note;
+            $note->formation_id =  $request->formation_id;
+        }
         
         return response([
             'status' => 'success',
-            'message' => 'Commentaire ajouté avec succès !'
+            'message' => 'Revue ajouté avec succès !',
+            'comment' => $comment
         ], 200);
 
     }
