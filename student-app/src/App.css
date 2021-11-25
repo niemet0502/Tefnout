@@ -2519,3 +2519,71 @@ input:focus, textarea:focus {
 	border:  1px solid red;
 }
 
+.footer_area .footer_main {
+	padding: 100px 0;
+	padding-bottom: 60px;
+}
+.footer_bg {
+	background: #000;
+}
+.subscribe_wrap .sub_text h3 {
+	color: #ffff;
+	font-size: 40px;
+}
+.subscribe_wrap .sub_from {
+	position: relative;
+}
+.subscribe_wrap .sub_from input {
+	width: 100%;
+	height: 55px;
+	color: #ffff;
+	background: rgba(255, 255, 255, 0.109);
+}
+.subscribe_wrap .sub_from button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	padding: 0 30px;
+	border: none;
+	color: #fff;
+	font-weight: 600;
+	font-size: 14px;
+	text-transform: uppercase;
+	transition: .3s;
+}
+.bai_bootom_space {
+	margin-bottom: -150px;
+}
+.bai_wrap {
+	padding: 85px 70px;
+	position: relative;
+	z-index: 2;
+	overflow: hidden;
+}
+.bai_wrap > span {
+	color: #fff;
+	font-size: 18px;
+	margin-bottom: 15px;
+}
+.bai_wrap > h3 {
+	color: #fff;
+	font-size: 40px;
+	margin-bottom: 30px;
+}
+.theme_bg {
+	background: #0073ff;
+}
+.bai_shape {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+.bai_shape img {
+	width: 100%;
+	height: 100%;
+}
