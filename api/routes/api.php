@@ -72,6 +72,7 @@ Route::get('/student/{student}/training/{cours}', [FormationController::class, '
 
 // reviews 
 Route::get('/course/{id}/reviews', [CommentController::class, 'getCourseReviews']);
+Route::post('/review', [CommentController::class, 'store']);
 
 // formation 
 Route::get('/training/{slug}/student/{id}', [FormationController::class, 'show']); // get an student's training
