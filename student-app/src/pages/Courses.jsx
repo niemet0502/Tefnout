@@ -11,25 +11,30 @@ import CourseCard from '../components/Marketplace/Course/CourseCard'
 import CourseBanner from '../components/Marketplace/Course/CourseBanner'
 // images 
 import bg_image from "../assets/img/counter_bg.jpg"
+import FormInput from '../components/Marketplace/Form/FormInput'
 
 
 function Courses({courses,dispatch,categories}) {
   const [currentCategory, setCurrentCategory] = useState(0)
-
+  const [search, setSearch] = useState('')
   useEffect(() => {
-
     if(currentCategory == 0){
       dispatch(fetchAllCourses())
     }else{
       dispatch(fetchCoursesByCategories(currentCategory))
     }
-
   }, [currentCategory])
 
   useEffect(() => {
     dispatch(fetchCategories())
     dispatch(fetchAllCourses())
   }, [dispatch])
+
+  useEffect(() => {
+    if( search !== ''){
+      dispatch(actions.searchCourse(search))
+    }
+  }, [search])
 
   return (
     <CoursePage>
@@ -39,6 +44,18 @@ function Courses({courses,dispatch,categories}) {
       
       <section className="courses_area pt-5 pb-5" style={{background: '#f7f7f7'}}>
         <div className="container">
+          <div className="search-container d-flex justify-content-end">
+            <FormInput
+              name="username"
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search..."
+              required
+              // error={errors.username}
+              className="input w-25 bg-white"
+            />
+          </div>
           <div className="row">
               <div className="col-12">
                   <div className="mb-40 d-flex">

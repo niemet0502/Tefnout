@@ -48,3 +48,18 @@ export function fetchCoursesByCategories(id){
     }
   }
 }
+
+
+export function searchCourse(name){
+  return async dispatch => {
+
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/courses/search/${name}`)
+      const data = await response.json()
+
+      dispatch(getCoursesSuccess(data))
+    } catch (error) {
+      dispatch(getCoursesFailures())
+    }
+  }
+}

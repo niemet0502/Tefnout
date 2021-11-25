@@ -201,18 +201,30 @@ class CourseController extends Controller
     }
 
     public function searchCourse($name){
-        return Course::select('courses.*', 
-            'users.avatar as teacher_image',
-            'users.name as teacher_nae', 
-            'categories.name as category_name')
-            ->join('users', 'users.id', '=', 'courses.teacher_id')
-            ->join('categories', 'categories.id', '=', 'courses.category_id' )
+        return Course::join('users', 'users.id', '=', 'courses.teacher_id')
+            ->join('categories', 'categories.id', '=', 'courses.category_id')
+            ->leftJoin('follow_courses', 'follow_courses.course_id', '=', 'courses.id')
+            ->leftJoin('notes', 'notes.formation_id', '=', 'follow_courses.id')
+            ->where('courses.status', '=', 'Publier')
             ->where('title', 'like', '%'.$name.'%')
             ->orWhere('description', 'like', '%'.$name.'%') 
             ->orWhere('topics', 'like', '%'.$name.'%') 
             ->orWhere('categories.name', 'like', '%'.$name.'%') 
             ->orWhere('users.name', 'like', '%'.$name.'%')   
+            ->select('courses.title', 
+            'courses.image',
+            'courses.level',
+            'courses.views',
+            'courses.slug',
+            'users.avatar as teacher_image', 
+            'categories.name as category_name',
+            DB::raw('SUM(notes.value) as total_note'),
+            DB::raw('COUNT(notes.value) as notes_count'))
+            ->withCount('followCourses')
+            ->groupBy('courses.id')
+            ->orderBy('courses.id','DESC')
             ->get();
+    
     }
 
     public function getAdminCourse(){
