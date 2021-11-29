@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChapterController;
@@ -89,6 +90,12 @@ Route::delete('/chapter/{id}', [ChapterController::class, 'destroy']);
 Route::post('/section', [SectionController::class, 'store']);
 Route::put('/section/{id}', [SectionController::class, 'update']);
 Route::delete('/section/{id}', [SectionController::class, 'destroy']);
+
+
+//applications 
+Route::get('/applications', [ApplicationController::class, 'index']);
+Route::put('/applications', [ApplicationController::class, 'store']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Category's routes
