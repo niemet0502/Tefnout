@@ -94,7 +94,7 @@ Route::delete('/section/{id}', [SectionController::class, 'destroy']);
 
 //applications 
 Route::get('/applications', [ApplicationController::class, 'index']);
-Route::put('/applications', [ApplicationController::class, 'store']);
+Route::post('/applications', [ApplicationController::class, 'store']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MakeMessageNullableInApplications extends Migration
+class RenameApplicationsTableToApplicatios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class MakeMessageNullableInApplications extends Migration
      */
     public function up()
     {
-        Schema::table('applications', function (Blueprint $table) {
-            // $table->text('message')->nullable();
-        });
+        Schema::rename('applications','applicatios');
     }
 
     /**
@@ -25,7 +23,7 @@ class MakeMessageNullableInApplications extends Migration
      */
     public function down()
     {
-        Schema::table('applications', function (Blueprint $table) {
+        Schema::table('applicatios', function (Blueprint $table) {
             //
         });
     }
