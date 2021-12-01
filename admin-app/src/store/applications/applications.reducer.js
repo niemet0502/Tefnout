@@ -2,7 +2,7 @@ import * as actions from "./applications.actions"
 
 const initialState = {
   loading: false, 
-  applicatitons: [],
+  applications: [],
   hasErrors: false
 }
 
@@ -13,7 +13,7 @@ function applicatitonsReducer(state = initialState, action){
     case actions.GET_APPLICATIONS_LOADING:
       return {...state, loading: true}
     case actions.GET_APPLICATIONS_SUCCESS: 
-      return {loading: false, applicatons: action.payload, hasErrors: false}
+      return {loading: false, applications: action.payload, hasErrors: false}
     default:
       return state;
   }

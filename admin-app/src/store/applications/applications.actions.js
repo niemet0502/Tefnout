@@ -13,7 +13,6 @@ export function fetchApplications(){
       const response = await fetch("http://127.0.0.1:8000/api/applications")
       const data = await response.json()
 
-
       dispatch(getApplicationsSuccess(data))
     } catch (error) {
       
