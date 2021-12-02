@@ -181,7 +181,6 @@ function Home({
         </div>
       </div>
     </section>
-    <Footer/>
     </HomePage>
 
   )

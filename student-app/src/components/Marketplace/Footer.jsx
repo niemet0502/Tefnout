@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import bai_shape from "../../assets/img/bai_shape_01.png"
 import PropTypes from "prop-types"
+import { Link } from 'react-router-dom'
 function Footer({currentUser}) {
   return (
     <div style={{background: '#F7F7F7'}}>
@@ -13,7 +14,9 @@ function Footer({currentUser}) {
                     <div className="bai_wrap bai_left theme_bg">
                         <span># Become A Instructor</span>
                         <h3>Become a Instructor</h3>
-                        <a className="thm_btn thm_btn-border" href="contact.html">apply now<i className="fal fa-long-arrow-right"></i></a>
+                        
+                        <Link to="/contact" className="thm_btn thm_btn-border">apply now</Link>
+                        
                         <div className="bai_shape">
                             <img src={bai_shape} alt="" />
                         </div>
