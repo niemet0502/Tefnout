@@ -2587,3 +2587,20 @@ input:focus, textarea:focus {
 	width: 100%;
 	height: 100%;
 }
+.contact_from {
+	padding: 60px 50px;
+	background: #ffff;
+}
+
+.apply-label{
+	
+	width: 230px;
+	height: 50px;
+	background: #ebecf0;
+	color: #9696a2;
+	border: 1px solid #dfe0e4;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
