@@ -65,7 +65,7 @@ const Applications = ({applications}) => {
                 <td className="text-center">{app.email}</td>
                 <td className="text-center">{app.phone}</td>
                 <td className="text-center">{app.message}</td>
-                <td className="text-center"><a target="_blank" href="filename.pdf" title=""></a></td>
+                <td className="text-center"><a target="_blank" href={app.resume}  rel="noreferrer" title="">CV</a></td>
                 <td className="text-center"> <AddIcon onClick={() => validateAction(app)} /> 
                   <DeleteOutlineOutlinedIcon onClick={() => deleteAction(app)} /> </td>
               </tr>
