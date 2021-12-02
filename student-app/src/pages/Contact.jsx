@@ -7,17 +7,16 @@ import { getBase64 } from "../utils/convertFile";
 import { toast } from 'react-toastify';
 const Contact = () => {
   const [contact, setContact] = useState({fullname: ""})
+  const [resume, setResume] = useState()
   const [loading, setLoading] = useState(false)
 
-  async function storeApplication(contact){
-
-    const image = await getBase64(contact.resume)
-
+  async function convert(){
+    let image = await getBase64(resume)
     setContact({...contact, resume: image})
+  }
 
-    console.log(image);
-    console.log(contact);
-
+  async function storeApplication(contact){
+    convert()
     const response = await fetch("http://127.0.0.1:8000/api/applications",{
       method: "POST",
       headers: {
@@ -33,6 +32,8 @@ const Contact = () => {
       theme: "colored",
       type: toast.TYPE.SUCCESS,
     })
+
+    setContact({fullname: ""})
   }
 
   const handleSubmit = e => {
@@ -96,7 +97,7 @@ const Contact = () => {
                 <AttachFileIcon /> ATTACH RESUME / CV
                 </label>
                 <input type="file" id="resume" name="resume" style={{opacity: '0'}} 
-                  onChange={e => setContact({...contact, resume: e.target.files[0]})}/>
+                  onChange={e => setResume(e.target.files[0])}/>
                 </div>
               </div>
 
