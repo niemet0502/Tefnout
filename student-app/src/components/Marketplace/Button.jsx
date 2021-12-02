@@ -9,7 +9,8 @@ function Button({
   bgColorHover,
   type,
   classNames,
-  handleClick}) {
+  handleClick,
+  disabled}) {
   return (
     <ButtonComponent 
       bgColor={bgColor} 
@@ -17,6 +18,7 @@ function Button({
       type={type}
       className={classNames}
       onClick={handleClick}
+      disabled={disabled}
       >
         {text} 
         {Icon && <Icon />}
@@ -31,7 +33,8 @@ Button.propTypes = {
   bgColorHover: PropTypes.string,
   type: PropTypes.string,
   classNames: PropTypes.string,
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
 const ButtonComponent = styled.button`
