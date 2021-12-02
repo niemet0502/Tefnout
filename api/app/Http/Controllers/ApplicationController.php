@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicatio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ApplicationController extends Controller
 {
@@ -35,4 +36,14 @@ class ApplicationController extends Controller
             'message' => 'Votre demande a bien ete envoyer !!!'
         ],200);
     }
+
+    public function destroy(int $id){
+        Applicatio::destroy($id);
+
+        return response([
+            'status' => 'success',
+            'message' => 'Application supprimer avec succes'
+        ],200);
+
+    }   
 }
