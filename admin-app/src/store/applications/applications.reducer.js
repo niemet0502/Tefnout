@@ -14,6 +14,8 @@ function applicatitonsReducer(state = initialState, action){
       return {...state, loading: true}
     case actions.GET_APPLICATIONS_SUCCESS: 
       return {loading: false, applications: action.payload, hasErrors: false}
+    case actions.DELETE_APPLICATION: 
+      return {...state, applications: state.applications.filter(app => action.payload !== app.id )}
     default:
       return state;
   }
