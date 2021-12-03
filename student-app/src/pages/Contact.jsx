@@ -10,13 +10,7 @@ const Contact = () => {
   const [resume, setResume] = useState()
   const [loading, setLoading] = useState(false)
 
-  async function convert(){
-    let image = await getBase64(resume)
-    setContact({...contact, resume: image})
-  }
-
   async function storeApplication(contact){
-    convert()
     const response = await fetch("http://127.0.0.1:8000/api/applications",{
       method: "POST",
       headers: {
@@ -33,7 +27,7 @@ const Contact = () => {
       type: toast.TYPE.SUCCESS,
     })
 
-    setContact({fullname: ""})
+    setContact({fullname: "",email:"", phone: "", message: ""})
   }
 
   const handleSubmit = e => {
@@ -89,7 +83,6 @@ const Contact = () => {
                     onChange={(e) => setContact({...contact, phone: e.target.value})}
                     placeholder="Phone..."
                     required
-                // error={errors.username}
                 />
                 </div>
                 <div className="col-md-6 d-flex">
@@ -103,7 +96,8 @@ const Contact = () => {
 
               <div className="col-12 mt-4">
                 <textarea style={{height: '250px'}} name="message" id="message" cols="30" rows="10"
-                                                  placeholder="Your Message :"
+                                                  placeholder="Your Message :" 
+                  value={contact.message}
                   onChange={e => setContact({...contact, message: e.target.value})}
                 >
 

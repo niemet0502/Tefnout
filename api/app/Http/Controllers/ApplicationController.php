@@ -16,7 +16,6 @@ class ApplicationController extends Controller
         $request->validate([
             'fullname' => 'required',
             'email' => 'required',
-            'resume' => 'required',
             'message' => 'nullable',
             'phone' => 'required',
         ]);
