@@ -77,7 +77,7 @@ function Courses({user, dispatch,courses}) {
               <td className="text-center">  { course.chapters_count}</td>
               <td className="text-center"> <b className="course_active">{ course.status}</b> </td>
               <td className="text-center">
-                {user.profil_id == 1 ? '': <EditOutlinedIcon  className="uil" />}
+                {user.profil_id == 1 ? '': <Link to={`/edit-course/${course.slug}`}> <EditOutlinedIcon className="uil" /></Link>}
                 {course.follow_courses_count > 0 ? '' :  <DeleteOutlineOutlinedIcon onClick={() => deleteAction(course)} className="uil"/>}
               </td>
             </tr>
@@ -103,7 +103,7 @@ function Courses({user, dispatch,courses}) {
             /> 
           <Button 
             classNames="modal-toggle ml-3" 
-            handleClick={() => handleDelete} 
+            handleClick={handleDelete} 
             text="Delete"
           /> 
           </div>
