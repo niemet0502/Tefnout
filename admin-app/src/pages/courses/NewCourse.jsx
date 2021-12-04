@@ -20,8 +20,8 @@ function NewCourse({
   const [hasNewCourse, setHasNewCourse] = useState(true)
   const [isEditCourse, setIsEditCourse] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
-  const [newCourse, setNewCourse] = useState({title: "", hours: "", 
-                                  description: "", topics: "",
+  const [newCourse, setNewCourse] = useState({title: "Creer une application angular", hours: "3 heurs", 
+                                  description: "", topics: "angular frontend",
                                   category_id: 3,level: "Debutant"})
   const [errors, setErrors] = useState({})
   const handlePublish = useCallback(

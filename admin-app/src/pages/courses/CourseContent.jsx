@@ -12,6 +12,7 @@ const CourseContent = ({courseContent,courseId}) => {
   const dispatch = useDispatch()
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal();
   const [state, setState] = useState('')
+  const [error, setError] = useState({})
 
   useEffect(() => {
     dispatch(fetchCourseContent(courseId.id))
@@ -19,9 +20,19 @@ const CourseContent = ({courseContent,courseId}) => {
 
   const handleSubmitSection = (e) => {
     e.preventDefault()
-    dispatch(storeSection(state,courseId.id))
-    toggleLoginForm()
-    setState('')
+    let err = {}
+
+    if(!state){
+      err.title ="Entrez un titre"
+    }
+
+    setError(err)
+
+    if( Object.getOwnPropertyNames(err).length == 0){
+      dispatch(storeSection(state,courseId.id))
+      toggleLoginForm()
+      setState('')
+    }
   }
   return (
     <div>
@@ -62,7 +73,8 @@ const CourseContent = ({courseContent,courseId}) => {
               value={state}
               onChange={(e) => setState(e.target.value)}
               className="prompt srch_explore"
-              label="Titre"
+              label="Titre*"
+              error={error.title}
               required
               />
             </div>
@@ -73,6 +85,7 @@ const CourseContent = ({courseContent,courseId}) => {
                 classNames="modal-toggle" 
                 text="Annuler"
                 variant="secondary"
+                handleClick={toggleLoginForm}
               /> 
               <Button
                 text="Enregistrer"
