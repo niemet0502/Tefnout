@@ -6,28 +6,36 @@ import CourseMedia from './CourseMedia';
 import CoursePublish from './CoursePublish';
 import Button from "../../components/common/Button";
 import { convertToHTML } from 'draft-convert';
-import { storeCourse, updateCourse,publishCourse } from '../../store/course/course.actions';
+import { storeCourse, updateCourse,publishCourse, fetchCourse, getCurrentCourse } from '../../store/course/course.actions';
 import { useDispatch, connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { CourseContentIsValid } from '../../utils/helpers';
-function NewCourse({currentUser,courseId,currentCourseContent,courseStatus}) {
+function NewCourse({
+    currentUser,
+    course,
+    currentCourseContent,
+    // courseStatus,
+    match}) {
   const dispatch = useDispatch()
   const [hasNewCourse, setHasNewCourse] = useState(true)
+  const [isEditCourse, setIsEditCourse] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
-  const [newCourse, setNewCourse] = useState({title: "Creer une application android", hours: "3 heures", 
-                                  description: "", topics: "android java kotlin",
+  const [newCourse, setNewCourse] = useState({title: "", hours: "", 
+                                  description: "", topics: "",
                                   category_id: 3,level: "Debutant"})
+  const [errors, setErrors] = useState({})
   const handlePublish = useCallback(
-    (courseId) => {
-      console.log(courseId);
-      dispatch(publishCourse(courseId))
+    (course) => {
+      dispatch(publishCourse(course.id))
     },
     [dispatch])
 
   const handleStep = () => {
     switch (currentStep) {
       case 1:
-        return <CourseInformation course={newCourse} handleChange={setNewCourse} />
+        return <CourseInformation 
+          course={newCourse} handleChange={setNewCourse}
+          errors={errors} />
       case 2:
         return <CourseContent />
       case 3: 
@@ -40,24 +48,58 @@ function NewCourse({currentUser,courseId,currentCourseContent,courseStatus}) {
   }
 
   const changeStep = () => {
-    if(currentStep == 1){
-      let description = (convertToHTML(newCourse.description.getCurrentContent()));
+    let err = {}
+    if(newCourse.title === ''){
+      err.title = "Entrez un titre"
+    }
+
+    if(newCourse.hours === ''){
+      err.hours = "Entrez une duree"
+    }
+
+    if(newCourse.topics === ''){
+      err.topics = "Entrez des topics"
+    }
+    setErrors(err)
+    if(Object.getOwnPropertyNames(err).length === 0){
+      if(currentStep == 1){
         
         if(hasNewCourse == true){
-          dispatch(storeCourse(newCourse,description,currentUser));
-          setHasNewCourse(false)
-        }else{
-          console.log(courseId);
-          dispatch(updateCourse(newCourse,courseId))
-        }
+            let description = (convertToHTML(newCourse.description.getCurrentContent()));
+            dispatch(storeCourse(newCourse,description,currentUser));
+            setHasNewCourse(false)
+          }else{
+            dispatch(updateCourse(newCourse,course.id))
+          }
+      }
+      setCurrentStep(currentStep + 1)
     }
-    setCurrentStep(currentStep + 1)
+
   }
+
+  useEffect(() => {
+    const { slug } = match.params
+    if(slug){
+      setHasNewCourse(false)
+      setIsEditCourse(true)
+      dispatch(fetchCourse(slug))
+    }
+
+    return () => {
+      dispatch(getCurrentCourse([]))
+    }
+  }, [match, dispatch])
+
+  useEffect(() => {
+    if (isEditCourse){
+      setNewCourse(course)
+    }
+  }, [course])
 
   return (
     <div className="wrap-content">
       <div className="container-fluid">
-        <h6 className="page-title"> <AddCircleOutlineOutlinedIcon /> <span>Nouveau cours</span></h6>
+        <h6 className="page-title"> <AddCircleOutlineOutlinedIcon /> <span> {isEditCourse ? 'Modifier le cours' : 'Nouveau cours'} </span></h6>
 
         <div className="steps_container step-app mt-5" id="add-course-tab">
           <ul className="step-steps">
@@ -94,7 +136,7 @@ function NewCourse({currentUser,courseId,currentCourseContent,courseStatus}) {
           
           {currentStep < 4 ? 
             <Button text="Suivant" handleClick={() => changeStep()} /> : 
-            courseStatus === "Publier" ? null :  CourseContentIsValid(currentCourseContent) ? <Button text="Publier" handleClick={ () => handlePublish(courseId)} /> : null }            
+            course.status === "Publier" ? null :  CourseContentIsValid(currentCourseContent) ? <Button text="Publier" handleClick={ () => handlePublish(course.id)} /> : null }            
         </div>   
         </div> 
       </div>
@@ -104,16 +146,15 @@ function NewCourse({currentUser,courseId,currentCourseContent,courseStatus}) {
 
 NewCourse.propTypes = {
   currentUser: PropTypes.number,
-  courseId: PropTypes.number,
   currentCourseContent: PropTypes.array,
-  courseStatus: PropTypes.string
+  course: PropTypes.object,
+  match: PropTypes.object
 }
 
 const mapStateToProps = state => {
   return {
     currentUser: state.authentication.user.id,
-    courseId: state.course.currentCourse.id,
-    courseStatus: state.course.currentCourse.status,
+    course: state.course.currentCourse,
     currentCourseContent: state.course.currentCourseContent
   }
 }
