@@ -1913,3 +1913,7 @@ border-radius: 3px;
   margin-bottom: 0;
 color: #686f7a;
 }
+
+.border-red{
+  border: 1px solid red !important;
+}
