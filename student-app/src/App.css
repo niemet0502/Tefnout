@@ -2514,3 +2514,8 @@ input:focus, textarea:focus {
 	width: 400px;
 	height: 250px;
 }
+
+.rdw-editor-wrapper{
+	border:  1px solid red;
+}
+

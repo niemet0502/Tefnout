@@ -74,7 +74,7 @@ function Courses({user, dispatch,courses}) {
               <td className="text-center">{ course.created_at.substr(0,10)}</td>
               <td className="text-center">{ course.follow_courses_count}</td>
               <td className="text-center">  { course.category_name}</td>
-              <td className="text-center">  { course.chapters_count}</td>
+              <td className="text-center">  { course.chapter_count}</td>
               <td className="text-center"> <b className="course_active">{ course.status}</b> </td>
               <td className="text-center">
                 {user.profil_id == 1 ? '': <Link to={`/edit-course/${course.slug}`}> <EditOutlinedIcon className="uil text-black" /></Link>}
