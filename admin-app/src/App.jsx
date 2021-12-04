@@ -24,7 +24,8 @@ import NewCourse from "./pages/courses/NewCourse";
 import Reviews from "./pages/reviews/Reviews";
 import Users from "./pages/users/Users";
 import Settings from './pages/settings/Settings';
-import Courses from "./pages/courses/Courses"
+import Courses from "./pages/courses/Courses";
+import Applications from './pages/Applications/Applications';
 function App() {
   return (
     <div className="App">
@@ -39,6 +40,7 @@ function App() {
           <PrivateRoute path="/new-course" component={NewCourse} exact />
           <PrivateRoute path="/courses" component={Courses} exact />
           <PrivateRoute path="/settings" component={Settings} exact />
+          <PrivateRoute path="/applications" component={Applications} exact />
           <PublicRoute path="/" component={SignIn}/>
         </Switch>
       </Router>

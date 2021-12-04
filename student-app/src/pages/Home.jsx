@@ -11,7 +11,7 @@ import CategoryCard from "../components/Marketplace/CategoryCard"
 import CourseCard from '../components/Marketplace/Course/CourseCard'
 import Button from '../components/Marketplace/Button'
 import Instructor from '../components/Marketplace/Instructor'
-
+import Footer from '../components/Marketplace/Footer'
 // images 
 import hero_icon from "../assets/img/hero_icon.png"
 import hero_img from "../assets/img/hero_img.png"

@@ -11,6 +11,7 @@ import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
 import CategoryOutlinedIcon from '@material-ui/icons/CategoryOutlined';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 
 function Sidebar({user}) {
   return (
@@ -46,12 +47,21 @@ function Sidebar({user}) {
 						</NavLink>
 					</li>
 					{ user.profil_id == 1 ? 
-						<li className="menu--item">
-							<NavLink to="/users" className="menu--link d-flex align-items-center">
-								<PeopleOutlineIcon className='uil uil-comments menu--icon' />
-								<span className="menu--label">Users</span>
-							</NavLink>
-						</li> : ''
+						<>
+							<li className="menu--item">
+								<NavLink to="/users" className="menu--link d-flex align-items-center">
+									<PeopleOutlineIcon className='uil uil-comments menu--icon' />
+									<span className="menu--label">Users</span>
+								</NavLink>
+							</li> 
+							<li className="menu--item">
+								<NavLink to="/applications" className="menu--link d-flex align-items-center">
+									<PersonAddAltIcon className='uil uil-comments menu--icon' />
+									<span className="menu--label">Instructor Application</span>
+								</NavLink>
+							</li> 
+						</>
+						: ''
 					}
 					<li className="menu--item">
 						<NavLink to="/reviews" className="menu--link d-flex align-items-center">
