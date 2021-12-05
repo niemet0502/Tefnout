@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // images 
-import bg_image from "../../../assets/img/counter_bg.jpg"
+import bg_image from "../../../assets/img/page_title_bg.jpg"
 function CourseBanner({title,page}) {
   return (
     <CourseBannerComponent>
@@ -31,6 +31,10 @@ const CourseBannerComponent = styled.section`
   z-index: 1;
   position: relative;
   padding: 150px 0;
+
+  &::before{
+    opacity: 0.6;
+  }
 `;
 
 export default CourseBanner
