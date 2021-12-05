@@ -12,7 +12,8 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 const CourseInformation = ({
   categories,
   course,
-  handleChange
+  handleChange,
+  errors
 }) => {
   const dispatch = useDispatch()
   const [editorState, setEditorState] = useState(
@@ -44,6 +45,7 @@ const CourseInformation = ({
             onChange={(e) => handleChange({...course,title:  e.target.value})}
             placeholder="titre du cours..."
             className="prompt srch_explore"
+            error={errors.title}
             required
           />   
         </div>
@@ -68,6 +70,7 @@ const CourseInformation = ({
               onChange={(e) => handleChange({...course,hours:  e.target.value})}
               placeholder="duree du cours..."
               className="prompt srch_explore"
+              error={errors.hours}
               required
             />   
             </div>
@@ -82,6 +85,7 @@ const CourseInformation = ({
               onChange={(e) => handleChange({...course,topics:  e.target.value})}
               placeholder="topics..."
               className="prompt srch_explore"
+              error={errors.topics}
               required
             />   
           </div>
@@ -127,7 +131,8 @@ const CourseInformation = ({
 CourseInformation.propTypes = {
   categories: PropTypes.array,
   course: PropTypes.object,
-  handleChange: PropTypes.func
+  handleChange: PropTypes.func,
+  errors: PropTypes.object
 }
 
 const mapStateToProps = state => {

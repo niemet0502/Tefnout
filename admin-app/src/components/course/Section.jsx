@@ -27,6 +27,7 @@ const Section = ({id,title,chapters,courseId}) => {
   const [selectedTab, setSelectedTab] = useState(false)
   const [video, setVideo] = useState(null)
   const [error, setError] = useState({})
+  const [chapterErrors, setChapterErrors] = useState({})
   const [editedChapter, setEditedChapter] = useState({id: null})
   const dispatch = useDispatch()
   const onDelete = useCallback(() => {
@@ -39,29 +40,43 @@ const Section = ({id,title,chapters,courseId}) => {
 
   const handleSubmitSection = e => {
     e.preventDefault()
+    let err = {}
+
+    if(!state){
+      err.title ="Entrez un titre"
+    }
+    setError(err)
+    if( Object.getOwnPropertyNames(err).length == 0){
     dispatch(updateSection(state,courseId,id))
 
-    setShowEditForm(!showEditForm)
+    setShowEditForm(!showEditForm) }
   }
 
   const handleSubmit = e => {
     e.preventDefault()
+    let err = {}
 
-    // if (chapterTitle === ''){
-    //   setError({...error, title: "Entrez un titre"})
-    //   console.log(error);
-    // }
+    if(!chapterTitle){
+      err.title ="Entrez un titre"
+    }
+
     const textContent = (convertToHTML(editorState.getCurrentContent()))
-    dispatch(storeChapter(chapterTitle,textContent,courseId,id))
-    setChapterTitle('')
-    setEditorState(() => EditorState.createEmpty())
-    toggleLoginForm()
-    
+
+    if(textContent === "<p></p>"){
+      err.textContent ="Entrez le contenu du chapitre"
+    }
+    setChapterErrors(err)
+    if(Object.getOwnPropertyNames(err).length === 0){
+      dispatch(storeChapter(chapterTitle,textContent,courseId,id))
+      setChapterTitle('')
+      setEditorState(() => EditorState.createEmpty())
+      toggleLoginForm()
+      setChapterErrors({})
+    }
   }
   
   const handleUpdateChapter = e => {
     e.preventDefault()
-    console.log('update');
     const textContent = (convertToHTML(editorState.getCurrentContent()))
     dispatch(updateChapter(chapterTitle, editedChapter.id, courseId, textContent))
     setChapterTitle('')
@@ -76,6 +91,7 @@ const Section = ({id,title,chapters,courseId}) => {
       setEditorState(EditorState.createWithContent(convertFromHTML(editedChapter.chapter_text_content)))
       toggleLoginForm();
     }
+
   }, [editedChapter])
 
   return (
@@ -101,6 +117,7 @@ const Section = ({id,title,chapters,courseId}) => {
                 onChange={(e) => setstate(e.target.value)}
                 className="prompt srch_explore"
                 label="Titre"
+                error={error.title}
                 required
                 />
               </div>
@@ -157,6 +174,7 @@ const Section = ({id,title,chapters,courseId}) => {
                   onChange={(e) => setChapterTitle(e.target.value)}
                   className="prompt srch_explore"
                   label="Titre*"
+                  error={chapterErrors.title}
                   required
                   />
                 </div>
@@ -173,6 +191,11 @@ const Section = ({id,title,chapters,courseId}) => {
                 editorClassName="editor-class"
                 toolbarClassName="toolbar-class"
               />
+
+              {chapterErrors.textContent && <>
+                <hr style={{color: 'red', marginBottom: '0px'}} />
+                <span style={{color: 'red'}}>Entrez le contenu</span>
+              </>}
               </div>
             </div>
 

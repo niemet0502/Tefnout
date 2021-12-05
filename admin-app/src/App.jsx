@@ -33,7 +33,6 @@ function App() {
         <Navigation />
         <Switch>
           <PrivateRoute path="/dashboard" component={Dashboard} exact />
-          <PublicRoute path="/reset-password" component={ResetPassword} exact/>
           <PrivateRoute path="/categories" component={Categories} exact />
           <PrivateRoute path="/users" component={Users} exact />
           <PrivateRoute path="/reviews" component={Reviews} exact />
@@ -41,6 +40,8 @@ function App() {
           <PrivateRoute path="/courses" component={Courses} exact />
           <PrivateRoute path="/settings" component={Settings} exact />
           <PrivateRoute path="/applications" component={Applications} exact />
+          <PrivateRoute path="/edit-course/:slug" component={NewCourse} exact />
+          <PublicRoute path="/reset-password" component={ResetPassword} exact/>
           <PublicRoute path="/" component={SignIn}/>
         </Switch>
       </Router>

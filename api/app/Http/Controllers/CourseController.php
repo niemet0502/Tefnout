@@ -173,7 +173,7 @@ class CourseController extends Controller
     }
 
     public function getCoursesByTeacher(int $id){
-        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status', 'courses.chapter_count',
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status', 'courses.slug', 'courses.chapter_count',
         'categories.name as category_name', 
         'users.name as user_name', 
         'users.firstname as user_firstname')
@@ -229,7 +229,8 @@ class CourseController extends Controller
 
     public function getAdminCourse(){
         
-        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status', 'courses.chapter_count',
+        $courses = Course::select('courses.id', 'courses.title', 'courses.created_at', 'courses.status', 'courses.chapter_count'
+        ,'courses.slug',
         'categories.name as category_name', 
         'users.name as user_name', 
         'users.firstname as user_firstname',)

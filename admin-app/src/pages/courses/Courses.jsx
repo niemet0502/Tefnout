@@ -77,7 +77,7 @@ function Courses({user, dispatch,courses}) {
               <td className="text-center">  { course.chapter_count}</td>
               <td className="text-center"> <b className="course_active">{ course.status}</b> </td>
               <td className="text-center">
-                {user.profil_id == 1 ? '': <EditOutlinedIcon  className="uil" />}
+                {user.profil_id == 1 ? '': <Link to={`/edit-course/${course.slug}`}> <EditOutlinedIcon className="uil text-black" /></Link>}
                 {course.follow_courses_count > 0 ? '' :  <DeleteOutlineOutlinedIcon onClick={() => deleteAction(course)} className="uil"/>}
               </td>
             </tr>

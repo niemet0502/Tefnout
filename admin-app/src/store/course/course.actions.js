@@ -8,6 +8,23 @@ export const GET_CURRENT_COURSE_CONTENT = 'GET CURRENT COURSE'
 export const createNewCourse = course => ({type: CREATE_NEW_COURSE, payload: course})
 export const getCurrentCourse = course_content => ({type: GET_CURRENT_COURSE_CONTENT, payload: course_content})
 
+export function fetchCourse(slug){
+  return async dispatch => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/courses/${slug}`,{
+        method: "PUT"
+      })
+      const data = await response.json()
+
+      dispatch(createNewCourse(data.course))
+      dispatch(fetchCourseContent(data.course.id))
+    } catch (error) {
+      
+    }
+  }
+}
+
+
 export function storeCourse(course,description,teacher_id){
   return async dispatch => {
     

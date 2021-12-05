@@ -24,11 +24,9 @@ const FormInput = ({
         placeholder={placeholder}
         onChange={onChange}
         value={value}
-        className={className}
-        // style={error && {border: 'solid 1px red !important'}}
+        className={`${className} ${error && 'border-red'} `}
       />
-      <p>{ error }</p>
-      { error && <p>{ error }</p>}
+      { error && <p style={{color: 'red'}}>{ error }</p>}
     </React.Fragment>
   )
 }
