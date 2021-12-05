@@ -43,8 +43,8 @@ function SignIn({login, loading, hasErrors, token}) {
 			
 				<div className="col-lg-6 col-md-8">
 					<div className="sign_form">
-						<h2>Welcome Back</h2>
-						<p>Log In to Your Edututs+ Account!</p>
+						<h2>Bienvenue</h2>
+						<p>Se connecter a notre plateforme!</p>
 
 						<form onSubmit={handleSubmit}>
 							<div className="ui search focus mt-2">
@@ -54,7 +54,7 @@ function SignIn({login, loading, hasErrors, token}) {
 									type="email"
 									value={email}
 									onChange={({target}) => setEmail(target.value)}
-									placeholder="Enter Address..."
+									placeholder="Entrer votre email..."
 									className="prompt srch_explore"
 									error={errors.email}
 									required
@@ -69,7 +69,7 @@ function SignIn({login, loading, hasErrors, token}) {
 									type="password"
 									value={password}
 									onChange={({target}) => setPassword(target.value)}
-									placeholder="Enter password..."
+									placeholder="Entrer votre mot de passe..."
 									className="prompt srch_explore"
 									error={errors.password}
 									required
@@ -77,14 +77,14 @@ function SignIn({login, loading, hasErrors, token}) {
 									<VpnKeyIcon className="input__icon" />
 								</div>
 							</div>
-							 <Button text="SignIn" className="col-md-12" />
+							 <Button text="Connexion" className="col-md-12" />
 							 {loading && 'Chargement...'}
 							 {hasErrors && 'errors'}
 						</form>
-						<p className="sgntrm145">Or <Link to="/reset-password">Forgot Password</Link>.</p>
+						<p className="sgntrm145">Ou <Link to="/reset-password">Réinitialisé mot de passe </Link>.</p>
 						
 					</div>
-					<div className="sign_footer" > 2020 <strong>Cursus</strong>. All Rights Reserved.</div>
+					<div className="sign_footer" > 2020 <strong>Cursus</strong>. Tout droit réservé .</div>
 				</div>				
 			</div>				
 		</div>				

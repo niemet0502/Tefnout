@@ -2443,6 +2443,7 @@ input:focus, textarea:focus {
 	border-radius: 5px;
 	box-shadow: rgb(121 121 121 / 35%) 1px 10px 20px;
 	min-height: 200px;
+	min-width: 365px;
 }
 .recap_body span.doneIcon_container{
 	border-radius: 50%;
@@ -2603,4 +2604,9 @@ input:focus, textarea:focus {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.recap_body{
+	display: flex; 
+	flex-direction: column;
 }

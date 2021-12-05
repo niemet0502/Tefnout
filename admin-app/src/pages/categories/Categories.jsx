@@ -99,12 +99,12 @@ function Categories({categories}) {
 
       <PageHeader 
         Icon={CategoryOutlinedIcon} 
-        text="Category"
+        text="Categorie"
       > 
         <Button 
           classNames="modal-toggle" 
           handleClick={toggleLoginForm} 
-          text="Create Category"
+          text="Nouvelle categorie"
         /> 
       </PageHeader>
 
@@ -113,9 +113,9 @@ function Categories({categories}) {
           <tr>
             <th className="text-center" scope="col">Id</th>
             <th>Image</th>
-            <th className="text-center" scope="col">Name</th>
-            <th className="text-center" scope="col">Created at</th>
-            <th className="text-center" scope="col">Course(s)</th>
+            <th className="text-center" scope="col">Nom</th>
+            <th className="text-center" scope="col">Date création </th>
+            <th className="text-center" scope="col">Cours</th>
             <th className="text-center" scope="col">Actions</th>
           </tr>
         </thead>
@@ -145,7 +145,7 @@ function Categories({categories}) {
       <Modal
           isShowing={isLoginFormShowed}
           hide={toggleLoginForm}
-          title="New Category"
+          title="Nouvelle Categorie"
         >
           <form onSubmit={handleSubmit}>
           <div className="ui search focus mt-2">
@@ -174,11 +174,11 @@ function Categories({categories}) {
              <Button 
                 classNames="modal-toggle" 
                 handleClick={toggleLoginForm} 
-                text="Cancel"
+                text="Annuler"
                 variant="secondary"
               /> 
               <Button
-                text="Register"
+                text="Enregistrer"
               />
             </div>
           </div>
@@ -188,22 +188,22 @@ function Categories({categories}) {
         <Modal
           isShowing={isConfirmationModalShowed}
           hide={toggleConfirmationModal}
-          title="Delete confirmation" 
+          title="Confirmation de suppression" 
         >
-          <p className="mt-2 text-bold"> <strong>You are deleting &quot; {selectedCategory.name} &quot; Category</strong> <br />
-          do you want to confirm? </p>
+          <p className="mt-2 text-bold"> <strong>Vous etes sur le point de supprimer le categorie &quot; {selectedCategory.name} &quot;</strong> <br />
+          Voulez-vous confirmez ? </p>
 
           <div className="d-flex align-items-center justify-content-end">
             <Button 
               classNames="modal-toggle" 
               handleClick={toggleConfirmationModal} 
-              text="Cancel"
+              text="Annuler"
               variant="secondary"
             /> 
           <Button 
             classNames="modal-toggle ml-3" 
             handleClick={() => handleDelete(selectedCategory.id)} 
-            text="Delete"
+            text="Supprimer"
           /> 
           </div>
         </Modal>
@@ -211,7 +211,7 @@ function Categories({categories}) {
         <Modal
           isShowing={isEditCategoryShowed}
           hide={toggleEditCategory}
-          title="Edit Category"
+          title="Modifier Categorie"
         >
           <form onSubmit={handleUpdate}>
           <div className="ui search focus mt-2">
@@ -240,12 +240,12 @@ function Categories({categories}) {
               <Button 
                 classNames="modal-toggle" 
                 handleClick={toggleEditCategory} 
-                text="Cancel"
+                text="Annuler"
                 variant="secondary"
               /> 
 
               <Button
-                text="Update"
+                text="Modifier"
               />
             </div>
           </div>

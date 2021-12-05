@@ -12,10 +12,10 @@ function Footer({currentUser}) {
             <div className="row g-0">
                 <div className="col-lg-12">
                     <div className="bai_wrap bai_left theme_bg">
-                        <span># Become A Instructor</span>
-                        <h3>Become a Instructor</h3>
+                        <span># Devenir Formateur</span>
+                        <h3>Devenir Formateur</h3>
                         
-                        <Link to="/contact" className="thm_btn thm_btn-border">apply now</Link>
+                        <Link to="/contact" className="thm_btn thm_btn-border">Postuler ici</Link>
                         
                         <div className="bai_shape">
                             <img src={bai_shape} alt="" />
@@ -39,7 +39,7 @@ function Footer({currentUser}) {
                 </div>
                 <div className="right f-right">
                   {currentUser == null ? 
-                    <a className="thm_btn thm_btn-border" href="account.html">Connexion<i className="fal fa-key"></i></a>
+                    <Link className="thm_btn thm_btn-border" to="/login">Connexion<i className="fal fa-key"></i></Link>
                   : null}
                 </div>
             </div>

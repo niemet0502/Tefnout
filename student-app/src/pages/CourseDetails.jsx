@@ -116,7 +116,7 @@ function CourseDetails({
                                 <li><StarBorderIcon /></li>
                             </ul>
                             <div className="review">
-                                <span>132 Reviews</span>
+                                <span>132 Revues</span>
                             </div>
                         </div>
                         <div className="right ul_li">
@@ -130,7 +130,7 @@ function CourseDetails({
                             { user.avatar == null ? <img src={cd_thumb} className="author" alt="" /> : 
                               <img src={user.avatar} alt="" className="author"  />}
                             </div>
-                            <h4><span>By :</span> {user.name} {user.firstname} </h4>
+                            <h4><span>Par :</span> {user.name} {user.firstname} </h4>
                         </div> 
                         
                     </div>
@@ -138,12 +138,12 @@ function CourseDetails({
               <div className="cdl_bottom"> 
               <div>
                 <Tabs> 
-                  <div label="Overview"> 
+                  <div label="Description"> 
                     <div className="ov_text_wrap">
                       <p dangerouslySetInnerHTML={createMarkup(course.description)}></p>
                     </div>
                   </div>
-                  <div label="Curriculum"> 
+                  <div label="Programme"> 
                     <div className="cc_wrap mt-20">
                       <ul className="accordion_box clearfix p-0">
                         {curriculum.map((curr) => (  
@@ -166,7 +166,7 @@ function CourseDetails({
                       </ul>
                     </div>
                   </div> 
-                  <div label="Instructor"> 
+                  <div label="Formateur"> 
                   <div className="instructor_wrap">
                       <div className="instructor_info ul_li justify-content-start">
                           <div className="instructor_img">
@@ -176,8 +176,8 @@ function CourseDetails({
                           <div className="info">
                               <h3 className="title">{user.name} {user.firstname}</h3>
                               <div className="instructor_student ul_li">
-                                  <span>{user.courses_count} Course (s) </span>
-                                  <span>{user.students_count} Student (s) </span>
+                                  <span>{user.courses_count} Cours </span>
+                                  <span>{user.students_count} Etudiant (s) </span>
                               </div>
                               <div className="instructor_btn mt-2">
                                 <span className="instructor_function">{user.function}</span>
@@ -189,10 +189,10 @@ function CourseDetails({
                       </div>
                   </div>
                   </div> 
-                  <div label="Reviews"> 
+                  <div label="Revues"> 
                   <div className="review_wrap">
                     <div className="post_comment">
-                        <h3 className="comment_title">Reviews</h3>
+                        <h3 className="comment_title">Revues </h3>
                         <ul className="comment_list mb-40 p-0">
                           {reviews.map((review) => (
                             <li key={review.id}>
@@ -213,7 +213,7 @@ function CourseDetails({
 
                         {currentTraining !== false ?
                          <div>
-                           <h3 className="comment_title">Add a review</h3>
+                           <h3 className="comment_title">Nouvelle revue</h3>
                            <form onSubmit={handleSubmit}>
                             <FormTextArea
                               name="review"
@@ -253,15 +253,15 @@ function CourseDetails({
                   <div className="course_content">
                       <ul>
                           <li>
-                              <span className="left">Duration :</span>
+                              <span className="left">Durée  :</span>
                               <span>{course.hours}</span>
                           </li>
                           <li>
-                              <span className="left">Skill Level :</span>
-                              <span>Beginner</span>
+                              <span className="left">Niveau :</span>
+                              <span>{course.level}</span>
                           </li>
                           <li>
-                              <span className="left">Views :</span>
+                              <span className="left">Vues :</span>
                               <span>{course.views}</span>
                           </li>
                       </ul>

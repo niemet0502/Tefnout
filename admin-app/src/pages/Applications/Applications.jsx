@@ -47,12 +47,12 @@ const Applications = ({applications}) => {
         <table className="table ucp-table mt-5">
           <thead className="thead-s">
             <tr>
-              <th className="text-center" scope="col">Item No.</th>
-              <th className="text-center" scope="col">Fullname</th>
+              <th className="text-center" scope="col">No.</th>
+              <th className="text-center" scope="col">Nom complet</th>
               <th className="text-center" scope="col">Email</th>
-              <th className="text-center" scope="col">Phone</th>
+              <th className="text-center" scope="col">Telephone</th>
               <th className="text-center" scope="col">Message </th>
-              <th className="text-center" scope="col">Resume</th>
+              <th className="text-center" scope="col">CV</th>
               <th className="text-center" scope="col">Actions</th>
             </tr>
           </thead>

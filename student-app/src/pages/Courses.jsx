@@ -50,9 +50,8 @@ function Courses({courses,dispatch,categories}) {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search..."
+              placeholder="rechercher..."
               required
-              // error={errors.username}
               className="input w-25 bg-white"
             />
           </div>
@@ -60,7 +59,7 @@ function Courses({courses,dispatch,categories}) {
               <div className="col-12">
                   <div className="mb-40 d-flex">
                   <Button 
-                    text="All categories"
+                    text="Toutes categories"
                     bgColorHover="#0073ff" 
                     bgColor={currentCategory == 0 ? "#0073ff" : "#ffff"} 
                     handleClick={() => setCurrentCategory(0)}

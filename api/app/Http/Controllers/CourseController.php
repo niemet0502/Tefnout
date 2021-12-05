@@ -262,6 +262,7 @@ class CourseController extends Controller
             DB::raw('SUM(notes.value) as total_note'),
             DB::raw('COUNT(notes.value) as notes_count'))
             ->where('categories.id', '=', $id)
+            ->where('courses.status', '=', 'Publier')
             ->withCount('followCourses')
             ->groupBy('courses.id')
             ->orderBy('courses.id','DESC')

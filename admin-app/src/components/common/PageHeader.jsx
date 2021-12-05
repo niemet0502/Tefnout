@@ -7,7 +7,7 @@ function PageHeader({Icon,text,children}) {
   return (
     <div className="card_dash1 col-md-12 d-flex align-items-center justify-content-between">
       <div className="">
-        <h2 className="card_dash1_title">{Icon && <Icon/>}Jump Into {text} Creation</h2>
+        <h2 className="card_dash1_title">{Icon && <Icon/>} {text} Création </h2>
       </div>
       <div className="">
         {children}

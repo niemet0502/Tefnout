@@ -65,7 +65,7 @@ const CourseInformation = ({
             <FormInput
               name="Duree"
               type="text"
-              label="Duree*"
+              label="Durée*"
               value={course.hours}
               onChange={(e) => handleChange({...course,hours:  e.target.value})}
               placeholder="duree du cours..."

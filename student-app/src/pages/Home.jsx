@@ -3,7 +3,6 @@ import styled from "styled-components"
 import PropTypes from "prop-types"
 import { connect } from 'react-redux'
 import { fetchLastCourses } from "../store/courses/courses.actions"
-import { fetchInstructor } from "../store/users/users.actions"
 import { fetchCategories } from "../store/categories/categories.actions"
 import { Link } from "react-router-dom"
 // components 
@@ -32,7 +31,6 @@ function Home({
   useEffect(() => {
     dispatch(fetchCategories())
     dispatch(fetchLastCourses())
-    // dispatch(fetchInstructor())
   }, [dispatch])
 
   return (
@@ -52,20 +50,19 @@ function Home({
                               <div className="icon">
                                   <img src={hero_icon} alt=""/>
                               </div>
-                              <span># Learn Anything, Anytime, Anywhere</span>
-                              <h2>Best Online Learning For your future.</h2>
-                              <p>We believe everyone has the capacity to be creative. Turitor is a place where
-                                  people develop their own potential.</p>
+                              <span># Apprendre Tout, Tout le temps</span>
+                              <h2>Meilleure platforme de formation en ligne.</h2>
+                              <p>Nous croyons que tout le monde a du potentiel. Notre place est l&apos;endroit ou vous developper vos connaissances.</p>
                               <div className="hero_btn mt-15 d-flex">
                               <Link to="/courses">
                                 <Button 
-                                  text="Views courses"
+                                  text="Courses"
                                   Icon={ArrowRightAltIcon}  />
                               </Link>
 
                               <Link to="/login">
                                 <Button 
-                                  text="Start trial" 
+                                  text="Debuter" 
                                   bgColor="#e5175c"
                                   bgColorHover="#0073ff"
                                   Icon={ArrowRightAltIcon} />
@@ -83,18 +80,12 @@ function Home({
         <div className="row align-items-center mb-5">
             <div className="col-lg-8 col-md-8">
                 <div className="sec_title">
-                    <h2>Recent Popular Subjects</h2>
-                    <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
+                    <h2>Nos categories</h2>
+                    <p>La formation en ligne vous offre une nouvelle maniere d&apos;explorer des sujets qui vous passiones</p>
                 </div>
             </div>
             <div className="col-lg-4 col-md-4">
-                <div className="crs_btn d-flex justify-content-end mb-20">
-                  <Link to="/courses">
-                    <Button 
-                    text="View all"
-                    Icon={ArrowRightAltIcon}  />
-                  </Link>
-                </div>
+                
             </div>
         </div>
         <div className="row ">
@@ -115,15 +106,15 @@ function Home({
         <div className="row align-items-center mb-5">
             <div className="col-lg-8 col-md-8">
                 <div className="sec_title">
-                    <h2>Find the right course for you</h2>
-                    <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
+                    <h2>Cours</h2>
+                    <p>La formation en ligne vous offre une nouvelle maniere d&apos;explorer des sujets qui vous passiones</p>
                 </div>
             </div>
             <div className="col-lg-4 col-md-4">
               <div className="crs_btn d-flex justify-content-end mb-20">
                 <Link to="/courses">
                   <Button 
-                    text="View all"
+                    text="Liste des cours"
                     Icon={ArrowRightAltIcon}  />
                   </Link>
                 </div>
@@ -147,37 +138,6 @@ function Home({
             />
           ))}
           
-        </div>
-      </div>
-    </section>
-
-    <section className="courses_area pt-5 pb-5 category-section">
-      <div className="container">
-        <div className="row align-items-center mb-5">
-            <div className="col-lg-8 col-md-8">
-                <div className="sec_title">
-                    <h2>Featured Instructors</h2>
-                    <p>Online learning offers a new way to explore subjects you’re passionate about.</p>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-4">
-              <div className="crs_btn d-flex justify-content-end mb-20">
-                <Button 
-                  text="View all"
-                  Icon={ArrowRightAltIcon}  />
-                </div>
-            </div>
-        </div>
-        <div className="row d-flex justify-content-between ">
-          {/* {users.map((user) => (
-            <Instructor key={user.id}
-            image={user.avatart}
-            name={user.name}
-            firstname={user.firstname}
-            poste={user.function}
-            siteweb={user.siteweb}
-             />
-          ))} */}
         </div>
       </div>
     </section>

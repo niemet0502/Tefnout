@@ -14,7 +14,6 @@ function NewCourse({
     currentUser,
     course,
     currentCourseContent,
-    // courseStatus,
     match}) {
   const dispatch = useDispatch()
   const [hasNewCourse, setHasNewCourse] = useState(true)
@@ -54,7 +53,7 @@ function NewCourse({
     }
 
     if(newCourse.hours === ''){
-      err.hours = "Entrez une duree"
+      err.hours = "Entrez une durée "
     }
 
     if(newCourse.topics === ''){

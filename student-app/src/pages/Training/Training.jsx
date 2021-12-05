@@ -28,6 +28,7 @@ function Training({
 
   const vChapter =  chapter => {
     const { slug } = match.params
+    console.log(chapter);
     dispatch(validateChapter(slug,chapter,currentUser.id))
     window.scrollTo(0, 0);
   }

@@ -43,29 +43,13 @@ function TopBar({onLogout, user}) {
 		</div>
 		<div className="search120">
 			<div className="ui search">
-			  <div className="ui left icon input swdh10">
-				
-          <input className="prompt srch10" type="text" placeholder="Search for Tuts Videos, Tutors ..."/>
-			  </div>
+			  
 			</div>
 		</div>
 		<div className="header_right">
 			<ul>
-				<li>
-					{user.profil_id == 1 ? '' : <Link to="/new-course"> <Button text="Create New Course" /> </Link>  }
 				
-				</li>
-				<li>
-					<a href="shopping_cart.html" className="option_links" title="cart"><ShoppingCartOutlinedIcon /><span className="noti_count">2</span></a>
-				</li>
-				<li className="ui dropdown">
-					<a href="#" className="option_links" title="Messages"><MailOutlineOutlinedIcon /><span className="noti_count">3</span></a>
-					
-				</li>
-				<li className="ui dropdown">
-					<a href="#" className="option_links" title="Notifications"><NotificationsActiveOutlinedIcon /> <span className="noti_count">3</span></a>
-					 
-				</li>
+				
 				<li className="ui dropdown">
 					<a href="#" className="opts_account" title="Account" onClick={toggleUserDropdown}>
 					{ user.avatar == null ? <img src={user_profil} alt="user_profil" /> : <img src={user.avatar} alt="user_profil" />  }

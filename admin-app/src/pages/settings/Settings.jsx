@@ -26,8 +26,8 @@ function Settings({currentUser, dispatch}) {
 
         <div className="basic_profile">
           <div className="basic_ptitle">
-            <h4>Basic Profile</h4>
-            <p>Add information about yourself</p>
+            <h4>Profile</h4>
+            <p>Ajouter des informations a propos de vous</p>
           </div>
           <div className="basic_form">
             <div className="row">
@@ -37,7 +37,7 @@ function Settings({currentUser, dispatch}) {
 
                   <div className="col-lg-6">
                     <div className="ui search focus mt-30">
-                      <div className="help-block">Name</div>
+                      <div className="help-block">Nom</div>
                       <div className="ui left icon input swdh11 swdh19">
                       <FormInput
                           name="name"
@@ -53,7 +53,7 @@ function Settings({currentUser, dispatch}) {
                     </div>
                   </div>
                   <div className="col-lg-6">
-                    <div className="help-block">Firstname</div>
+                    <div className="help-block">Prenom</div>
                     <div className="ui search focus mt-30">
                       <div className="ui left icon input swdh11 swdh19">
                        <FormInput
@@ -88,7 +88,7 @@ function Settings({currentUser, dispatch}) {
                     </div>
                   </div>
                   <div className="col-lg-6 mt-3">
-                    <div className="help-block">Phone</div>
+                    <div className="help-block">Telephone</div>
                     <div className="ui search focus mt-30">
                       <div className="ui left icon input swdh11 swdh19">
                        <FormInput
@@ -105,7 +105,7 @@ function Settings({currentUser, dispatch}) {
                     </div>
                   </div>
                   <div className="col-lg-12 mt-3">
-                    <div className="help-block">Function</div>
+                    <div className="help-block">Fonction</div>
                     <div className="ui search focus mt-30">
                       <div className="ui left icon input swdh11 swdh19">
                        <FormInput
@@ -123,7 +123,7 @@ function Settings({currentUser, dispatch}) {
                   </div>
 
                   <div className="col-lg-12 mt-3">
-                    <div className="help-block">Bio</div>
+                    <div className="help-block">Biographie</div>
                     <div className="ui search focus mt-30">																
                       <div className="ui form swdh30">
                         <FormTextArea
@@ -163,7 +163,7 @@ function Settings({currentUser, dispatch}) {
                 </div>
                   <Button 
                     classNames="modal-toggle ml-3 mt-4" 
-                    text="Save Changes"
+                    text="Enregistrer les modifications"
                   /> 
               </form>
               </div>
