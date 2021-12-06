@@ -10,10 +10,9 @@ import FormInput from '../components/Marketplace/Form/FormInput'
 import Button from '../components/Marketplace/Button'
 
 
-function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
+function Login({handleLogin, loading, hasErrors, token, handleSignUp, Errors}) {
   const [login, setLogin] = useState({email: "mariusn@gmail.com",password: "passer2019@"})
   const [signup, setSignup] = useState({username: "",password: "",email: "", profil_id: 3})
-  const [errors, setError] = useState({})
 
   function onSubmit(e){
     e.preventDefault()
@@ -24,7 +23,10 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
   function handleSubmitSignUp(e){
     e.preventDefault()
     handleSignUp(signup);
-    setSignup({username: "",password: "",email: "", profil_id: 3})
+    console.log(Object.getOwnPropertyNames(hasErrors).length );
+    if(Object.getOwnPropertyNames(hasErrors).length === 0){
+      setSignup({username: "",password: "",email: "", profil_id: 3})
+    }
   }
 
   if (token) return <Redirect to="/" />
@@ -38,6 +40,8 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
             <div className="col-lg-6">
                 <div className="account_wrap">
                   <h3 className="title">Se connecter</h3>
+
+                 {hasErrors.message &&  <p style={{color: 'red'}}>Login ou mot de passe invalide !! </p>}
                   <form onSubmit={onSubmit}>
                     <FormInput
                       name="username"
@@ -46,7 +50,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                       onChange={(e) => setLogin({...login, email: e.target.value})}
                       placeholder="Entrer votre email..."
                       required
-                      error={errors.username}
+                      error={hasErrors.email ? hasErrors.email[0]: null}
                       className="input"
                     />
 
@@ -57,7 +61,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                         onChange={(e) => setLogin({...login,password: e.target.value})}
                         placeholder="Entrer mot de passe..."
                         className="input"
-                        error={errors.password}
+                        error={hasErrors.password ? hasErrors.password[0]: null}
                         required
                       />
 
@@ -65,7 +69,6 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                       type="submit"
                       className="button"
                       text="connexion"
-                      disabled={loading}
                     />
 
                   </form>
@@ -82,7 +85,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                       onChange={(e) => setSignup({...signup, username: e.target.value})}
                       placeholder="Entrer votre nom d'utilisateur..."
                       required
-                      error={errors.username}
+                      error={Errors.name ? Errors.name[0]: null}
                       className="input"
                     />
                     <FormInput
@@ -92,7 +95,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                       onChange={(e) => setSignup({...signup, email: e.target.value})}
                       placeholder="Entrer votre email..."
                       required
-                      error={errors.username}
+                      error={Errors.email ? Errors.email[0] : null}
                       className="input"
                     />
 
@@ -103,7 +106,7 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                         onChange={(e) => setSignup({...signup, password: e.target.value})}
                         placeholder="Entrer votre mot de passe..."
                         className="input"
-                        error={errors.password}
+                        error={Errors.password ? Errors.password[0] : null}
                         required
                       />
 
@@ -111,7 +114,6 @@ function Login({handleLogin, loading, hasErrors, token,handleSignUp}) {
                       type="submit"
                       className="button"
                       text="inscription"
-                      disabled={loading}
                     />
 
                   </form>
@@ -137,14 +139,16 @@ Login.propTypes = {
   handleLogin: PropTypes.func,
 	hasErrors: PropTypes.bool,
 	token: PropTypes.string,
-  handleSignUp: PropTypes.func
+  handleSignUp: PropTypes.func,
+  Errors: PropTypes.object
 }
 
 const mapStateToProps = state => {
 	return {
 		loading: state.authentication.loading,
 		hasErrors: state.authentication.hasErrors,
-		token: state.authentication.token
+		token: state.authentication.token,
+    Errors: state.authentication.Errors
 	}
 }
 

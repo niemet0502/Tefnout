@@ -9,6 +9,7 @@ const Contact = () => {
   const [contact, setContact] = useState({fullname: ""})
   const [resume, setResume] = useState()
   const [loading, setLoading] = useState(false)
+  const [errors, setErrors] = useState({})
 
   async function storeApplication(contact){
     const response = await fetch("http://127.0.0.1:8000/api/applications",{
@@ -33,9 +34,26 @@ const Contact = () => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    setLoading(true)
-    storeApplication(contact)
-    setLoading(false)
+    let err = {}
+
+    if(!contact.fullname){
+      err.fullname = "Entrer votre nom complet"
+    }
+
+    if(!contact.email){
+      err.email = "Entrer votre email"
+    }
+
+    if(!contact.phone){
+      err.phone = "Entrer votre telephone"
+    }
+    setErrors(err)
+    if(Object.getOwnPropertyNames(err).length === 0){
+      setLoading(true)
+      storeApplication(contact)
+      setLoading(false)
+    }
+
   }
   return (
     <div className="" style={{paddingTop: '100px'}}>
@@ -54,9 +72,9 @@ const Contact = () => {
                     type="text"
                     value={contact.fullname}
                     onChange={(e) => setContact({...contact, fullname: e.target.value})}
-                    placeholder="Fullname..."
+                    placeholder="Nom complet..."
                     required
-                // error={errors.username}
+                    error={errors.fullname}
                 />
                 </div>
                 <div className="col-md-6">
@@ -65,7 +83,7 @@ const Contact = () => {
                     type="text"
                     value={contact.email}
                     onChange={(e) => setContact({...contact, email: e.target.value})}
-                    // error={errors.username}
+                    error={errors.email}
                     placeholder="Email..."
                     required
                 />
@@ -81,13 +99,14 @@ const Contact = () => {
                     type="text"
                     value={contact.phone}
                     onChange={(e) => setContact({...contact, phone: e.target.value})}
-                    placeholder="Phone..."
+                    placeholder="Telephone..."
                     required
+                    error={errors.phone}
                 />
                 </div>
                 <div className="col-md-6 d-flex">
                 <label htmlFor="resume" className="apply-label">
-                <AttachFileIcon /> ATTACH RESUME / CV
+                <AttachFileIcon /> ATTACH  / CV
                 </label>
                 <input type="file" id="resume" name="resume" style={{opacity: '0'}} 
                   onChange={e => setResume(e.target.files[0])}/>
@@ -96,7 +115,7 @@ const Contact = () => {
 
               <div className="col-12 mt-4">
                 <textarea style={{height: '250px'}} name="message" id="message" cols="30" rows="10"
-                                                  placeholder="Your Message :" 
+                                                  placeholder="Message :" 
                   value={contact.message}
                   onChange={e => setContact({...contact, message: e.target.value})}
                 >

@@ -27,7 +27,7 @@ const FormInput = ({
         className={className}
         style={error && {border: 'solid 1px red'}}
       />
-      { error && <p>{ error }</p>}
+      { error && <p style={{ marginBottom: '20px', color: 'red'}}>{ error }</p>}
     </React.Fragment>
   )
 }
