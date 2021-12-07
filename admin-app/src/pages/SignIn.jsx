@@ -45,7 +45,7 @@ function SignIn({login, loading, hasErrors, token}) {
 					<div className="sign_form">
 						<h2>Bienvenue</h2>
 						<p>Se connecter a notre plateforme!</p>
-
+						{hasErrors.message &&  <p style={{color: 'red'}}>Login ou mot de passe invalide !! </p>}
 						<form onSubmit={handleSubmit}>
 							<div className="ui search focus mt-2">
 								<div className="ui left icon input swdh95">
@@ -56,7 +56,7 @@ function SignIn({login, loading, hasErrors, token}) {
 									onChange={({target}) => setEmail(target.value)}
 									placeholder="Entrer votre email..."
 									className="prompt srch_explore"
-									error={errors.email}
+									error={hasErrors.email ? hasErrors.email[0] : null}
 									required
 								/>
 									<MailOutlineIcon  className="input__icon"/>
@@ -71,7 +71,7 @@ function SignIn({login, loading, hasErrors, token}) {
 									onChange={({target}) => setPassword(target.value)}
 									placeholder="Entrer votre mot de passe..."
 									className="prompt srch_explore"
-									error={errors.password}
+									error={hasErrors.password ? hasErrors.password[0] : null}
 									required
 								/>
 									<VpnKeyIcon className="input__icon" />
@@ -79,7 +79,6 @@ function SignIn({login, loading, hasErrors, token}) {
 							</div>
 							 <Button text="Connexion" className="col-md-12" />
 							 {loading && 'Chargement...'}
-							 {hasErrors && 'errors'}
 						</form>
 						<p className="sgntrm145">Ou <Link to="/reset-password">Réinitialisé mot de passe </Link>.</p>
 						

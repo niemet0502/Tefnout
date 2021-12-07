@@ -10,7 +10,7 @@ export const UPDATE_CURRENT_USER = 'UPDATE CURRENT USER'
 export const loginUser = () => ({type: USERS_LOGIN_LOADING})
 export const loginUserSuccess = user =>  ({type: USERS_LOGIN_REQUEST, payload: user})
 export const logoutUser = () => ({type: USERS_LOGOUT_REQUEST})
-export const loginUserfailure = () => ({type: USERS_LOGIN_FAILURES})
+export const loginUserfailure = errors => ({type: USERS_LOGIN_FAILURES, payload: errors})
 export const fetchSettingsSuccess = user => ({type: UPDATE_CURRENT_USER, payload: user})
 
 export function login(user){
@@ -18,24 +18,37 @@ export function login(user){
       dispatch(loginUser())
 
       try {
-          
-           axios.post("http://127.0.0.1:8000/api/login", {
+
+        const response = await fetch("http://127.0.0.1:8000/api/login", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({  
             email: user.email,
             password: user.password,
             profil_id: 1
-          }).then(result => {
-
-            // save user's informations in localStorage 
-            console.log(result.data.user);
-            storeAuthToken(result.data.token)
-            storeUser(JSON.stringify(result.data.user))
-            
-            dispatch(loginUserSuccess(result.data))
-            history.push('/dashboard');
-          }).catch(error => {
-            console.log(error.response.data.errors);
-            dispatch(loginUserfailure())
           })
+        })
+
+        const data = await response.json()
+        
+        if (response.status === 422){
+          if (data.errors){
+            dispatch(loginUserfailure(data.errors))
+          }else{
+            dispatch(loginUserfailure(data))
+          }
+
+        }else{
+          // save user's informations in localStorage 
+          storeAuthToken(data.token);
+          storeUser(JSON.stringify(data.user))
+          
+          dispatch(loginUserSuccess(data))
+          history.push('/dashboard');
+        }
       } catch (error) {
 
       }

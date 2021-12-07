@@ -37,7 +37,6 @@ export function login(user){
           })
 
           const data = await response.json()
-          console.log(data);
           if (response.status === 422){
             if (data.errors){
               dispatch(loginUserfailure(data.errors))

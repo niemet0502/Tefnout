@@ -7,7 +7,7 @@ export const ADD_USER = 'ADD USER'
 
 export const getUsers = () => ({type: GET_USERS_LOADING})
 export const getUsersSuccess = (users) => ({type: GET_USERS_SUCCESS, payload: users})
-export const getUsersFailures = () => ({type: GET_USERS_FAILURES})
+export const getUsersFailures = (errors) => ({type: GET_USERS_FAILURES, payload: errors})
 export const deleteUser = (user) => ({type: DELETE_USER, payload: user.id})
 export const addUser = user => ({type: ADD_USER, payload: user})
 
@@ -59,17 +59,30 @@ export function newUser(user){
         })
 
         const data = await response.json()
-        let profil_name = ""
-        if (user.profil_id == 1){
-          profil_name = "Administrateur"
-        }else{
-          if (user.profil_id == 3){
-            profil_name = "Formateur"
+          if (response.status === 422){
+            if (data.errors){
+              dispatch(loginUserfailure(data.errors))
+            }else{
+              dispatch(loginUserfailure(data))
+            }
+
           }else{
-            profil_name = "Apprenant"
+            let profil_name = ""
+            if (user.profil_id == 1){
+              profil_name = "Administrateur"
+            }else{
+              if (user.profil_id == 3){
+                profil_name = "Formateur"
+              }else{
+                profil_name = "Apprenant"
+              }
+            }
+            // save user's informations in localStorage 
+            storeAuthToken(data.token);
+            storeUser(JSON.stringify(data.user))
+            
+            dispatch(addUser({...data.user, profil_name: profil_name}))
           }
-        }
-        dispatch(addUser({...data.user, profil_name: profil_name}))
       
     } catch (error) {
       console.log(error);

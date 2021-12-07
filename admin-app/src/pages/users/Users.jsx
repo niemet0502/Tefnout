@@ -15,7 +15,7 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import userProfil from "../../assets/img/user_profil.jpg"
 
 
-function Users({users, dispatch,currentUser}) {
+function Users({users, dispatch,currentUser,hasErrors}) {
   const [newUser, setNewUser] = useState({email: "", name: "", profil_id: 1})
   const [selectedUser, setSelectedUser] = useState({id: null, name: "", firstname: ""})
   const { isShowing: isDeleteUserShowed, toggle: toggleDeleteUser } = useModal();
@@ -33,7 +33,7 @@ function Users({users, dispatch,currentUser}) {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(newUser);
+    
     dispatch(actions.newUser(newUser))
     toggleNewUser()
     setNewUser({email: "", name: "", profil_id: 1})
@@ -126,6 +126,7 @@ function Users({users, dispatch,currentUser}) {
               className="prompt srch_explore"
               label="Nom complet"
               required
+              error={hasErrors.name ? hasErrors.name[0]: null}
               />
             </div>
           </div>
@@ -140,6 +141,7 @@ function Users({users, dispatch,currentUser}) {
               placeholder=""
               className="prompt srch_explore"
               label="Email"
+              error={hasErrors.email ? hasErrors.email[0]: null}
               required
               />
             </div>
@@ -177,13 +179,15 @@ function Users({users, dispatch,currentUser}) {
 Users.propTypes = {
   users: PropTypes.array,
   dispatch: PropTypes.func,
-  currentUser: PropTypes.number
+  currentUser: PropTypes.number,
+  hasErrors: PropTypes.object
 }
 
 const mapStateToProps = state => {
   return{
     users: state.users.users,
-    currentUser: state.authentication.user.id
+    currentUser: state.authentication.user.id,
+    hasErrors: state.users.hasErrors
   }
 }
 

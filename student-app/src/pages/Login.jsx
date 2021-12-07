@@ -23,7 +23,6 @@ function Login({handleLogin, loading, hasErrors, token, handleSignUp, Errors}) {
   function handleSubmitSignUp(e){
     e.preventDefault()
     handleSignUp(signup);
-    console.log(Object.getOwnPropertyNames(hasErrors).length );
     if(Object.getOwnPropertyNames(hasErrors).length === 0){
       setSignup({username: "",password: "",email: "", profil_id: 3})
     }

@@ -3,7 +3,7 @@ import { toast } from "react-toastify"
 export const initialState = {
   loading: false, 
   users: [],
-  hasErros: false
+  hasErrors: {}
 }
 
 function usersReducer(state = initialState, action){
@@ -11,9 +11,9 @@ function usersReducer(state = initialState, action){
     case actions.GET_USERS_LOADING:
       return {...state, loading: true}
     case actions.GET_USERS_SUCCESS: 
-      return {loading: false, users: action.payload, hasErros: false}
+      return {loading: false, users: action.payload, hasErrors: {}}
     case actions.GET_USERS_FAILURES: 
-      return {...state, loading: false, hasErros: true}
+      return {...state, loading: false, hasErrors: action.payload}
     case actions.DELETE_USER: 
       toast("User deleted...",{
         position: toast.POSITION.BOTTOM_LEFT,

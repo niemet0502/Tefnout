@@ -16,21 +16,23 @@ class AuthController extends Controller
             'profil_id'=>'required|integer'
         ]);
 
-        $user = User::create([
-            'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => bcrypt($fields['password']),
-            'profil_id'=> $fields['profil_id'],
-        ]); 
+        return $fields;
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        // $user = User::create([
+        //     'name' => $fields['name'],
+        //     'email' => $fields['email'],
+        //     'password' => bcrypt($fields['password']),
+        //     'profil_id'=> $fields['profil_id'],
+        // ]); 
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
+        // $token = $user->createToken('myapptoken')->plainTextToken;
 
-        return response($response, 201);
+        // $response = [
+        //     'user' => $user,
+        //     'token' => $token
+        // ];
+
+        // return response($response, 201);
     }
 
     public function login(Request $request) {
@@ -46,8 +48,8 @@ class AuthController extends Controller
         // Check password
         if(!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
-                'message' => 'Bad creds'
-            ], 401);
+                'message' => 'login ou mot de passe invalide'
+            ], 422);
         }
 
         $token = $user->createToken('myapptoken')->plainTextToken;
