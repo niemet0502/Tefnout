@@ -25,7 +25,7 @@ function NewCourse({
   const [errors, setErrors] = useState({})
   const handlePublish = useCallback(
     (course) => {
-      dispatch(publishCourse(course.id))
+      dispatch(publishCourse(course))
     },
     [dispatch])
 
