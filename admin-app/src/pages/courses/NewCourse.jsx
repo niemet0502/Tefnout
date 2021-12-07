@@ -25,8 +25,8 @@ function NewCourse({
                                   category_id: 3,level: "Debutant"})
   const [errors, setErrors] = useState({})
   const handlePublish = useCallback(
-    (course) => {
-      dispatch(publishCourse(course.id))
+    (newCourse) => {
+      dispatch(publishCourse(newCourse))
     },
     [dispatch])
 
