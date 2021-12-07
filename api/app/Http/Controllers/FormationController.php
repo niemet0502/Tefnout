@@ -113,7 +113,7 @@ class FormationController extends Controller
             'student_id' => 'required|integer|min:1|',
         ]);
 
-        $formation =  FollowCourse::where([['course_id', intval(substr($request->slug,0,1))], ['student_id', $request->student_id]])->first();
+        $formation =  FollowCourse::where([['course_id', intval(substr($request->slug,0,3))], ['student_id', $request->student_id]])->first();
 
         $chapter = new FollowChapter();
         $chapter->is_validated = "true";
@@ -131,7 +131,7 @@ class FormationController extends Controller
     }
 
     public function unvalideChapter($slug,$student_id,$chapter){
-        $formation =  FollowCourse::where([['course_id', intval(substr($slug,0,2))], ['student_id', $student_id]])->first();
+        $formation =  FollowCourse::where([['course_id', intval(substr($slug,0,3))], ['student_id', $student_id]])->first();
         
         FollowChapter::where([['formation_id', $formation->id], 
                     ['chapter_id', $chapter]])->delete();
