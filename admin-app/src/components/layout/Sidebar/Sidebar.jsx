@@ -54,12 +54,12 @@ function Sidebar({user}) {
 									<span className="menu--label">Utilisateurs</span>
 								</NavLink>
 							</li> 
-							<li className="menu--item">
+							{/* <li className="menu--item">
 								<NavLink to="/applications" className="menu--link d-flex align-items-center">
 									<PersonAddAltIcon className='uil uil-comments menu--icon' />
 									<span className="menu--label">Candidatures formateur</span>
 								</NavLink>
-							</li> 
+							</li>  */}
 						</>
 						: ''
 					}
