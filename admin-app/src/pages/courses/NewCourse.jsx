@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
-import CourseInformation from "./CourseInformation";
+import { convertToHTML } from 'draft-convert';
+import PropTypes from "prop-types";
+import React, { useCallback, useEffect, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import Button from "../../components/common/Button";
+import { fetchCourse, getCurrentCourse, publishCourse, storeCourse, updateCourse } from '../../store/course/course.actions';
+import { CourseContentIsValid } from '../../utils/helpers';
 import CourseContent from './CourseContent';
+import CourseInformation from "./CourseInformation";
 import CourseMedia from './CourseMedia';
 import CoursePublish from './CoursePublish';
-import Button from "../../components/common/Button";
-import { convertToHTML } from 'draft-convert';
-import { storeCourse, updateCourse,publishCourse, fetchCourse, getCurrentCourse } from '../../store/course/course.actions';
-import { useDispatch, connect } from 'react-redux';
-import PropTypes from "prop-types";
-import { CourseContentIsValid } from '../../utils/helpers';
 function NewCourse({
     currentUser,
     course,
@@ -20,9 +20,9 @@ function NewCourse({
   const [hasNewCourse, setHasNewCourse] = useState(true)
   const [isEditCourse, setIsEditCourse] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
-  const [newCourse, setNewCourse] = useState({title: "Creer une application angular", hours: "3 heurs", 
+  const [newCourse, setNewCourse] = useState({title: "", hours: "", 
                                   description: "", topics: "angular frontend",
-                                  category_id: 3,level: "Debutant"})
+                                  category_id: 3,level: "Beginner"})
   const [errors, setErrors] = useState({})
   const handlePublish = useCallback(
     (newCourse) => {
@@ -112,7 +112,7 @@ function NewCourse({
             <li className={"" + (currentStep > 2 ? "done" : '') +  " " + (currentStep == 2 ? "active" : '')}>
               <a href="#!">
                 <span className="number"></span>
-                <span className="step-name">Contenu</span>
+                <span className="step-name">Content</span>
               </a>
             </li>
             <li className={"" + (currentStep > 3 ? "done" : '') +  " " + (currentStep == 3 ? "active" : '')}>
@@ -124,7 +124,7 @@ function NewCourse({
             <li className={" " + (currentStep == 4 ? "active" : '')}>
               <a href="#!">
                 <span className="number"></span>
-                <span className="step-name">Publier</span>
+                <span className="step-name">Publish</span>
               </a>
             </li>
           </ul>
@@ -132,11 +132,11 @@ function NewCourse({
           {handleStep()}
         </div>    
         <div className="step-footer step-tab-pager">
-          { currentStep > 1 ? <Button text="Precedent" handleClick={() => setCurrentStep(currentStep - 1)} /> : null}
+          { currentStep > 1 ? <Button text="Prev" handleClick={() => setCurrentStep(currentStep - 1)} /> : null}
           
           {currentStep < 4 ? 
-            <Button text="Suivant" handleClick={() => changeStep()} /> : 
-            course.status === "Publier" ? null :  CourseContentIsValid(currentCourseContent) ? <Button text="Publier" handleClick={ () => handlePublish(course.id)} /> : null }            
+            <Button text="Next" handleClick={() => changeStep()} /> : 
+            course.status === "Publish" ? null :  CourseContentIsValid(currentCourseContent) ? <Button text="Publish" handleClick={ () => handlePublish(course.id)} /> : null }            
         </div>   
         </div> 
       </div>

@@ -1,22 +1,21 @@
-import React, { useCallback, useEffect, useState } from 'react'
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import ReorderIcon from '@mui/icons-material/Reorder';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Chapter from './Chapter';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import EditIcon from '@mui/icons-material/Edit';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
+import { convertFromHTML, convertToHTML } from 'draft-convert';
+import { EditorState } from 'draft-js';
 import PropTypes from "prop-types";
+import React, { useCallback, useEffect, useState } from 'react';
+import { Editor } from 'react-draft-wysiwyg';
+import { connect, useDispatch } from 'react-redux';
+import useModal from '../../hooks/useModal';
+import { deleteSection, storeChapter, updateChapter, updateSection } from '../../store/course/course.actions';
 import Button from "../common/Button";
 import Modal from "../common/Modal";
-import useModal from '../../hooks/useModal';
 import FormInput from '../form/FormInput';
-import { updateSection, deleteSection, updateChapter } from '../../store/course/course.actions';
-import { useDispatch, connect } from 'react-redux';
-import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import { storeChapter } from '../../store/course/course.actions';
-import { convertToHTML, convertFromHTML } from 'draft-convert';
+import Chapter from './Chapter';
 
 
 const Section = ({id,title,chapters,courseId}) => { 
@@ -145,19 +144,19 @@ const Section = ({id,title,chapters,courseId}) => {
         ))}
       </div>
       <div className="section-add-item-wrap p-3">
-        <button className="add_lecture d-flex align-items-center" data-toggle="modal" onClick={() => toggleLoginForm()} > <AddBoxIcon /> <span className="mr-2" style={{marginLeft: '8px'}}>Chapitre</span></button>
+        <button className="add_lecture d-flex align-items-center" data-toggle="modal" onClick={() => toggleLoginForm()} > <AddBoxIcon /> <span className="mr-2" style={{marginLeft: '8px'}}>Chapter</span></button>
       </div>
 
 
       <Modal
           isShowing={isLoginFormShowed}
           hide={toggleLoginForm}
-          title={ editedChapter.id !== null ?  "Modifier Chapitre" : "Nouveau Chapitre"}
+          title={ editedChapter.id !== null ?  "Edit Chapter" : "New Chapter"}
           classNames="chapter-modal"
         >
 
           <div className="nav nav-pills d-flex ">
-            <a href="#!" onClick={() => setSelectedTab(!selectedTab)} className={"nav-linkk " + (selectedTab == false ? "active": null)}><DescriptionOutlinedIcon /> Basique</a>
+            <a href="#!" onClick={() => setSelectedTab(!selectedTab)} className={"nav-linkk " + (selectedTab == false ? "active": null)}><DescriptionOutlinedIcon /> Basic</a>
             <a href="#!" onClick={() => setSelectedTab(!selectedTab)} className={"nav-linkk " + (selectedTab ? "active": null)}> <VideoCallOutlinedIcon /> Video</a>
           </div>
 
@@ -173,7 +172,7 @@ const Section = ({id,title,chapters,courseId}) => {
                   value={chapterTitle}
                   onChange={(e) => setChapterTitle(e.target.value)}
                   className="prompt srch_explore"
-                  label="Titre*"
+                  label="Title*"
                   error={chapterErrors.title}
                   required
                   />
@@ -182,7 +181,7 @@ const Section = ({id,title,chapters,courseId}) => {
 
               <div className="col-md-12">
 
-              <label htmlFor="" className="label mt-3 mb-3">Contenu*</label>
+              <label htmlFor="" className="label mt-3 mb-3">Content*</label>
               
               <Editor 
                 editorState={editorState}
@@ -218,12 +217,12 @@ const Section = ({id,title,chapters,courseId}) => {
             <div className="d-flex align-items-center justify-content-end mt-4">
               <Button 
                   classNames="modal-toggle" 
-                  text="Annuler"
+                  text="Cancel"
                   variant="secondary"
                   handleClick={toggleLoginForm}
                 /> 
                 <Button
-                  text="Enregistrer"
+                  text="Register"
                   classNames="mr-0"
                   type="submit"
                 />

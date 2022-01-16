@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import imgg from "../../assets/img/thumbnail-demo.jpg";
-import { connect, useDispatch } from 'react-redux';
 import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import imgg from "../../assets/img/thumbnail-demo.jpg";
 import { updateCourse } from "../../store/course/course.actions";
 import { getBase64 } from '../../utils/convertFile';
 const CourseMedia = ({image,courseId}) => {
@@ -30,7 +30,7 @@ const CourseMedia = ({image,courseId}) => {
       <div className="thumbnail-into">
         <div className="row">
           <div className="col-lg-5 col-md-6">
-            <label className="label25 text-left mb-4">Image du cours*</label>
+            <label className="label25 text-left mb-4">Thumbnail*</label>
             <div className="thumb-item course-thum-item">
               {courseImage == null ? <img src={imgg} alt="" style={{width: '100%', height: '250px'}}/> 
                 : typeof courseImage === 'string' ? 
@@ -39,7 +39,7 @@ const CourseMedia = ({image,courseId}) => {
               <div className="thumb-dt pb-3">													
                 <div className="upload-btn mt-4">													
                   <input className="uploadBtn-main-input" type="file" id="ThumbFile__input" onChange={(e) => setCourseImage(e.target.files[0])} />
-                  <label  title="Zip" htmlFor="ThumbFile__input">Selectionnez une image</label>
+                  <label  title="Zip" htmlFor="ThumbFile__input">Choose Thumbnail</label>
                 </div>
                 <span className="uploadBtn-main-file mb-4">Taille: 590x300 pixels. Supports: jpg,jpeg, ou png</span>
               </div>
@@ -52,7 +52,7 @@ const CourseMedia = ({image,courseId}) => {
           <div className="upload-file-dt mt-30">
             <div className="upload-btn">													
               <input className="uploadBtn-main-input" type="file" id="IntroFile__input--source" />
-              <label title="Zip">Selectionnez une Video</label>
+              <label title="Zip">Upload Video</label>
             </div>
             <span className="uploadBtn-main-file"> Format: .mp4</span>
             <span className="uploaded-id"></span>

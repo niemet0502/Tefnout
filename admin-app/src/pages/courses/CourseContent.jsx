@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import PageHeader from "../../components/common/PageHeader"
-import Button from "../../components/common/Button";
-import Section from "../../components/course/Section";
-import { connect, useDispatch } from 'react-redux';
 import PropTypes from "prop-types";
-import { fetchCourseContent, storeSection } from '../../store/course/course.actions';
-import useModal from '../../hooks/useModal';
-import Modal from "../../components/common/Modal"
+import React, { useEffect, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import Button from "../../components/common/Button";
+import Modal from "../../components/common/Modal";
+import PageHeader from "../../components/common/PageHeader";
+import Section from "../../components/course/Section";
 import FormInput from '../../components/form/FormInput';
+import useModal from '../../hooks/useModal';
+import { fetchCourseContent, storeSection } from '../../store/course/course.actions';
 const CourseContent = ({courseContent,courseId}) => {
   const dispatch = useDispatch()
   const { isShowing: isLoginFormShowed, toggle: toggleLoginForm } = useModal();
@@ -37,14 +37,14 @@ const CourseContent = ({courseContent,courseId}) => {
   return (
     <div>
       <div className="title-icon">
-        <h3 className="title">Contenu</h3>
+        <h3 className="title">Content</h3>
       </div>
 
       <PageHeader
           text="Contenu"
           > 
           <Button 
-            text="Nouvelle Section"
+            text="Create new section"
             handleClick={toggleLoginForm} 
           /> 
         </PageHeader>
@@ -61,7 +61,7 @@ const CourseContent = ({courseContent,courseId}) => {
       <Modal
           isShowing={isLoginFormShowed}
           hide={toggleLoginForm}
-          title="Nouvelle Section"
+          title="New section"
         >
           <form onSubmit={handleSubmitSection}>
             
@@ -73,7 +73,7 @@ const CourseContent = ({courseContent,courseId}) => {
               value={state}
               onChange={(e) => setState(e.target.value)}
               className="prompt srch_explore"
-              label="Titre*"
+              label="Title*"
               error={error.title}
               required
               />
@@ -83,12 +83,12 @@ const CourseContent = ({courseContent,courseId}) => {
           <div className="d-flex align-items-center justify-content-end mt-4">
              <Button 
                 classNames="modal-toggle" 
-                text="Annuler"
+                text="Cancel"
                 variant="secondary"
                 handleClick={toggleLoginForm}
               /> 
               <Button
-                text="Enregistrer"
+                text="Register"
                 classNames="mr-0"
                 type="submit"
               />

@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import {connect} from "react-redux";
-import FormInput from '../../components/form/FormInput';
-import FormSelect from '../../components/form/FormSelect';
-import PropTypes from "prop-types";
-import { useDispatch } from 'react-redux';
-import { fetchCategories } from '../../store/categories/categories.actions';
 import { EditorState } from 'draft-js';
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { connect, useDispatch } from "react-redux";
+import FormInput from '../../components/form/FormInput';
+import FormSelect from '../../components/form/FormSelect';
+import { fetchCategories } from '../../store/categories/categories.actions';
 
 const CourseInformation = ({
   categories,
@@ -40,7 +39,7 @@ const CourseInformation = ({
           <FormInput
             name="name"
             type="text"
-            label="Titre*"
+            label="Course Title*"
             value={course.title}
             onChange={(e) => handleChange({...course,title:  e.target.value})}
             placeholder="titre du cours..."
@@ -65,7 +64,7 @@ const CourseInformation = ({
             <FormInput
               name="Duree"
               type="text"
-              label="Duree*"
+              label="Duration*"
               value={course.hours}
               onChange={(e) => handleChange({...course,hours:  e.target.value})}
               placeholder="duree du cours..."
@@ -98,7 +97,7 @@ const CourseInformation = ({
               <div className="ui left icon input swdh95" style={{marginRight: '20px'}}>
                 <FormSelect
                   name="categorie"
-                  label="Categorie"
+                  label="Category"
                   options={categories}
                   value={course.category_id}
                   onChange={(e) => handleChange({...course, category_id: e.target.value})}
@@ -112,7 +111,7 @@ const CourseInformation = ({
                 <div className="ui left icon input swdh95" style={{marginRight: '20px'}}>
                 <FormSelect
                   name="niveau"
-                  label="Niveau" 
+                  label="Level" 
                   options={niveaux}
                   value={course.level}
                   onChange={(e) => handleChange({...course, level: e.target.value})}
