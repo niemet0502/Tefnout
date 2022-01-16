@@ -41,7 +41,7 @@ class SectionController extends Controller
 
         return response([
             'status' => 'success',
-            'message' => 'Section ajoutée avec succès !'
+            'message' => 'Section added successfully!'
         ], 200);
     }
 
@@ -70,7 +70,7 @@ class SectionController extends Controller
 
         return response([
             'status' => 'success',
-            'message' => 'Section éditée avec succès !'
+            'message' => 'Section edited successfully!'
         ], 200);
     }
 
@@ -87,7 +87,7 @@ class SectionController extends Controller
 
         return response([
             'status' => 'success',
-            'message' => 'Section supprimée avec succès !'
+            'message' => 'Section deleted  successfully !'
         ], 200);
     }
 }

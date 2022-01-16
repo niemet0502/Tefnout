@@ -51,9 +51,8 @@ class ChapterController extends Controller
 
         return response([
             'status' => 'success',
-            'message' => 'chapitre ajouté avec succès !'
+            'message' => 'Chapter added successfully !'
         ], 200);
-
     }
 
     /**
@@ -67,13 +66,15 @@ class ChapterController extends Controller
 
         $cours = Course::where('slug', $slug)->first();
 
-        $training = FollowCourse::where([['follow_courses.course_id', $cours->id],
-                    ['follow_courses.student_id', $student]])
-                    ->join('follow_chapters', 'follow_chapters.formation_id', '=', 'follow_courses.id')
-                    ->where('follow_chapters.chapter_id', $chapterId)
-                    ->select('follow_chapters.is_validated as is_validated')
-                    ->groupBy('follow_chapters.id')
-                    ->first();
+        $training = FollowCourse::where([
+            ['follow_courses.course_id', $cours->id],
+            ['follow_courses.student_id', $student]
+        ])
+            ->join('follow_chapters', 'follow_chapters.formation_id', '=', 'follow_courses.id')
+            ->where('follow_chapters.chapter_id', $chapterId)
+            ->select('follow_chapters.is_validated as is_validated')
+            ->groupBy('follow_chapters.id')
+            ->first();
 
         $chapter = Chapter::find($chapterId);
 
@@ -82,7 +83,7 @@ class ChapterController extends Controller
             'training' => $training
         ]);
 
-       // return $chapter;
+        // return $chapter;
     }
 
     /**
@@ -99,7 +100,7 @@ class ChapterController extends Controller
 
         return response([
             'status' => 'success',
-            'message' => 'chapitre édité avec succès !'
+            'message' => 'Chapter edited successfully!'
         ], 200);
     }
 
@@ -115,7 +116,7 @@ class ChapterController extends Controller
 
         return response([
             'status' => 'success',
-            'message' => 'chapitre supprimé avec succès !'
+            'message' => 'Chapter deleted successfully !'
         ]);
     }
 }
