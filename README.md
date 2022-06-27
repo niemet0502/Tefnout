@@ -56,3 +56,28 @@ Our platform also allows the administrator to add course categories and validate
     <li><a href="https://www.mysql.com/">MySQL</a></li>
   </ul>
 </details>
+
+<!-- Features -->
+
+### :dart: Features
+
+- Student-app [Courses marketplace]
+
+  - home page
+  - courses page
+  - filter by category
+  - course's details
+  - Start a new training
+  - Valide a chapter
+  - Unvalide a chapter
+  - Search course by name
+  - Make the review of a course
+  - Apply to be an instructor
+
+- Admin-app
+  - Dashboard
+  - USERS CRUD
+  - CATEGORIES CRUD
+  - REVIEWS LIST
+  - SETTINGS
+  - COURSES CRRD
