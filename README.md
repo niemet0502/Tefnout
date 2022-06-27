@@ -14,6 +14,16 @@ This platform enables trainers to make their training available to learners and 
 
 Our platform also allows the administrator to add course categories and validate the instructor courses prior to publication.
 
+<div>
+    <h4>
+    <a href="https://github.com/Louis3797/awesome-readme-template/">View Landing page </a>
+  <span> · </span>
+    <a href="https://github.com/Louis3797/awesome-readme-template">View Student-app Demo</a>
+  <span> · </span>
+    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">View Admin-app Demo</a>
+  </h4>
+</div>
+
 <!-- Table of Contents -->
 
 # :notebook_with_decorative_cover: Table of Contents
@@ -61,7 +71,7 @@ Our platform also allows the administrator to add course categories and validate
 
 <!-- Database schema -->
 
-### :database: Database schema
+### :database-schema: Database schema
 
 <img src="assets/Tefnout.png">
 
