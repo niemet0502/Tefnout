@@ -21,6 +21,7 @@ Our platform also allows the administrator to add course categories and validate
 - [About the Project](#star2-about-the-project)
   - [Screenshots](#camera-screenshots)
   - [Tech Stack](#space_invader-tech-stack)
+  - [Database Schema](#space_invader-database-schema)
   - [Features](#dart-features)
 - [Getting Started](#toolbox-getting-started)
   - [Prerequisites](#bangbang-prerequisites)
@@ -29,3 +30,29 @@ Our platform also allows the administrator to add course categories and validate
   - [Deployment](#triangular_flag_on_post-deployment)
 - [License](#warning-license)
 - [Contact](#handshake-contact)
+
+<!-- TechStack -->
+
+### :space_invader: Tech Stack
+
+<details>
+  <summary>Student and Admin</summary>
+    <li><a href="https://reactjs.org/">React.js</a></li>
+    <li><a href="https://tailwindcss.com/">Bootstrap</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary>Api</summary>
+  <ul>
+    <li><a href="https://www.typescriptlang.org/">PHP</a></li>
+    <li><a href="https://expressjs.com/">Laravel</a></li>
+  </ul>
+</details>
+
+<details>
+<summary>Database</summary>
+  <ul>
+    <li><a href="https://www.mysql.com/">MySQL</a></li>
+  </ul>
+</details>
