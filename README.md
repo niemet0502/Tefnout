@@ -1,5 +1,15 @@
 ﻿# Tefnout 🚀🔺
 
+<div align="center">
+    <h4>
+    <a href="https://github.com/Louis3797/awesome-readme-template/">View Landing page </a>
+  <span> · </span>
+    <a href="https://github.com/Louis3797/awesome-readme-template">View Student-app Demo</a>
+  <span> · </span>
+    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">View Admin-app Demo</a>
+  </h4>
+</div>
+
 ## What is Tefnout ?
 
 Tefnout is the first female deity to come into existence in the universe, and with her husband Shou ensures the first sexual procreation of the world.
@@ -13,16 +23,6 @@ Admin, Professor and Students.
 This platform enables trainers to make their training available to learners and to enable learners to train independently.
 
 Our platform also allows the administrator to add course categories and validate the instructor courses prior to publication.
-
-<div>
-    <h4>
-    <a href="https://github.com/Louis3797/awesome-readme-template/">View Landing page </a>
-  <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template">View Student-app Demo</a>
-  <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">View Admin-app Demo</a>
-  </h4>
-</div>
 
 <!-- Table of Contents -->
 
