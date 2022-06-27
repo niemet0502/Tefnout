@@ -21,7 +21,7 @@ Our platform also allows the administrator to add course categories and validate
 - [About the Project](#star2-about-the-project)
   - [Screenshots](#camera-screenshots)
   - [Tech Stack](#space_invader-tech-stack)
-  - [Database Schema](#space_invader-database-schema)
+  - [Database Schema](#database-schema)
   - [Features](#dart-features)
 - [Getting Started](#toolbox-getting-started)
   - [Prerequisites](#bangbang-prerequisites)
@@ -37,16 +37,18 @@ Our platform also allows the administrator to add course categories and validate
 
 <details>
   <summary>Student and Admin</summary>
+  <ul>
     <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://tailwindcss.com/">Bootstrap</a></li>
+    <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+    <li><a href="https://redux.js.org/">Redux</a></li>
   </ul>
 </details>
 
 <details>
   <summary>Api</summary>
   <ul>
-    <li><a href="https://www.typescriptlang.org/">PHP</a></li>
-    <li><a href="https://expressjs.com/">Laravel</a></li>
+    <li><a href="https://www.php.net/docs.php">PHP</a></li>
+    <li><a href="https://laravel.com/">Laravel</a></li>
   </ul>
 </details>
 
@@ -56,6 +58,12 @@ Our platform also allows the administrator to add course categories and validate
     <li><a href="https://www.mysql.com/">MySQL</a></li>
   </ul>
 </details>
+
+<!-- Database schema -->
+
+### :database: Database schema
+
+<img src="assets/tefnout.png">
 
 <!-- Features -->
 
@@ -80,4 +88,4 @@ Our platform also allows the administrator to add course categories and validate
   - CATEGORIES CRUD
   - REVIEWS LIST
   - SETTINGS
-  - COURSES CRRD
+  - COURSES CRUD
