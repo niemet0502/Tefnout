@@ -1,12 +1,30 @@
 ﻿# Tefnout 🚀🔺
 
 <div align="center">
+<!-- Badges -->
+    <p>
+    <a href="">
+        <img src="https://img.shields.io/github/last-commit/niemet0502/tefnout" alt="last update" />
+    </a>
+    <a href="https://github.com/Louis3797/awesome-readme-template/network/members">
+        <img src="https://img.shields.io/github/forks/niemet0502/tefnout" alt="forks" />
+    </a>
+    <a href="https://github.com/Louis3797/awesome-readme-template/stargazers">
+        <img src="https://img.shields.io/github/stars/Louis3797/niemet0502/tefnout" alt="stars" />
+    </a>
+    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">
+        <img src="https://img.shields.io/github/issues/niemet0502/tefnout" alt="open issues" />
+    </a>
+    <a href="https://github.com/Louis3797/awesome-readme-template/blob/master/LICENSE">
+        <img src="https://img.shields.io/github/license/Louis3797/awesome-readme-template.svg" alt="license" />
+    </a>
+    </p>
     <h4>
-    <a href="https://github.com/Louis3797/awesome-readme-template/">View Landing page </a>
+    <a href="https://github.com/Louis3797/awesome-readme-template/">Landing page </a>
   <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template">View Student-app Demo</a>
+    <a href="https://github.com/Louis3797/awesome-readme-template">Student-app Demo</a>
   <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">View Admin-app Demo</a>
+    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">Admin-app Demo</a>
   </h4>
 </div>
 
