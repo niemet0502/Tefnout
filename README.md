@@ -6,16 +6,16 @@
     <a href="">
         <img src="https://img.shields.io/github/last-commit/niemet0502/tefnout" alt="last update" />
     </a>
-    <a href="https://github.com/Louis3797/awesome-readme-template/network/members">
+    <a href="https://github.com/niemet0502/Tefnout/network/members">
         <img src="https://img.shields.io/github/forks/niemet0502/tefnout" alt="forks" />
     </a>
-    <a href="https://github.com/Louis3797/awesome-readme-template/stargazers">
-        <img src="https://img.shields.io/github/stars/Louis3797/niemet0502/tefnout" alt="stars" />
+    <a href="https://github.com/niemet0502/Tefnout/stargazers">
+        <img src="https://img.shields.io/github/stars/niemet0502/tefnout" alt="stars" />
     </a>
-    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">
+    <a href="https://github.com/niemet0502/Tefnout/issues/">
         <img src="https://img.shields.io/github/issues/niemet0502/tefnout" alt="open issues" />
     </a>
-    <a href="https://github.com/Louis3797/awesome-readme-template/blob/master/LICENSE">
+    <a href="https://github.com/niemet0502/Tefnout/blob/master/LICENSE">
         <img src="https://img.shields.io/github/license/Louis3797/awesome-readme-template.svg" alt="license" />
     </a>
     </p>
