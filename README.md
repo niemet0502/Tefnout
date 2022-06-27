@@ -117,3 +117,7 @@ Our platform also allows the administrator to add course categories and validate
   - REVIEWS LIST
   - SETTINGS
   - COURSES CRUD
+
+## :handshake-contact: Built By
+
+- Marius Vincent NIEMET - [Twitter](https://twitter.com/mariusniemet05) [Github](https://github.com/niemet0502) [Linkedin](https://www.linkedin.com/in/marius-vincent-niemet-928b48182/)
