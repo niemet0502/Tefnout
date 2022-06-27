@@ -63,13 +63,13 @@ Our platform also allows the administrator to add course categories and validate
 
 ### :database: Database schema
 
-<img src="assets/tefnout.png">
+<img src="assets/Tefnout.png">
 
 <!-- Features -->
 
 ### :dart: Features
 
-- Student-app [Courses marketplace]
+- **Student-app [Courses marketplace]**
 
   - home page
   - courses page
@@ -82,7 +82,7 @@ Our platform also allows the administrator to add course categories and validate
   - Make the review of a course
   - Apply to be an instructor
 
-- Admin-app
+- **Admin-app**
   - Dashboard
   - USERS CRUD
   - CATEGORIES CRUD
